@@ -34,7 +34,7 @@ func _box(gid: String) -> Dictionary:
 	return r.s["nativi"][gid]["box"]
 
 func attivi() -> bool:
-	return r.s.get("scenario", 1) >= 5
+	return r.usa_regola("nativi")
 
 # ------------------------------------------------------------ preparazione
 func prepara() -> void:
@@ -176,6 +176,8 @@ func fine_turno(p: Dictionary) -> void:
 
 # ------------------------------------------------------------ blocchi
 func blocco(p: Dictionary) -> bool:
+	if r.e_classico() and not r.usa_regola("combattimento_pg"):
+		return false
 	## a fine fase, chi è allo scoperto con nativi ostili o nemici tira sugli incontri
 	if p["nascosto"]:
 		return false
@@ -206,6 +208,8 @@ func _esito_ostile(p: Dictionary, gid: String, es: String) -> bool:
 	return false
 
 func inizio_combattimento(k: String) -> void:
+	if r.e_classico() and not r.usa_regola("combattimento_pg"):
+		return
 	## all'inizio del combattimento chi è allo scoperto tira per ogni gruppo ostile o nemico
 	for p in r.vivi():
 		if p["dove"] != k or p["nascosto"]:
