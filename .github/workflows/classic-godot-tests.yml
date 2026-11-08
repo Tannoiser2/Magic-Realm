@@ -33,8 +33,6 @@ jobs:
         run: godot --headless --editor --path . --import --quit
       - name: Rule profile checks
         run: godot --headless --path . --script res://tests/profili_regole_test.gd
-      - name: Legacy save compatibility
-        run: godot --headless --path . --script res://tests/profili_salvataggi_test.gd
       - name: Original map generation
         run: godot --headless --path . --script res://tests/mappa_classica_test.gd
       - name: Original map chits and lost places
@@ -45,3 +43,6 @@ jobs:
         run: godot --headless --path . --script res://tests/anteprima_classica_test.gd
       - name: Full classic playthroughs
         run: godot --headless --path . --script res://tests/partita_classica_auto_test.gd
+      - name: Legacy save compatibility
+        timeout-minutes: 4
+        run: godot --headless --path . --script res://tests/profili_salvataggi_test.gd
