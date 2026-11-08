@@ -23,5 +23,17 @@ func _init() -> void:
 		assert(h.s["fine"] in ["vittoria", "sconfitta"])
 		assert(h.s["giorno"] <= 29)
 		print("CLASSIC GAME seed=%d end=%s day=%d score=%d" % [seed, h.s["fine"], h.s["giorno"], h.pv(h.umano())])
-	print("PASS: three complete classic sessions")
+	# Verifica separata del ramo di conclusione del ventottesimo giorno.
+	var finale := Reame.new()
+	assert(finale.nuova_con_profilo(ProfiliRegole.classico_completo(), "amazzone", [], 98765))
+	finale.umano()["oro"] = 1000
+	finale.s["giorno"] = 27
+	finale.controlla_vittoria()
+	assert(finale.s["fine"] == "")
+	finale.s["giorno"] = 28
+	finale.controlla_vittoria()
+	assert(finale.s["fine"] == "vittoria")
+	assert(finale.s["vincitori"].has("p0"))
+	print("PASS: end-of-month classic victory at day 28")
+	print("PASS: three classic AI sessions terminated; not all survived to day 28")
 	quit()
