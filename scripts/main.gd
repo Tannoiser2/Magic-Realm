@@ -832,9 +832,17 @@ func _mostra_menu() -> void:
 		if c is TextureRect:
 			continue
 		c.queue_free()
+	# Con quattro Encounter e scelta della dimora il menu supera l'altezza
+	# disponibile su TV, notebook e dispositivi mobili: deve scorrere.
+	var menu_scroll := ScrollContainer.new()
+	menu_scroll.set_anchors_preset(Control.PRESET_FULL_RECT)
+	menu_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_AUTO
+	menu_scroll.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_AUTO
+	menu.add_child(menu_scroll)
 	var cc := CenterContainer.new()
-	cc.set_anchors_preset(Control.PRESET_FULL_RECT)
-	menu.add_child(cc)
+	cc.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	cc.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	menu_scroll.add_child(cc)
 	var p := _pannello(Color(0.93, 0.86, 0.70, 0.97))
 	p.custom_minimum_size = Vector2(1180, 0)
 	cc.add_child(p)
