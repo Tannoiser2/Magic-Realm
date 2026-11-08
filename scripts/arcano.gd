@@ -329,7 +329,7 @@ func fonti(p: Dictionary) -> Dictionary:
 	## da dove si può saccheggiare o leggere rune in questa radura
 	var sac := []
 	var run := []
-	if not attiva():
+	if not r.usa_regola("tesori"):
 		return {"saccheggia": sac, "rune": run}
 	var k: String = p["dove"]
 	for sito in siti_qui(p):
@@ -353,7 +353,7 @@ func fonti(p: Dictionary) -> Dictionary:
 	for o in p["oggetti"]:
 		if o.get("attivo", false) and r.s["libri"].has(o["id"]) and not _tutti_noti(p, r.s["libri"][o["id"]]):
 			run.append({"id": "l:" + o["id"], "nome": tesoro(o["id"])["nome"]})
-	return {"saccheggia": sac, "rune": run}
+	return {"saccheggia": sac, "rune": run if r.usa_regola("magia") else []}
 
 func _tutti_noti(p: Dictionary, l: Array) -> bool:
 	for x in l:
@@ -540,6 +540,8 @@ func impara(p: Dictionary, id: String) -> void:
 	r.scrivi("%s impara l'incantesimo %s%s." % [p["nome"], inc(id)["nome"], "" if lanc else " (non ha il segnalino magico per lanciarlo)"], "bene")
 
 func rune(p: Dictionary, fonte: String) -> void:
+	if not r.usa_regola("magia"):
+		return
 	var pila := _pila_inc(fonte)
 	if fonte.begins_with("s:"):
 		r.viaggi.rilascia(fonte, p["dove"])
