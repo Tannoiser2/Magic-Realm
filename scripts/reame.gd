@@ -129,6 +129,7 @@ func nuova_classica(pg_umano: String, rivali: Array, seme: int, profilo: Diction
 	arcano.prepara()
 	_prepara_mostri()
 	nativi.prepara()
+	_prepara_visitatori_classici()
 	var tutti: Array = [pg_umano] + rivali
 	for i in range(tutti.size()):
 		var p: Dictionary = _nuovo_pg("p%d" % i, tutti[i], i == 0)
@@ -143,6 +144,36 @@ func nuova_classica(pg_umano: String, rivali: Array, seme: int, profilo: Diction
 	s["pv_assegnati"] = false
 	scrivi("Magic Realm classico: Incontro %d, 20 tessere, 28 giorni, 5 punti vittoria." % incontro_classico(), "titolo")
 	return true
+
+# Quattro visitatori originali (Crone, Warlock, Shaman, Scholar) gia
+# disponibili negli Encounter I-II. Rimangono fuori dal combattimento.
+func _prepara_visitatori_classici() -> void:
+	var v_ids := ["crone", "warlock", "shaman", "scholar"]
+	var case: Array = s["abitazioni"].keys()
+	mescola(case)
+	s["visitatori"] = {}
+	s["viaggi"] = {}
+	var piccoli: Array = s.get("fuori_gioco", [])
+	var mazzi: Dictionary = s.get("mazzi_inc", {})
+	var tipi: Array = mazzi.keys()
+	for i in range(v_ids.size()):
+		var id: String = v_ids[i]
+		var dw: String = case[i % case.size()]
+		var box := {"tesori": [], "inc": [], "oggetti": []}
+		var tesori := 3 if id == "scholar" else 0
+		var incantesimi := 0 if id == "scholar" else 2
+		for j in range(tesori):
+			if not piccoli.is_empty():
+				box["tesori"].append(piccoli.pop_back())
+		for j in range(incantesimi):
+			if tipi.is_empty():
+				break
+			var tipo: String = tipi[rng.randi_range(0, tipi.size() - 1)]
+			if not mazzi[tipo].is_empty():
+				box["inc"].append(mazzi[tipo].pop_back())
+		s["visitatori"][id] = box
+		s["viaggi"][id] = {"box": "abitazione:" + dw,
+			"dove": s["abitazioni"][dw], "su": true, "chi": ""}
 
 func punteggio_classico(p: Dictionary) -> Dictionary:
 	if not p.has("vp"):
