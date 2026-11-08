@@ -299,9 +299,10 @@ func merce(gid: String) -> Array:
 	for i in range(box["tesori"].size()):
 		var id: String = box["tesori"][i]
 		a.append({"k": "t", "i": i, "id": id, "nome": Arcano.tesoro(id)["nome"], "oro": valore(id)})
-	for i in range(box["inc"].size()):
-		var id: String = box["inc"][i]
-		a.append({"k": "s", "i": i, "id": id, "nome": "Incantesimo: " + Arcano.inc(id)["nome"], "oro": 10})
+	if r.usa_regola("magia"):
+		for i in range(box["inc"].size()):
+			var id: String = box["inc"][i]
+			a.append({"k": "s", "i": i, "id": id, "nome": "Incantesimo: " + Arcano.inc(id)["nome"], "oro": 10})
 	for i in range(box["oggetti"].size()):
 		var o: Dictionary = box["oggetti"][i]
 		a.append({"k": "o", "i": i, "id": o["id"], "nome": Dati.nome_arma(o["id"]), "oro": valore(o)})
