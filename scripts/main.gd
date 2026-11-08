@@ -2,7 +2,8 @@
 ## scheda del personaggio, pianificazione dell'alba, decisioni e combattimento, registro, salvataggi.
 extends Node
 
-const SALVATAGGIO := "user://partita_magicrealm.json"
+const SALVATAGGIO_SUPER := "user://partita_magicrealm.json"
+const SALVATAGGIO_CLASSICO := "user://partita_magicrealm_classico.json"
 const C_FONDO := Color(0.10, 0.07, 0.05)
 const C_PERG := Color(0.93, 0.86, 0.70)
 const C_PERG_SCURA := Color(0.80, 0.70, 0.52)
@@ -73,13 +74,35 @@ var modo_mossa := false
 var codice := ""
 var scelte_menu := {"edizione": "super", "scenario": 3, "pg": "amazzone", "rivali": 2}
 var mischia := {}
+var edizione_portale := "" # "super" o "classico" per le build sul sito; vuoto in Godot locale
+
+func _edizione_attuale() -> String:
+	return ("classico" if g.e_classico() else "super") if g != null and not g.s.is_empty() else str(scelte_menu["edizione"])
+
+func _percorso_salvataggio(edizione: String) -> String:
+	return SALVATAGGIO_CLASSICO if edizione == "classico" else SALVATAGGIO_SUPER
+
+func _torna_portale() -> void:
+	if OS.has_feature("web") and edizione_portale != "":
+		JavaScriptBridge.eval("window.location.href = '../';", true)
+
 
 func _ready() -> void:
 	Dati.carica()
+	if OS.has_feature("web"):
+		var url_path: String = str(JavaScriptBridge.eval("window.location.pathname", true))
+		if url_path.ends_with("/classico/") or url_path.ends_with("/classico/index.html"):
+			edizione_portale = "classico"
+		elif url_path.ends_with("/super/") or url_path.ends_with("/super/index.html"):
+			edizione_portale = "super"
+		if edizione_portale != "":
+			scelte_menu["edizione"] = edizione_portale
 	f_tit = load("res://assets/font/Titoli.ttf")
 	f_txt = load("res://assets/font/Testo.ttf")
 	f_fell = load("res://assets/font/Fell.ttf")
 	net = load("res://scripts/net.gd").new()
+	if edizione_portale == "classico":
+		net.root_partite = "magicrealm/classico/partite"
 	add_child(net)
 	_crea_mondo()
 	_crea_ui()
@@ -817,18 +840,21 @@ func _mostra_menu() -> void:
 	var v := VBoxContainer.new()
 	v.add_theme_constant_override("separation", 10)
 	p.add_child(v)
-	var t := _lab("Magic Realm", 46, f_tit, C_ROSSO)
+	var t := _lab("Magic Realm Classico" if scelte_menu["edizione"] == "classico" else "Super Magic Realm", 46, f_tit, C_ROSSO)
 	t.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	v.add_child(t)
-	var st := _lab("Super Realm · il capostipite dei giochi d'esplorazione fantasy, in versione digitale", 20, f_fell)
+	var st := _lab("Magic Realm originale · 20 tessere · 28 giorni" if scelte_menu["edizione"] == "classico" else "Super Realm · esplorazione fantasy in versione digitale", 20, f_fell)
 	st.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	v.add_child(st)
 	# Selezione indipendente del regolamento, mantenendo Super come default.
-	var edizione_bar := HBoxContainer.new()
-	edizione_bar.add_theme_constant_override("separation", 10)
-	v.add_child(edizione_bar)
-	edizione_bar.add_child(_bott("Super Magic Realm", func(): _scegli_menu("edizione", "super"), 20, scelte_menu["edizione"] == "super"))
-	edizione_bar.add_child(_bott("Magic Realm Classico (sperimentale)", func(): _scegli_menu("edizione", "classico"), 20, scelte_menu["edizione"] == "classico"))
+	if edizione_portale == "":
+		var edizione_bar := HBoxContainer.new()
+		edizione_bar.add_theme_constant_override("separation", 10)
+		v.add_child(edizione_bar)
+		edizione_bar.add_child(_bott("Super Magic Realm", func(): _scegli_menu("edizione", "super"), 20, scelte_menu["edizione"] == "super"))
+		edizione_bar.add_child(_bott("Magic Realm Classico (sperimentale)", func(): _scegli_menu("edizione", "classico"), 20, scelte_menu["edizione"] == "classico"))
+	else:
+		v.add_child(_bott("‹ Torna alla scelta dei giochi", _torna_portale, 17))
 	# scenario
 	v.add_child(_lab("Scenario" if scelte_menu["edizione"] == "super" else "Modalità classica", 24, f_tit))
 	var hs := GridContainer.new()
@@ -898,7 +924,7 @@ func _mostra_menu() -> void:
 	v.add_child(hb)
 	hb.add_child(_bott("Nuova partita", _nuova_partita, 22, true))
 	var cont := _bott("Continua", _continua, 22)
-	cont.disabled = not FileAccess.file_exists(SALVATAGGIO)
+	cont.disabled = not FileAccess.file_exists(_percorso_salvataggio(str(scelte_menu["edizione"])))
 	hb.add_child(cont)
 	var ed := LineEdit.new()
 	ed.placeholder_text = "codice partita"
@@ -994,7 +1020,7 @@ func _avvia(prepara: Callable) -> void:
 		_mostra_guida_scenario(false)
 
 func _continua() -> void:
-	var f := FileAccess.open(SALVATAGGIO, FileAccess.READ)
+	var f := FileAccess.open(_percorso_salvataggio(str(scelte_menu["edizione"])), FileAccess.READ)
 	if f == null:
 		return
 	var d = JSON.parse_string(f.get_as_text())
@@ -1021,7 +1047,7 @@ func _salva_locale() -> void:
 		return
 	var d := g.esporta()
 	d["codice"] = codice
-	var f := FileAccess.open(SALVATAGGIO, FileAccess.WRITE)
+	var f := FileAccess.open(_percorso_salvataggio(_edizione_attuale()), FileAccess.WRITE)
 	f.store_string(JSON.stringify(d))
 
 func _salva_online() -> void:
@@ -1991,8 +2017,9 @@ func _fine() -> void:
 	var h := HBoxContainer.new()
 	box_azioni.add_child(h)
 	h.add_child(_bott("Nuova partita", _torna_menu, 18, true))
-	if FileAccess.file_exists(SALVATAGGIO):
-		DirAccess.remove_absolute(ProjectSettings.globalize_path(SALVATAGGIO))
+	var finito_path := _percorso_salvataggio(_edizione_attuale())
+	if FileAccess.file_exists(finito_path):
+		DirAccess.remove_absolute(ProjectSettings.globalize_path(finito_path))
 
 # ============================================================ regole
 func _crea_aiuto() -> void:
