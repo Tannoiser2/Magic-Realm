@@ -27,6 +27,21 @@ jobs:
         run: godot --version
       - name: Import Godot resources
         run: godot --headless --editor --path . --import --quit
+      - name: Resolve preinstalled Web export templates
+        run: |
+          set -eu
+          echo "Runner HOME=$HOME"
+          TARGET="$HOME/.local/share/godot/export_templates/4.7.2.stable"
+          mkdir -p "$TARGET"
+          FOUND="$(find /root /opt /usr/local /home -type f -name 'web_nothreads_release.zip' -print -quit 2>/dev/null || true)"
+          if [ -z "$FOUND" ]; then
+            echo "Could not find preinstalled Web export templates"
+            exit 1
+          fi
+          SRC="$(dirname "$FOUND")"
+          echo "Using templates in $SRC"
+          cp "$SRC"/web_nothreads_*.zip "$TARGET"/
+          ls -lh "$TARGET"/web_nothreads_*.zip
       - name: Build Web HTML5 artifact
         run: |
           mkdir -p build/web
