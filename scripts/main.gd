@@ -664,7 +664,7 @@ func _crea_ui() -> void:
 	hb.add_child(lbl_codice)
 	hb.add_child(_bott("Centra", _centra, 16))
 	hb.add_child(_bott("Salva online", _salva_online, 16))
-	hb.add_child(_bott("Guida", func(): _mostra_guida_scenario(true), 16))
+	hb.add_child(_bott("Guida", func(): _mostra_guida_classica() if g != null and g.e_classico() else _mostra_guida_scenario(true), 16))
 	hb.add_child(_bott("Regole", func(): aiuto.visible = not aiuto.visible, 16))
 	hb.add_child(_bott("Menu", _torna_menu, 16))
 	# scheda personaggio a sinistra
@@ -781,6 +781,14 @@ func _centra() -> void:
 		_aggiorna_camera()
 
 # ============================================================ menu
+func _mostra_guida_classica() -> void:
+	_apri_modale("Magic Realm Classico — guida")
+	box_modale.add_child(_lab("Partita sperimentale di 28 giorni sulla mappa originale di 20 tessere. Esplora il Reame, visita i siti, commercia con i nativi, raccogli tesori e sopravvivi ai mostri.", 17))
+	box_modale.add_child(_lab("All'inizio assegni 5 punti tra grandi tesori, incantesimi, fama, notorieta e oro. Alla fine del ventottesimo giorno vengono calcolati bonus e penalita per gli obiettivi scelti. Vince il personaggio sopravvissuto con il miglior punteggio non negativo.", 16))
+	box_modale.add_child(_lab("Alcune regole avanzate del gioco fisico, come cavalli e determinati incantesimi, non sono ancora completamente disponibili. La logica di alcuni incontri e adattata dal motore Super.", 15))
+	_riga_bottoni().add_child(_bott("Chiudi", func(): modale.visible = false, 18, true))
+	_ricentra()
+
 func _crea_menu() -> void:
 	menu = Control.new()
 	menu.set_anchors_preset(Control.PRESET_FULL_RECT)
@@ -898,7 +906,7 @@ func _mostra_menu() -> void:
 	hb.add_child(ed)
 	hb.add_child(_bott("Carica online", func(): _carica_online(ed.text.strip_edges().to_upper()), 20))
 	hb.add_child(_bott("Regole", func(): aiuto.visible = true, 20))
-	var nota := _lab("Versione digitale per uso personale del modulo Super Magic Realm (espansione non ufficiale di Magic Realm, Avalon Hill).", 14, f_txt, Color(0.4, 0.3, 0.2))
+	var nota := _lab("Modalita classica sperimentale: obiettivi e punteggio originali; alcuni effetti e l’IA restano in verifica." if scelte_menu["edizione"] == "classico" else "Versione digitale per uso personale del modulo Super Magic Realm (espansione non ufficiale di Magic Realm, Avalon Hill).", 14, f_txt, Color(0.4, 0.3, 0.2))
 	nota.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	v.add_child(nota)
 
@@ -1050,7 +1058,7 @@ func _aggiorna() -> void:
 	if g == null or g.s.is_empty():
 		return
 	var fasi_n := {"alba": "Alba: registra le attività", "giorno": "Giorno", "sera": "Sera: combattimenti", "mezzanotte": "Mezzanotte"}
-	lbl_giorno.text = "Giorno %d · %s" % [g.s["giorno"], g.settimana_mese()]
+	lbl_giorno.text = ("Classico · giorno %d/28" % g.s["giorno"]) if g.e_classico() else ("Giorno %d · %s" % [g.s["giorno"], g.settimana_mese()])
 	var f: String = fasi_n.get(g.s["fase"], "")
 	if g.s["scenario"] >= 3 and g.s["riga_mostri"] > 0:
 		f += "   ·   mostri in agguato: riga %d" % g.s["riga_mostri"]
