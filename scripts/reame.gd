@@ -15,6 +15,7 @@ var mappa: Mappa
 var rng := RandomNumberGenerator.new()
 var ia: IA
 var combat: Combattimento
+var arcano: Arcano
 var richiesta: Dictionary = {}
 var auto_umano := false          # nelle prove automatiche anche l'umano gioca da solo
 var pausa_cb: Callable           # per rallentare le mosse dei rivali nella UI
@@ -28,7 +29,7 @@ const TABELLE := {
 	"scruta": ["scopri", "indizi", "nemici", "nemici", "indizi", "niente"],
 	"localizza": ["scelta", "scelta", "sentieri", "scopri_indizi", "scopri_indizi", "niente"]}
 const NOMI_TABELLE := {"cerca": "Cerca", "scruta": "Scruta", "localizza": "Localizza"}
-const ATTIVITA := {"M": "Movimento", "S": "Ricerca", "H": "Nascondersi", "A": "Allerta", "R": "Riposo"}
+const ATTIVITA := {"M": "Movimento", "S": "Ricerca", "H": "Nascondersi", "A": "Allerta", "R": "Riposo", "E": "Incanto", "V": "Volo"}
 const BOSCHI := ["Lost Woods", "Old Woods", "Dark Woods", "Deep Woods", "Lake Woods", "Nut Woods", "Maple Woods", "Pine Woods", "Linden Woods", "Oak Woods"]
 const MALEDIZIONI := ["Nebbia agli occhi", "Squittio", "Avvizzimento", "Malattia", "Ceneri", "Disgusto"]
 const IPNOSI := ["Indebolito", "Ebbro", "Placato", "Distratto", "Svuotato", "Stanco"]
@@ -38,6 +39,7 @@ func _init() -> void:
 	Dati.carica()
 	ia = IA.new(self)
 	combat = Combattimento.new(self)
+	arcano = Arcano.new(self)
 
 # ------------------------------------------------------------ utilità
 func scrivi(t: String, tipo := "") -> void:
@@ -128,15 +130,21 @@ func tiro(p: Dictionary, contesto: String) -> Array:
 		"cerca":
 			un_dado = (ha_abilita(p, "grotte") and tr == "C") or (ha_abilita(p, "uomo_frontiera") and tr == "M") \
 				or (ha_abilita(p, "inseguitrice") and Dati.tessere[tessera(k)]["nome_en"] in BOSCHI)
+	var mod := 0
+	if s.get("scenario", 1) >= 4:
+		un_dado = un_dado or arcano.un_dado(p, contesto)
+		mod = arcano.modifica_tiro(p, contesto)
 	if un_dado:
 		var a := d6()
-		return [a, [a]]
+		return [clampi(a + mod, 1, 6), [a]]
 	var a := d6()
 	var b := d6()
-	return [max(a, b), [a, b]]
+	return [clampi(max(a, b) + mod, 1, 6), [a, b]]
 
 # ------------------------------------------------------------ oggetti e segnalini d'azione
 func peso_oggetto(o: Dictionary) -> int:
+	if Dati.tesori.has(o["id"]):
+		return Dati.peso_i(str(Dati.tesori[o["id"]]["peso"]))
 	var d: Dictionary = Dati.oggetti["armi"].get(o["id"], Dati.oggetti["armature"].get(o["id"], {}))
 	return Dati.peso_i(d.get("peso", "-"))
 
@@ -200,6 +208,8 @@ func nuova(scenario: int, pg_umano: String, rivali: Array, seme: int) -> void:
 		"fase": "alba"}
 	_prepara_segnalini()
 	_prepara_abitazioni()
+	if scenario >= 4:
+		arcano.prepara()
 	if scenario >= 3:
 		_prepara_mostri()
 	var tutti := [pg_umano] + rivali
@@ -216,7 +226,7 @@ func _nuovo_pg(pid: String, idp: String, um: bool) -> Dictionary:
 		"chits": [], "oggetti": [], "fama": 0, "noto": 0, "oro": 10, "missioni": [], "fatte": [], "siti": [],
 		"scoperti": {}, "indizi": {}, "nemici": false, "maledizioni": [], "uccisi": {}, "uccisi_pg": 0,
 		"berserk": false, "piano": [], "bloccato": false, "turno_fatto": false, "entrato_da": "", "sbirciati": {},
-		"pv_missioni": 0, "dettagli": {}}
+		"pv_missioni": 0, "dettagli": {}, "incantesimi": [], "inc_iniziali": [], "twt": [], "effetti": {}}
 	for c in d["chits"]:
 		var cc: Dictionary = c.duplicate()
 		cc["stato"] = "a"
@@ -232,6 +242,8 @@ func _nuovo_pg(pid: String, idp: String, um: bool) -> Dictionary:
 		if not alt.is_empty():
 			dw = alt[rng.randi_range(0, alt.size() - 1)]
 	p["dove"] = s["abitazioni"].get(dw, s["abitazioni"]["locanda"])
+	if s["scenario"] >= 4:
+		arcano.incantesimi_iniziali(p)
 	if ha_abilita(p, "esperienza"):
 		for k in mappa.vicini:
 			for e in mappa.vicini[k]:
@@ -361,7 +373,7 @@ func _prepara_missioni() -> void:
 					q.append(m["id"])
 			mescola(q)
 			s["missioni_pubbliche"].append(q[0])
-	elif sc == 3:
+	elif sc >= 3:
 		var pub := []
 		var priv := []
 		for m in Dati.elenco_missioni:
@@ -391,6 +403,9 @@ func importa(d: Dictionary) -> void:
 func _numeri(x) -> void:
 	## dopo il JSON i numeri interi tornano float: li sistemo dove servono
 	for p in x["pg"]:
+		for k in ["incantesimi", "inc_iniziali", "twt"]:
+			if not p.has(k): p[k] = []
+		if not p.has("effetti"): p["effetti"] = {}
 		for c in p["chits"]:
 			c["vel"] = int(c["vel"])
 			c["sforzi"] = int(c["sforzi"])
@@ -447,6 +462,10 @@ func gioca_giorno() -> void:
 		p["bloccato"] = false
 		p["turno_fatto"] = false
 		p["entrato_da"] = ""
+		if s["scenario"] >= 4:
+			arcano.sincronizza(p)
+			if arcano.effetto(p, "fiuto"):
+				p["nemici"] = true
 	# Alba: si registrano le attività
 	for p in vivi():
 		var r = await decidi(p, "piano", {"fasi": fasi_disponibili(p)})
@@ -511,6 +530,8 @@ func fasi_disponibili(p: Dictionary) -> Dictionary:
 	if ha_abilita(p, "visione"): extra.append("S")
 	if ha_abilita(p, "strumenti_magici") and s["scenario"] >= 2: extra.append("A")
 	if ha_abilita(p, "reputazione") and abitazione_in(p["dove"]) != "": extra.append("*")
+	if s["scenario"] >= 4:
+		extra.append_array(arcano.fasi_extra(p))
 	var grotta := tipo_radura(p["dove"]) == "C"
 	return {"base": base, "luce": 0 if grotta else luce, "extra": extra, "grotta": grotta}
 
@@ -591,6 +612,8 @@ func esegui_turno(p: Dictionary) -> void:
 			"H": attivita_nascondi(p)
 			"A": attivita_allerta(p)
 			"R": await attivita_riposo(p)
+			"E": await arcano.attivita_incanto(p)
+			"V": await attivita_volo(p, a.get("dest", ""))
 		await fine_fase(p)
 		i += 1
 	if not p["morto"]:
@@ -620,9 +643,17 @@ func _muovi(p: Dictionary, dest: String) -> void:
 	for o in p["oggetti"].duplicate():
 		if peso_oggetto(o) > mm:
 			p["oggetti"].erase(o)
+			lascia(p["dove"], o)
 			lasciati.append(Dati.nome_arma(o["id"]))
 	if not lasciati.is_empty():
 		scrivi("%s non riesce a portare %s e lo abbandona." % [p["nome"], ", ".join(lasciati)], "male")
+	if p.get("labirinto", false):
+		p.erase("labirinto")
+		var rr := mappa.radure_tessera(tessera(p["dove"]))
+		var acaso: String = rr[rng.randi_range(0, rr.size() - 1)]
+		if acaso != p["dove"]:
+			scrivi("%s vaga perso nel Labirinto e finisce a %s." % [p["nome"], nome_r(acaso)], "male")
+			dest = acaso
 	# sentieri usati: chi li percorre li conosce
 	p["entrato_da"] = p["dove"]
 	p["dove"] = dest
@@ -668,6 +699,19 @@ func attivita_riposo(p: Dictionary) -> void:
 		scrivi("%s è malat{oa} e non può riposare." % p["nome"])
 		return
 	var volte := 2 if ha_abilita(p, "gambe_corte") else 1
+	if s["scenario"] >= 4:
+		var rp := arcano.eff(p, "riposo")
+		if "tutti" in rp:
+			var n := 0
+			for c in p["chits"]:
+				if c["stato"] == "f" and not c.has("legato"):
+					c["stato"] = "a"
+					n += 1
+			scrivi("%s riposa tra i Fiori del riposo: %d segnalini tornano disponibili." % [p["nome"], n], "bene")
+			if n > 0:
+				return
+		if "doppio" in rp:
+			volte += 1
 	for v in range(volte):
 		var opz := opzioni_riposo(p)
 		if opz.is_empty():
@@ -734,8 +778,29 @@ func attivita_ricerca(p: Dictionary) -> void:
 	if "Nebbia agli occhi" in p["maledizioni"]:
 		scrivi("%s ha la nebbia agli occhi e non può cercare." % p["nome"])
 		return
-	var sc = await decidi(p, "tabella", {"radure": radure_scrutabili(p)})
+	if s["scenario"] >= 4 and p["pg"] == "re_stregone":
+		arcano.visione_magica(p)
+		cambiato.emit()
+		return
+	var fo: Dictionary = arcano.fonti(p) if s["scenario"] >= 4 else {"saccheggia": [], "rune": []}
+	var sc = await decidi(p, "tabella", {"radure": radure_scrutabili(p), "fonti": fo})
 	var tab: String = sc.get("tabella", "scruta") if sc is Dictionary else "scruta"
+	if tab in ["saccheggia", "rune"]:
+		var fonte: String = str(sc.get("fonte", ""))
+		var ok := false
+		for x in fo[tab]:
+			if x["id"] == fonte:
+				ok = true
+		if not ok and not fo[tab].is_empty():
+			fonte = fo[tab][0]["id"]
+			ok = true
+		if ok:
+			if tab == "saccheggia":
+				arcano.saccheggia(p, fonte)
+			else:
+				arcano.rune(p, fonte)
+			return
+		tab = "scruta"
 	var dove: String = sc.get("radura", p["dove"]) if sc is Dictionary else p["dove"]
 	if tab != "scruta" or not (dove in radure_scrutabili(p)):
 		dove = p["dove"]
@@ -1016,6 +1081,9 @@ func sera() -> void:
 		await combat.combatti(k)
 		if s["fine"] != "":
 			return
+	if s["scenario"] >= 4:
+		for p in vivi():
+			await arcano.sera_incantesimi(p)
 
 func mezzanotte() -> void:
 	s["fase"] = "mezzanotte"
@@ -1034,6 +1102,8 @@ func mezzanotte() -> void:
 		if abitazione_in(p["dove"]) == "cappella" and not p["maledizioni"].is_empty():
 			scrivi("La Cappella libera %s da maledizioni e ipnosi." % p["nome"], "bene")
 			p["maledizioni"] = []
+	if s["scenario"] >= 4:
+		arcano.scadenze()
 	if s["giorno"] % 28 == 0 and s["scenario"] >= 3:
 		_rigenerazione()
 
@@ -1136,11 +1206,19 @@ func pv(p: Dictionary) -> int:
 	for q in p["fatte"]:
 		tot += int(Dati.missioni[q]["pv"])
 	var sc: int = s["scenario"]
-	if sc == 3:
+	if sc >= 3:
 		tot += p["siti"].size()
+		var fama: int = p["fama"]
+		var noto: int = p["noto"]
+		if sc >= 4:
+			tot += arcano.pv_extra(p)
+			fama += arcano.fama_tesori(p)
+			noto += arcano.noto_tesori(p)
 		if not ("Disgusto" in p["maledizioni"]):
-			tot += p["fama"] / 10
-		tot += p["noto"] / 20
+			tot += max(0, fama) / 10
+		elif sc >= 4:
+			tot -= 1
+		tot += max(0, noto) / 20
 		for q in p["missioni"]:
 			var mi: Dictionary = Dati.missioni[q]
 			if mi["tipo"] == "per_uccisione":
@@ -1211,3 +1289,34 @@ func _fine_tempo() -> void:
 	s["vincitori"] = migliore.map(func(p): return p["pid"])
 	s["fine"] = "vittoria" if umano() in migliore else "sconfitta"
 	scrivi("Il tempo è scaduto. Vince %s." % " e ".join(migliore.map(func(p): return p["nome"])), "titolo")
+
+# ------------------------------------------------------------ oggetti a terra e volo
+func lascia(k: String, o: Dictionary) -> void:
+	if not s.has("mucchi") or k == "":
+		return
+	if not s["mucchi"].has(k):
+		s["mucchi"][k] = []
+	var x: Dictionary = o.duplicate()
+	x["attivo"] = false
+	s["mucchi"][k].append(x)
+
+func attivita_volo(p: Dictionary, dest: String) -> void:
+	if not arcano.puo_volare(p):
+		scrivi("%s non può volare." % p["nome"])
+		return
+	if not mappa.radure.has(dest):
+		return
+	var t := tessera(dest)
+	var qui := tessera(p["dove"])
+	if t != qui and not (t in mappa.tessere_adiacenti(qui)):
+		scrivi("%s può volare solo verso una tessera vicina." % p["nome"])
+		return
+	var rr: Array = mappa.radure_tessera(t).filter(func(k): return tipo_radura(k) != "C")
+	if rr.is_empty():
+		return
+	var arrivo: String = rr[rng.randi_range(0, rr.size() - 1)]
+	p["entrato_da"] = p["dove"]
+	p["dove"] = arrivo
+	scrivi("%s vola fino a %s e atterra a %s." % [p["nome"], Dati.tessere[t]["nome"], nome_r(arrivo)], "bene")
+	cambiato.emit()
+	await pausa(0.35)

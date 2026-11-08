@@ -1,0 +1,2403 @@
+{
+"t_timeless_jewel": {
+"nome": "Gioiello senza tempo",
+"nome_en": "Timeless Jewel",
+"taglia": "G",
+"grande": false,
+"peso": "L",
+"fama": 0,
+"fama_cond": [
+5,
+"Soldiers"
+],
+"noto": 7,
+"oro": 34,
+"eff": {
+"fase": "*"
+},
+"img": "tesori/t_timeless_jewel.webp"
+},
+"t_sacred_grail": {
+"nome": "Sacro Graal",
+"nome_en": "Sacred Grail",
+"taglia": "G",
+"grande": true,
+"peso": "M",
+"fama": 0,
+"fama_cond": [
+50,
+"Order"
+],
+"noto": -25,
+"oro": 12,
+"eff": {
+"colore": "white"
+},
+"img": "tesori/t_sacred_grail.webp"
+},
+"t_regent_of_jewels": {
+"nome": "Reggente dei gioielli",
+"nome_en": "Regent of Jewels",
+"taglia": "G",
+"grande": true,
+"peso": "L",
+"fama": 0,
+"fama_cond": [
+10,
+"Soldiers"
+],
+"noto": 10,
+"oro": 67,
+"eff": {
+"fase": "T"
+},
+"img": "tesori/t_regent_of_jewels.webp"
+},
+"t_magic_wand": {
+"nome": "Bacchetta magica",
+"nome_en": "Magic Wand",
+"taglia": "G",
+"grande": true,
+"peso": "-",
+"fama": -10,
+"fama_cond": null,
+"noto": 10,
+"oro": 17,
+"eff": {
+"testo": "Nei tiri di incantesimo sceglie il dado migliore."
+},
+"img": "tesori/t_magic_wand.webp"
+},
+"t_lucky_charm": {
+"nome": "Portafortuna",
+"nome_en": "Lucky Charm",
+"taglia": "G",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": null,
+"noto": 0,
+"oro": 14,
+"eff": {
+"undado": "tutto"
+},
+"img": "tesori/t_lucky_charm.webp"
+},
+"t_imperial_tabard": {
+"nome": "Tabarro imperiale",
+"nome_en": "Imperial Tabard",
+"taglia": "G",
+"grande": true,
+"peso": "M",
+"fama": 0,
+"fama_cond": [
+20,
+"Guard"
+],
+"noto": -10,
+"oro": 17,
+"eff": {},
+"img": "tesori/t_imperial_tabard.webp"
+},
+"t_hidden_ring": {
+"nome": "Anello nascosto",
+"nome_en": "Hidden Ring",
+"taglia": "G",
+"grande": true,
+"peso": "-",
+"fama": -10,
+"fama_cond": null,
+"noto": 10,
+"oro": 20,
+"eff": {
+"inc": [
+"VI"
+]
+},
+"img": "tesori/t_hidden_ring.webp"
+},
+"t_golden_icon": {
+"nome": "Icona d'oro",
+"nome_en": "Golden Icon",
+"taglia": "G",
+"grande": true,
+"peso": "T",
+"fama": -10,
+"fama_cond": null,
+"noto": 20,
+"oro": 100,
+"eff": {
+"colore": "grey"
+},
+"img": "tesori/t_golden_icon.webp"
+},
+"t_golden_crown": {
+"nome": "Corona d'oro",
+"nome_en": "Golden Crown",
+"taglia": "G",
+"grande": true,
+"peso": "H",
+"fama": 0,
+"fama_cond": [
+20,
+"Guard"
+],
+"noto": -15,
+"oro": 50,
+"eff": {
+"para": "smash"
+},
+"img": "tesori/t_golden_crown.webp"
+},
+"t_golden_arm_band": {
+"nome": "Bracciale d'oro",
+"nome_en": "Golden Arm Band",
+"taglia": "G",
+"grande": false,
+"peso": "L",
+"fama": 0,
+"fama_cond": [
+3,
+"Lancers"
+],
+"noto": 0,
+"oro": 15,
+"eff": {
+"para": "swing"
+},
+"img": "tesori/t_golden_arm_band.webp"
+},
+"t_glowing_gem": {
+"nome": "Gemma lucente",
+"nome_en": "Glowing Gem",
+"taglia": "G",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": [
+5,
+"Soldiers"
+],
+"noto": 5,
+"oro": 17,
+"eff": {
+"inc": [
+"VII"
+]
+},
+"img": "tesori/t_glowing_gem.webp"
+},
+"t_glimmering_ring": {
+"nome": "Anello scintillante",
+"nome_en": "Glimmering Ring",
+"taglia": "G",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": null,
+"noto": 10,
+"oro": 15,
+"eff": {
+"inc": [
+"III"
+]
+},
+"img": "tesori/t_glimmering_ring.webp"
+},
+"t_girdle_of_energy": {
+"nome": "Cintura dell'energia",
+"nome_en": "Girdle of Energy",
+"taglia": "G",
+"grande": false,
+"peso": "-",
+"fama": 2,
+"fama_cond": null,
+"noto": 4,
+"oro": 13,
+"eff": {
+"sforzo": 3
+},
+"img": "tesori/t_girdle_of_energy.webp"
+},
+"t_garb_of_speed": {
+"nome": "Veste della velocità",
+"nome_en": "Garb of Speed",
+"taglia": "G",
+"grande": false,
+"peso": "-",
+"fama": 2,
+"fama_cond": null,
+"noto": 6,
+"oro": 16,
+"eff": {
+"testo": "Gli asterischi dei segnalini indicano la velocità."
+},
+"img": "tesori/t_garb_of_speed.webp"
+},
+"t_flying_carpet": {
+"nome": "Tappeto volante",
+"nome_en": "Flying Carpet",
+"taglia": "G",
+"grande": false,
+"peso": "M",
+"fama": 0,
+"fama_cond": null,
+"noto": 12,
+"oro": 17,
+"eff": {
+"vola": true
+},
+"img": "tesori/t_flying_carpet.webp"
+},
+"t_eye_of_the_moon": {
+"nome": "Occhio della luna",
+"nome_en": "Eye of the Moon",
+"taglia": "G",
+"grande": false,
+"peso": "M",
+"fama": 0,
+"fama_cond": null,
+"noto": 13,
+"oro": 13,
+"eff": {},
+"img": "tesori/t_eye_of_the_moon.webp"
+},
+"t_eye_of_the_idol": {
+"nome": "Occhio dell'idolo",
+"nome_en": "Eye of the Idol",
+"taglia": "G",
+"grande": false,
+"peso": "M",
+"fama": -5,
+"fama_cond": null,
+"noto": 10,
+"oro": 34,
+"eff": {
+"inc": [
+"II"
+]
+},
+"img": "tesori/t_eye_of_the_idol.webp"
+},
+"t_enchanter_s_skull": {
+"nome": "Teschio dell'incantatore",
+"nome_en": "Enchanter's Skull",
+"taglia": "G",
+"grande": true,
+"peso": "L",
+"fama": -10,
+"fama_cond": null,
+"noto": 10,
+"oro": 17,
+"eff": {
+"inc": [
+"IV"
+]
+},
+"img": "tesori/t_enchanter_s_skull.webp"
+},
+"t_blasted_jewel": {
+"nome": "Gioiello maledetto",
+"nome_en": "Blasted Jewel",
+"taglia": "G",
+"grande": true,
+"peso": "H",
+"fama": -15,
+"fama_cond": null,
+"noto": 15,
+"oro": 30,
+"eff": {
+"inc": [
+"V"
+]
+},
+"img": "tesori/t_blasted_jewel.webp"
+},
+"t_belt_of_strength": {
+"nome": "Cintura della forza",
+"nome_en": "Belt of Strength",
+"taglia": "G",
+"grande": false,
+"peso": "-",
+"fama": 3,
+"fama_cond": null,
+"noto": 6,
+"oro": 16,
+"eff": {
+"testo": "Gli asterischi dei segnalini indicano la forza."
+},
+"img": "tesori/t_belt_of_strength.webp"
+},
+"t_bejeweled_dwarf_vest": {
+"nome": "Gilet nanico ingioiellato",
+"nome_en": "Bejeweled Dwarf Vest",
+"taglia": "G",
+"grande": true,
+"peso": "M",
+"fama": 0,
+"fama_cond": [
+10,
+"Soldiers"
+],
+"noto": 5,
+"oro": 27,
+"eff": {
+"para": "thrust"
+},
+"img": "tesori/t_bejeweled_dwarf_vest.webp"
+},
+"t_battle_bracelets": {
+"nome": "Bracciali da battaglia",
+"nome_en": "Battle Bracelets",
+"taglia": "G",
+"grande": false,
+"peso": "-",
+"fama": 2,
+"fama_cond": null,
+"noto": 4,
+"oro": 12,
+"eff": {},
+"img": "tesori/t_battle_bracelets.webp"
+},
+"t_white_feathered_wing": {
+"nome": "Ala di piume bianche",
+"nome_en": "White Feathered Wing",
+"taglia": "G",
+"grande": true,
+"peso": "M",
+"fama": 0,
+"fama_cond": [
+30,
+"Order"
+],
+"noto": -15,
+"oro": 11,
+"eff": {
+"mod": {
+"tutto": -1
+}
+},
+"img": "tesori/t_white_feathered_wing.webp"
+},
+"t_talisman": {
+"nome": "Talismano",
+"nome_en": "Talisman",
+"taglia": "G",
+"grande": true,
+"peso": "L",
+"fama": -5,
+"fama_cond": null,
+"noto": 15,
+"oro": 17,
+"eff": {},
+"img": "tesori/t_talisman.webp"
+},
+"t_faerie_statue": {
+"nome": "Statua fatata",
+"nome_en": "Faerie Statue",
+"taglia": "G",
+"grande": true,
+"peso": "X",
+"fama": -10,
+"fama_cond": null,
+"noto": 10,
+"oro": 80,
+"eff": {
+"inc": [
+"III",
+"VII"
+]
+},
+"img": "tesori/t_faerie_statue.webp"
+},
+"t_scribe_spectacles": {
+"nome": "Occhiali dello scriba",
+"nome_en": "Scribe Spectacles",
+"taglia": "G",
+"grande": false,
+"peso": "L",
+"fama": 0,
+"fama_cond": [
+20,
+"Order"
+],
+"noto": -15,
+"oro": 21,
+"eff": {},
+"img": "tesori/t_scribe_spectacles.webp"
+},
+"t_scope": {
+"nome": "Cannocchiale",
+"nome_en": "Scope",
+"taglia": "G",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": [
+10,
+"Lancers"
+],
+"noto": 5,
+"oro": 19,
+"eff": {
+"mod": {
+"missile": -1
+}
+},
+"img": "tesori/t_scope.webp"
+},
+"t_pentagram": {
+"nome": "Pentagramma",
+"nome_en": "Pentagram",
+"taglia": "G",
+"grande": true,
+"peso": "-",
+"fama": -10,
+"fama_cond": null,
+"noto": 15,
+"oro": 18,
+"eff": {
+"pentagramma": true
+},
+"img": "tesori/t_pentagram.webp"
+},
+"t_mist_crystal": {
+"nome": "Cristallo di nebbia",
+"nome_en": "Mist Crystal",
+"taglia": "G",
+"grande": true,
+"peso": "M",
+"fama": -10,
+"fama_cond": null,
+"noto": 10,
+"oro": 35,
+"eff": {
+"colore": "grey"
+},
+"img": "tesori/t_mist_crystal.webp"
+},
+"t_mage_diary": {
+"nome": "Diario del mago",
+"nome_en": "Mage Diary",
+"taglia": "G",
+"grande": false,
+"peso": "L",
+"fama": 0,
+"fama_cond": null,
+"noto": 7,
+"oro": 14,
+"eff": {
+"mod": {
+"rune": -1
+}
+},
+"img": "tesori/t_mage_diary.webp"
+},
+"t_holy_ring": {
+"nome": "Anello sacro",
+"nome_en": "Holy Ring",
+"taglia": "G",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": [
+10,
+"Order"
+],
+"noto": -5,
+"oro": 16,
+"eff": {
+"anello": "I"
+},
+"img": "tesori/t_holy_ring.webp"
+},
+"t_golden_lyre": {
+"nome": "Lira d'oro",
+"nome_en": "Golden Lyre",
+"taglia": "G",
+"grande": true,
+"peso": "H",
+"fama": 0,
+"fama_cond": [
+7,
+"Lancers"
+],
+"noto": 0,
+"oro": 71,
+"eff": {
+"fase": "R"
+},
+"img": "tesori/t_golden_lyre.webp"
+},
+"t_glider": {
+"nome": "Aliante",
+"nome_en": "Glider",
+"taglia": "G",
+"grande": false,
+"peso": "H",
+"fama": 3,
+"fama_cond": null,
+"noto": 4,
+"oro": 38,
+"eff": {
+"vola": true
+},
+"img": "tesori/t_glider.webp"
+},
+"t_expert_adventure_guide": {
+"nome": "Guida esperta d'avventura",
+"nome_en": "Expert Adventure Guide",
+"taglia": "G",
+"grande": false,
+"peso": "L",
+"fama": 0,
+"fama_cond": [
+10,
+"Peasants"
+],
+"noto": 0,
+"oro": 24,
+"eff": {
+"undado": "cerca"
+},
+"img": "tesori/t_expert_adventure_guide.webp"
+},
+"t_elven_ring": {
+"nome": "Anello elfico",
+"nome_en": "Elven Ring",
+"taglia": "G",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": null,
+"noto": 5,
+"oro": 15,
+"eff": {
+"anello": "III"
+},
+"img": "tesori/t_elven_ring.webp"
+},
+"t_elemental_ring": {
+"nome": "Anello elementale",
+"nome_en": "Elemental Ring",
+"taglia": "G",
+"grande": true,
+"peso": "-",
+"fama": -5,
+"fama_cond": null,
+"noto": 10,
+"oro": 18,
+"eff": {
+"anello": "IV"
+},
+"img": "tesori/t_elemental_ring.webp"
+},
+"t_demonic_ring": {
+"nome": "Anello demoniaco",
+"nome_en": "Demonic Ring",
+"taglia": "G",
+"grande": true,
+"peso": "-",
+"fama": -15,
+"fama_cond": null,
+"noto": 15,
+"oro": 12,
+"eff": {
+"anello": "V"
+},
+"img": "tesori/t_demonic_ring.webp"
+},
+"t_crystal_shard": {
+"nome": "Scheggia di cristallo",
+"nome_en": "Crystal Shard",
+"taglia": "G",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": [
+5,
+"Soldiers"
+],
+"noto": 8,
+"oro": 23,
+"eff": {},
+"img": "tesori/t_crystal_shard.webp"
+},
+"t_crystal_ball": {
+"nome": "Sfera di cristallo",
+"nome_en": "Crystal Ball",
+"taglia": "G",
+"grande": false,
+"peso": "M",
+"fama": 0,
+"fama_cond": [
+12,
+"Enchanters"
+],
+"noto": 5,
+"oro": 20,
+"eff": {},
+"img": "tesori/t_crystal_ball.webp"
+},
+"t_conjure_ring": {
+"nome": "Anello della congiura",
+"nome_en": "Conjure Ring",
+"taglia": "G",
+"grande": true,
+"peso": "-",
+"fama": -5,
+"fama_cond": null,
+"noto": 5,
+"oro": 15,
+"eff": {
+"anello": "VI"
+},
+"img": "tesori/t_conjure_ring.webp"
+},
+"t_color_prism": {
+"nome": "Prisma dei colori",
+"nome_en": "Color Prism",
+"taglia": "G",
+"grande": false,
+"peso": "H",
+"fama": 0,
+"fama_cond": [
+12,
+"Enchanters"
+],
+"noto": 15,
+"oro": 54,
+"eff": {},
+"img": "tesori/t_color_prism.webp"
+},
+"t_caged_bird": {
+"nome": "Uccello in gabbia",
+"nome_en": "Caged Bird",
+"taglia": "G",
+"grande": false,
+"peso": "M",
+"fama": 1,
+"fama_cond": null,
+"noto": 2,
+"oro": 26,
+"eff": {
+"fase": "A"
+},
+"img": "tesori/t_caged_bird.webp"
+},
+"t_bard_s_lute": {
+"nome": "Liuto del bardo",
+"nome_en": "Bard's Lute",
+"taglia": "G",
+"grande": false,
+"peso": "L",
+"fama": 0,
+"fama_cond": [
+20,
+"Guard"
+],
+"noto": -5,
+"oro": 16,
+"eff": {},
+"img": "tesori/t_bard_s_lute.webp"
+},
+"t_bag_of_bones": {
+"nome": "Sacca di ossa",
+"nome_en": "Bag of Bones",
+"taglia": "G",
+"grande": true,
+"peso": "-",
+"fama": 0,
+"fama_cond": [
+3,
+"Enchanters"
+],
+"noto": 9,
+"oro": 17,
+"eff": {},
+"img": "tesori/t_bag_of_bones.webp"
+},
+"t_ancient_tome": {
+"nome": "Tomo antico",
+"nome_en": "Ancient Tome",
+"taglia": "G",
+"grande": false,
+"peso": "L",
+"fama": 0,
+"fama_cond": null,
+"noto": 7,
+"oro": 18,
+"eff": {
+"mod": {
+"rune": -1
+}
+},
+"img": "tesori/t_ancient_tome.webp"
+},
+"t_ancient_rune": {
+"nome": "Runa antica",
+"nome_en": "Ancient Rune",
+"taglia": "G",
+"grande": false,
+"peso": "L",
+"fama": -5,
+"fama_cond": null,
+"noto": 8,
+"oro": 19,
+"eff": {
+"undado": "rune"
+},
+"img": "tesori/t_ancient_rune.webp"
+},
+"t_gripping_dust": {
+"nome": "Polvere tenace",
+"nome_en": "Gripping Dust",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": null,
+"noto": 0,
+"oro": 3,
+"eff": {},
+"img": "tesori/t_gripping_dust.webp"
+},
+"t_draught_of_speed": {
+"nome": "Pozione di velocità",
+"nome_en": "Draught of Speed",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": null,
+"noto": 0,
+"oro": 6,
+"eff": {},
+"img": "tesori/t_draught_of_speed.webp"
+},
+"t_curdle_of_bone": {
+"nome": "Grumo d'osso",
+"nome_en": "Curdle of Bone",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": null,
+"noto": 0,
+"oro": 7,
+"eff": {},
+"img": "tesori/t_curdle_of_bone.webp"
+},
+"t_toadstool_ring": {
+"nome": "Anello di funghi",
+"nome_en": "Toadstool Ring",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": null,
+"noto": 3,
+"oro": 9,
+"eff": {
+"fase": "E"
+},
+"img": "tesori/t_toadstool_ring.webp"
+},
+"t_shoes_of_stealth": {
+"nome": "Scarpe furtive",
+"nome_en": "Shoes of Stealth",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": null,
+"noto": 2,
+"oro": 7,
+"eff": {
+"chit": [
+"M",
+"L",
+3
+],
+"undado": "nascondi"
+},
+"img": "tesori/t_shoes_of_stealth.webp"
+},
+"t_sacred_statue": {
+"nome": "Statua sacra",
+"nome_en": "Sacred Statue",
+"taglia": "P",
+"grande": false,
+"peso": "L",
+"fama": 0,
+"fama_cond": [
+10,
+"Order"
+],
+"noto": -5,
+"oro": 10,
+"eff": {
+"inc": [
+"I"
+]
+},
+"img": "tesori/t_sacred_statue.webp"
+},
+"t_royal_scepter": {
+"nome": "Scettro reale",
+"nome_en": "Royal Scepter",
+"taglia": "P",
+"grande": false,
+"peso": "L",
+"fama": 0,
+"fama_cond": [
+20,
+"Guard"
+],
+"noto": -15,
+"oro": 8,
+"eff": {
+"fase": "HR"
+},
+"img": "tesori/t_royal_scepter.webp"
+},
+"t_dragonfang_necklace": {
+"nome": "Collana di zanne di drago",
+"nome_en": "Dragonfang Necklace",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": [
+12,
+"Lancers"
+],
+"noto": 12,
+"oro": 8,
+"eff": {},
+"img": "tesori/t_dragonfang_necklace.webp"
+},
+"t_quick_boots": {
+"nome": "Stivali rapidi",
+"nome_en": "Quick Boots",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 1,
+"fama_cond": null,
+"noto": 2,
+"oro": 8,
+"eff": {
+"chit": [
+"M",
+"M",
+3
+]
+},
+"img": "tesori/t_quick_boots.webp"
+},
+"t_power_gauntlets": {
+"nome": "Guanti della potenza",
+"nome_en": "Power Gauntlets",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 3,
+"fama_cond": null,
+"noto": 4,
+"oro": 7,
+"eff": {
+"chit": [
+"F",
+"H",
+4
+]
+},
+"img": "tesori/t_power_gauntlets.webp"
+},
+"t_phantom_glass": {
+"nome": "Vetro fantasma",
+"nome_en": "Phantom Glass",
+"taglia": "P",
+"grande": false,
+"peso": "L",
+"fama": 0,
+"fama_cond": null,
+"noto": 2,
+"oro": 8,
+"eff": {},
+"img": "tesori/t_phantom_glass.webp"
+},
+"t_map_of_lost_city": {
+"nome": "Mappa della Città Perduta",
+"nome_en": "Map of Lost City",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": null,
+"noto": 0,
+"oro": 3,
+"eff": {
+"mappa": "City"
+},
+"img": "tesori/t_map_of_lost_city.webp"
+},
+"t_map_of_lost_castle": {
+"nome": "Mappa del Castello Perduto",
+"nome_en": "Map of Lost Castle",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": null,
+"noto": 0,
+"oro": 3,
+"eff": {
+"mappa": "Castle"
+},
+"img": "tesori/t_map_of_lost_castle.webp"
+},
+"t_magic_spectacles": {
+"nome": "Occhiali magici",
+"nome_en": "Magic Spectacles",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": null,
+"noto": 2,
+"oro": 6,
+"eff": {
+"fase": "S"
+},
+"img": "tesori/t_magic_spectacles.webp"
+},
+"t_handy_gloves": {
+"nome": "Guanti abili",
+"nome_en": "Handy Gloves",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 1,
+"fama_cond": null,
+"noto": 2,
+"oro": 6,
+"eff": {
+"chit": [
+"F",
+"M",
+3
+]
+},
+"img": "tesori/t_handy_gloves.webp"
+},
+"t_good_book": {
+"nome": "Libro sacro",
+"nome_en": "Good Book",
+"taglia": "P",
+"grande": false,
+"peso": "L",
+"fama": 5,
+"fama_cond": null,
+"noto": 5,
+"oro": 10,
+"eff": {
+"inc": [
+"I",
+"I"
+]
+},
+"img": "tesori/t_good_book.webp"
+},
+"t_gloves_of_strength": {
+"nome": "Guanti della forza",
+"nome_en": "Gloves of Strength",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": [
+5,
+"Order"
+],
+"noto": 6,
+"oro": 8,
+"eff": {
+"chit": [
+"F",
+"T",
+5
+],
+"chiave": true
+},
+"img": "tesori/t_gloves_of_strength.webp"
+},
+"t_flowers_of_rest": {
+"nome": "Fiori del riposo",
+"nome_en": "Flowers of Rest",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": null,
+"noto": 0,
+"oro": 2,
+"eff": {
+"colore": "gold",
+"riposo": "tutti"
+},
+"img": "tesori/t_flowers_of_rest.webp"
+},
+"t_elven_slippers": {
+"nome": "Pantofole elfiche",
+"nome_en": "Elven Slippers",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": null,
+"noto": 2,
+"oro": 5,
+"eff": {
+"chit": [
+"M",
+"L",
+2
+]
+},
+"img": "tesori/t_elven_slippers.webp"
+},
+"t_elusive_cloak": {
+"nome": "Mantello sfuggente",
+"nome_en": "Elusive Cloak",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": null,
+"noto": 2,
+"oro": 10,
+"eff": {},
+"img": "tesori/t_elusive_cloak.webp"
+},
+"t_deft_gloves": {
+"nome": "Guanti destri",
+"nome_en": "Deft Gloves",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": [
+5,
+"Order"
+],
+"noto": 6,
+"oro": 10,
+"eff": {
+"chit": [
+"F",
+"L",
+2
+],
+"undado": "saccheggia"
+},
+"img": "tesori/t_deft_gloves.webp"
+},
+"t_cloven_hoof": {
+"nome": "Zoccolo fesso",
+"nome_en": "Cloven Hoof",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": -20,
+"fama_cond": null,
+"noto": 40,
+"oro": 4,
+"eff": {
+"colore": "black",
+"mod": {
+"tutto": 1
+}
+},
+"img": "tesori/t_cloven_hoof.webp"
+},
+"t_cloak_of_mist": {
+"nome": "Mantello di nebbia",
+"nome_en": "Cloak of Mist",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": null,
+"noto": 2,
+"oro": 4,
+"eff": {},
+"img": "tesori/t_cloak_of_mist.webp"
+},
+"t_book_of_lore": {
+"nome": "Libro del sapere",
+"nome_en": "Book of Lore",
+"taglia": "P",
+"grande": false,
+"peso": "L",
+"fama": -5,
+"fama_cond": null,
+"noto": 10,
+"oro": 10,
+"eff": {
+"inc": [
+"IV",
+"IV"
+]
+},
+"img": "tesori/t_book_of_lore.webp"
+},
+"t_black_book": {
+"nome": "Libro nero",
+"nome_en": "Black Book",
+"taglia": "P",
+"grande": false,
+"peso": "L",
+"fama": -15,
+"fama_cond": null,
+"noto": 15,
+"oro": 10,
+"eff": {
+"inc": [
+"V",
+"V"
+]
+},
+"img": "tesori/t_black_book.webp"
+},
+"t_power_boots": {
+"nome": "Stivali della potenza",
+"nome_en": "Power Boots",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": null,
+"noto": 3,
+"oro": 8,
+"eff": {
+"chit": [
+"M",
+"H",
+4
+]
+},
+"img": "tesori/t_power_boots.webp"
+},
+"t_beast_pipes": {
+"nome": "Flauto delle bestie",
+"nome_en": "Beast Pipes",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": -5,
+"fama_cond": null,
+"noto": 5,
+"oro": 8,
+"eff": {
+"inc": [
+"VIII"
+]
+},
+"img": "tesori/t_beast_pipes.webp"
+},
+"t_ointment_of_steel": {
+"nome": "Unguento d'acciaio",
+"nome_en": "Ointment of Steel",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": null,
+"noto": 0,
+"oro": 4,
+"eff": {},
+"img": "tesori/t_ointment_of_steel.webp"
+},
+"t_withered_claw": {
+"nome": "Artiglio avvizzito",
+"nome_en": "Withered Claw",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": null,
+"noto": 0,
+"oro": 3,
+"eff": {},
+"img": "tesori/t_withered_claw.webp"
+},
+"t_spurs": {
+"nome": "Speroni",
+"nome_en": "Spurs",
+"taglia": "P",
+"grande": false,
+"peso": "L",
+"fama": 0,
+"fama_cond": null,
+"noto": 2,
+"oro": 9,
+"eff": {},
+"img": "tesori/t_spurs.webp"
+},
+"t_vial_of_healing": {
+"nome": "Fiala curativa",
+"nome_en": "Vial of Healing",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": null,
+"noto": 0,
+"oro": 2,
+"eff": {
+"riposo": "ferite"
+},
+"img": "tesori/t_vial_of_healing.webp"
+},
+"t_vial_of_healing_2": {
+"nome": "Fiala curativa",
+"nome_en": "Vial of Healing",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": null,
+"noto": 0,
+"oro": 2,
+"eff": {
+"riposo": "ferite"
+},
+"img": "tesori/t_vial_of_healing_2.webp"
+},
+"t_traveler_s_guide": {
+"nome": "Guida del viaggiatore",
+"nome_en": "Traveler's Guide",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": [
+5,
+"Peasants"
+],
+"noto": 0,
+"oro": 10,
+"eff": {
+"mod": {
+"cerca": -1
+}
+},
+"img": "tesori/t_traveler_s_guide.webp"
+},
+"t_flash_bomb": {
+"nome": "Bomba accecante",
+"nome_en": "Flash Bomb",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": null,
+"noto": 0,
+"oro": 7,
+"eff": {
+"monouso": "lampo"
+},
+"img": "tesori/t_flash_bomb.webp"
+},
+"t_shielded_lantern": {
+"nome": "Lanterna schermata",
+"nome_en": "Shielded Lantern",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": null,
+"noto": 0,
+"oro": 8,
+"eff": {
+"fase": "grotta"
+},
+"img": "tesori/t_shielded_lantern.webp"
+},
+"t_seven_league_boots": {
+"nome": "Stivali delle sette leghe",
+"nome_en": "Seven League Boots",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": [
+12,
+"Hunters"
+],
+"noto": 2,
+"oro": 10,
+"eff": {
+"chit": [
+"M",
+"T",
+5
+],
+"chiave": true
+},
+"img": "tesori/t_seven_league_boots.webp"
+},
+"t_scroll_of_malice": {
+"nome": "Pergamena della malizia",
+"nome_en": "Scroll of Malice",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": -5,
+"fama_cond": null,
+"noto": 10,
+"oro": 5,
+"eff": {
+"inc": [
+"VIII"
+]
+},
+"img": "tesori/t_scroll_of_malice.webp"
+},
+"t_scroll_of_lore": {
+"nome": "Pergamena del sapere",
+"nome_en": "Scroll of Lore",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": -5,
+"fama_cond": null,
+"noto": 5,
+"oro": 5,
+"eff": {
+"inc": [
+"IV"
+]
+},
+"img": "tesori/t_scroll_of_lore.webp"
+},
+"t_scroll_of_allure": {
+"nome": "Pergamena del fascino",
+"nome_en": "Scroll of Allure",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 5,
+"fama_cond": null,
+"noto": 5,
+"oro": 5,
+"eff": {
+"inc": [
+"VII"
+]
+},
+"img": "tesori/t_scroll_of_allure.webp"
+},
+"t_scroll_of_alchemy": {
+"nome": "Pergamena alchemica",
+"nome_en": "Scroll of Alchemy",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": [
+7,
+"Enchanters"
+],
+"noto": 10,
+"oro": 5,
+"eff": {
+"inc": [
+"VI"
+]
+},
+"img": "tesori/t_scroll_of_alchemy.webp"
+},
+"t_scented_bait": {
+"nome": "Esca profumata",
+"nome_en": "Scented Bait",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": [
+12,
+"Hunters"
+],
+"noto": 11,
+"oro": 6,
+"eff": {},
+"img": "tesori/t_scented_bait.webp"
+},
+"t_sails": {
+"nome": "Vele",
+"nome_en": "Sails",
+"taglia": "P",
+"grande": false,
+"peso": "L",
+"fama": 1,
+"fama_cond": null,
+"noto": 2,
+"oro": 9,
+"eff": {},
+"img": "tesori/t_sails.webp"
+},
+"t_ruby_ring": {
+"nome": "Anello di rubino",
+"nome_en": "Ruby Ring",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": [
+5,
+"Soldiers"
+],
+"noto": 5,
+"oro": 10,
+"eff": {
+"anello": "VIII"
+},
+"img": "tesori/t_ruby_ring.webp"
+},
+"t_repair_kit": {
+"nome": "Kit di riparazione",
+"nome_en": "Repair Kit",
+"taglia": "P",
+"grande": false,
+"peso": "L",
+"fama": 0,
+"fama_cond": null,
+"noto": 0,
+"oro": 6,
+"eff": {
+"monouso": "ripara"
+},
+"img": "tesori/t_repair_kit.webp"
+},
+"t_repair_kit_2": {
+"nome": "Kit di riparazione",
+"nome_en": "Repair Kit",
+"taglia": "P",
+"grande": false,
+"peso": "L",
+"fama": 0,
+"fama_cond": null,
+"noto": 0,
+"oro": 6,
+"eff": {
+"monouso": "ripara"
+},
+"img": "tesori/t_repair_kit_2.webp"
+},
+"t_reflecting_grease": {
+"nome": "Grasso riflettente",
+"nome_en": "Reflecting Grease",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": null,
+"noto": 0,
+"oro": 3,
+"eff": {},
+"img": "tesori/t_reflecting_grease.webp"
+},
+"t_reflecting_grease_2": {
+"nome": "Grasso riflettente",
+"nome_en": "Reflecting Grease",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": null,
+"noto": 0,
+"oro": 3,
+"eff": {},
+"img": "tesori/t_reflecting_grease_2.webp"
+},
+"t_realm_map": {
+"nome": "Mappa del Reame",
+"nome_en": "Realm Map",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": [
+5,
+"Peasants"
+],
+"noto": 4,
+"oro": 7,
+"eff": {},
+"img": "tesori/t_realm_map.webp"
+},
+"t_profane_idol": {
+"nome": "Idolo profano",
+"nome_en": "Profane Idol",
+"taglia": "P",
+"grande": false,
+"peso": "M",
+"fama": -20,
+"fama_cond": null,
+"noto": 30,
+"oro": 10,
+"eff": {
+"colore": "black"
+},
+"img": "tesori/t_profane_idol.webp"
+},
+"t_poultice_of_health": {
+"nome": "Impiastro della salute",
+"nome_en": "Poultice of Health",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": null,
+"noto": 0,
+"oro": 2,
+"eff": {
+"riposo": "doppio"
+},
+"img": "tesori/t_poultice_of_health.webp"
+},
+"t_poultice_of_health_2": {
+"nome": "Impiastro della salute",
+"nome_en": "Poultice of Health",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": null,
+"noto": 0,
+"oro": 2,
+"eff": {
+"riposo": "doppio"
+},
+"img": "tesori/t_poultice_of_health_2.webp"
+},
+"t_potion_of_energy": {
+"nome": "Pozione d'energia",
+"nome_en": "Potion of Energy",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": null,
+"noto": 0,
+"oro": 5,
+"eff": {
+"sforzo": 9
+},
+"img": "tesori/t_potion_of_energy.webp"
+},
+"t_potion_of_energy_2": {
+"nome": "Pozione d'energia",
+"nome_en": "Potion of Energy",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": null,
+"noto": 0,
+"oro": 5,
+"eff": {
+"sforzo": 9
+},
+"img": "tesori/t_potion_of_energy_2.webp"
+},
+"t_spirit_charm": {
+"nome": "Amuleto degli spiriti",
+"nome_en": "Spirit Charm",
+"taglia": "P",
+"grande": false,
+"peso": "L",
+"fama": 2,
+"fama_cond": null,
+"noto": 0,
+"oro": 9,
+"eff": {},
+"img": "tesori/t_spirit_charm.webp"
+},
+"t_penetrating_grease": {
+"nome": "Grasso penetrante",
+"nome_en": "Penetrating Grease",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": null,
+"noto": 0,
+"oro": 4,
+"eff": {},
+"img": "tesori/t_penetrating_grease.webp"
+},
+"t_penetrating_grease_2": {
+"nome": "Grasso penetrante",
+"nome_en": "Penetrating Grease",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": null,
+"noto": 0,
+"oro": 4,
+"eff": {},
+"img": "tesori/t_penetrating_grease_2.webp"
+},
+"t_pagan_ring": {
+"nome": "Anello pagano",
+"nome_en": "Pagan Ring",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": null,
+"noto": 5,
+"oro": 10,
+"eff": {
+"anello": "II"
+},
+"img": "tesori/t_pagan_ring.webp"
+},
+"t_ointment_of_stone": {
+"nome": "Unguento di pietra",
+"nome_en": "Ointment of Stone",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": null,
+"noto": 0,
+"oro": 4,
+"eff": {},
+"img": "tesori/t_ointment_of_stone.webp"
+},
+"t_ointment_of_stone_2": {
+"nome": "Unguento di pietra",
+"nome_en": "Ointment of Stone",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": null,
+"noto": 0,
+"oro": 4,
+"eff": {},
+"img": "tesori/t_ointment_of_stone_2.webp"
+},
+"t_ointment_of_bite": {
+"nome": "Unguento del morso",
+"nome_en": "Ointment of Bite",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": null,
+"noto": 0,
+"oro": 5,
+"eff": {},
+"img": "tesori/t_ointment_of_bite.webp"
+},
+"t_ointment_of_bite_2": {
+"nome": "Unguento del morso",
+"nome_en": "Ointment of Bite",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": null,
+"noto": 0,
+"oro": 5,
+"eff": {},
+"img": "tesori/t_ointment_of_bite_2.webp"
+},
+"t_oil_of_poison": {
+"nome": "Olio velenoso",
+"nome_en": "Oil of Poison",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": null,
+"noto": 0,
+"oro": 3,
+"eff": {
+"stella": 1
+},
+"img": "tesori/t_oil_of_poison.webp"
+},
+"t_oil_of_poison_2": {
+"nome": "Olio velenoso",
+"nome_en": "Oil of Poison",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": null,
+"noto": 0,
+"oro": 3,
+"eff": {
+"stella": 1
+},
+"img": "tesori/t_oil_of_poison_2.webp"
+},
+"t_map_of_ruins": {
+"nome": "Mappa delle rovine",
+"nome_en": "Map of Ruins",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": [
+5,
+"Peasants"
+],
+"noto": 0,
+"oro": 3,
+"eff": {
+"mappa": "R"
+},
+"img": "tesori/t_map_of_ruins.webp"
+},
+"t_map_of_lost_palace": {
+"nome": "Mappa del Palazzo Perduto",
+"nome_en": "Map of Lost Palace",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": null,
+"noto": 0,
+"oro": 3,
+"eff": {
+"mappa": "Palace"
+},
+"img": "tesori/t_map_of_lost_palace.webp"
+},
+"t_map_of_lost_fortress": {
+"nome": "Mappa della Fortezza Perduta",
+"nome_en": "Map of Lost Fortress",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": null,
+"noto": 0,
+"oro": 3,
+"eff": {
+"mappa": "Fortress"
+},
+"img": "tesori/t_map_of_lost_fortress.webp"
+},
+"t_lost_keys": {
+"nome": "Chiavi perdute",
+"nome_en": "Lost Keys",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": null,
+"noto": 0,
+"oro": 5,
+"eff": {
+"chiave": true
+},
+"img": "tesori/t_lost_keys.webp"
+},
+"t_links": {
+"nome": "Catene",
+"nome_en": "Links",
+"taglia": "P",
+"grande": false,
+"peso": "L",
+"fama": 0,
+"fama_cond": null,
+"noto": -5,
+"oro": 7,
+"eff": {},
+"img": "tesori/t_links.webp"
+},
+"t_hound": {
+"nome": "Segugio",
+"nome_en": "Hound",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": [
+7,
+"Hunters"
+],
+"noto": 0,
+"oro": 10,
+"eff": {},
+"img": "tesori/t_hound.webp"
+},
+"t_horse_armor": {
+"nome": "Bardatura",
+"nome_en": "Horse Armor",
+"taglia": "P",
+"grande": false,
+"peso": "M",
+"fama": 3,
+"fama_cond": null,
+"noto": 6,
+"oro": 9,
+"eff": {},
+"img": "tesori/t_horse_armor.webp"
+},
+"t_holy_water": {
+"nome": "Acqua santa",
+"nome_en": "Holy Water",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": null,
+"noto": 0,
+"oro": 4,
+"eff": {
+"santo": true
+},
+"img": "tesori/t_holy_water.webp"
+},
+"t_holy_water_2": {
+"nome": "Acqua santa",
+"nome_en": "Holy Water",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": null,
+"noto": 0,
+"oro": 4,
+"eff": {
+"santo": true
+},
+"img": "tesori/t_holy_water_2.webp"
+},
+"t_expert_travel_guide": {
+"nome": "Guida esperta di viaggio",
+"nome_en": "Expert Travel Guide",
+"taglia": "P",
+"grande": false,
+"peso": "L",
+"fama": 0,
+"fama_cond": [
+5,
+"Peasants"
+],
+"noto": 0,
+"oro": 10,
+"eff": {
+"undado": "cerca"
+},
+"img": "tesori/t_expert_travel_guide.webp"
+},
+"t_enchantment_potion": {
+"nome": "Pozione d'incanto",
+"nome_en": "Enchantment Potion",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": null,
+"noto": 0,
+"oro": 6,
+"eff": {},
+"img": "tesori/t_enchantment_potion.webp"
+},
+"t_contorting_key": {
+"nome": "Chiave contorta",
+"nome_en": "Contorting Key",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": null,
+"noto": 0,
+"oro": 5,
+"eff": {
+"chiave": true
+},
+"img": "tesori/t_contorting_key.webp"
+},
+"t_elven_scroll": {
+"nome": "Pergamena elfica",
+"nome_en": "Elven Scroll",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": null,
+"noto": 5,
+"oro": 5,
+"eff": {
+"inc": [
+"II",
+"III"
+]
+},
+"img": "tesori/t_elven_scroll.webp"
+},
+"t_draught_of_speed_2": {
+"nome": "Pozione di velocità",
+"nome_en": "Draught of Speed",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": null,
+"noto": 0,
+"oro": 6,
+"eff": {},
+"img": "tesori/t_draught_of_speed_2.webp"
+},
+"t_dragon_essence": {
+"nome": "Essenza di drago",
+"nome_en": "Dragon Essence",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": -10,
+"fama_cond": null,
+"noto": 20,
+"oro": 3,
+"eff": {
+"colore": "purple"
+},
+"img": "tesori/t_dragon_essence.webp"
+},
+"t_disenchant_potion": {
+"nome": "Pozione disincantante",
+"nome_en": "Disenchant Potion",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": null,
+"noto": 0,
+"oro": 6,
+"eff": {},
+"img": "tesori/t_disenchant_potion.webp"
+},
+"t_disenchant_potion_2": {
+"nome": "Pozione disincantante",
+"nome_en": "Disenchant Potion",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": null,
+"noto": 0,
+"oro": 6,
+"eff": {},
+"img": "tesori/t_disenchant_potion_2.webp"
+},
+"t_diamond_ring": {
+"nome": "Anello di diamante",
+"nome_en": "Diamond Ring",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": [
+5,
+"Soldiers"
+],
+"noto": 5,
+"oro": 10,
+"eff": {
+"anello": "VII"
+},
+"img": "tesori/t_diamond_ring.webp"
+},
+"t_decayed_fang": {
+"nome": "Zanna marcita",
+"nome_en": "Decayed Fang",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": null,
+"noto": 0,
+"oro": 3,
+"eff": {},
+"img": "tesori/t_decayed_fang.webp"
+},
+"t_cursed_bell": {
+"nome": "Campana maledetta",
+"nome_en": "Cursed Bell",
+"taglia": "P",
+"grande": false,
+"peso": "M",
+"fama": -20,
+"fama_cond": null,
+"noto": 40,
+"oro": 8,
+"eff": {
+"colore": "black",
+"campana": true
+},
+"img": "tesori/t_cursed_bell.webp"
+},
+"t_curdle_of_bone_2": {
+"nome": "Grumo d'osso",
+"nome_en": "Curdle of Bone",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": null,
+"noto": 0,
+"oro": 7,
+"eff": {},
+"img": "tesori/t_curdle_of_bone_2.webp"
+},
+"t_bottled_light": {
+"nome": "Luce imbottigliata",
+"nome_en": "Bottled Light",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": null,
+"noto": 0,
+"oro": 8,
+"eff": {
+"monouso": "luce"
+},
+"img": "tesori/t_bottled_light.webp"
+},
+"t_book_of_nature": {
+"nome": "Libro della natura",
+"nome_en": "Book of Nature",
+"taglia": "P",
+"grande": false,
+"peso": "L",
+"fama": 0,
+"fama_cond": null,
+"noto": 5,
+"oro": 10,
+"eff": {
+"inc": [
+"III",
+"III"
+]
+},
+"img": "tesori/t_book_of_nature.webp"
+},
+"t_book_of_alchemy": {
+"nome": "Libro d'alchimia",
+"nome_en": "Book of Alchemy",
+"taglia": "P",
+"grande": false,
+"peso": "L",
+"fama": -10,
+"fama_cond": null,
+"noto": 15,
+"oro": 10,
+"eff": {
+"inc": [
+"VI",
+"VI",
+"VI",
+"VI"
+]
+},
+"img": "tesori/t_book_of_alchemy.webp"
+},
+"t_bone_necklace": {
+"nome": "Collana d'ossa",
+"nome_en": "Bone Necklace",
+"taglia": "P",
+"grande": false,
+"peso": "L",
+"fama": -15,
+"fama_cond": null,
+"noto": 20,
+"oro": 7,
+"eff": {},
+"img": "tesori/t_bone_necklace.webp"
+},
+"t_ancient_telescope": {
+"nome": "Telescopio antico",
+"nome_en": "Ancient Telescope",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": null,
+"noto": 0,
+"oro": 10,
+"eff": {
+"fase": "S"
+},
+"img": "tesori/t_ancient_telescope.webp"
+},
+"t_amulet": {
+"nome": "Amuleto",
+"nome_en": "Amulet",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": null,
+"noto": 0,
+"oro": 5,
+"eff": {
+"monouso": "amuleto"
+},
+"img": "tesori/t_amulet.webp"
+},
+"t_amulet_2": {
+"nome": "Amuleto",
+"nome_en": "Amulet",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": null,
+"noto": 0,
+"oro": 5,
+"eff": {
+"monouso": "amuleto"
+},
+"img": "tesori/t_amulet_2.webp"
+},
+"t_alchemist_s_mixture": {
+"nome": "Miscela dell'alchimista",
+"nome_en": "Alchemist's Mixture",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": null,
+"noto": 0,
+"oro": 4,
+"eff": {},
+"img": "tesori/t_alchemist_s_mixture.webp"
+},
+"t_alchemist_s_mixture_2": {
+"nome": "Miscela dell'alchimista",
+"nome_en": "Alchemist's Mixture",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": null,
+"noto": 0,
+"oro": 4,
+"eff": {},
+"img": "tesori/t_alchemist_s_mixture_2.webp"
+},
+"t_adventure_guide": {
+"nome": "Guida d'avventura",
+"nome_en": "Adventure Guide",
+"taglia": "P",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": [
+5,
+"Peasants"
+],
+"noto": 0,
+"oro": 9,
+"eff": {
+"mod": {
+"cerca": -1
+}
+},
+"img": "tesori/t_adventure_guide.webp"
+},
+"w_toadstool_circle": {
+"nome": "Cerchio di funghi",
+"nome_en": "Toadstool Circle",
+"taglia": "W",
+"twt": "luogo",
+"colore": "black",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": null,
+"noto": 0,
+"oro": 0,
+"eff": {},
+"img": "tesori/w_toadstool_circle.webp"
+},
+"w_remains_of_thief": {
+"nome": "Resti del ladro",
+"nome_en": "Remains of Thief",
+"taglia": "W",
+"twt": "maledizione",
+"colore": null,
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": null,
+"noto": 0,
+"oro": 0,
+"eff": {},
+"img": "tesori/w_remains_of_thief.webp"
+},
+"w_mouldy_skeleton": {
+"nome": "Scheletro ammuffito",
+"nome_en": "Mouldy Skeleton",
+"taglia": "W",
+"twt": "maledizione",
+"colore": null,
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": null,
+"noto": 0,
+"oro": 0,
+"eff": {},
+"img": "tesori/w_mouldy_skeleton.webp"
+},
+"w_enchanted_meadow": {
+"nome": "Prato incantato",
+"nome_en": "Enchanted Meadow",
+"taglia": "W",
+"twt": "luogo",
+"colore": null,
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": null,
+"noto": 0,
+"oro": 0,
+"eff": {},
+"img": "tesori/w_enchanted_meadow.webp"
+},
+"w_crypt_of_the_knight": {
+"nome": "Cripta del cavaliere",
+"nome_en": "Crypt of the Knight",
+"taglia": "W",
+"twt": "luogo",
+"colore": null,
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": null,
+"noto": 0,
+"oro": 0,
+"eff": {},
+"img": "tesori/w_crypt_of_the_knight.webp"
+},
+"w_chest": {
+"nome": "Forziere",
+"nome_en": "Chest",
+"taglia": "W",
+"twt": "forziere",
+"colore": null,
+"grande": false,
+"peso": "T",
+"fama": 0,
+"fama_cond": null,
+"noto": 0,
+"oro": 0,
+"eff": {},
+"img": "tesori/w_chest.webp"
+},
+"w_mage_library": {
+"nome": "Biblioteca del mago",
+"nome_en": "Mage Library",
+"taglia": "W",
+"twt": "luogo",
+"colore": "purple",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": null,
+"noto": 0,
+"oro": 0,
+"eff": {},
+"img": "tesori/w_mage_library.webp"
+},
+"w_circle_of_stones": {
+"nome": "Cerchio di pietre",
+"nome_en": "Circle of Stones",
+"taglia": "W",
+"twt": "luogo",
+"colore": "grey",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": null,
+"noto": 0,
+"oro": 0,
+"eff": {},
+"img": "tesori/w_circle_of_stones.webp"
+},
+"w_haunted_grave": {
+"nome": "Tomba infestata",
+"nome_en": "Haunted Grave",
+"taglia": "W",
+"twt": "luogo",
+"colore": null,
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": null,
+"noto": 0,
+"oro": 0,
+"eff": {},
+"img": "tesori/w_haunted_grave.webp"
+},
+"w_fairy_grove": {
+"nome": "Boschetto fatato",
+"nome_en": "Fairy Grove",
+"taglia": "W",
+"twt": "luogo",
+"colore": "gold",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": null,
+"noto": 0,
+"oro": 0,
+"eff": {},
+"img": "tesori/w_fairy_grove.webp"
+},
+"w_ethereal_abbey": {
+"nome": "Abbazia eterea",
+"nome_en": "Ethereal Abbey",
+"taglia": "W",
+"twt": "luogo",
+"colore": "white",
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": null,
+"noto": 0,
+"oro": 0,
+"eff": {},
+"img": "tesori/w_ethereal_abbey.webp"
+},
+"w_conjuror_s_remains": {
+"nome": "Resti dell'evocatore",
+"nome_en": "Conjuror's Remains",
+"taglia": "W",
+"twt": "ipnosi",
+"colore": null,
+"grande": false,
+"peso": "-",
+"fama": 0,
+"fama_cond": null,
+"noto": 0,
+"oro": 0,
+"eff": {},
+"img": "tesori/w_conjuror_s_remains.webp"
+}
+}

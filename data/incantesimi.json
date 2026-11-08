@@ -1,0 +1,832 @@
+{
+"i_divine_protection": {
+"nome": "Protezione divina",
+"nome_en": "Divine Protection",
+"tipo": "I",
+"colore": "white",
+"durata": "Combat",
+"testo": "Il bersaglio ha una vulnerabilità più alta di un livello per il combattimento.",
+"eff": "protezione",
+"img": "incantesimi/i_divine_protection.webp"
+},
+"i_exorcise": {
+"nome": "Esorcismo",
+"nome_en": "Exorcise",
+"tipo": "I",
+"colore": "white",
+"durata": "Instant",
+"testo": "Uccide demoni, diavoli, imp, succubi e vampiri nella radura.",
+"eff": "esorcismo",
+"img": "incantesimi/i_exorcise.webp"
+},
+"i_free_the_soul": {
+"nome": "Libera l'anima",
+"nome_en": "Free the Soul",
+"tipo": "I",
+"colore": "white",
+"durata": "Instant",
+"testo": "Ogni fantasma, spettro, ghoul e scheletro nella radura muore con 1-3 al dado.",
+"eff": "anima",
+"img": "incantesimi/i_free_the_soul.webp"
+},
+"i_holy_shield": {
+"nome": "Scudo sacro",
+"nome_en": "Holy Shield",
+"tipo": "I",
+"colore": "white",
+"durata": "Phase",
+"testo": "Il prossimo attacco contro il bersaglio in questo combattimento viene parato.",
+"eff": "scudo_sacro",
+"img": "incantesimi/i_holy_shield.webp"
+},
+"i_make_whole": {
+"nome": "Guarigione completa",
+"nome_en": "Make Whole",
+"tipo": "I",
+"colore": "white",
+"durata": "Instant",
+"testo": "Tutti i segnalini affaticati o feriti del bersaglio tornano disponibili e le armature sono riparate.",
+"eff": "guarigione",
+"img": "incantesimi/i_make_whole.webp"
+},
+"i_peace": {
+"nome": "Pace",
+"nome_en": "Peace",
+"tipo": "I",
+"colore": "white",
+"durata": "Combat",
+"testo": "Il mostro bersaglio non attacca più per tutto il combattimento.",
+"eff": "pace",
+"img": "incantesimi/i_peace.webp"
+},
+"i_redirect": {
+"nome": "Reindirizzare",
+"nome_en": "Redirect",
+"tipo": "I",
+"colore": "white",
+"durata": "Instant",
+"testo": "Toglie al bersaglio una maledizione o un'ipnosi.",
+"eff": "rimedio",
+"img": "incantesimi/i_redirect.webp"
+},
+"i_small_blessing": {
+"nome": "Piccola benedizione",
+"nome_en": "Small Blessing",
+"tipo": "I",
+"colore": "white",
+"durata": "Instant",
+"testo": "Il bersaglio ottiene 5 Fama.",
+"eff": "benedizione",
+"img": "incantesimi/i_small_blessing.webp"
+},
+"i_barkskin": {
+"nome": "Pelle di corteccia",
+"nome_en": "Barkskin",
+"tipo": "II",
+"colore": "grey",
+"durata": "Combat",
+"testo": "Il bersaglio è corazzato per il resto del combattimento.",
+"eff": "corteccia",
+"img": "incantesimi/i_barkskin.webp"
+},
+"i_blend_into_background": {
+"nome": "Confondersi nello sfondo",
+"nome_en": "Blend into Background",
+"tipo": "II",
+"colore": "grey",
+"durata": "Day",
+"testo": "Il bersaglio può fare una fase di NASCONDERSI in più.",
+"eff": "fase_H",
+"img": "incantesimi/i_blend_into_background.webp"
+},
+"i_flood": {
+"nome": "Inondazione",
+"nome_en": "Flood",
+"tipo": "II",
+"colore": "grey",
+"durata": "Attack",
+"testo": "Attacca tutti nella radura (incantatore compreso): proiettile, danno Medio e una stella.",
+"eff": "inondazione",
+"img": "incantesimi/i_flood.webp"
+},
+"i_fog": {
+"nome": "Nebbia",
+"nome_en": "Fog",
+"tipo": "II",
+"colore": "grey",
+"durata": "Day",
+"testo": "Nessuno può scrutare dentro o fuori dalla tessera.",
+"eff": "",
+"img": "incantesimi/i_fog.webp"
+},
+"i_prophecy": {
+"nome": "Profezia",
+"nome_en": "Prophecy",
+"tipo": "II",
+"colore": "purple",
+"durata": "Day",
+"testo": "Il personaggio sceglie le attività mentre le esegue.",
+"eff": "",
+"img": "incantesimi/i_prophecy.webp"
+},
+"i_stones_fly": {
+"nome": "Pietre volanti",
+"nome_en": "Stones Fly",
+"tipo": "II",
+"colore": "grey",
+"durata": "Attack",
+"testo": "Quattro attacchi da proiettile, danno Leggero e una stella, divisi tra i bersagli.",
+"eff": "pietre",
+"img": "incantesimi/i_stones_fly.webp"
+},
+"i_talk_to_wise_bird": {
+"nome": "Parlare con l'uccello saggio",
+"nome_en": "Talk to Wise Bird",
+"tipo": "II",
+"colore": "gold",
+"durata": "Instant",
+"testo": "Il bersaglio raccoglie indizi su una tessera qualsiasi.",
+"eff": "uccello",
+"img": "incantesimi/i_talk_to_wise_bird.webp"
+},
+"i_thorns": {
+"nome": "Rovi",
+"nome_en": "Thorns",
+"tipo": "II",
+"colore": "black",
+"durata": "Day",
+"testo": "Nessuno può percorrere la strada scelta.",
+"eff": "",
+"img": "incantesimi/i_thorns.webp"
+},
+"i_witch_s_brew": {
+"nome": "Pozione della strega",
+"nome_en": "Witch's Brew",
+"tipo": "II",
+"colore": "grey",
+"durata": "Day",
+"testo": "Trasforma i segnalini magici II e VIII.",
+"eff": "",
+"img": "incantesimi/i_witch_s_brew.webp"
+},
+"i_control_horse": {
+"nome": "Dominare il cavallo",
+"nome_en": "Control Horse",
+"tipo": "III",
+"colore": "gold",
+"durata": "Permanent",
+"testo": "Prende il controllo di un cavallo.",
+"eff": "",
+"img": "incantesimi/i_control_horse.webp"
+},
+"i_elven_grace": {
+"nome": "Grazia elfica",
+"nome_en": "Elven Grace",
+"tipo": "III",
+"colore": "gold",
+"durata": "Combat",
+"testo": "Le manovre del bersaglio sono più rapide di uno.",
+"eff": "grazia",
+"img": "incantesimi/i_elven_grace.webp"
+},
+"i_faerie_lights": {
+"nome": "Luci fatate",
+"nome_en": "Faerie Lights",
+"tipo": "III",
+"colore": "gold",
+"durata": "Day",
+"testo": "Trasforma i segnalini magici III e VII.",
+"eff": "",
+"img": "incantesimi/i_faerie_lights.webp"
+},
+"i_horse_whisper": {
+"nome": "Sussurro ai cavalli",
+"nome_en": "Horse Whisper",
+"tipo": "III",
+"colore": "gold",
+"durata": "Combat",
+"testo": "Nessun cavallo nella radura può galoppare.",
+"eff": "",
+"img": "incantesimi/i_horse_whisper.webp"
+},
+"i_illusion": {
+"nome": "Illusione",
+"nome_en": "Illusion",
+"tipo": "III",
+"colore": "gold",
+"durata": "Permanent",
+"testo": "Il bersaglio aggiunge 1 ai tiri di ricerca.",
+"eff": "sfortuna_cerca",
+"img": "incantesimi/i_illusion.webp"
+},
+"i_lost": {
+"nome": "Smarrito",
+"nome_en": "Lost",
+"tipo": "III",
+"colore": "gold",
+"durata": "Permanent",
+"testo": "Il bersaglio si muove in una radura a caso.",
+"eff": "",
+"img": "incantesimi/i_lost.webp"
+},
+"i_migration": {
+"nome": "Migrazione",
+"nome_en": "Migration",
+"tipo": "III",
+"colore": "purple",
+"durata": "Instant",
+"testo": "Scambia due segnalini d'avviso.",
+"eff": "",
+"img": "incantesimi/i_migration.webp"
+},
+"i_persuade": {
+"nome": "Persuasione",
+"nome_en": "Persuade",
+"tipo": "III",
+"colore": "gold",
+"durata": "Day",
+"testo": "Un gruppo di nativi diventa amichevole per oggi.",
+"eff": "persuasione",
+"img": "incantesimi/i_persuade.webp"
+},
+"i_see_hidden_signs": {
+"nome": "Vedere i segni nascosti",
+"nome_en": "See Hidden Signs",
+"tipo": "III",
+"colore": "gold",
+"durata": "Day",
+"testo": "Il bersaglio può fare una fase di RICERCA in più.",
+"eff": "fase_S",
+"img": "incantesimi/i_see_hidden_signs.webp"
+},
+"i_tracker_s_sense": {
+"nome": "Fiuto del cacciatore",
+"nome_en": "Tracker's Sense",
+"tipo": "III",
+"colore": "gold",
+"durata": "Day",
+"testo": "Il bersaglio inizia il giorno dopo avendo individuato i nemici nascosti.",
+"eff": "fiuto",
+"img": "incantesimi/i_tracker_s_sense.webp"
+},
+"i_water_run": {
+"nome": "Corsa sull'acqua",
+"nome_en": "Water Run",
+"tipo": "III",
+"colore": "grey",
+"durata": "Move",
+"testo": "Il bersaglio entra nelle radure d'acqua con una sola fase.",
+"eff": "acqua",
+"img": "incantesimi/i_water_run.webp"
+},
+"i_blazing_light": {
+"nome": "Luce sfolgorante",
+"nome_en": "Blazing Light",
+"tipo": "IV",
+"colore": "purple",
+"durata": "Day",
+"testo": "In una grotta: tutti nella radura hanno una fase in più domani.",
+"eff": "fase_*",
+"img": "incantesimi/i_blazing_light.webp"
+},
+"i_blinding_light": {
+"nome": "Luce accecante",
+"nome_en": "Blinding Light",
+"tipo": "IV",
+"colore": "purple",
+"durata": "Phase",
+"testo": "Il bersaglio non può essere bloccato.",
+"eff": "",
+"img": "incantesimi/i_blinding_light.webp"
+},
+"i_control_element": {
+"nome": "Dominare l'elemento",
+"nome_en": "Control Element",
+"tipo": "IV",
+"colore": "any",
+"durata": "Day",
+"testo": "Controlla un'anomalia o un golem.",
+"eff": "",
+"img": "incantesimi/i_control_element.webp"
+},
+"i_elemental_spirit": {
+"nome": "Spirito elementale",
+"nome_en": "Elemental Spirit",
+"tipo": "IV",
+"colore": "purple",
+"durata": "Day",
+"testo": "Trasforma i segnalini magici IV e VI.",
+"eff": "",
+"img": "incantesimi/i_elemental_spirit.webp"
+},
+"i_fiery_blast": {
+"nome": "Vampata di fuoco",
+"nome_en": "Fiery Blast",
+"tipo": "IV",
+"colore": "purple",
+"durata": "Attack",
+"testo": "Un attacco da proiettile contro ogni bersaglio: danno Leggero e tre stelle.",
+"eff": "vampata",
+"img": "incantesimi/i_fiery_blast.webp"
+},
+"i_frozen_water": {
+"nome": "Acqua ghiacciata",
+"nome_en": "Frozen Water",
+"tipo": "IV",
+"colore": "purple",
+"durata": "Day",
+"testo": "Le radure d'acqua diventano boschi.",
+"eff": "",
+"img": "incantesimi/i_frozen_water.webp"
+},
+"i_hurricane_winds": {
+"nome": "Venti d'uragano",
+"nome_en": "Hurricane Winds",
+"tipo": "IV",
+"colore": "purple",
+"durata": "Fly",
+"testo": "In montagna: il bersaglio vola via.",
+"eff": "",
+"img": "incantesimi/i_hurricane_winds.webp"
+},
+"i_ice_bolt": {
+"nome": "Dardo di ghiaccio",
+"nome_en": "Ice Bolt",
+"tipo": "IV",
+"colore": "purple",
+"durata": "Attack",
+"testo": "Un attacco da proiettile: danno Leggero e tre stelle.",
+"eff": "ghiaccio",
+"img": "incantesimi/i_ice_bolt.webp"
+},
+"i_lightning_bolt": {
+"nome": "Fulmine",
+"nome_en": "Lightning Bolt",
+"tipo": "IV",
+"colore": "purple",
+"durata": "Attack",
+"testo": "In montagna: attacco da proiettile, danno Medio e tre stelle.",
+"eff": "fulmine",
+"img": "incantesimi/i_lightning_bolt.webp"
+},
+"i_reserve": {
+"nome": "Riserva",
+"nome_en": "Reserve",
+"tipo": "IV",
+"colore": "any",
+"durata": "Phase",
+"testo": "Crea un segnalino di colore.",
+"eff": "",
+"img": "incantesimi/i_reserve.webp"
+},
+"i_roof_collapses": {
+"nome": "Crollo della volta",
+"nome_en": "Roof Collapses",
+"tipo": "IV",
+"colore": "purple",
+"durata": "Attack",
+"testo": "In grotta: colpisce tutti nella radura con danno Pesante.",
+"eff": "crollo",
+"img": "incantesimi/i_roof_collapses.webp"
+},
+"i_violent_storm": {
+"nome": "Tempesta violenta",
+"nome_en": "Violent Storm",
+"tipo": "IV",
+"colore": "purple",
+"durata": "Day",
+"testo": "Toglie fasi a chi è nella tessera.",
+"eff": "",
+"img": "incantesimi/i_violent_storm.webp"
+},
+"i_violent_winds": {
+"nome": "Venti violenti",
+"nome_en": "Violent Winds",
+"tipo": "IV",
+"colore": "purple",
+"durata": "Day",
+"testo": "Nessuno può volare nella radura.",
+"eff": "",
+"img": "incantesimi/i_violent_winds.webp"
+},
+"i_absorb_essence": {
+"nome": "Assorbire l'essenza",
+"nome_en": "Absorb Essence",
+"tipo": "V",
+"colore": "black",
+"durata": "Permanent",
+"testo": "L'incantatore si trasforma nel mostro bersaglio.",
+"eff": "",
+"img": "incantesimi/i_absorb_essence.webp"
+},
+"i_ask_demon": {
+"nome": "Interrogare il demone",
+"nome_en": "Ask Demon",
+"tipo": "V",
+"colore": "black",
+"durata": "Instant",
+"testo": "Fa una domanda a un demone.",
+"eff": "",
+"img": "incantesimi/i_ask_demon.webp"
+},
+"i_broomstick": {
+"nome": "Manico di scopa",
+"nome_en": "Broomstick",
+"tipo": "V",
+"colore": "black",
+"durata": "Fly",
+"testo": "Il bersaglio potrà VOLARE domani.",
+"eff": "vola",
+"img": "incantesimi/i_broomstick.webp"
+},
+"i_curse": {
+"nome": "Maledizione",
+"nome_en": "Curse",
+"tipo": "V",
+"colore": "grey",
+"durata": "Instant",
+"testo": "Il bersaglio tira sulla tabella delle maledizioni.",
+"eff": "maledizione",
+"img": "incantesimi/i_curse.webp"
+},
+"i_dark_favor": {
+"nome": "Favore oscuro",
+"nome_en": "Dark Favor",
+"tipo": "V",
+"colore": "black",
+"durata": "Phase",
+"testo": "Ritira un tiro affaticando segnalini.",
+"eff": "",
+"img": "incantesimi/i_dark_favor.webp"
+},
+"i_negative_aura": {
+"nome": "Aura negativa",
+"nome_en": "Negative Aura",
+"tipo": "V",
+"colore": "black",
+"durata": "Day",
+"testo": "I nativi sono meno amichevoli col bersaglio.",
+"eff": "",
+"img": "incantesimi/i_negative_aura.webp"
+},
+"i_pentangle": {
+"nome": "Pentacolo",
+"nome_en": "Pentangle",
+"tipo": "V",
+"colore": "black",
+"durata": "Combat",
+"testo": "Demoni, diavoli, imp, succubi e vampiri non possono attaccare il bersaglio.",
+"eff": "pentacolo",
+"img": "incantesimi/i_pentangle.webp"
+},
+"i_power_of_the_pit": {
+"nome": "Potere dell'Abisso",
+"nome_en": "Power of the Pit",
+"tipo": "V",
+"colore": "black",
+"durata": "Instant",
+"testo": "Il bersaglio tira sulla tabella del Potere dell'Abisso.",
+"eff": "abisso",
+"img": "incantesimi/i_power_of_the_pit.webp"
+},
+"i_reanimate": {
+"nome": "Rianimare",
+"nome_en": "Reanimate",
+"tipo": "V",
+"colore": "black",
+"durata": "Combat",
+"testo": "Rianima un mostro ucciso.",
+"eff": "",
+"img": "incantesimi/i_reanimate.webp"
+},
+"i_summon_demon": {
+"nome": "Evocare un demone",
+"nome_en": "Summon Demon",
+"tipo": "V",
+"colore": "black",
+"durata": "Instant",
+"testo": "Evoca un demone nel combattimento.",
+"eff": "",
+"img": "incantesimi/i_summon_demon.webp"
+},
+"i_alter_object": {
+"nome": "Alterare un oggetto",
+"nome_en": "Alter Object",
+"tipo": "VI",
+"colore": "purple",
+"durata": "Day",
+"testo": "Cambia il peso di un oggetto.",
+"eff": "",
+"img": "incantesimi/i_alter_object.webp"
+},
+"i_alter_size": {
+"nome": "Alterare la taglia",
+"nome_en": "Alter Size",
+"tipo": "VI",
+"colore": "purple",
+"durata": "Day",
+"testo": "Cambia peso e vulnerabilità del bersaglio.",
+"eff": "",
+"img": "incantesimi/i_alter_size.webp"
+},
+"i_dissolve_spell": {
+"nome": "Dissolvere incantesimo",
+"nome_en": "Dissolve Spell",
+"tipo": "VI",
+"colore": "purple",
+"durata": "Instant",
+"testo": "Spezza un incantesimo sul bersaglio.",
+"eff": "dissolvi",
+"img": "incantesimi/i_dissolve_spell.webp"
+},
+"i_enchant_artifact": {
+"nome": "Incantare un artefatto",
+"nome_en": "Enchant Artifact",
+"tipo": "VI",
+"colore": "purple",
+"durata": "Permanent",
+"testo": "Aggiunge un incantesimo a un artefatto.",
+"eff": "",
+"img": "incantesimi/i_enchant_artifact.webp"
+},
+"i_enchant_weapon": {
+"nome": "Incantare l'arma",
+"nome_en": "Enchant Weapon",
+"tipo": "VI",
+"colore": "purple",
+"durata": "Combat",
+"testo": "L'arma del bersaglio guadagna una stella.",
+"eff": "arma_incantata",
+"img": "incantesimi/i_enchant_weapon.webp"
+},
+"i_grow_wings": {
+"nome": "Ali",
+"nome_en": "Grow Wings",
+"tipo": "VI",
+"colore": "purple",
+"durata": "Day",
+"testo": "Il bersaglio può VOLARE domani.",
+"eff": "vola",
+"img": "incantesimi/i_grow_wings.webp"
+},
+"i_melt_into_mist": {
+"nome": "Dissolversi in nebbia",
+"nome_en": "Melt into Mist",
+"tipo": "VI",
+"colore": "purple",
+"durata": "Permanent",
+"testo": "Il bersaglio diventa nebbia.",
+"eff": "",
+"img": "incantesimi/i_melt_into_mist.webp"
+},
+"i_mountain_surge": {
+"nome": "Sollevamento",
+"nome_en": "Mountain Surge",
+"tipo": "VI",
+"colore": "purple",
+"durata": "Day",
+"testo": "La radura diventa di montagna.",
+"eff": "",
+"img": "incantesimi/i_mountain_surge.webp"
+},
+"i_phantasm": {
+"nome": "Fantasma illusorio",
+"nome_en": "Phantasm",
+"tipo": "VI",
+"colore": "purple",
+"durata": "Day",
+"testo": "Crea un fantasma che agisce per il bersaglio.",
+"eff": "",
+"img": "incantesimi/i_phantasm.webp"
+},
+"i_transform": {
+"nome": "Trasformazione",
+"nome_en": "Transform",
+"tipo": "VI",
+"colore": "purple",
+"durata": "Permanent",
+"testo": "Trasforma il bersaglio.",
+"eff": "",
+"img": "incantesimi/i_transform.webp"
+},
+"i_unleash_power": {
+"nome": "Scatenare il potere",
+"nome_en": "Unleash Power",
+"tipo": "VI",
+"colore": "purple",
+"durata": "Day",
+"testo": "I segnalini magici diventano di movimento e combattimento.",
+"eff": "",
+"img": "incantesimi/i_unleash_power.webp"
+},
+"i_world_fades": {
+"nome": "Il mondo svanisce",
+"nome_en": "World Fades",
+"tipo": "VI",
+"colore": "black",
+"durata": "Permanent",
+"testo": "Il bersaglio svanisce dal mondo.",
+"eff": "",
+"img": "incantesimi/i_world_fades.webp"
+},
+"i_charm_snake": {
+"nome": "Incantare il serpente",
+"nome_en": "Charm Snake",
+"tipo": "VII",
+"colore": "grey",
+"durata": "Day",
+"testo": "Controlla una vipera o un serpente.",
+"eff": "",
+"img": "incantesimi/i_charm_snake.webp"
+},
+"i_control_bats": {
+"nome": "Dominare i pipistrelli",
+"nome_en": "Control Bats",
+"tipo": "VII",
+"colore": "any",
+"durata": "Day",
+"testo": "I pipistrelli giganti nella radura non attaccano l'incantatore.",
+"eff": "pipistrelli",
+"img": "incantesimi/i_control_bats.webp"
+},
+"i_dazzle": {
+"nome": "Abbagliare",
+"nome_en": "Dazzle",
+"tipo": "VII",
+"colore": "any",
+"durata": "Phase",
+"testo": "Migliora i rapporti con un gruppo di nativi.",
+"eff": "",
+"img": "incantesimi/i_dazzle.webp"
+},
+"i_free_spell": {
+"nome": "Liberare l'incantesimo",
+"nome_en": "Free Spell",
+"tipo": "VII",
+"colore": "black",
+"durata": "Combat",
+"testo": "Lancia l'incantesimo di un sito.",
+"eff": "",
+"img": "incantesimi/i_free_spell.webp"
+},
+"i_join": {
+"nome": "Unirsi",
+"nome_en": "Join",
+"tipo": "VII",
+"colore": "gold",
+"durata": "Phase",
+"testo": "Permette di seguire un altro personaggio.",
+"eff": "",
+"img": "incantesimi/i_join.webp"
+},
+"i_luck": {
+"nome": "Fortuna",
+"nome_en": "Luck",
+"tipo": "VII",
+"colore": "white",
+"durata": "Phase",
+"testo": "Il bersaglio sottrae 1 dal prossimo tiro.",
+"eff": "fortuna",
+"img": "incantesimi/i_luck.webp"
+},
+"i_meditate": {
+"nome": "Meditare",
+"nome_en": "Meditate",
+"tipo": "VII",
+"colore": "purple",
+"durata": "Day",
+"testo": "Tira sulla tabella della meditazione.",
+"eff": "",
+"img": "incantesimi/i_meditate.webp"
+},
+"i_peace_with_nature": {
+"nome": "Pace con la natura",
+"nome_en": "Peace with Nature",
+"tipo": "VII",
+"colore": "gold",
+"durata": "Permanent",
+"testo": "Gli avvisi e i suoni non evocano mostri vicino al bersaglio.",
+"eff": "pace_natura",
+"img": "incantesimi/i_peace_with_nature.webp"
+},
+"i_premonition": {
+"nome": "Premonizione",
+"nome_en": "Premonition",
+"tipo": "VII",
+"colore": "grey",
+"durata": "Day",
+"testo": "Il bersaglio sceglie quando fare il turno.",
+"eff": "",
+"img": "incantesimi/i_premonition.webp"
+},
+"i_protection_from_magic": {
+"nome": "Protezione dalla magia",
+"nome_en": "Protection from Magic",
+"tipo": "VII",
+"colore": "gold",
+"durata": "Phase",
+"testo": "Il bersaglio è immune agli incantesimi in questo combattimento.",
+"eff": "antimagia",
+"img": "incantesimi/i_protection_from_magic.webp"
+},
+"i_sense_danger": {
+"nome": "Percepire il pericolo",
+"nome_en": "Sense Danger",
+"tipo": "VII",
+"colore": "purple",
+"durata": "Permanent",
+"testo": "Il bersaglio può fare una fase di ALLERTA in più.",
+"eff": "fase_A",
+"img": "incantesimi/i_sense_danger.webp"
+},
+"i_bad_luck": {
+"nome": "Sfortuna",
+"nome_en": "Bad Luck",
+"tipo": "VIII",
+"colore": "any",
+"durata": "Permanent",
+"testo": "Il bersaglio aggiunge 1 a tutti i tiri sulle tabelle.",
+"eff": "sfortuna",
+"img": "incantesimi/i_bad_luck.webp"
+},
+"i_blunt": {
+"nome": "Smussare",
+"nome_en": "Blunt",
+"tipo": "VIII",
+"colore": "grey",
+"durata": "Day",
+"testo": "Il mostro bersaglio perde una stella.",
+"eff": "smussa",
+"img": "incantesimi/i_blunt.webp"
+},
+"i_camouflage": {
+"nome": "Mimetismo",
+"nome_en": "Camouflage",
+"tipo": "VIII",
+"colore": "gold",
+"durata": "Day",
+"testo": "Il bersaglio non può essere seguito.",
+"eff": "",
+"img": "incantesimi/i_camouflage.webp"
+},
+"i_deal_with_orcs_and_goblins": {
+"nome": "Patto con orchi e goblin",
+"nome_en": "Deal with Orcs and Goblins",
+"tipo": "VIII",
+"colore": "black",
+"durata": "Day",
+"testo": "Orchi e goblin non attaccano l'incantatore.",
+"eff": "goblin",
+"img": "incantesimi/i_deal_with_orcs_and_goblins.webp"
+},
+"i_guide_beast": {
+"nome": "Guidare la bestia",
+"nome_en": "Guide Beast",
+"tipo": "VIII",
+"colore": "grey",
+"durata": "Day",
+"testo": "Controlla un ragno, una piovra o uno scorpione.",
+"eff": "",
+"img": "incantesimi/i_guide_beast.webp"
+},
+"i_poison": {
+"nome": "Veleno",
+"nome_en": "Poison",
+"tipo": "VIII",
+"colore": "grey",
+"durata": "Day",
+"testo": "L'arma del bersaglio guadagna una stella fino a domani.",
+"eff": "veleno",
+"img": "incantesimi/i_poison.webp"
+},
+"i_mesmerize": {
+"nome": "Ipnosi",
+"nome_en": "Mesmerize",
+"tipo": "VIII",
+"colore": "black",
+"durata": "Instant",
+"testo": "Il bersaglio tira sulla tabella dell'ipnosi.",
+"eff": "ipnosi",
+"img": "incantesimi/i_mesmerize.webp"
+},
+"i_remedy": {
+"nome": "Rimedio",
+"nome_en": "Remedy",
+"tipo": "VIII",
+"colore": "grey",
+"durata": "Instant",
+"testo": "Toglie al bersaglio una maledizione o un'ipnosi.",
+"eff": "rimedio",
+"img": "incantesimi/i_remedy.webp"
+},
+"i_whistle_for_monsters": {
+"nome": "Richiamo dei mostri",
+"nome_en": "Whistle for Monsters",
+"tipo": "VIII",
+"colore": "purple",
+"durata": "Instant",
+"testo": "Sposta un segnalino di suono.",
+"eff": "",
+"img": "incantesimi/i_whistle_for_monsters.webp"
+}
+}

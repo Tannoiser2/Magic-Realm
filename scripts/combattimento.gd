@@ -56,7 +56,9 @@ func combatti(k: String) -> void:
 		if r.ha_abilita(r.P(pid), "furia"):
 			ordine.erase(pid)
 			ordine.append(pid)
-	C = {"k": k, "ordine": ordine, "assegnati": {}, "primo": true, "molt": {}, "round": 0, "quiete": 0, "eventi": [], "pos": {}, "uso": {}}
+	C = {"k": k, "ordine": ordine, "assegnati": {}, "primo": true, "molt": {}, "round": 0, "quiete": 0, "eventi": [], "pos": {}, "uso": {},
+		"magia": {"pace": {}, "corteccia": {}, "scudo_sacro": {}, "pentacolo": {}, "antimagia": {}, "protezione": {}, "grazia": {}, "arma_incantata": {}, "goblin": {}, "pipistrelli": {}, "luce": false},
+		"legati": []}
 	r.scrivi("Combattimento a %s." % r.nome_r(k), "titolo")
 	r.cambiato.emit()
 	var guardia := 0
@@ -85,6 +87,13 @@ func combatti(k: String) -> void:
 		if m.has("ext"):
 			m["ext"]["lato"] = 0
 	r.scrivi("Il combattimento a %s termina." % r.nome_r(k))
+	for x in C["legati"]:
+		var q := _pg(x[0])
+		if not q.is_empty():
+			r.arcano.sciogli(q, x[1])
+	for p in pgs:
+		if not p["morto"] and r.s["scenario"] >= 4:
+			r.arcano.sincronizza(p)
 	C = {}
 	r.cambiato.emit()
 
@@ -120,7 +129,7 @@ func _round() -> bool:
 	C["pos"] = {}
 	C["colpi_t"] = {}
 	for p in _in_lotta():
-		C["uso"][p["pid"]] = {"usati": {}, "sforzo": 0, "cariche": [], "bersaglio": "", "attacco": {}, "parata": {}, "manovra": {}, "scudo": "", "ferite": 0, "ucciso_da": ""}
+		C["uso"][p["pid"]] = {"usati": {}, "sforzo": 0, "cariche": [], "bersaglio": "", "attacco": {}, "parata": {}, "manovra": {}, "scudo": "", "ferite": 0, "ucciso_da": "", "incantesimo": {}}
 	r.scrivi("— Round %d —" % C["round"], "round")
 	r.cambiato.emit()
 	var mostri := _mostri_qui(k)
@@ -216,11 +225,24 @@ func _round() -> bool:
 							r.scrivi("%s con i suoi riflessi allerta %s." % [p["nome"], Dati.nome_arma(a["id"])])
 			"attiva":
 				_attiva(p, str(sc.get("oggetto", "")))
+			"incantesimo":
+				_prepara_incantesimo(p, sc, opz)
+			"usa":
+				var o2 := str(sc.get("oggetto", ""))
+				for x in p["oggetti"]:
+					if x["id"] == o2 and str(Arcano.tesoro(o2).get("eff", {}).get("monouso", "")) == "luce":
+						p["oggetti"].erase(x)
+						C["magia"]["luce"] = true
+						for mid in C["assegnati"].keys():
+							C["assegnati"].erase(mid)
+						r.scrivi("%s libera la Luce imbottigliata: i mostri della radura si placano." % p["nome"], "bene")
+						break
 			"abbandona":
 				var o := str(sc.get("oggetto", ""))
 				for x in p["oggetti"]:
 					if x["id"] == o:
 						p["oggetti"].erase(x)
+						r.lascia(C["k"], x)
 						r.scrivi("%s abbandona %s." % [p["nome"], Dati.nome_arma(o)])
 						break
 	r.cambiato.emit()
@@ -260,6 +282,10 @@ func _round() -> bool:
 					ev = true
 			r.scrivi("%s prende di mira %s." % [p["nome"], _nome(sc)])
 	r.cambiato.emit()
+	# all'inizio della mischia hanno effetto gli incantesimi
+	if r.s["scenario"] >= 4:
+		if await _risolvi_incantesimi():
+			ev = true
 	# 6) mischia: giocate dei personaggi
 	for p in _in_lotta():
 		var u: Dictionary = C["uso"][p["pid"]]
@@ -309,7 +335,7 @@ func _sforzo_ok(p: Dictionary, ci: int) -> bool:
 		return false
 	if r.ha_abilita(p, "furia"):
 		return true
-	return u["sforzo"] + int(p["chits"][ci]["sforzi"]) <= 2
+	return u["sforzo"] + int(p["chits"][ci]["sforzi"]) <= (r.arcano.limite_sforzo(p) if r.s["scenario"] >= 4 else 2)
 
 func _chit_mossa_validi(p: Dictionary, vel_max: int) -> Array:
 	var a := []
@@ -361,7 +387,20 @@ func _opzioni_azione(p: Dictionary) -> Dictionary:
 	var attivabili := []
 	for o in p["oggetti"]:
 		attivabili.append(o["id"])
-	return {"fuga": fuga, "allerta": allerta, "berserk": berserk, "riflessi": riflessi, "oggetti": attivabili, "minaccia": v}
+	var incs := []
+	var bers := []
+	var usabili := []
+	if r.s["scenario"] >= 4:
+		incs = r.arcano.lanciabili(p, true, v, C["uso"][p["pid"]]["usati"])
+		for q in _in_lotta():
+			bers.append(q["pid"])
+		for m in _mostri_qui(C["k"]):
+			bers.append(m["id"])
+		for o in p["oggetti"]:
+			if str(Arcano.tesoro(o["id"]).get("eff", {}).get("monouso", "")) == "luce":
+				usabili.append(o["id"])
+	return {"fuga": fuga, "allerta": allerta, "berserk": berserk, "riflessi": riflessi, "oggetti": attivabili, "minaccia": v,
+		"incantesimi": incs, "bersagli_inc": bers, "usabili": usabili}
 
 func _attiva(p: Dictionary, id: String) -> void:
 	for o in p["oggetti"]:
@@ -509,6 +548,10 @@ func _harm_base_pg(p: Dictionary, chit: Dictionary, cerchio: String, armatura: b
 		h += 1
 	if con_stelle:
 		var st: int = int(lato[1])
+		if r.s.get("scenario", 1) >= 4:
+			st += r.arcano.eff(p, "stella").size()
+			if r.arcano.effetto(p, "veleno") or (C.has("magia") and C["magia"]["arma_incantata"].has(p["pid"])):
+				st += 1
 		if armatura and st > 0:
 			st -= 1
 		h += st
@@ -548,6 +591,8 @@ func _risolvi() -> bool:
 		var m := r.M(mid)
 		var bers: String = C["assegnati"][mid]
 		if m.is_empty() or m["morto"] or not C["pos"].has(mid):
+			continue
+		if _mostro_trattenuto(m, bers):
 			continue
 		var d := Dati.tipo_mostro(m["tipo"])
 		var lato: Array = _lato(m)
@@ -614,6 +659,8 @@ func _risolvi() -> bool:
 			else:
 				var q := _pg(bersaglio)
 				vel_m = r.vel_chit(q, q["chits"][mu["chit"]])
+				if C["magia"]["grazia"].has(bersaglio):
+					vel_m -= 1
 				col = mu["casella"]
 		else:
 			var m := r.M(bersaglio)
@@ -674,6 +721,9 @@ func _morto(id: String) -> bool:
 func _armatura_colpita(q: Dictionary, dir: String) -> Dictionary:
 	var ordine := []
 	for o in q["oggetti"]:
+		if o["attivo"] and str(Arcano.tesoro(o["id"]).get("eff", {}).get("para", "")) == dir:
+			ordine.append(o)
+	for o in q["oggetti"]:
 		if o["attivo"] and o["id"] == "scudo" and o.get("scudo", "") == dir:
 			ordine.append(o)
 	for o in q["oggetti"]:
@@ -691,13 +741,18 @@ func _armatura_colpita(q: Dictionary, dir: String) -> Dictionary:
 func _colpisci_pg(q: Dictionary, c: Dictionary, attaccante) -> bool:
 	## restituisce true se il bersaglio muore
 	var u: Dictionary = C["uso"][q["pid"]]
+	if C.has("magia") and C["magia"]["scudo_sacro"].has(q["pid"]):
+		C["magia"]["scudo_sacro"].erase(q["pid"])
+		r.scrivi("Lo Scudo sacro ferma il colpo di %s contro %s." % [_nome(c["da"]), q["nome"]], "bene")
+		return false
 	var arm := _armatura_colpita(q, c["dir"])
+	var corazzato: bool = not arm.is_empty() or (C.has("magia") and C["magia"]["corteccia"].has(q["pid"]))
 	var h := 0
 	var testo := ""
 	var x_puro := false
 	if attaccante != null:
 		var p: Dictionary = attaccante
-		h = _harm_base_pg(p, p["chits"][c["chit"]], c["dir"], not arm.is_empty())
+		h = _harm_base_pg(p, p["chits"][c["chit"]], c["dir"], corazzato)
 		if c["missile"]:
 			var mt := _missile(h, r.ha_abilita(p, "arciere"), r.ha_abilita(p, "mira"))
 			testo = " (proiettili, dado %d)" % mt[1]
@@ -714,7 +769,9 @@ func _colpisci_pg(q: Dictionary, c: Dictionary, attaccante) -> bool:
 		else:
 			h = Dati.peso_i(at["f"])
 			var st: int = int(at["s"])
-			if not arm.is_empty() and st > 0:
+			if C.has("magia") and C["magia"].get("smussati", {}).has(m["id"]):
+				st = max(0, st - 1)
+			if corazzato and st > 0:
 				st -= 1
 			h += st
 			if c["missile"]:
@@ -742,7 +799,10 @@ func _colpisci_pg(q: Dictionary, c: Dictionary, attaccante) -> bool:
 			u["ferite"] += 1
 		r.scrivi("%s colpisce %s sull'armatura (%s, danno %s%s): %s %s%s." % [chi, q["nome"], Dati.nome_arma(arm["id"]), Dati.NOMI_PESO[Dati.peso_s(h)], testo, Dati.nome_arma(arm["id"]), esito, ", una ferita" if h >= 2 else ""], "male")
 		return false
-	if h >= r.vulnerabilita(q):
+	var vq := r.vulnerabilita(q)
+	if C.has("magia") and C["magia"]["protezione"].has(q["pid"]):
+		vq += 1
+	if h >= vq:
 		r.scrivi("%s colpisce %s con danno %s%s: è uccis{oa}!" % [chi, q["nome"], Dati.NOMI_PESO[Dati.peso_s(h)], testo], "male")
 		u["ucciso_da"] = c["da"]
 		return true
@@ -803,6 +863,13 @@ func _colpisci_mostro(m: Dictionary, c: Dictionary, p: Dictionary, sul_cavallo: 
 func _incantesimo(q: Dictionary, m: Dictionary) -> void:
 	var inc: String = Dati.tipo_mostro(m["tipo"]).get("incant", "")
 	var t := r.d6()
+	if C.has("magia") and C["magia"]["antimagia"].has(q["pid"]):
+		r.scrivi("La Protezione dalla magia respinge l'incantesimo di %s." % r.nome_mostro(m), "bene")
+		return
+	if r.s["scenario"] >= 4 and inc in ["maledizione", "ipnosi"]:
+		r.scrivi("%s lancia un incantesimo su %s." % [r.nome_mostro(m), q["nome"]], "male")
+		r.arcano.maledici(q, inc)
+		return
 	match inc:
 		"maledizione":
 			if q["pg"] == "negromante":
@@ -867,7 +934,7 @@ func _fatica_ferite(p: Dictionary) -> bool:
 		var opz := []
 		for i in r.chit_attivi(p):
 			var c: Dictionary = p["chits"][i]
-			if c["sforzi"] > 0 and c["sforzi"] <= da_affaticare + 1:
+			if c["sforzi"] > 0 and c["sforzi"] <= da_affaticare + 1 and not c.has("tes"):
 				opz.append(i)
 		if opz.is_empty():
 			break
@@ -881,10 +948,10 @@ func _fatica_ferite(p: Dictionary) -> bool:
 	# ferite
 	var n := int(u["ferite"])
 	while n > 0 and u["ucciso_da"] == "":
-		var opz := r.chit_attivi(p)
+		var opz: Array = r.chit_attivi(p).filter(func(i): return not p["chits"][i].has("tes"))
 		if opz.is_empty():
 			for i in range(p["chits"].size()):
-				if p["chits"][i]["stato"] == "f":
+				if p["chits"][i]["stato"] == "f" and not p["chits"][i].has("tes"):
 					opz.append(i)
 		if opz.is_empty():
 			u["ucciso_da"] = "ferite"
@@ -897,7 +964,7 @@ func _fatica_ferite(p: Dictionary) -> bool:
 		ev = true
 	var tutti_feriti := true
 	for c in p["chits"]:
-		if c["stato"] != "w" and c["tipo"] != "C":
+		if c["stato"] != "w" and c["tipo"] != "C" and not c.has("tes"):
 			tutti_feriti = false
 	if tutti_feriti and u["ucciso_da"] == "":
 		u["ucciso_da"] = "ferite"
@@ -923,6 +990,10 @@ func _morte(p: Dictionary, da: String) -> void:
 				killer["oggetti"].append(x)
 			if not p["oggetti"].is_empty():
 				r.scrivi("%s prende gli oggetti di %s." % [killer["nome"], p["nome"]])
+	if not da.begins_with("p"):
+		for o in p["oggetti"]:
+			if not o.has("tes"):
+				r.lascia(k, o)
 	p["oggetti"] = []
 	for mid in C["assegnati"].keys():
 		if C["assegnati"][mid] == p["pid"]:
@@ -930,3 +1001,197 @@ func _morte(p: Dictionary, da: String) -> void:
 	C["ordine"].erase(p["pid"])
 	p["dove_morte"] = k
 	r.controlla_vittoria()
+
+# ------------------------------------------------------------ incantesimi in combattimento
+func _prepara_incantesimo(p: Dictionary, sc: Dictionary, opz: Dictionary) -> void:
+	var scelto := {}
+	for x in opz.get("incantesimi", []):
+		if x["inc"] == sc.get("inc", ""):
+			scelto = x
+	if scelto.is_empty():
+		return
+	var mz: Dictionary = scelto["mezzi"][clampi(int(sc.get("mezzo", 0)), 0, scelto["mezzi"].size() - 1)]
+	if mz.has("chit"):
+		if not _sforzo_ok(p, int(mz["chit"])):
+			r.scrivi("%s è troppo stanc{oa} per lanciare un incantesimo ora." % p["nome"])
+			return
+		_usa(p, int(mz["chit"]))
+	var id: String = scelto["inc"]
+	r.arcano.paga(p, id, mz, int(scelto["colore"]))
+	var b: String = str(sc.get("bersaglio", p["pid"]))
+	if not (b in opz.get("bersagli_inc", [])):
+		b = p["pid"]
+	C["uso"][p["pid"]]["incantesimo"] = {"inc": id, "bersaglio": b}
+	if p["nascosto"] and Arcano.inc(id)["durata"] == "Attack":
+		p["nascosto"] = false
+	r.scrivi("%s prepara l'incantesimo %s." % [p["nome"], Arcano.inc(id)["nome"]])
+
+func _mostro_trattenuto(m: Dictionary, bers: String) -> bool:
+	var mg: Dictionary = C["magia"]
+	if mg["luce"] or mg["pace"].has(m["id"]):
+		return true
+	if mg["pentacolo"].has(bers) and m["tipo"] in Arcano.DEMONI:
+		return true
+	if mg["goblin"].has(bers) and (str(m["tipo"]).begins_with("goblin") or m["tipo"] == "orco_m"):
+		return true
+	if mg["pipistrelli"].has(bers) and m["tipo"] == "pipistrello":
+		return true
+	if r.s["scenario"] >= 4 and bers.begins_with("p") and m["tipo"] in Arcano.DEMONI and not r.arcano.eff(_pg(bers), "santo").is_empty():
+		return true
+	return false
+
+func _risolvi_incantesimi() -> bool:
+	var ev := false
+	for p in _in_lotta():
+		var u: Dictionary = C["uso"][p["pid"]]
+		if u["incantesimo"].is_empty():
+			continue
+		var id: String = u["incantesimo"]["inc"]
+		var b: String = u["incantesimo"]["bersaglio"]
+		var x := Arcano.inc(id)
+		var e: String = x["eff"]
+		var dur: String = x["durata"]
+		r.scrivi("%s lancia %s!" % [p["nome"], x["nome"]], "bene")
+		if b.begins_with("p") and C["magia"]["antimagia"].has(b) and b != p["pid"]:
+			r.scrivi("La Protezione dalla magia respinge l'incantesimo.")
+			r.arcano.sciogli(p, id)
+			continue
+		match e:
+			"vampata":
+				for m in _mostri_qui(C["k"]):
+					if await _colpo_magico(p, m["id"], 1, 3, 13): ev = true
+				if b.begins_with("p") and b != p["pid"]:
+					if await _colpo_magico(p, b, 1, 3, 13): ev = true
+			"pietre":
+				var bs: Array = _mostri_qui(C["k"]).map(func(m): return m["id"])
+				if bs.is_empty() and b != p["pid"]:
+					bs = [b]
+				if not bs.is_empty():
+					for i in range(4):
+						if await _colpo_magico(p, bs[i % bs.size()], 1, 1, 15): ev = true
+			"fulmine":
+				if await _colpo_magico(p, b, 2, 3, 18): ev = true
+			"ghiaccio":
+				if await _colpo_magico(p, b, 1, 3, 13): ev = true
+			"inondazione":
+				for q in _in_lotta():
+					if await _colpo_magico(p, q["pid"], 2, 1, 18): ev = true
+				for m in _mostri_qui(C["k"]):
+					if await _colpo_magico(p, m["id"], 2, 1, 18): ev = true
+			"crollo":
+				for q in _in_lotta():
+					if await _colpo_magico(p, q["pid"], 3, 0, 18, false): ev = true
+				for m in _mostri_qui(C["k"]):
+					if await _colpo_magico(p, m["id"], 3, 0, 18, false): ev = true
+			"pace":
+				if not b.begins_with("p"):
+					C["magia"]["pace"][b] = true
+					C["assegnati"].erase(b)
+					r.scrivi("%s si placa e non attaccherà più." % _nome(b), "bene")
+			"smussa":
+				if not b.begins_with("p"):
+					if not C["magia"].has("smussati"): C["magia"]["smussati"] = {}
+					C["magia"]["smussati"][b] = true
+			"esorcismo":
+				for m in _mostri_qui(C["k"]):
+					if m["tipo"] in Arcano.DEMONI:
+						_uccidi_mostro(p, m)
+						ev = true
+			"anima":
+				for m in _mostri_qui(C["k"]):
+					if str(m["tipo"]).begins_with("scheletro") or m["tipo"] in Arcano.NON_MORTI:
+						if r.d6() <= 3:
+							_uccidi_mostro(p, m)
+							ev = true
+			"corteccia", "scudo_sacro", "pentacolo", "antimagia", "protezione", "grazia", "arma_incantata", "goblin", "pipistrelli":
+				var chi: String = b if b.begins_with("p") else p["pid"]
+				if e in ["goblin", "pipistrelli"]:
+					chi = p["pid"]
+				C["magia"][e][chi] = true
+				r.scrivi("L'incantesimo protegge %s per questo combattimento." % _nome(chi), "bene")
+				C["legati"].append([p["pid"], id])
+				continue
+			_:
+				var q: Dictionary = _pg(b) if b.begins_with("p") else p
+				if dur == "Instant":
+					r.arcano.lancia_istantaneo(p, q, id)
+				else:
+					r.arcano.applica_effetto_giorno(p, q, id)
+					continue
+		r.arcano.sciogli(p, id)
+		u["incantesimo"] = {}
+	return ev
+
+func _uccidi_mostro(p: Dictionary, m: Dictionary) -> void:
+	m["morto"] = true
+	m["dove"] = ""
+	C["assegnati"].erase(m["id"])
+	var n: int = C["molt"].get(p["pid"], 0) + 1
+	C["molt"][p["pid"]] = n
+	r.scrivi("%s è distrutto dalla magia." % r.nome_mostro(m), "bene")
+	r.uccisione_mostro(p, m, n)
+
+func _colpo_magico(p: Dictionary, bid: String, peso: int, stelle: int, _lung: int, missile := true) -> bool:
+	## attacco di un incantesimo: restituisce true se il bersaglio muore
+	if _morto(bid):
+		return false
+	if bid.begins_with("p"):
+		var q := _pg(bid)
+		if C["magia"]["antimagia"].has(bid) and bid != p["pid"]:
+			return false
+		var arm := _armatura_colpita(q, "smash")
+		var st := stelle
+		if (not arm.is_empty() or C["magia"]["corteccia"].has(bid)) and st > 0:
+			st -= 1
+		var h := peso + st
+		var testo := ""
+		if missile:
+			var mt := _missile(h, false, false)
+			h = mt[0]
+			testo = " (dado %d)" % mt[1]
+		var vq := r.vulnerabilita(q) + (1 if C["magia"]["protezione"].has(bid) else 0)
+		if not arm.is_empty() and h < 5:
+			if h >= r.peso_oggetto(arm):
+				q["oggetti"].erase(arm)
+				r.scrivi("La magia di %s distrugge %s di %s%s." % [p["nome"], Dati.nome_arma(arm["id"]), q["nome"], testo], "male")
+			else:
+				r.scrivi("L'armatura di %s regge alla magia%s." % [q["nome"], testo])
+			if h >= 2:
+				C["uso"][bid]["ferite"] += 1
+			return false
+		if h >= vq:
+			r.scrivi("La magia di %s uccide %s%s!" % [p["nome"], q["nome"], testo], "male")
+			C["uso"][bid]["ucciso_da"] = p["pid"] if q != p else "magia"
+			return true
+		if h >= 1:
+			C["uso"][bid]["ferite"] += 1
+			r.scrivi("La magia di %s ferisce %s%s." % [p["nome"], q["nome"], testo], "male")
+		else:
+			r.scrivi("La magia di %s non fa danno a %s%s." % [p["nome"], q["nome"], testo])
+		return false
+	var m := r.M(bid)
+	var d := Dati.tipo_mostro(m["tipo"])
+	var col: String = {"anomalia_grigia": "grey", "anomalia_oro": "gold", "anomalia_viola": "purple", "anomalia_prisma": "purple"}.get(m["tipo"], "")
+	if col != "" and col == "purple":
+		r.scrivi("%s è immune a questa magia." % r.nome_mostro(m))
+		return false
+	var st2 := stelle
+	if d.get("armato", false) and st2 > 0:
+		st2 -= 1
+	var h2 := peso + st2
+	var testo2 := ""
+	if missile:
+		var mt2 := _missile(h2, false, false)
+		h2 = mt2[0]
+		testo2 = " (dado %d)" % mt2[1]
+	if h2 >= Dati.peso_i(d["peso"]):
+		m["morto"] = true
+		m["dove"] = ""
+		C["assegnati"].erase(m["id"])
+		var n: int = C["molt"].get(p["pid"], 0) + 1
+		C["molt"][p["pid"]] = n
+		r.scrivi("La magia di %s abbatte %s (danno %s%s)." % [p["nome"], r.nome_mostro(m), Dati.NOMI_PESO[Dati.peso_s(h2)], testo2], "bene")
+		r.uccisione_mostro(p, m, n)
+		return true
+	r.scrivi("La magia di %s colpisce %s, ma non basta (danno %s%s)." % [p["nome"], r.nome_mostro(m), Dati.NOMI_PESO[Dati.peso_s(h2)], testo2])
+	return false

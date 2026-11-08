@@ -11,6 +11,8 @@ static var oggetti: Dictionary = {}
 static var segnalini: Dictionary = {}
 static var missioni: Dictionary = {}
 static var elenco_missioni: Array = []
+static var tesori: Dictionary = {}
+static var incantesimi: Dictionary = {}
 
 const PESI := ["-", "L", "M", "H", "T", "X"]
 const NOMI_PESO := {"-": "Trascurabile", "L": "Leggero", "M": "Medio", "H": "Pesante", "T": "Tremendo", "X": "Massimo"}
@@ -34,6 +36,8 @@ static func carica() -> void:
 	elenco_missioni = _json("res://data/missioni.json")
 	for m in elenco_missioni:
 		missioni[m["id"]] = m
+	tesori = _json("res://data/tesori.json")
+	incantesimi = _json("res://data/incantesimi.json")
 	_pronti = true
 
 static func _json(p: String):
@@ -67,4 +71,6 @@ static func nome_arma(id: String) -> String:
 		return oggetti["armi"][id]["nome"]
 	if oggetti["armature"].has(id):
 		return oggetti["armature"][id]["nome"]
+	if tesori.has(id):
+		return tesori[id]["nome"]
 	return id

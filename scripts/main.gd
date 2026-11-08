@@ -33,6 +33,8 @@ var nodo_tessere: Node3D
 var nodo_pezzi: Node3D
 var nodo_evid: Node3D
 var trascina := 0
+var tocchi := {}
+var due_dita := false
 var mouse_prec := Vector2.ZERO
 var mouse_giu := Vector2.ZERO
 var hover := ""
@@ -58,6 +60,8 @@ var avviso: Label
 # pianificazione
 var piano: Array = []
 var fasi: Dictionary = {}
+var modo_volo := false
+const SCENARI := [1, 2, 3, 4]
 var modo_mossa := false
 var codice := ""
 var scelte_menu := {"scenario": 3, "pg": "amazzone", "rivali": 2}
@@ -325,14 +329,19 @@ func _aggiorna_evidenze() -> void:
 		return
 	if g.mappa.radure.has(u["dove"]):
 		_anello(g.mappa.radure[u["dove"]]["pos"], Color(0.95, 0.25, 0.15), 0.19)
-	if modo_mossa and g.richiesta.get("tipo", "") == "piano":
+	if modo_mossa and g.richiesta.get("tipo", "") == "piano" and modo_volo:
+		var t0 := g.tessera(_ultima_posizione())
+		for t1 in [t0] + g.mappa.tessere_adiacenti(t0):
+			for k in g.mappa.radure_tessera(t1):
+				_anello(g.mappa.radure[k]["pos"], Color(0.6, 0.75, 1.0), 0.13)
+	elif modo_mossa and g.richiesta.get("tipo", "") == "piano":
 		var da := _ultima_posizione()
 		for k in g.vicini_di(u, da):
 			_anello(g.mappa.radure[k]["pos"], Color(1.0, 0.82, 0.25), 0.16)
 	# percorso pianificato
 	var prec: String = u["dove"]
 	for a in piano:
-		if a["a"] == "M" and a["dest"] != prec and g.mappa.radure.has(a["dest"]):
+		if a["a"] in ["M", "V"] and a["dest"] != prec and g.mappa.radure.has(a["dest"]):
 			_anello(g.mappa.radure[a["dest"]]["pos"], Color(0.3, 0.9, 0.5), 0.12)
 			prec = a["dest"]
 	if hover != "" and g.mappa.radure.has(hover):
@@ -342,7 +351,7 @@ func _ultima_posizione() -> String:
 	var u := g.umano()
 	var k: String = u["dove"]
 	for a in piano:
-		if a["a"] == "M":
+		if a["a"] in ["M", "V"]:
 			k = a["dest"]
 	return k
 
@@ -369,6 +378,40 @@ func _radura_sotto(pos: Vector2) -> String:
 
 func _unhandled_input(ev: InputEvent) -> void:
 	if menu.visible:
+		return
+	# tocco: un dito trascina (emulato come mouse), due dita pizzicano e ruotano
+	if ev is InputEventScreenTouch:
+		var st := ev as InputEventScreenTouch
+		if st.pressed:
+			tocchi[st.index] = st.position
+		else:
+			tocchi.erase(st.index)
+		due_dita = tocchi.size() >= 2
+		if due_dita:
+			trascina = 0
+		return
+	if ev is InputEventScreenDrag:
+		var sd := ev as InputEventScreenDrag
+		if tocchi.size() >= 2 and tocchi.has(sd.index):
+			var ids: Array = tocchi.keys()
+			var altro: int = ids[1] if ids[0] == sd.index else ids[0]
+			var a0: Vector2 = tocchi[sd.index]
+			var b0: Vector2 = tocchi[altro]
+			var a1: Vector2 = sd.position
+			var d0 := a0.distance_to(b0)
+			var d1 := a1.distance_to(b0)
+			if d0 > 10 and d1 > 10:
+				distanza = clampf(distanza * d0 / d1, 3.0, 40.0)
+			var ang := (a1 - b0).angle() - (a0 - b0).angle()
+			yaw -= wrapf(ang, -PI, PI)
+			tocchi[sd.index] = a1
+			_aggiorna_camera()
+		elif tocchi.has(sd.index):
+			tocchi[sd.index] = sd.position
+		return
+	if due_dita and (ev is InputEventMouseMotion or ev is InputEventMouseButton):
+		if ev is InputEventMouseButton and not (ev as InputEventMouseButton).pressed:
+			trascina = 0
 		return
 	if ev is InputEventMouseButton:
 		var mb := ev as InputEventMouseButton
@@ -445,6 +488,20 @@ func _mostra_tip(k: String, pos: Vector2) -> void:
 
 func _clic(k: String) -> void:
 	if k == "" or g == null:
+		return
+	if modo_mossa and g.richiesta.get("tipo", "") == "piano" and modo_volo:
+		var u2 := g.umano()
+		var t0 := g.tessera(_ultima_posizione())
+		var t1 := g.tessera(k)
+		if t1 != t0 and not (t1 in g.mappa.tessere_adiacenti(t0)):
+			_avviso("Puoi volare solo verso una tessera vicina.")
+			return
+		if piano.size() >= _fasi_totali():
+			return
+		piano.append({"a": "V", "dest": k})
+		modo_volo = false
+		_pannello_piano()
+		_aggiorna_evidenze()
 		return
 	if modo_mossa and g.richiesta.get("tipo", "") == "piano":
 		var u := g.umano()
@@ -695,13 +752,18 @@ func _mostra_menu() -> void:
 	v.add_child(st)
 	# scenario
 	v.add_child(_lab("Scenario", 24, f_tit))
-	var hs := HBoxContainer.new()
-	hs.add_theme_constant_override("separation", 8)
+	var hs := GridContainer.new()
+	hs.columns = 3
+	hs.add_theme_constant_override("h_separation", 8)
+	hs.add_theme_constant_override("v_separation", 6)
 	v.add_child(hs)
 	var descr := {1: ["1 · Esplorare il Reame", "Muoviti e cerca: completa per primo le 4 spedizioni pubbliche."],
 		2: ["2 · Duello tra personaggi", "Nasconditi, blocca e combatti: vince chi uccide 4 rivali o resta l'ultimo in piedi."],
-		3: ["3 · I mostri si risvegliano", "Mostri, siti, Luoghi Perduti e missioni: il primo a 10 Punti Vittoria vince."]}
-	for n in [1, 2, 3]:
+		3: ["3 · I mostri si risvegliano", "Mostri, siti, Luoghi Perduti e missioni: il primo a 10 Punti Vittoria vince."],
+		4: ["4 · Tesori e magia", "Saccheggia i siti, leggi le rune, incanta i segnalini e lancia incantesimi: il primo a 10 Punti Vittoria vince."],
+		5: ["5 · I nativi si destano", "Nativi nelle abitazioni: commercia, ingaggia e attento a chi ti è ostile. Il primo a 10 Punti Vittoria vince."],
+		6: ["6 · Arrivano i viaggiatori", "Il gioco completo: viaggiatori, visitatori e Punti Vittoria assegnati in segreto."]}
+	for n in SCENARI:
 		var b := _bott(descr[n][0], func(): _scegli_menu("scenario", n), 18, scelte_menu["scenario"] == n)
 		b.tooltip_text = descr[n][1]
 		b.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -775,7 +837,7 @@ func _personaggi_validi(sc: int) -> Array:
 		var d: Dictionary = Dati.personaggi[id]
 		if sc == 1 and id in ["pescatore", "re_stregone", "stregone_bianco"]:
 			continue
-		if sc >= 2 and not d["combattente"]:
+		if sc >= 2 and sc <= 3 and not d["combattente"]:
 			continue
 		if sc == 2 and (id == "barbaro" or id == "ragazza_boschi"):
 			continue
@@ -922,6 +984,8 @@ func _aggiorna() -> void:
 func _chit_ui(c: Dictionary, sel := false) -> PanelContainer:
 	var col := C_MOVE if c["tipo"] in ["M", "D"] else (C_FIGHT if c["tipo"] in ["F", "B", "R"] else C_MAGIA)
 	var st: String = c.get("stato", "a")
+	if c.get("colore", false):
+		col = {"I": Color(0.93, 0.92, 0.86), "II": Color(0.55, 0.55, 0.55), "III": Color(0.85, 0.66, 0.12), "IV": Color(0.45, 0.2, 0.6), "V": Color(0.12, 0.1, 0.1)}.get(c.get("magia", ""), col)
 	if st == "f":
 		col = col.darkened(0.45)
 	elif st == "w":
@@ -933,18 +997,27 @@ func _chit_ui(c: Dictionary, sel := false) -> PanelContainer:
 	v.add_theme_constant_override("separation", -4)
 	p.add_child(v)
 	var nomi := {"M": "MOVIMENTO", "F": "COMBATTE", "G": "MAGIA", "B": "BERSERK", "R": "RIFLESSI", "D": "ABBASSARSI"}
-	var l1 := _lab(nomi.get(c["tipo"], ""), 9, f_tit, Color(1, 0.95, 0.85))
+	var tit: String = nomi.get(c["tipo"], "")
+	if c.get("colore", false):
+		tit = "COLORE"
+	elif c.has("tes"):
+		tit = "TESORO"
+	var chiaro: bool = c.get("colore", false) and c.get("magia", "") == "I"
+	var l1 := _lab(tit, 9, f_tit, Color(0.2, 0.1, 0.05) if chiaro else Color(1, 0.95, 0.85))
 	l1.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	l1.autowrap_mode = TextServer.AUTOWRAP_OFF
 	v.add_child(l1)
 	var val := "%s%d" % [c.get("forza", c.get("magia", "")), c["vel"]]
-	var l2 := _lab(val, 22, f_tit, Color(1, 1, 1))
+	var l2 := _lab(val, 22, f_tit, Color(0.2, 0.1, 0.05) if chiaro else Color(1, 1, 1))
 	l2.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	l2.autowrap_mode = TextServer.AUTOWRAP_OFF
 	v.add_child(l2)
 	var l3 := _lab("*".repeat(c["sforzi"]) if st != "w" else "ferito", 14 if st != "w" else 11, f_tit, Color(1, 0.95, 0.85))
 	if st == "f":
 		l3.text = "affaticato"
+		l3.add_theme_font_size_override("font_size", 10)
+	elif st == "s":
+		l3.text = "legato"
 		l3.add_theme_font_size_override("font_size", 10)
 	l3.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	l3.autowrap_mode = TextServer.AUTOWRAP_OFF
@@ -976,7 +1049,7 @@ func _aggiorna_scheda() -> void:
 	vv.add_child(_lab("Peso %s · %s" % [Dati.NOMI_PESO[d["vuln"]], stato_n], 15))
 	vv.add_child(_lab(g.nome_r(u["dove"]) if g.mappa.radure.has(u["dove"]) else "", 15, f_txt, C_VERDE))
 	var punti := "Fama %d · Notorietà %d" % [u["fama"], u["noto"]]
-	if g.s["scenario"] == 3:
+	if g.s["scenario"] >= 3:
 		punti += " · PV %d/10" % g.pv(u)
 	elif g.s["scenario"] == 2:
 		punti += " · uccisioni %d/4" % u["uccisi_pg"]
@@ -990,7 +1063,9 @@ func _aggiorna_scheda() -> void:
 	scheda.add_child(gr)
 	for c in u["chits"]:
 		var ch := _chit_ui(c)
-		ch.tooltip_text = g.descr_chit(c) + {"a": "", "f": " (affaticato)", "w": " (ferito)"}[c["stato"]]
+		ch.tooltip_text = g.descr_chit(c) + {"a": "", "f": " (affaticato)", "w": " (ferito)", "s": " (legato a un incantesimo)"}.get(c["stato"], "")
+		if c.get("colore", false):
+			ch.tooltip_text += " · segnalino di colore " + Arcano.NOMI_COLORE.get(Arcano.TIPO_COLORE.get(c["magia"], ""), "")
 		gr.add_child(ch)
 	# oggetti
 	if not u["oggetti"].is_empty():
@@ -1003,6 +1078,16 @@ func _aggiorna_scheda() -> void:
 			var lato := "a"
 			if (o.get("allerta", false) and Dati.oggetti["armi"].has(o["id"])) or (o.get("danno", 0) > 0):
 				lato = "b"
+			if Arcano.e_tesoro(o["id"]):
+				b.icon = T("res://assets/" + Arcano.tesoro(o["id"])["img"])
+				b.custom_minimum_size = Vector2(70, 95)
+				b.expand_icon = true
+				b.modulate = Color(1, 1, 1) if o["attivo"] else Color(0.6, 0.6, 0.6)
+				b.tooltip_text = "%s%s\n%s\n(clic: vedi la carta)" % [Dati.nome_arma(o["id"]), "" if o["attivo"] else " · inattivo", Arcano.descrivi_tesoro(o["id"])]
+				b.add_theme_stylebox_override("normal", StyleBoxEmpty.new())
+				b.pressed.connect(func(): _carta_tesoro(o["id"]))
+				go.add_child(b)
+				continue
 			b.icon = T("res://assets/oggetti/%s_%s.webp" % [o["id"], lato])
 			b.expand_icon = true
 			b.custom_minimum_size = Vector2(70, 70)
@@ -1032,6 +1117,25 @@ func _aggiorna_scheda() -> void:
 			l.mouse_filter = Control.MOUSE_FILTER_PASS
 			scheda.add_child(l)
 			scheda.add_child(_lab(m["testo"], 13, f_txt, Color(0.35, 0.25, 0.15)))
+	if not u.get("incantesimi", []).is_empty():
+		scheda.add_child(_lab("Incantesimi", 18, f_tit))
+		var hi := HFlowContainer.new()
+		hi.add_theme_constant_override("h_separation", 4)
+		hi.add_theme_constant_override("v_separation", 4)
+		scheda.add_child(hi)
+		for id in u["incantesimi"]:
+			var x := Arcano.inc(id)
+			var bi := _bott("%s (%s)" % [x["nome"], x["tipo"]], func(): _carta_inc(id), 13)
+			bi.tooltip_text = Arcano.descrivi_inc(id)
+			if x["eff"] == "" or not g.arcano.lanciabile_in_teoria(u, id):
+				bi.modulate = Color(0.7, 0.7, 0.7)
+			hi.add_child(bi)
+	if g.s["scenario"] >= 4 and g.mappa.radure.has(u["dove"]):
+		var cols: Array = g.arcano.colori_radura(u["dove"])
+		var tx := "Magia nella radura: " + (", ".join(cols.map(func(c): return Arcano.NOMI_COLORE[c])) if not cols.is_empty() else "nessun colore")
+		if g.s["tessere"][str(g.tessera(u["dove"]))].get("incantata", false):
+			tx += " (tessera incantata)"
+		scheda.add_child(_lab(tx, 14, f_txt, C_VERDE))
 	if not u["maledizioni"].is_empty():
 		scheda.add_child(_lab("Maledizioni: " + ", ".join(u["maledizioni"]), 16, f_txt, C_ROSSO))
 	if not u["siti"].is_empty():
@@ -1042,11 +1146,67 @@ func _aggiorna_scheda() -> void:
 		scheda.add_child(_lab("Rivali", 18, f_tit))
 		for p in altri:
 			var testo := "%s%s · fama %d, notorietà %d" % [p["nome"], " (mort%s)" % ("a" if Dati.personaggi[p["pg"]]["genere"] == "f" else "o") if p["morto"] else "", p["fama"], p["noto"]]
-			if g.s["scenario"] == 3:
+			if g.s["scenario"] >= 3:
 				testo += " · PV %d" % g.pv(p)
 			elif g.s["scenario"] == 1:
 				testo += " · spedizioni %d/4" % p["fatte"].size()
 			scheda.add_child(_lab(testo, 15))
+
+func _carta_tesoro(id: String) -> void:
+	if g.richiesta.get("tipo", "") == "" or modale.visible:
+		pass
+	var d := Arcano.tesoro(id)
+	var u := g.umano()
+	_apri_modale(d["nome"])
+	var h := HBoxContainer.new()
+	h.add_theme_constant_override("separation", 14)
+	box_modale.add_child(h)
+	var im := TextureRect.new()
+	im.texture = T("res://assets/" + d["img"])
+	im.custom_minimum_size = Vector2(220, 300)
+	im.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	im.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT
+	h.add_child(im)
+	var t := _lab(Arcano.descrivi_tesoro(id), 16)
+	t.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	h.add_child(t)
+	var hb := _riga_bottoni()
+	var mono := str(d.get("eff", {}).get("monouso", ""))
+	if mono in ["amuleto", "ripara"]:
+		hb.add_child(_bott("Usa ora", func():
+			if not g.arcano.usa(u, id): _avviso("Non c'è nulla su cui usarlo.")
+			modale.visible = false
+			_aggiorna_scheda(), 17, true))
+	if g.richiesta.get("tipo", "") == "piano":
+		hb.add_child(_bott("Attiva o disattiva", func():
+			modale.visible = false
+			_attiva_oggetto(id), 17))
+	hb.add_child(_bott("Chiudi", func():
+		modale.visible = false
+		if not g.richiesta.is_empty() and g.richiesta["tipo"] != "piano": _chiede(g.richiesta), 17))
+	_ricentra()
+
+func _carta_inc(id: String) -> void:
+	var d := Arcano.inc(id)
+	_apri_modale(d["nome"])
+	var h := HBoxContainer.new()
+	h.add_theme_constant_override("separation", 14)
+	box_modale.add_child(h)
+	if d["img"] != "":
+		var im := TextureRect.new()
+		im.texture = T("res://assets/" + d["img"])
+		im.custom_minimum_size = Vector2(220, 300)
+		im.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		im.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT
+		h.add_child(im)
+	var t := _lab(Arcano.descrivi_inc(id), 16)
+	t.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	h.add_child(t)
+	var hb := _riga_bottoni()
+	hb.add_child(_bott("Chiudi", func():
+		modale.visible = false
+		if not g.richiesta.is_empty() and g.richiesta["tipo"] != "piano": _chiede(g.richiesta), 17))
+	_ricentra()
 
 func _attiva_oggetto(id: String) -> void:
 	if g.richiesta.get("tipo", "") != "piano":
@@ -1056,6 +1216,8 @@ func _attiva_oggetto(id: String) -> void:
 	var u := g.umano()
 	g.combat._attiva(u, id)
 	g.combat.C = {}
+	if g.s["scenario"] >= 4:
+		g.arcano.sincronizza(u)
 	_aggiorna_scheda()
 
 # ============================================================ richieste del motore
@@ -1077,6 +1239,8 @@ func _chiede(req: Dictionary) -> void:
 		"combatti_pg": _richiesta_si_no("Vuoi combattere contro %s stasera?" % ", ".join(req["dati"]["altri"].map(func(x): return g.P(x)["nome"])))
 		"adesca", "carica", "azione", "bersaglio", "mischia", "fatica", "ferita":
 			_richiesta_combattimento(req)
+		"incanto": _richiesta_incanto(req)
+		"incantesimo_sera": _richiesta_sera(req)
 		_:
 			g.rispondi(null)
 
@@ -1103,7 +1267,7 @@ func _pannello_piano() -> void:
 	var tot := _fasi_totali()
 	var testo := "Alba del giorno %d: registra le attività di %s (%d fasi" % [g.s["giorno"], u["nome"], tot]
 	if not fasi["extra"].is_empty():
-		var nomi := {"M": "movimento", "R": "riposo", "H": "nascondersi", "S": "ricerca", "A": "allerta", "*": "qualsiasi (abitazione)"}
+		var nomi := {"M": "movimento", "R": "riposo", "H": "nascondersi", "S": "ricerca", "A": "allerta", "*": "qualsiasi", "E": "incanto", "T": "commercio", "HR": "ingaggio", "V": "volo"}
 		testo += ", di cui extra: " + ", ".join(fasi["extra"].map(func(x): return nomi[x]))
 	testo += ")."
 	if fasi["grotta"]:
@@ -1121,6 +1285,8 @@ func _pannello_piano() -> void:
 			var a: Dictionary = piano[i]
 			if a["a"] == "M":
 				t += "Muovi a %s" % g.mappa.sigla_radura(a["dest"])
+			elif a["a"] == "V":
+				t += "Vola a %s" % Dati.tessere[g.tessera(a["dest"])]["nome"]
 			else:
 				t += Reame.ATTIVITA[a["a"]]
 		else:
@@ -1137,10 +1303,23 @@ func _pannello_piano() -> void:
 	var att := ["S", "H", "R"] if g.s["scenario"] >= 2 else ["S"]
 	if g.s["scenario"] >= 2:
 		att.append("A")
+	if g.s["scenario"] >= 4:
+		var magico: bool = "E" in fasi["extra"]
+		for c in u["chits"]:
+			if c["tipo"] == "G" and Arcano.TIPO_COLORE.has(c["magia"]):
+				magico = true
+		if magico:
+			att.append("E")
 	for a in att:
 		var b := _bott(Reame.ATTIVITA[a], func(): _aggiungi(a), 17)
 		b.disabled = pieno
 		hb.add_child(b)
+	if g.s["scenario"] >= 4 and g.arcano.puo_volare(u):
+		var bv := _bott("Vola" if not modo_volo else "Vola: clic su una radura di una tessera vicina", func():
+			modo_volo = not modo_volo
+			_pannello_piano(), 17)
+		bv.disabled = pieno
+		hb.add_child(bv)
 	var lm := _lab("Muovi: clic su una radura evidenziata", 15, f_txt, C_VERDE)
 	lm.autowrap_mode = TextServer.AUTOWRAP_OFF
 	hb.add_child(lm)
@@ -1223,6 +1402,17 @@ func _richiesta_tabella(req: Dictionary) -> void:
 		var lr := _lab(" · ".join(righe), 15)
 		lr.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		v.add_child(lr)
+	var fo: Dictionary = req["dati"].get("fonti", {})
+	if not fo.get("saccheggia", []).is_empty():
+		box_modale.add_child(_lab("Saccheggio (1-6: prendi la carta corrispondente dalla cima della pila; se non c'è, nulla):", 16, f_tit))
+		var hs := _riga_bottoni()
+		for x in fo["saccheggia"]:
+			hs.add_child(_bott("Saccheggia: " + x["nome"], func(): _rispondi({"tabella": "saccheggia", "fonte": x["id"]}), 17, true))
+	if not fo.get("rune", []).is_empty():
+		box_modale.add_child(_lab("Lettura delle rune (1-3 impari l'incantesimo, 4 lo risvegli, 5 maledizione, 6 niente):", 16, f_tit))
+		var hr := _riga_bottoni()
+		for x in fo["rune"]:
+			hr.add_child(_bott("Rune: " + x["nome"], func(): _rispondi({"tabella": "rune", "fonte": x["id"]}), 17))
 	if radure.size() > 1:
 		box_modale.add_child(_lab("Sei su una montagna: con Scruta puoi guardare un'altra radura di questa tessera o di quelle vicine (non le grotte).", 15))
 		var opt := OptionButton.new()
@@ -1232,6 +1422,28 @@ func _richiesta_tabella(req: Dictionary) -> void:
 		opt.item_selected.connect(func(i): dove[0] = radure[i])
 		box_modale.add_child(opt)
 	box_modale.add_child(_lab("Si tirano due dadi e si tiene il più alto. «Scopri segnalini» scopre i siti della radura e completa le spedizioni.", 14, f_txt, Color(0.4, 0.3, 0.2)))
+	_ricentra()
+
+func _richiesta_incanto(req: Dictionary) -> void:
+	_apri_modale("Incanto")
+	box_modale.add_child(_lab("Un segnalino Magia incantato diventa un segnalino di colore, che fornisce la magia di quel colore per lanciare gli incantesimi. Incantare la tessera la rende una fonte di magia per tutti.", 15))
+	var h := _riga_bottoni()
+	var opz: Array = req["dati"]["opzioni"]
+	for i in range(opz.size()):
+		h.add_child(_bott(opz[i]["testo"], func(): _rispondi(i), 16, i == 0))
+	_ricentra()
+
+func _richiesta_sera(req: Dictionary) -> void:
+	_apri_modale("Sera: incantesimi")
+	box_modale.add_child(_lab("Puoi lanciare un incantesimo su te stess%s. Il segnalino Magia resta legato finché l'incantesimo dura." % ("a" if Dati.personaggi[g.umano()["pg"]]["genere"] == "f" else "o"), 15))
+	var h := _riga_bottoni()
+	for x in req["dati"]["lista"]:
+		var d := Arcano.inc(x["inc"])
+		for j in range(x["mezzi"].size()):
+			var b := _bott("%s con %s" % [d["nome"], x["mezzi"][j]["testo"]], func(): _rispondi({"inc": x["inc"], "mezzo": j}), 15)
+			b.tooltip_text = Arcano.descrivi_inc(x["inc"])
+			h.add_child(b)
+	h.add_child(_bott("Nessuno", func(): _rispondi({}), 17, true))
 	_ricentra()
 
 func _richiesta_scelta(req: Dictionary) -> void:
@@ -1400,6 +1612,25 @@ func _richiesta_combattimento(req: Dictionary) -> void:
 			for o in d["oggetti"]:
 				var nome := Dati.nome_arma(o)
 				h.add_child(_bott("Attiva/disattiva " + nome, func(): _rispondi({"tipo": "attiva", "oggetto": o}), 14))
+			for o in d.get("usabili", []):
+				h.add_child(_bott("Usa " + Dati.nome_arma(o), func(): _rispondi({"tipo": "usa", "oggetto": o}), 15))
+			if not d.get("incantesimi", []).is_empty():
+				box_modale.add_child(_lab("Incantesimi: scegli bersaglio e incantesimo (ha effetto all'inizio della mischia).", 16, f_tit))
+				var bsel := [u["pid"]]
+				var opt := OptionButton.new()
+				opt.add_theme_font_override("font", f_txt)
+				for id in d["bersagli_inc"]:
+					opt.add_item("Bersaglio: " + (g.P(id)["nome"] if id.begins_with("p") else g.nome_mostro(g.M(id))))
+				opt.select(maxi(0, d["bersagli_inc"].find(u["pid"])))
+				opt.item_selected.connect(func(i): bsel[0] = d["bersagli_inc"][i])
+				box_modale.add_child(opt)
+				var hi := _riga_bottoni()
+				for x in d["incantesimi"]:
+					var xi := Arcano.inc(x["inc"])
+					for j in range(x["mezzi"].size()):
+						var bb := _bott("%s (%s)" % [xi["nome"], x["mezzi"][j]["testo"]], func(): _rispondi({"tipo": "incantesimo", "inc": x["inc"], "mezzo": j, "bersaglio": bsel[0]}), 15)
+						bb.tooltip_text = Arcano.descrivi_inc(x["inc"])
+						hi.add_child(bb)
 			h.add_child(_bott("Nessuna azione", func(): _rispondi({}), 17, true))
 		"bersaglio":
 			box_modale.add_child(_lab("Chi vuoi attaccare (o parare) in questo round? Chi attacca in mischia si rivela; con un'arma da tiro si tenta l'imboscata.", 15))

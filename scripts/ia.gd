@@ -24,6 +24,8 @@ func decidi(p: Dictionary, tipo: String, d: Dictionary):
 		"mischia": return mischia(p, d)
 		"fatica": return _meno_utile(p, d["opzioni"], true)
 		"ferita": return _meno_utile(p, d["opzioni"], false)
+		"incanto": return _incanto(p, d)
+		"incantesimo_sera": return _sera(p, d)
 	return null
 
 func vuole_berserk(_p: Dictionary) -> bool:
@@ -72,6 +74,9 @@ func piano(p: Dictionary, d: Dictionary) -> Array:
 		pl.push_front({"a": "H"})
 		while pl.size() > n:
 			pl.pop_back()
+	if r.s["scenario"] >= 4 and _vuole_incantare(p) and pl.size() <= n - 2:
+		pl.append({"a": "E"})
+		pl.append({"a": "E"})
 	var resto := n - pl.size()
 	var arrivato: bool = percorso.is_empty() or (pl.size() > 0 and pl[pl.size() - 1].get("dest", "") == dest)
 	for i in range(resto):
@@ -88,6 +93,22 @@ func piano(p: Dictionary, d: Dictionary) -> Array:
 		else:
 			pl.append({"a": "S"})
 	return pl
+
+func _vuole_incantare(p: Dictionary) -> bool:
+	if not r.arcano.chit_colore(p).is_empty():
+		return false
+	var per_tipo := {}
+	for c in p["chits"]:
+		if c["tipo"] == "G" and c["stato"] == "a":
+			per_tipo[c["magia"]] = per_tipo.get(c["magia"], 0) + 1
+	for id in p.get("incantesimi", []):
+		var x := Arcano.inc(id)
+		if x["eff"] == "" or x["colore"] == "any":
+			continue
+		for t in Arcano.TIPO_COLORE:
+			if Arcano.TIPO_COLORE[t] == x["colore"] and per_tipo.get(t, 0) >= 1 and per_tipo.get(x["tipo"], 0) >= (2 if t == x["tipo"] else 1):
+				return true
+	return false
 
 func _mostri_in_tessera(p: Dictionary) -> bool:
 	var t := r.tessera(p["dove"])
@@ -135,6 +156,24 @@ func _obiettivo(p: Dictionary) -> Dictionary:
 					for q in r.s["missioni_pubbliche"]:
 						if Dati.missioni[q]["tipo"] == "trova_perduto" and Dati.missioni[q]["perduto"] == str(c["nome_base"]).to_lower() and not (q in p["fatte"]):
 							mete.append(Mappa.chiave(t, int(c["radura"])))
+	if sc >= 4:
+		for x in p["siti"]:
+			var c: Dictionary = Dati.segnalini[x]
+			var sito := str(c["nome_base"]).to_lower()
+			var st: Dictionary = r.s["siti_tesori"].get(sito, {})
+			if st.is_empty() or (st["carte"].is_empty() and (st["inc"].is_empty() or int(r.def_pg(p).get("magia", 0)) == 0)):
+				continue
+			if not st["aperto"] and not _puo_aprire(p):
+				continue
+			for t2 in range(40):
+				if x in r.s["tessere"][str(t2)]["rossi"]:
+					mete.append(Mappa.chiave(t2, int(c["radura"])))
+		for w in p.get("twt", []):
+			if not r.s["twt"][w]["carte"].is_empty() and r.s["twt"][w]["dove"] != "":
+				mete.append(r.s["twt"][w]["dove"])
+		for k2 in r.s.get("mucchi", {}):
+			if not r.s["mucchi"][k2].is_empty() and _distanza(p, p["dove"], k2) <= 4:
+				mete.append(k2)
 	var best := ""
 	var bd := 999
 	for k in mete:
@@ -171,6 +210,14 @@ func _obiettivo(p: Dictionary) -> Dictionary:
 	if meta != "":
 		return {"dest": meta, "cerca": sc == 1}
 	return {"dest": "", "cerca": true}
+
+func _puo_aprire(p: Dictionary) -> bool:
+	if not r.arcano.eff(p, "chiave").is_empty():
+		return true
+	for c in p["chits"]:
+		if c["tipo"] in ["M", "F"] and str(c.get("forza", "")) == "T":
+			return true
+	return false
 
 func _affollamento(p: Dictionary, k: String) -> int:
 	var t := r.tessera(k)
@@ -232,6 +279,11 @@ func percorso_verso(p: Dictionary, a: String, b: String) -> Array:
 
 # ------------------------------------------------------------ ricerca
 func tabella(p: Dictionary, _d: Dictionary) -> Dictionary:
+	var fo: Dictionary = _d.get("fonti", {})
+	if not fo.get("saccheggia", []).is_empty():
+		return {"tabella": "saccheggia", "fonte": fo["saccheggia"][0]["id"]}
+	if not fo.get("rune", []).is_empty() and (int(r.def_pg(p).get("magia", 0)) > 0 or r.rng.randi_range(0, 2) == 0):
+		return {"tabella": "rune", "fonte": fo["rune"][0]["id"]}
 	var t := r.tessera(p["dove"])
 	if p["indizi"].has(str(t)):
 		return {"tabella": "localizza", "radura": p["dove"]}
@@ -286,6 +338,9 @@ func _forte_contro(p: Dictionary, q: Dictionary) -> bool:
 
 func azione(p: Dictionary, d: Dictionary) -> Dictionary:
 	var sal := _stato_salute(p)
+	var magia := _incantesimo_combattimento(p, d)
+	if not magia.is_empty() and (sal[0] > 3 or d["fuga"].is_empty()):
+		return magia
 	if not d["fuga"].is_empty() and (sal[0] <= 4 or _assegnati_pericolosi(p) or _imbattibili(p)):
 		return {"tipo": "fuga", "chit": d["fuga"][0]}
 	if d["berserk"] >= 0:
@@ -299,6 +354,53 @@ func azione(p: Dictionary, d: Dictionary) -> Dictionary:
 				best = i
 		if p["chits"][best]["sforzi"] == 0:
 			return {"tipo": "allerta", "chit": best}
+	return {}
+
+func _incantesimo_combattimento(p: Dictionary, d: Dictionary) -> Dictionary:
+	var C: Dictionary = r.combat.C
+	var mostri := []
+	for b in d.get("bersagli_inc", []):
+		if not str(b).begins_with("p"):
+			mostri.append(b)
+	var miei := []
+	for mid in C.get("assegnati", {}):
+		if C["assegnati"][mid] == p["pid"]:
+			miei.append(mid)
+	for x in d.get("incantesimi", []):
+		var e: String = Arcano.inc(x["inc"])["eff"]
+		if e in ["vampata", "pietre"] and not mostri.is_empty():
+			return {"tipo": "incantesimo", "inc": x["inc"], "mezzo": 0, "bersaglio": mostri[0]}
+		if e in ["fulmine", "ghiaccio"] and not mostri.is_empty():
+			return {"tipo": "incantesimo", "inc": x["inc"], "mezzo": 0, "bersaglio": miei[0] if not miei.is_empty() else mostri[0]}
+		if e == "pace" and not miei.is_empty():
+			return {"tipo": "incantesimo", "inc": x["inc"], "mezzo": 0, "bersaglio": miei[0]}
+		if e == "esorcismo":
+			for b in mostri:
+				if r.M(b)["tipo"] in Arcano.DEMONI:
+					return {"tipo": "incantesimo", "inc": x["inc"], "mezzo": 0, "bersaglio": b}
+		if e in ["corteccia", "protezione", "scudo_sacro"] and not miei.is_empty():
+			return {"tipo": "incantesimo", "inc": x["inc"], "mezzo": 0, "bersaglio": p["pid"]}
+	return {}
+
+func _incanto(p: Dictionary, d: Dictionary) -> int:
+	var opz: Array = d["opzioni"]
+	for i in range(opz.size()):
+		if opz[i]["tipo"] == "chit":
+			return i
+	return 0
+
+func _sera(p: Dictionary, d: Dictionary) -> Dictionary:
+	var sal := _stato_salute(p)
+	for x in d["lista"]:
+		var e: String = Arcano.inc(x["inc"])["eff"]
+		if e == "guarigione" and sal[1] + sal[2] >= 3:
+			return {"inc": x["inc"], "mezzo": 0}
+		if e == "rimedio" and not p["maledizioni"].is_empty():
+			return {"inc": x["inc"], "mezzo": 0}
+		if e in ["fase_S", "fase_H", "fase_A", "fiuto", "sfortuna_cerca"] and not p["effetti"].has(e) and sal[0] >= 6:
+			if e == "sfortuna_cerca":
+				continue
+			return {"inc": x["inc"], "mezzo": 0}
 	return {}
 
 func _imbattibili(p: Dictionary) -> bool:
