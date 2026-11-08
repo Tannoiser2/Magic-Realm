@@ -7,7 +7,6 @@ func _init() -> void:
 		assert(ProfiliRegole.valido(p))
 		assert(p["scenario"] == n)
 		assert(ProfiliRegole.abilitata(p, "magia") == (n >= 4))
-		assert(p["pv_assegnati"] == 5)
 		assert(ProfiliRegole.abilitata(p, "nativi") == (n >= 5))
 		assert(ProfiliRegole.abilitata(p, "viaggiatori") == (n >= 6))
 	for n in range(1, 5):
@@ -15,6 +14,7 @@ func _init() -> void:
 		assert(ProfiliRegole.valido(p))
 		assert(p["implementato"])
 		assert(p["giorni"] == 28)
+		assert(p["pv_assegnati"] == 5)
 		assert(not ProfiliRegole.abilitata(p, "viaggiatori"))
 		assert(ProfiliRegole.abilitata(p, "mostri"))
 		assert(ProfiliRegole.abilitata(p, "nativi"))
