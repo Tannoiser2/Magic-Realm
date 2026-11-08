@@ -2021,6 +2021,126 @@ func _richiesta_combattimento(req: Dictionary) -> void:
 				else: _rispondi(sel[0]), 18, true))
 	_ricentra()
 
+# Plancia di combattimento: le tre direzioni e le tre manovre sono zone
+# cliccabili. I comandi storici restano disponibili sotto la plancia.
+# Non modifica i tiri ne la risoluzione: restituisce le stesse scelte al motore.
+func _plancia_mischia(d: Dictionary) -> void:
+	var pannello := _pannello(Color(0.17, 0.13, 0.10, 0.98))
+	box_modale.add_child(pannello)
+	var corpo := VBoxContainer.new()
+	corpo.add_theme_constant_override("separation", 9)
+	pannello.add_child(corpo)
+	var titolo := _lab("PLANCIA TATTICA  ·  SCEGLI ATTACCO, MANOVRA E SCUDO", 19, f_tit, C_ORO)
+	titolo.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	corpo.add_child(titolo)
+	var nota := _lab("I mostri cambiano posizione quando si rivelano i dadi. La direzione dell'attacco conta, ma conta anche la velocita.", 14, f_txt, C_PERG)
+	corpo.add_child(nota)
+	# Mostra le posizioni effettive gia conosciute, senza anticipare i dadi.
+	var posizioni: Dictionary = g.combat.C.get("pos", {})
+	if not posizioni.is_empty():
+		var riepilogo := _lab("POSIZIONI NEMICHE GIA RIVELATE", 15, f_tit, C_ORO)
+		corpo.add_child(riepilogo)
+		var righe := HFlowContainer.new()
+		corpo.add_child(righe)
+		for id in posizioni:
+			var m: Dictionary = g.M(id)
+			if m.is_empty() or m["morto"]:
+				continue
+			var posizione: Dictionary = posizioni[id]
+			var direzione: String = Combattimento.DIREZIONI.get(posizione.get("riga", ""), "?")
+			var manovra: String = Combattimento.MANOVRE.get(posizione.get("col", ""), "?")
+			var box := _pannello(Color(0.33, 0.23, 0.19, 1))
+			righe.add_child(box)
+			box.add_child(_lab("%s\n%s  /  %s" % [g.nome_mostro(m), direzione, manovra], 13, f_txt, C_PERG))
+	else:
+		corpo.add_child(_lab("Posizione dei mostri: nascosta fino alla rivelazione del round.", 13, f_txt, C_PERG))
+	var direzioni := ["thrust", "swing", "smash"]
+	var manovre := ["charge", "dodge", "duck"]
+	var riepilogo_scelte := _lab("", 15, f_tit, C_ORO)
+	var aggiorna := func():
+		var att: String = ("Parata" if mischia["modo"] == "parata" else "Attacco") + ": " + Combattimento.DIREZIONI[mischia["cerchio"]]
+		var man: String = "Manovra: " + Combattimento.MANOVRE[mischia["casella"]]
+		var scudo: String = "Scudo: " + (Combattimento.DIREZIONI[mischia["scudo"]] if d["scudo"] else "nessuno")
+		riepilogo_scelte.text = "%s    |    %s    |    %s" % [att, man, scudo]
+	# L'attacco e la parata occupano lo stesso spazio FIGHT, ma
+	# la parata non e disponibile con un'arma da tiro.
+	if not d.get("missile", false):
+		var cambio := _bott("Usa il segnalino FIGHT per: ATTACCO", func():
+			mischia["modo"] = "parata" if mischia["modo"] == "attacco" else "attacco"
+			aggiorna.call(), 15)
+		corpo.add_child(cambio)
+		var testo_modalita := func():
+			cambio.text = "Usa il segnalino FIGHT per: " + ("PARATA" if mischia["modo"] == "parata" else "ATTACCO")
+		cambio.pressed.connect(testo_modalita)
+	# Fila 1: spazi di attacco fisici; la scelta del chit avviene subito sotto.
+	corpo.add_child(_lab("1   DIREZIONE DELL'ATTACCO", 15, f_tit, C_PERG))
+	var attacchi := GridContainer.new()
+	attacchi.columns = 3
+	attacchi.add_theme_constant_override("h_separation", 6)
+	corpo.add_child(attacchi)
+	var pulsanti_attacco := []
+	for dir in direzioni:
+		var etichetta: String = Combattimento.DIREZIONI[dir]
+		var pulsante := _bott(etichetta, func():
+			mischia["cerchio"] = dir
+			for b in pulsanti_attacco:
+				var scelto: bool = b.get_meta("direzione") == mischia["cerchio"]
+				b.add_theme_stylebox_override("normal", _stile(Color(0.62, 0.28, 0.12) if scelto else Color(0.32, 0.22, 0.15), C_ORO, 6, 3 if scelto else 1))
+			aggiorna.call(), 17)
+		pulsante.set_meta("direzione", dir)
+		pulsante.custom_minimum_size = Vector2(148, 64)
+		pulsante.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		attacchi.add_child(pulsante)
+		pulsanti_attacco.append(pulsante)
+	# Fila 2: le colonne di manovra, con corrispondenze originali.
+	corpo.add_child(_lab("2   MANOVRA  ·  Affondo → Carica  |  Fendente → Schivata  |  Schianto → Chinarsi", 15, f_tit, C_PERG))
+	var movimenti := GridContainer.new()
+	movimenti.columns = 3
+	movimenti.add_theme_constant_override("h_separation", 6)
+	corpo.add_child(movimenti)
+	var pulsanti_manovra := []
+	for col in manovre:
+		var pulsante := _bott(Combattimento.MANOVRE[col], func():
+			mischia["casella"] = col
+			for b in pulsanti_manovra:
+				var scelto: bool = b.get_meta("manovra") == col
+				b.add_theme_stylebox_override("normal", _stile(Color(0.16, 0.45, 0.32) if scelto else Color(0.21, 0.27, 0.23), C_ORO, 6, 3 if scelto else 1))
+			aggiorna.call(), 17)
+		pulsante.set_meta("manovra", col)
+		pulsante.custom_minimum_size = Vector2(148, 64)
+		pulsante.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		movimenti.add_child(pulsante)
+		pulsanti_manovra.append(pulsante)
+	# Fila 3: la protezione e indipendente dall'attacco.
+	if d["scudo"]:
+		corpo.add_child(_lab("3   ORIENTAMENTO DELLO SCUDO", 15, f_tit, C_PERG))
+		var scudi := GridContainer.new()
+		scudi.columns = 3
+		corpo.add_child(scudi)
+		var pulsanti_scudo := []
+		for dir in direzioni:
+			var pulsante := _bott("Proteggi: " + Combattimento.DIREZIONI[dir], func():
+				mischia["scudo"] = dir
+				for b in pulsanti_scudo:
+					var scelto: bool = b.get_meta("scudo") == dir
+					b.add_theme_stylebox_override("normal", _stile(Color(0.24, 0.35, 0.56) if scelto else Color(0.20, 0.22, 0.31), C_ORO, 6, 3 if scelto else 1))
+				aggiorna.call(), 14)
+			pulsante.set_meta("scudo", dir)
+			pulsante.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+			scudi.add_child(pulsante)
+			pulsanti_scudo.append(pulsante)
+			if dir == mischia["scudo"]:
+				pulsante.add_theme_stylebox_override("normal", _stile(Color(0.24, 0.35, 0.56), C_ORO, 6, 3))
+	for b in pulsanti_attacco:
+		if b.get_meta("direzione") == mischia["cerchio"]:
+			b.add_theme_stylebox_override("normal", _stile(Color(0.62, 0.28, 0.12), C_ORO, 6, 3))
+	for b in pulsanti_manovra:
+		if b.get_meta("manovra") == mischia["casella"]:
+			b.add_theme_stylebox_override("normal", _stile(Color(0.16, 0.45, 0.32), C_ORO, 6, 3))
+	aggiorna.call()
+	corpo.add_child(riepilogo_scelte)
+	corpo.add_child(_lab("Sotto la plancia scegli i segnalini FIGHT e MOVE. Poi premi RIVELA LE GIOCATE. Le scelte senza un segnalino valido non hanno effetto.", 14, f_txt, C_PERG))
+
 func _pannello_mischia(d: Dictionary) -> void:
 	var u := g.umano()
 	mischia = {"modo": "attacco", "cerchio": "thrust", "f": [], "m": [], "casella": "dodge", "scudo": "thrust"}
@@ -2040,57 +2160,20 @@ func _pannello_mischia(d: Dictionary) -> void:
 		(g.P(bers)["nome"] if bers.begins_with("p") else g.nome_mostro(g.M(bers))) if bers != "" else "nessuno", Dati.nome_arma(d["arma"]),
 		" (da tiro: niente parate)" if d["missile"] else "", d["sforzo"]], 15))
 	box_modale.add_child(_lab("Affondo colpisce chi fa Carica, Fendente chi Schiva, Colpo dall'alto chi si Abbassa; un attacco più veloce della manovra colpisce comunque.", 14, f_txt, Color(0.4, 0.3, 0.2)))
+	_plancia_mischia(d)
 	if bers != "" and not d["fight"].is_empty():
-		var h1 := _riga_bottoni()
-		var lab := _lab_riga("Attacco:")
-		h1.add_child(lab)
-		var gruppo := []
-		for c in ["thrust", "swing", "smash"]:
-			var b := _bott(Combattimento.DIREZIONI[c], func():
-				mischia["modo"] = "attacco"
-				mischia["cerchio"] = c
-				_evidenzia(gruppo, Combattimento.DIREZIONI[c] + (" (attacco)")), 16)
-			gruppo.append(b)
-			h1.add_child(b)
-		if not d["missile"]:
-			for c in ["thrust", "swing", "smash"]:
-				var b := _bott("Para " + Combattimento.DIREZIONI[c].to_lower(), func():
-					mischia["modo"] = "parata"
-					mischia["cerchio"] = c
-					_evidenzia(gruppo, "Para " + Combattimento.DIREZIONI[c].to_lower()), 14)
-				gruppo.append(b)
-				h1.add_child(b)
-		_evidenzia(gruppo, Combattimento.DIREZIONI[mischia["cerchio"]] + " (attacco)")
-		box_modale.add_child(_lab("Segnalino Combattimento (forza almeno pari al peso dell'arma):", 14))
+		box_modale.add_child(_lab("SEGNALINO FIGHT  ·  Forza e velocità del tuo attacco o della parata", 15, f_tit))
 		box_modale.add_child(_scegli_chit(d["fight"], mischia["f"]))
-	if not d["move"].is_empty() or d.get("cavallo", false):
-		var h2 := _riga_bottoni()
-		h2.add_child(_lab_riga("Manovra:"))
-		var gruppo2 := []
-		for c in ["charge", "dodge", "duck"]:
-			var b := _bott(Combattimento.MANOVRE[c], func():
-				mischia["casella"] = c
-				_evidenzia(gruppo2, Combattimento.MANOVRE[c]), 16)
-			gruppo2.append(b)
-			h2.add_child(b)
-		_evidenzia(gruppo2, Combattimento.MANOVRE[mischia["casella"]])
-		if d.get("cavallo", false):
-			mischia["cavallo"] = true
-			box_modale.add_child(_lab("Manovra con il cavallo (galoppo: tempo %d). Se un colpo colpisce la manovra, il cavallo assorbe il danno." % d["tempo_cavallo"], 14))
-		else:
-			box_modale.add_child(_lab("Segnalino Movimento (deve reggere tutto ciò che porti):", 14))
-			box_modale.add_child(_scegli_chit(d["move"], mischia["m"]))
-	if d["scudo"]:
-		var h3 := _riga_bottoni()
-		h3.add_child(_lab_riga("Scudo contro:"))
-		var gruppo3 := []
-		for c in ["thrust", "swing", "smash"]:
-			var b := _bott(Combattimento.DIREZIONI[c], func():
-				mischia["scudo"] = c
-				_evidenzia(gruppo3, Combattimento.DIREZIONI[c]), 16)
-			gruppo3.append(b)
-			h3.add_child(b)
-		_evidenzia(gruppo3, Combattimento.DIREZIONI[mischia["scudo"]])
+	elif bers != "":
+		box_modale.add_child(_lab("Nessun segnalino FIGHT valido: questo round puoi soltanto manovrare.", 14))
+	if d.get("cavallo", false):
+		mischia["cavallo"] = true
+		box_modale.add_child(_lab("MANOVRA A CAVALLO  ·  Galoppo a velocità %d. Il cavallo può assorbire il colpo." % d["tempo_cavallo"], 15, f_tit))
+	elif not d["move"].is_empty():
+		box_modale.add_child(_lab("SEGNALINO MOVE  ·  Scegli una manovra che regga il tuo equipaggiamento", 15, f_tit))
+		box_modale.add_child(_scegli_chit(d["move"], mischia["m"]))
+	else:
+		box_modale.add_child(_lab("Nessun segnalino MOVE valido: non puoi eseguire una manovra.", 14))
 	var hb := _riga_bottoni()
 	hb.add_child(_bott("Rivela le giocate", func():
 		var r := {"scudo": mischia["scudo"]}

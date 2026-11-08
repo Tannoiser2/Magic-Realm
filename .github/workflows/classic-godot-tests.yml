@@ -80,6 +80,9 @@ jobs:
       - name: Super free-play UI and separated saves
         timeout-minutes: 4
         run: timeout 45s godot --headless --path . --script res://tests/ui_super_libera_test.gd
+      - name: Interactive combat board controls
+        timeout-minutes: 4
+        run: timeout 45s godot --headless --path . --script res://tests/plancia_combattimento_test.gd
       - name: Legacy save compatibility
         timeout-minutes: 4
         run: timeout 45s godot --headless --path . --script res://tests/profili_salvataggi_test.gd

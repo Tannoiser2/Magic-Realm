@@ -1,0 +1,24 @@
+name: Combat board targeted Godot validation
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  melee-board:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    container:
+      image: barichello/godot-ci:4.7.2
+    steps:
+      - uses: actions/checkout@v4
+      - name: Import resources
+        run: godot --headless --editor --path . --import --quit
+      - name: Verify combat board clicks
+        run: timeout 45s godot --headless --path . --script res://tests/plancia_combattimento_test.gd
+      - name: Verify classic menu
+        run: timeout 45s godot --headless --path . --script res://tests/ui_classico_smoke_test.gd
