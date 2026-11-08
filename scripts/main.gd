@@ -2004,6 +2004,16 @@ func _plancia_mischia(d: Dictionary) -> void:
 		var man := "Manovra: " + Combattimento.MANOVRE[mischia["casella"]]
 		var scudo := "Scudo: " + (Combattimento.DIREZIONI[mischia["scudo"]] if d["scudo"] else "nessuno")
 		riepilogo_scelte.text = "%s    |    %s    |    %s" % [att, man, scudo]
+	# L'attacco e la parata occupano lo stesso spazio FIGHT, ma
+	# la parata non e disponibile con un'arma da tiro.
+	if not d["missile"]:
+		var cambio := _bott("Usa il segnalino FIGHT per: ATTACCO", func():
+			mischia["modo"] = "parata" if mischia["modo"] == "attacco" else "attacco"
+			aggiorna.call(), 15)
+		corpo.add_child(cambio)
+		var testo_modalita := func():
+			cambio.text = "Usa il segnalino FIGHT per: " + ("PARATA" if mischia["modo"] == "parata" else "ATTACCO")
+		cambio.pressed.connect(testo_modalita)
 	# Fila 1: spazi di attacco fisici; la scelta del chit avviene subito sotto.
 	corpo.add_child(_lab("1   DIREZIONE DELL'ATTACCO", 15, f_tit, C_PERG))
 	var attacchi := GridContainer.new()
@@ -2014,7 +2024,6 @@ func _plancia_mischia(d: Dictionary) -> void:
 	for dir in direzioni:
 		var etichetta: String = Combattimento.DIREZIONI[dir]
 		var pulsante := _bott(etichetta, func():
-			mischia["modo"] = "attacco"
 			mischia["cerchio"] = dir
 			for b in pulsanti_attacco:
 				var scelto: bool = b.get_meta("direzione") == mischia["cerchio"]
@@ -2092,52 +2101,15 @@ func _pannello_mischia(d: Dictionary) -> void:
 	box_modale.add_child(_lab("Affondo colpisce chi fa Carica, Fendente chi Schiva, Colpo dall'alto chi si Abbassa; un attacco più veloce della manovra colpisce comunque.", 14, f_txt, Color(0.4, 0.3, 0.2)))
 	_plancia_mischia(d)
 	if bers != "" and not d["fight"].is_empty():
-		var h1 := _riga_bottoni()
-		var lab := _lab_riga("Attacco:")
-		h1.add_child(lab)
-		var gruppo := []
-		for c in ["thrust", "swing", "smash"]:
-			var b := _bott(Combattimento.DIREZIONI[c], func():
-				mischia["modo"] = "attacco"
-				mischia["cerchio"] = c
-				_evidenzia(gruppo, Combattimento.DIREZIONI[c] + (" (attacco)")), 16)
-			gruppo.append(b)
-			h1.add_child(b)
-		if not d["missile"]:
-			for c in ["thrust", "swing", "smash"]:
-				var b := _bott("Para " + Combattimento.DIREZIONI[c].to_lower(), func():
-					mischia["modo"] = "parata"
-					mischia["cerchio"] = c
-					_evidenzia(gruppo, "Para " + Combattimento.DIREZIONI[c].to_lower()), 14)
-				gruppo.append(b)
-				h1.add_child(b)
-		_evidenzia(gruppo, Combattimento.DIREZIONI[mischia["cerchio"]] + " (attacco)")
-		box_modale.add_child(_lab("Segnalino Combattimento (forza almeno pari al peso dell'arma):", 14))
+		box_modale.add_child(_lab("SEGNALINO FIGHT  ·  Scegli la forza e la velocita del tuo attacco o della parata", 15, f_tit))
 		box_modale.add_child(_scegli_chit(d["fight"], mischia["f"]))
+	elif bers != "":
+		box_modale.add_child(_lab("Nessun segnalino FIGHT valido: questo round puoi soltanto manovrare.", 14))
 	if not d["move"].is_empty():
-		var h2 := _riga_bottoni()
-		h2.add_child(_lab_riga("Manovra:"))
-		var gruppo2 := []
-		for c in ["charge", "dodge", "duck"]:
-			var b := _bott(Combattimento.MANOVRE[c], func():
-				mischia["casella"] = c
-				_evidenzia(gruppo2, Combattimento.MANOVRE[c]), 16)
-			gruppo2.append(b)
-			h2.add_child(b)
-		_evidenzia(gruppo2, Combattimento.MANOVRE[mischia["casella"]])
-		box_modale.add_child(_lab("Segnalino Movimento (deve reggere tutto ciò che porti):", 14))
+		box_modale.add_child(_lab("SEGNALINO MOVE  ·  Scegli una mossa che regga il tuo equipaggiamento", 15, f_tit))
 		box_modale.add_child(_scegli_chit(d["move"], mischia["m"]))
-	if d["scudo"]:
-		var h3 := _riga_bottoni()
-		h3.add_child(_lab_riga("Scudo contro:"))
-		var gruppo3 := []
-		for c in ["thrust", "swing", "smash"]:
-			var b := _bott(Combattimento.DIREZIONI[c], func():
-				mischia["scudo"] = c
-				_evidenzia(gruppo3, Combattimento.DIREZIONI[c]), 16)
-			gruppo3.append(b)
-			h3.add_child(b)
-		_evidenzia(gruppo3, Combattimento.DIREZIONI[mischia["scudo"]])
+	else:
+		box_modale.add_child(_lab("Nessun segnalino MOVE valido: non puoi eseguire una manovra.", 14))
 	var hb := _riga_bottoni()
 	hb.add_child(_bott("Rivela le giocate", func():
 		var r := {"scudo": mischia["scudo"]}
