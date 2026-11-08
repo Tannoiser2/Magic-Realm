@@ -46,7 +46,10 @@ func prepara() -> void:
 		if r.e_classico() and not (gid in GRUPPI_CLASSICI):
 			continue
 		var g := gruppo(gid)
-		var box := {"tesori": [], "inc": [], "oggetti": []}
+		var box := {"tesori": [], "inc": [], "oggetti": [], "cavalli": []}
+		if r.e_classico() and r.usa_regola("cavalli"):
+			for id_cavallo in CavalliClassici.STALLE.get(gid, []):
+				box["cavalli"].append(CavalliClassici.nuovo(id_cavallo))
 		if not g["vagante"]:
 			for i in range(2):
 				if not piccoli.is_empty():
@@ -306,6 +309,11 @@ func merce(gid: String) -> Array:
 	for i in range(box["oggetti"].size()):
 		var o: Dictionary = box["oggetti"][i]
 		a.append({"k": "o", "i": i, "id": o["id"], "nome": Dati.nome_arma(o["id"]), "oro": valore(o)})
+	if r.e_classico() and r.usa_regola("cavalli"):
+		for i in range(box.get("cavalli", []).size()):
+			var cavallo: Dictionary = box["cavalli"][i]
+			var dati: Dictionary = CavalliClassici.definizione(cavallo["id"])
+			a.append({"k": "h", "i": i, "id": cavallo["id"], "nome": dati["nome"], "oro": dati["prezzo"]})
 	return a
 
 func opzioni_commercio(p: Dictionary) -> Array:
@@ -334,6 +342,10 @@ func attivita_commercio(p: Dictionary) -> void:
 	var vendibili := []
 	for o in p["oggetti"]:
 		vendibili.append({"id": o["id"], "nome": Dati.nome_arma(o["id"]), "oro": valore(o)})
+	if r.e_classico() and r.usa_regola("cavalli"):
+		for cavallo in p.get("cavalli", []):
+			var d: Dictionary = CavalliClassici.definizione(cavallo["id"])
+			vendibili.append({"id": "cavallo:" + cavallo["id"], "nome": d["nome"], "oro": d["prezzo"]})
 	var sc = await r.decidi(p, "commercio", {"gruppi": opz, "vendibili": vendibili, "oro": p["oro"]})
 	if not (sc is Dictionary) or not sc.has("gruppo"):
 		r.scrivi("%s non conclude affari." % p["nome"])
@@ -379,6 +391,17 @@ func _vendi(p: Dictionary, gid: String, ids: Array) -> void:
 	var tot := 0
 	var nomi := []
 	for id in ids:
+		if str(id).begins_with("cavallo:") and r.e_classico() and r.usa_regola("cavalli"):
+			var cavallo_id: String = str(id).substr(8)
+			for cavallo in p.get("cavalli", []).duplicate():
+				if cavallo["id"] == cavallo_id:
+					var d: Dictionary = CavalliClassici.definizione(cavallo_id)
+					tot += int(d["prezzo"])
+					nomi.append(d["nome"])
+					p["cavalli"].erase(cavallo)
+					box["cavalli"].append(CavalliClassici.nuovo(cavallo_id))
+					break
+			continue
 		for o in p["oggetti"]:
 			if o["id"] == id:
 				tot += valore(o)
@@ -450,7 +473,13 @@ func _compra(p: Dictionary, gid: String, sc: Dictionary) -> void:
 			box["oggetti"].remove_at(int(x["i"]))
 			o["attivo"] = false
 			p["oggetti"].append(o)
+		"h":
+			var cavallo: Dictionary = box["cavalli"][int(x["i"])]
+			box["cavalli"].remove_at(int(x["i"]))
+			cavallo["attivo"] = false
+			p["cavalli"].append(cavallo)
 	r.scrivi("%s compra %s per %d oro." % [p["nome"], x["nome"], prezzo], "bene")
+	r._sincronizza_cavalli(p)
 	r.arcano.sincronizza(p)
 
 # ------------------------------------------------------------ ingaggio
