@@ -234,6 +234,22 @@ func _gettone(img: String, lato: float, retro := "", spessore := 0.035, colore :
 	n.add_child(top)
 	return n
 
+# Preferisce una miniatura GLB, mantenendo la pedina originale come fallback.
+# Contratto asset 3D: soggetto centrato sull'asse Y, base a Y=0, larghezza 1 unita.
+func _gettone_o_modello(id_modello: String, img: String, lato: float, spessore := 0.035, colore := Color(0.18, 0.12, 0.08)) -> Node3D:
+	var path := "res://assets/3d/%s.glb" % id_modello
+	if ResourceLoader.exists(path):
+		var risorsa = load(path)
+		if risorsa is PackedScene:
+			var modello = risorsa.instantiate()
+			if modello is Node3D:
+				var contenitore := Node3D.new()
+				modello.scale = Vector3.ONE * lato
+				contenitore.add_child(modello)
+				return contenitore
+			modello.queue_free()
+	return _gettone(img, lato, "", spessore, colore)
+
 func _anello(pos: Vector2, colore: Color, r := 0.17, spessore := 0.025) -> void:
 	var a := MeshInstance3D.new()
 	var tm := TorusMesh.new()
@@ -271,7 +287,7 @@ func _aggiorna_pezzi() -> void:
 		per_radura[k].append([nodo, lato])
 	# abitazioni
 	for a in g.s["abitazioni"]:
-		aggiungi.call(g.s["abitazioni"][a], _gettone("res://assets/abitazioni/%s.webp" % a, 0.26, "", 0.05, Color(0.3, 0.25, 0.2)), 0.26)
+		aggiungi.call(g.s["abitazioni"][a], _gettone_o_modello("abitazioni/%s" % a, "res://assets/abitazioni/%s.webp" % a, 0.26, 0.05, Color(0.3, 0.25, 0.2)), 0.26)
 	# mostri (dei nativi si mostra un solo segnalino per gruppo e radura)
 	var gruppi_visti := {}
 	for id in g.s["mostri"]:
@@ -285,14 +301,14 @@ func _aggiorna_pezzi() -> void:
 			gruppi_visti[kg] = true
 		var peso: String = Dati.tipo_mostro(m["tipo"]).get("peso", "M")
 		var lato := {"M": 0.19, "H": 0.23, "T": 0.29, "X": 0.31}.get(peso, 0.2) as float
-		aggiungi.call(m["dove"], _gettone(_img_mostro(m), lato, "", 0.04), lato)
+		aggiungi.call(m["dove"], _gettone_o_modello("nativi/%s" % m["nativo"] if m.has("nativo") else "mostri/%s" % m["tipo"], _img_mostro(m), lato, 0.04), lato)
 	# viaggiatori
 	for id in g.s.get("viaggi", {}):
 		var x: Dictionary = g.s["viaggi"][id]
 		if x["dove"] == "" or x["chi"] != "":
 			continue
 		var img: String = "res://assets/" + Viaggi.v(id)["img"] if x["su"] else "res://assets/viaggiatori/retro.webp"
-		aggiungi.call(x["dove"], _gettone(img, 0.17, "", 0.03), 0.17)
+		aggiungi.call(x["dove"], _gettone_o_modello("viaggiatori/%s" % id, img, 0.17, 0.03), 0.17)
 	# personaggi (la tua pedina sta al centro della radura, più grande, sotto il segnalino rosso)
 	var mia: Node3D = null
 	var mia_k := ""
@@ -303,10 +319,10 @@ func _aggiorna_pezzi() -> void:
 		var nasc: bool = p["nascosto"] and g.s["scenario"] >= 2
 		var img := "res://assets/personaggi/%s_%s.webp" % [d["pedina"], "nascosto" if nasc else "pedina"]
 		if p["umano"]:
-			mia = _gettone(img, 0.36, "", 0.09, Color(0.6, 0.08, 0.05))
+			mia = _gettone_o_modello("personaggi/%s" % d["pedina"], img, 0.36, 0.09, Color(0.6, 0.08, 0.05))
 			mia_k = p["dove"]
 			continue
-		var gt := _gettone(img, 0.27, "", 0.06, Color(0.12, 0.1, 0.1))
+		var gt := _gettone_o_modello("personaggi/%s" % d["pedina"], img, 0.27, 0.06, Color(0.12, 0.1, 0.1))
 		aggiungi.call(p["dove"], gt, 0.24)
 	for k in per_radura:
 		if not g.mappa.radure.has(k):
