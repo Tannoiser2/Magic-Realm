@@ -7,7 +7,7 @@ const SUPER := "super"
 const CLASSICO := "classico"
 const PERSONALIZZATO := "personalizzato"
 
-const FUNZIONI := ["esplorazione", "mostri", "combattimento_pg", "tesori", "magia", "nativi", "commercio", "ingaggio", "viaggiatori", "cavalli"]
+const FUNZIONI := ["esplorazione", "mostri", "combattimento_mostri", "combattimento_pg", "tesori", "magia", "nativi", "commercio", "ingaggio", "viaggiatori", "visitatori", "missioni_viaggiatori", "cavalli"]
 
 static func super_scenario(numero: int) -> Dictionary:
 	assert(numero >= 1 and numero <= 6)
@@ -17,10 +17,12 @@ static func super_scenario(numero: int) -> Dictionary:
 		"pv_assegnati": 12 if numero == 6 else 0,
 		"funzioni": {
 			"esplorazione": true, "mostri": numero >= 3,
+			"combattimento_mostri": numero >= 3,
 			"combattimento_pg": numero >= 2, "tesori": numero >= 4,
 			"magia": numero >= 4, "nativi": numero >= 5,
 			"commercio": numero >= 5, "ingaggio": numero >= 5,
-			"viaggiatori": numero >= 6, "cavalli": false
+			"viaggiatori": numero >= 6, "visitatori": numero >= 6,
+			"missioni_viaggiatori": numero >= 6, "cavalli": false
 		},
 		"implementato": true
 	}
@@ -33,11 +35,13 @@ static func classico_incontro(numero: int) -> Dictionary:
 		"incontro": numero, "mappa": "classico_20", "giorni": 28,
 		"pv_assegnati": 5 if completo else 0,
 		"funzioni": {
-			"esplorazione": true, "mostri": numero >= 2,
+			"esplorazione": true, "mostri": true,
+			"combattimento_mostri": numero >= 2,
 			"combattimento_pg": numero >= 3, "tesori": true,
-			"magia": numero >= 4, "nativi": numero >= 3,
+			"magia": numero >= 4, "nativi": true,
 			"commercio": true, "ingaggio": numero >= 3,
-			"viaggiatori": false, "cavalli": numero >= 3
+			"viaggiatori": false, "visitatori": true,
+			"missioni_viaggiatori": numero >= 3, "cavalli": true
 		},
 		"implementato": false
 	}
