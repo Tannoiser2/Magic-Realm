@@ -7,6 +7,17 @@ const SUPER := "super"
 const CLASSICO := "classico"
 const PERSONALIZZATO := "personalizzato"
 
+# I 16 personaggi della seconda edizione; gli altri 8 sono aggiunte Super.
+const PERSONAGGI_CLASSICI := [
+	"amazzone", "berserker", "cavaliere_nero", "capitano",
+	"druido", "nano", "elfo", "mago", "pellegrino",
+	"stregone", "spadaccino", "cavaliere_bianco",
+	"strega", "re_stregone", "stregone_bianco", "ragazza_boschi"
+]
+
+static func personaggio_classico(id: String) -> bool:
+	return id in PERSONAGGI_CLASSICI
+
 const FUNZIONI := ["esplorazione", "mostri", "combattimento_mostri", "combattimento_pg", "tesori", "magia", "nativi", "commercio", "ingaggio", "viaggiatori", "visitatori", "missioni_viaggiatori", "cavalli"]
 
 static func super_scenario(numero: int) -> Dictionary:
