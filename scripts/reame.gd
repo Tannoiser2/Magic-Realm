@@ -80,12 +80,12 @@ func incontro_classico() -> int:
 		return 0
 	return int(s["profilo_regole"].get("incontro", 4)) if int(s["profilo_regole"].get("incontro", 0)) > 0 else 4
 
-func nuova_con_profilo(profilo: Dictionary, pg_umano: String, rivali: Array, seme: int) -> bool:
+func nuova_con_profilo(profilo: Dictionary, pg_umano: String, rivali: Array, seme: int, partenza_umano: String = "") -> bool:
 	if not ProfiliRegole.valido(profilo):
 		push_warning("Profilo non valido")
 		return false
 	if profilo.get("famiglia", "") == ProfiliRegole.CLASSICO:
-		return nuova_classica(pg_umano, rivali, seme, profilo)
+		return nuova_classica(pg_umano, rivali, seme, profilo, partenza_umano)
 	if not profilo.get("implementato", false) or profilo.get("famiglia", "") != ProfiliRegole.SUPER:
 		return false
 	nuova(int(profilo["scenario"]), pg_umano, rivali, seme)
@@ -93,7 +93,7 @@ func nuova_con_profilo(profilo: Dictionary, pg_umano: String, rivali: Array, sem
 
 # Modalita Classica sperimentale: usa le fasi mature del motore Super 5,
 # ma sostituisce mappa, segnalini, durata, obiettivi e regole di punteggio.
-func nuova_classica(pg_umano: String, rivali: Array, seme: int, profilo: Dictionary = {}) -> bool:
+func nuova_classica(pg_umano: String, rivali: Array, seme: int, profilo: Dictionary = {}, partenza_umano: String = "") -> bool:
 	if profilo.is_empty():
 		profilo = ProfiliRegole.classico_completo()
 	if not ProfiliRegole.valido(profilo) or profilo.get("famiglia", "") != ProfiliRegole.CLASSICO:
@@ -117,7 +117,7 @@ func nuova_classica(pg_umano: String, rivali: Array, seme: int, profilo: Diction
 		"fine": "", "vincitori": [], "fase": "alba", "riga_mostri": 0,
 		"mostri": {}, "tabella": [], "siti_box": {}, "abitazioni": {},
 		"tessere": {}, "riserve": preparazione["riserve"], "pool_rossi": [],
-		"pg": [], "missioni_pubbliche": []}
+		"pg": [], "missioni_pubbliche": [], "partenza_umano": partenza_umano}
 	# Manteniamo i 40 indici del database per compatibilita dei sottosistemi.
 	# Solo le venti tessere della mappa ricevono segnalini o sono raggiungibili.
 	for t in range(40):
@@ -351,7 +351,13 @@ func _nuovo_pg(pid: String, idp: String, um: bool) -> Dictionary:
 	# partenza: Locanda; nello scenario 2 un'altra abitazione se ce n'è più d'una
 	var dw: String = "locanda"
 	var parts: Array = d["partenze"]
-	if s["scenario"] == 2 and parts.size() > 1:
+	if e_classico():
+		var possibili: Array = parts.filter(func(x): return s["abitazioni"].has(x))
+		if not possibili.is_empty():
+			dw = possibili[rng.randi_range(0, possibili.size() - 1)]
+		if um and s.get("partenza_umano", "") in possibili:
+			dw = str(s["partenza_umano"])
+	elif s["scenario"] == 2 and parts.size() > 1:
 		var alt: Array = parts.filter(func(x): return x != "locanda" and s["abitazioni"].has(x))
 		if not alt.is_empty():
 			dw = alt[rng.randi_range(0, alt.size() - 1)]
