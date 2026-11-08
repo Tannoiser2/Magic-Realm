@@ -17,6 +17,6 @@ func _init() -> void:
         assert(restored.profilo_regole()["id"] == "super_%d" % sc)
         assert(restored.s["giorno"] == 1)
     var incomplete := Reame.new()
-    assert(not incomplete.nuova_con_profilo(ProfiliRegole.classico_completo(), "amazzone", [], 1))
+    assert(not incomplete.nuova_con_profilo(ProfiliRegole.classico_incontro(1), "amazzone", [], 1))
     print("PASS: profile and legacy-save smoke checks")
     quit()
