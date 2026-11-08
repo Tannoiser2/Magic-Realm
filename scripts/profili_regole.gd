@@ -40,7 +40,7 @@ static func super_scenario(numero: int) -> Dictionary:
 
 static func classico_incontro(numero: int) -> Dictionary:
 	assert(numero >= 1 and numero <= 4)
-		return {
+	return {
 		"id": "classico_incontro_%d" % numero, "famiglia": CLASSICO,
 		"incontro": numero, "mappa": "classico_20", "giorni": 28,
 		"pv_assegnati": 5,

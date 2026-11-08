@@ -34,7 +34,7 @@ func _box(gid: String) -> Dictionary:
 	return r.s["nativi"][gid]["box"]
 
 func attivi() -> bool:
-	return r.s.get("scenario", 1) >= 5
+	return r.usa_regola("nativi")
 
 # ------------------------------------------------------------ preparazione
 func prepara() -> void:
@@ -43,6 +43,8 @@ func prepara() -> void:
 	var piccoli: Array = r.s.get("fuori_gioco", [])
 	var mazzi: Dictionary = r.s.get("mazzi_inc", {})
 	for gid in Dati.nativi["gruppi"]:
+		if r.e_classico() and not (gid in GRUPPI_CLASSICI):
+			continue
 		var g := gruppo(gid)
 		var box := {"tesori": [], "inc": [], "oggetti": []}
 		if not g["vagante"]:
@@ -176,6 +178,8 @@ func fine_turno(p: Dictionary) -> void:
 
 # ------------------------------------------------------------ blocchi
 func blocco(p: Dictionary) -> bool:
+	if r.e_classico() and not r.usa_regola("combattimento_pg"):
+		return false
 	## a fine fase, chi è allo scoperto con nativi ostili o nemici tira sugli incontri
 	if p["nascosto"]:
 		return false
@@ -206,6 +210,8 @@ func _esito_ostile(p: Dictionary, gid: String, es: String) -> bool:
 	return false
 
 func inizio_combattimento(k: String) -> void:
+	if r.e_classico() and not r.usa_regola("combattimento_pg"):
+		return
 	## all'inizio del combattimento chi è allo scoperto tira per ogni gruppo ostile o nemico
 	for p in r.vivi():
 		if p["dove"] != k or p["nascosto"]:
@@ -293,9 +299,10 @@ func merce(gid: String) -> Array:
 	for i in range(box["tesori"].size()):
 		var id: String = box["tesori"][i]
 		a.append({"k": "t", "i": i, "id": id, "nome": Arcano.tesoro(id)["nome"], "oro": valore(id)})
-	for i in range(box["inc"].size()):
-		var id: String = box["inc"][i]
-		a.append({"k": "s", "i": i, "id": id, "nome": "Incantesimo: " + Arcano.inc(id)["nome"], "oro": 10})
+	if r.usa_regola("magia"):
+		for i in range(box["inc"].size()):
+			var id: String = box["inc"][i]
+			a.append({"k": "s", "i": i, "id": id, "nome": "Incantesimo: " + Arcano.inc(id)["nome"], "oro": 10})
 	for i in range(box["oggetti"].size()):
 		var o: Dictionary = box["oggetti"][i]
 		a.append({"k": "o", "i": i, "id": o["id"], "nome": Dati.nome_arma(o["id"]), "oro": valore(o)})
@@ -307,7 +314,7 @@ func opzioni_commercio(p: Dictionary) -> Array:
 		if capo(gid).is_empty() or r.s["nativi"][gid]["ostili"].has(p["pid"]):
 			continue
 		a.append({"gruppo": gid, "nome": gruppo(gid)["nome"], "rapporto": NOMI_REL[rapporto(p, gid)], "merce": merce(gid)})
-	if r.s["scenario"] >= 6:
+	if r.usa_regola("visitatori"):
 		for id in r.viaggi.visitatori_qui(p["dove"]):
 			var x := {"gruppo": "v:" + id, "nome": Viaggi.v(id)["nome"], "rapporto": NOMI_REL[rapporto(p, "v:" + id)], "merce": []}
 			if id == "blacksmith":

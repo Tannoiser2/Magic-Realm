@@ -14,13 +14,12 @@ func _prova() -> void:
 	main.call("_scegli_menu", "edizione", "classico")
 	await process_frame
 	assert(main.get("scelte_menu")["edizione"] == "classico")
-	var intestazione_modalita: Label = null
-	for nodo in main.find_children("*", "Label", true, false):
-		if nodo.text == "Partita completa — 28 giorni":
-			intestazione_modalita = nodo
+	var incontro_visibile := false
+	for nodo in main.find_children("*", "Button", true, false):
+		if nodo.text == "IV · Magia":
+			incontro_visibile = true
 			break
-	assert(intestazione_modalita != null)
-	assert(intestazione_modalita.size.x > 300.0)
+	assert(incontro_visibile)
 	main.call("_nuova_partita")
 	await process_frame
 	var g = main.get("g")

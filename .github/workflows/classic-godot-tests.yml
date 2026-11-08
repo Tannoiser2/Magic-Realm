@@ -33,23 +33,49 @@ jobs:
       - name: Import resources and parse scripts
         run: godot --headless --editor --path . --import --quit
       - name: Rule profile checks
-        run: godot --headless --path . --script res://tests/profili_regole_test.gd
+        run: timeout 45s godot --headless --path . --script res://tests/profili_regole_test.gd
+      - name: All four original 2e Encounters and save round-trip
+        run: timeout 45s godot --headless --path . --script res://tests/quattro_encounter_test.gd
+      - name: Full automatic game each Encounter
+        run: timeout 45s godot --headless --path . --script res://tests/partite_quattro_encounter_test.gd
       - name: Original map generation
-        run: godot --headless --path . --script res://tests/mappa_classica_test.gd
+        run: timeout 45s godot --headless --path . --script res://tests/mappa_classica_test.gd
       - name: Original map chits and lost places
-        run: godot --headless --path . --script res://tests/preparazione_classica_test.gd
+        run: timeout 45s godot --headless --path . --script res://tests/preparazione_classica_test.gd
       - name: Original endgame scoring
-        run: godot --headless --path . --script res://tests/punteggio_classico_test.gd
+        run: timeout 45s godot --headless --path . --script res://tests/punteggio_classico_test.gd
       - name: Complete classic preview
-        run: godot --headless --path . --script res://tests/anteprima_classica_test.gd
+        run: timeout 45s godot --headless --path . --script res://tests/anteprima_classica_test.gd
       - name: Full classic playthroughs
-        run: godot --headless --path . --script res://tests/partita_classica_auto_test.gd
+        run: timeout 45s godot --headless --path . --script res://tests/partita_classica_auto_test.gd
+      - name: Character re-entry at the Inn
+        run: timeout 45s godot --headless --path . --script res://tests/reingresso_classico_test.gd
+      - name: Original seventh-day monster return
+        run: timeout 45s godot --headless --path . --script res://tests/settimana_classica_test.gd
+      - name: Third Encounter FOLLOW activity
+        run: timeout 45s godot --headless --path . --script res://tests/seguire_classico_test.gd
       - name: Classic menu and UI smoke test
         timeout-minutes: 4
-        run: godot --headless --path . --script res://tests/ui_classico_smoke_test.gd
+        run: timeout 45s godot --headless --path . --script res://tests/ui_classico_smoke_test.gd
+      - name: UI launches Classic Encounter 1
+        env:
+          CLASSIC_ENCOUNTER: '1'
+        run: timeout 45s godot --headless --path . --script res://tests/ui_incontro_classico_test.gd
+      - name: UI launches Classic Encounter 2
+        env:
+          CLASSIC_ENCOUNTER: '2'
+        run: timeout 45s godot --headless --path . --script res://tests/ui_incontro_classico_test.gd
+      - name: UI launches Classic Encounter 3
+        env:
+          CLASSIC_ENCOUNTER: '3'
+        run: timeout 45s godot --headless --path . --script res://tests/ui_incontro_classico_test.gd
+      - name: UI launches Classic Encounter 4
+        env:
+          CLASSIC_ENCOUNTER: '4'
+        run: timeout 45s godot --headless --path . --script res://tests/ui_incontro_classico_test.gd
       - name: Super free-play UI and separated saves
         timeout-minutes: 4
-        run: godot --headless --path . --script res://tests/ui_super_libera_test.gd
+        run: timeout 45s godot --headless --path . --script res://tests/ui_super_libera_test.gd
       - name: Legacy save compatibility
         timeout-minutes: 4
-        run: godot --headless --path . --script res://tests/profili_salvataggi_test.gd
+        run: timeout 45s godot --headless --path . --script res://tests/profili_salvataggi_test.gd

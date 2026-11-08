@@ -79,9 +79,9 @@ func piano(p: Dictionary, d: Dictionary) -> Array:
 		pl.push_front({"a": "H"})
 		while pl.size() > n:
 			pl.pop_back()
-	if r.s["scenario"] >= 5 and pl.is_empty() and not _da_vendere(p).is_empty() and not r.nativi.opzioni_commercio(p).is_empty():
+	if r.usa_regola("commercio") and pl.is_empty() and not _da_vendere(p).is_empty() and not r.nativi.opzioni_commercio(p).is_empty():
 		pl.append({"a": "T"})
-	if r.s["scenario"] >= 4 and _vuole_incantare(p) and pl.size() <= n - 2:
+	if r.usa_regola("magia") and _vuole_incantare(p) and pl.size() <= n - 2:
 		pl.append({"a": "E"})
 		pl.append({"a": "E"})
 	var resto := n - pl.size()
@@ -93,7 +93,7 @@ func piano(p: Dictionary, d: Dictionary) -> Array:
 			pl.append({"a": "S"})
 		elif r.s["scenario"] >= 2 and sal[1] + sal[2] > 0:
 			pl.append({"a": "R"})
-		elif r.s["scenario"] >= 2 and not r.arma_attiva(p).is_empty() and not r.arma_attiva(p)["allerta"]:
+		elif r.usa_regola("combattimento_mostri") and not r.arma_attiva(p).is_empty() and not r.arma_attiva(p)["allerta"]:
 			pl.append({"a": "A"})
 		elif r.s["scenario"] >= 2:
 			pl.append({"a": "H"})
@@ -289,7 +289,7 @@ func tabella(p: Dictionary, _d: Dictionary) -> Dictionary:
 	var fo: Dictionary = _d.get("fonti", {})
 	if not fo.get("saccheggia", []).is_empty():
 		return {"tabella": "saccheggia", "fonte": fo["saccheggia"][0]["id"]}
-	if not fo.get("rune", []).is_empty() and (int(r.def_pg(p).get("magia", 0)) > 0 or r.rng.randi_range(0, 2) == 0):
+	if r.usa_regola("magia") and not fo.get("rune", []).is_empty() and (int(r.def_pg(p).get("magia", 0)) > 0 or r.rng.randi_range(0, 2) == 0):
 		return {"tabella": "rune", "fonte": fo["rune"][0]["id"]}
 	var t := r.tessera(p["dove"])
 	if p["indizi"].has(str(t)):

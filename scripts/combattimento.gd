@@ -27,6 +27,8 @@ func _mostri_qui(k: String) -> Array:
 	var a := []
 	for id in r.s["mostri"]:
 		var m: Dictionary = r.s["mostri"][id]
+		if r.e_classico() and m.has("nativo") and not r.usa_regola("combattimento_pg"):
+			continue
 		if m["dove"] == k and not m["morto"]:
 			if m.has("nativo"):
 				var st: Dictionary = r.s["nativi"][m["nativo"]]
@@ -43,7 +45,7 @@ func _mostri_qui(k: String) -> Array:
 
 func _alleati_qui(k: String) -> Array:
 	var a := []
-	if r.s.get("scenario", 1) < 5:
+	if r.s.get("scenario", 1) < 5 or (r.e_classico() and not r.usa_regola("ingaggio")):
 		return a
 	for p in _pg_qui(k):
 		a.append_array(r.nativi.ingaggiati(p))
@@ -51,14 +53,14 @@ func _alleati_qui(k: String) -> Array:
 
 func combatti(k: String) -> void:
 	var pgs := _pg_qui(k)
-	if pgs.is_empty() or r.s["scenario"] < 2:
+	if pgs.is_empty() or r.s["scenario"] < 2 or (r.e_classico() and not r.usa_regola("combattimento_mostri")):
 		return
-	if r.s["scenario"] >= 5:
+	if r.s["scenario"] >= 5 and (not r.e_classico() or r.usa_regola("combattimento_pg")):
 		r.nativi.inizio_combattimento(k)
 	var mostri := _mostri_qui(k)
 	var ostili := false
 	if mostri.is_empty():
-		if pgs.size() < 2:
+		if pgs.size() < 2 or (r.e_classico() and not r.usa_regola("combattimento_pg")):
 			return
 		if r.s["scenario"] == 2:
 			ostili = true
@@ -113,7 +115,7 @@ func combatti(k: String) -> void:
 		if not q.is_empty():
 			r.arcano.sciogli(q, x[1])
 	for p in pgs:
-		if not p["morto"] and r.s["scenario"] >= 4:
+		if not p["morto"] and r.usa_regola("magia"):
 			r.arcano.sincronizza(p)
 	C = {}
 	r.cambiato.emit()
@@ -1023,6 +1025,9 @@ func _morte(p: Dictionary, da: String) -> void:
 			C["assegnati"].erase(mid)
 	C["ordine"].erase(p["pid"])
 	p["dove_morte"] = k
+	if r.e_classico() and int(r.s["giorno"]) < 28:
+		# In seconda edizione un personaggio caduto puo rientrare dal giorno seguente.
+		p["reingresso_giorno"] = int(r.s["giorno"]) + 1
 	r.controlla_vittoria()
 
 # ------------------------------------------------------------ incantesimi in combattimento

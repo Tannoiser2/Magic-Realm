@@ -72,7 +72,7 @@ const GUIDA_CFG := "user://guida_magicrealm.cfg"
 const SCENARI := [1, 2, 3, 4, 5, 6]
 var modo_mossa := false
 var codice := ""
-var scelte_menu := {"edizione": "super", "scenario": 3, "pg": "amazzone", "rivali": 2, "partita_libera": false, "durata_libera": 84}
+var scelte_menu := {"edizione": "super", "scenario": 3, "pg": "amazzone", "rivali": 2, "partita_libera": false, "durata_libera": 84, "incontro_classico": 4, "partenza": ""}
 var mischia := {}
 var edizione_portale := "" # "super" o "classico" per le build sul sito; vuoto in Godot locale
 
@@ -807,9 +807,9 @@ func _centra() -> void:
 # ============================================================ menu
 func _mostra_guida_classica() -> void:
 	_apri_modale("Magic Realm Classico — guida")
-	box_modale.add_child(_lab("Partita sperimentale di 28 giorni sulla mappa originale di 20 tessere. Esplora il Reame, visita i siti, commercia con i nativi, raccogli tesori e sopravvivi ai mostri.", 17))
-	box_modale.add_child(_lab("All'inizio assegni 5 punti tra grandi tesori, incantesimi, fama, notorieta e oro. Alla fine del ventottesimo giorno vengono calcolati bonus e penalita per gli obiettivi scelti. Vince il personaggio sopravvissuto con il miglior punteggio non negativo.", 16))
-	box_modale.add_child(_lab("Alcune regole avanzate del gioco fisico, come cavalli e determinati incantesimi, non sono ancora completamente disponibili. La logica di alcuni incontri e adattata dal motore Super.", 15))
+	box_modale.add_child(_lab("Quattro incontri della seconda edizione: I — esplorazione e caccia al tesoro senza combattimenti; II — combattimento con i mostri; III — guerra tra personaggi, nativi e assoldamenti; IV — incantesimi ed incantamenti.", 17))
+	box_modale.add_child(_lab("Ogni incontro dura 28 giorni, usa 20 tessere e assegna cinque punti tra grandi tesori, incantesimi (solo nel IV), fama, notorietà e oro. Alla fine si calcolano bonus e penalità: punteggio non negativo = requisiti raggiunti; il più alto è il vincitore assoluto.", 16))
+	box_modale.add_child(_lab("Versione sperimentale: Seguire, cavalli, missioni e campagne classiche, comandi ai nativi e diversi incantesimi avanzati non riproducono ancora tutte le regole fisiche. Super Realm resta separato.", 15))
 	_riga_bottoni().add_child(_bott("Chiudi", func(): modale.visible = false, 18, true))
 	_ricentra()
 
@@ -832,9 +832,17 @@ func _mostra_menu() -> void:
 		if c is TextureRect:
 			continue
 		c.queue_free()
+	# Con quattro Encounter e scelta della dimora il menu supera l'altezza
+	# disponibile su TV, notebook e dispositivi mobili: deve scorrere.
+	var menu_scroll := ScrollContainer.new()
+	menu_scroll.set_anchors_preset(Control.PRESET_FULL_RECT)
+	menu_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_AUTO
+	menu_scroll.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_AUTO
+	menu.add_child(menu_scroll)
 	var cc := CenterContainer.new()
-	cc.set_anchors_preset(Control.PRESET_FULL_RECT)
-	menu.add_child(cc)
+	cc.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	cc.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	menu_scroll.add_child(cc)
 	var p := _pannello(Color(0.93, 0.86, 0.70, 0.97))
 	p.custom_minimum_size = Vector2(1180, 0)
 	cc.add_child(p)
@@ -873,7 +881,13 @@ func _mostra_menu() -> void:
 		5: ["5 · I nativi si destano", "Nativi nelle abitazioni: commercia, ingaggia e attento a chi ti è ostile. Il primo a 10 Punti Vittoria vince."],
 		6: ["6 · Arrivano i viaggiatori", "Il gioco completo: viaggiatori, visitatori e Punti Vittoria assegnati in segreto."]}
 	if scelte_menu["edizione"] == "classico":
-		v.add_child(_lab("Partita completa — 28 giorni", 20, f_tit, C_ROSSO))
+		var incontri := {1: "I · Caccia al tesoro", 2: "II · I mostri attaccano", 3: "III · Guerra e nativi", 4: "IV · Magia"}
+		var he := GridContainer.new()
+		he.columns = 2
+		v.add_child(he)
+		for n in [1, 2, 3, 4]:
+			he.add_child(_bott(incontri[n], func(): _scegli_menu("incontro_classico", n), 18, int(scelte_menu["incontro_classico"]) == n))
+		v.add_child(_lab("28 giorni · 5 punti vittoria", 17, f_tit, C_ROSSO))
 	elif scelte_menu["partita_libera"]:
 		v.add_child(_lab("Tutte le regole Super disponibili · 12 punti vittoria", 19, f_tit, C_ROSSO))
 	else:
@@ -887,7 +901,8 @@ func _mostra_menu() -> void:
 			b.tooltip_text = descr[n][1]
 			b.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 			hs.add_child(b)
-	v.add_child(_lab("Partita libera: scegli la durata e gioca il Super Realm completo, con mostri, magia, tesori, nativi e viaggiatori." if scelte_menu["edizione"] == "super" and scelte_menu["partita_libera"] else (descr[scelte_menu["scenario"]][1] if scelte_menu["edizione"] == "super" else "Partita completa classica: 20 tessere, 28 giorni, cinque Punti Vittoria. Prima versione sperimentale: alcune regole speciali restano da verificare."), 18))
+	var spiegazioni_classiche := {1: "Incontro I: esplora, nasconditi, cerca tesori e commercia. Mostri e nativi sono presenti ma non combattono.", 2: "Incontro II: i mostri diventano pericolosi e comincia il combattimento; i nativi non combattono.", 3: "Incontro III: si aggiungono la guerra tra personaggi, il combattimento con i nativi e gli ingaggi.", 4: "Incontro IV: si aggiungono incantesimi e incantamenti. Alcuni effetti avanzati restano in lavorazione."}
+	v.add_child(_lab("Partita libera: scegli la durata e gioca il Super Realm completo, con mostri, magia, tesori, nativi e viaggiatori." if scelte_menu["edizione"] == "super" and scelte_menu["partita_libera"] else (descr[scelte_menu["scenario"]][1] if scelte_menu["edizione"] == "super" else spiegazioni_classiche[int(scelte_menu["incontro_classico"])]), 18))
 	if scelte_menu["edizione"] == "super" and scelte_menu["partita_libera"]:
 		var durata := HBoxContainer.new()
 		v.add_child(durata)
@@ -927,6 +942,14 @@ func _mostra_menu() -> void:
 		grid.add_child(b)
 	var dsel: Dictionary = Dati.personaggi[scelte_menu["pg"]]
 	v.add_child(_lab(_descr_pg(dsel), 16))
+	if scelte_menu["edizione"] == "classico":
+		v.add_child(_lab("Abitazione iniziale (come nel gioco originale)", 17, f_tit))
+		var abitazioni := HBoxContainer.new()
+		v.add_child(abitazioni)
+		for nome in dsel["partenze"]:
+			abitazioni.add_child(_bott(str(Dati.ABITAZIONI.get(nome, nome)), func(): _scegli_menu("partenza", nome), 15, scelte_menu["partenza"] == nome))
+		if not (scelte_menu["partenza"] in dsel["partenze"]):
+			scelte_menu["partenza"] = dsel["partenze"][0]
 	# rivali
 	var hr := HBoxContainer.new()
 	hr.add_theme_constant_override("separation", 8)
@@ -1006,7 +1029,7 @@ func _nuova_partita() -> void:
 		validi.remove_at(j)
 	codice = _nuovo_codice(rng)
 	if scelte_menu["edizione"] == "classico":
-		_avvia(func(): return g.nuova_con_profilo(ProfiliRegole.classico_completo(), scelte_menu["pg"], rivali, rng.randi()))
+		_avvia(func(): return g.nuova_con_profilo(ProfiliRegole.classico_incontro(int(scelte_menu["incontro_classico"])), scelte_menu["pg"], rivali, rng.randi(), str(scelte_menu["partenza"])))
 	else:
 		_avvia(func():
 			g.nuova(sc, scelte_menu["pg"], rivali, rng.randi())
@@ -1522,13 +1545,14 @@ func _pannello_piano() -> void:
 	hb.add_theme_constant_override("v_separation", 6)
 	box_azioni.add_child(hb)
 	var pieno := piano.size() >= tot
-	var att := ["S", "H", "R"] if g.s["scenario"] >= 2 else ["S"]
-	if g.s["scenario"] >= 2:
+	var att := ["S", "H", "R"] if g.e_classico() or g.s["scenario"] >= 2 else ["S"]
+	if (not g.e_classico() and g.s["scenario"] >= 2) or g.usa_regola("combattimento_mostri"):
 		att.append("A")
-	if g.s["scenario"] >= 5:
+	if g.usa_regola("commercio"):
 		att.append("T")
+	if g.usa_regola("ingaggio"):
 		att.append("HR")
-	if g.s["scenario"] >= 4:
+	if g.usa_regola("magia"):
 		var magico: bool = "E" in fasi["extra"]
 		for c in u["chits"]:
 			if c["tipo"] == "G" and Arcano.TIPO_COLORE.has(c["magia"]):
@@ -1539,7 +1563,7 @@ func _pannello_piano() -> void:
 		var b := _bott(Reame.ATTIVITA[a], func(): _aggiungi(a), 17)
 		b.disabled = pieno
 		hb.add_child(b)
-	if g.s["scenario"] >= 4 and g.arcano.puo_volare(u):
+	if g.usa_regola("magia") and g.arcano.puo_volare(u):
 		var bv := _bott("Vola" if not modo_volo else "Vola: clic su una radura di una tessera vicina", func():
 			modo_volo = not modo_volo
 			_pannello_piano(), 17)
@@ -1565,6 +1589,12 @@ func _pannello_piano() -> void:
 		_aggiorna_evidenze(), 16))
 	var conf := _bott("Conferma il giorno", func(): _rispondi(piano.duplicate(true)), 18, true)
 	hb2.add_child(conf)
+	if g.e_classico() and g.usa_regola("combattimento_pg"):
+		for guida in g.vivi():
+			if guida == u or guida["dove"] != u["dove"]:
+				continue
+			hb2.add_child(_bott("Segui %s (tutto il giorno)" % guida["nome"],
+				func(): _rispondi([{"a": "F", "guida": guida["pid"]}]), 15))
 
 func _aggiungi(a: String) -> void:
 	if piano.size() >= _fasi_totali():
@@ -1720,7 +1750,7 @@ func _richiesta_pv(req: Dictionary) -> void:
 		var aumenta := _bott("più", func():
 			vp[c] = int(vp[c]) + 1
 			aggiorna.call(), 15)
-		if g.e_classico() and c == "inc" and int(Dati.personaggi[g.umano()["pg"]].get("magia", 0)) == 0:
+		if g.e_classico() and c == "inc" and (not g.usa_regola("magia") or int(Dati.personaggi[g.umano()["pg"]].get("magia", 0)) == 0):
 			aumenta.disabled = true
 		h.add_child(aumenta)
 	box_modale.add_child(tot_l)
@@ -1729,7 +1759,7 @@ func _richiesta_pv(req: Dictionary) -> void:
 		var t := 0
 		for c in Viaggi.CATEGORIE: t += int(vp[c])
 		if t != tot_pv: _avviso("Devi assegnare esattamente %d punti." % tot_pv)
-		elif g.e_classico() and not PunteggioClassico.valida_assegnazione(vp, int(Dati.personaggi[g.umano()["pg"]].get("magia", 0)) > 0):
+		elif g.e_classico() and not PunteggioClassico.valida_assegnazione(vp, g.usa_regola("magia") and int(Dati.personaggi[g.umano()["pg"]].get("magia", 0)) > 0):
 			_avviso("Assegnazione non valida: il personaggio non puo ricevere punti magia.")
 		else: _rispondi(vp), 18, true))
 	_ricentra()
