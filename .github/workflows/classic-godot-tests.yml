@@ -1,12 +1,13 @@
 name: Classic Magic Realm — Godot tests
 
 on:
-  push:
-    branches:
-      - feature/magic-realm-classic-3d
   workflow_dispatch:
   pull_request:
     branches: [main]
+
+concurrency:
+  group: magic-realm-classic-tests-\${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 permissions:
   contents: read
