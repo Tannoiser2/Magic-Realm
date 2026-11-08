@@ -6,6 +6,8 @@ extends RefCounted
 
 var r: Reame
 
+const GRUPPI_CLASSICI := ["bashkars", "company", "guard", "lancers", "order", "patrol", "rogues", "soldiers", "woodfolk"]
+
 const COLONNE := ["nemico", "ostile", "neutrale", "amichevole", "alleato"]
 const NOMI_REL := {-2: "Nemico", -1: "Ostile", 0: "Neutrale", 1: "Amichevole", 2: "Alleato"}
 ## Tabella degli incontri (Meeting Table) del Super Realm: riga = dado, colonna = rapporto
@@ -60,6 +62,8 @@ func prepara() -> void:
 			r.s["nativi"][gid]["membri"].append(id)
 	# le guarnigioni partono nelle loro abitazioni
 	for gid in Dati.nativi["gruppi"]:
+		if r.e_classico() and not (gid in GRUPPI_CLASSICI):
+			continue
 		var g := gruppo(gid)
 		var gar = g.get("guarnigione")
 		if gar != null and r.s["abitazioni"].has(gar):
@@ -146,6 +150,8 @@ func fine_turno(p: Dictionary) -> void:
 	var riga: int = int(r.s.get("riga_nativi", 1))
 	if dw != "":
 		for gid in Dati.nativi["gruppi"]:
+			if r.e_classico() and not (gid in GRUPPI_CLASSICI):
+				continue
 			var g := gruppo(gid)
 			var st: Dictionary = r.s["nativi"][gid]
 			if g["vagante"] or st["in_mappa"] or int(g.get("riga", 0)) != riga or not (dw in g["abitazioni"]):
@@ -161,6 +167,8 @@ func fine_turno(p: Dictionary) -> void:
 		if c["tipo"] != "perduto":
 			continue
 		for gid in Dati.nativi["gruppi"]:
+			if r.e_classico() and not (gid in GRUPPI_CLASSICI):
+				continue
 			var g := gruppo(gid)
 			if not g["vagante"] or r.s["nativi"][gid]["in_mappa"] or str(g["perduto"]) != str(c["nome_base"]) or not (rm in g["righe"]):
 				continue
