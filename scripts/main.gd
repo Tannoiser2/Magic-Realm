@@ -72,7 +72,7 @@ const GUIDA_CFG := "user://guida_magicrealm.cfg"
 const SCENARI := [1, 2, 3, 4, 5, 6]
 var modo_mossa := false
 var codice := ""
-var scelte_menu := {"edizione": "super", "scenario": 3, "pg": "amazzone", "rivali": 2, "partita_libera": false, "durata_libera": 84, "incontro_classico": 4}
+var scelte_menu := {"edizione": "super", "scenario": 3, "pg": "amazzone", "rivali": 2, "partita_libera": false, "durata_libera": 84, "incontro_classico": 4, "partenza": ""}
 var mischia := {}
 var edizione_portale := "" # "super" o "classico" per le build sul sito; vuoto in Godot locale
 
@@ -934,6 +934,14 @@ func _mostra_menu() -> void:
 		grid.add_child(b)
 	var dsel: Dictionary = Dati.personaggi[scelte_menu["pg"]]
 	v.add_child(_lab(_descr_pg(dsel), 16))
+	if scelte_menu["edizione"] == "classico":
+		v.add_child(_lab("Abitazione iniziale (come nel gioco originale)", 17, f_tit))
+		var abitazioni := HBoxContainer.new()
+		v.add_child(abitazioni)
+		for nome in dsel["partenze"]:
+			abitazioni.add_child(_bott(str(Dati.ABITAZIONI.get(nome, nome)), func(): _scegli_menu("partenza", nome), 15, scelte_menu["partenza"] == nome))
+		if not (scelte_menu["partenza"] in dsel["partenze"]):
+			scelte_menu["partenza"] = dsel["partenze"][0]
 	# rivali
 	var hr := HBoxContainer.new()
 	hr.add_theme_constant_override("separation", 8)
@@ -1013,7 +1021,7 @@ func _nuova_partita() -> void:
 		validi.remove_at(j)
 	codice = _nuovo_codice(rng)
 	if scelte_menu["edizione"] == "classico":
-		_avvia(func(): return g.nuova_con_profilo(ProfiliRegole.classico_incontro(int(scelte_menu["incontro_classico"])), scelte_menu["pg"], rivali, rng.randi()))
+		_avvia(func(): return g.nuova_con_profilo(ProfiliRegole.classico_incontro(int(scelte_menu["incontro_classico"])), scelte_menu["pg"], rivali, rng.randi(), str(scelte_menu["partenza"])))
 	else:
 		_avvia(func():
 			g.nuova(sc, scelte_menu["pg"], rivali, rng.randi())
