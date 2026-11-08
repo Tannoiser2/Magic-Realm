@@ -1,5 +1,5 @@
-## Configurazioni dati per la futura selezione delle regole.
-## Non sostituisce ancora la logica dei sei scenari esistenti.
+## Profili selezionabili della 2a edizione e dei sei scenari Super.
+## Flag non implementati non si considerano attivi anche quando esistono nel regolamento.
 class_name ProfiliRegole
 extends RefCounted
 
@@ -40,11 +40,10 @@ static func super_scenario(numero: int) -> Dictionary:
 
 static func classico_incontro(numero: int) -> Dictionary:
 	assert(numero >= 1 and numero <= 4)
-	var completo := numero == 4
-	return {
+		return {
 		"id": "classico_incontro_%d" % numero, "famiglia": CLASSICO,
 		"incontro": numero, "mappa": "classico_20", "giorni": 28,
-		"pv_assegnati": 5 if completo else 0,
+		"pv_assegnati": 5,
 		"funzioni": {
 			"esplorazione": true, "mostri": true,
 			"combattimento_mostri": numero >= 2,
@@ -52,9 +51,9 @@ static func classico_incontro(numero: int) -> Dictionary:
 			"magia": numero >= 4, "nativi": true,
 			"commercio": true, "ingaggio": numero >= 3,
 			"viaggiatori": false, "visitatori": true,
-			"missioni_viaggiatori": numero >= 3, "cavalli": true
+			"missioni_viaggiatori": numero >= 3, "cavalli": false
 		},
-		"implementato": false
+		"implementato": true
 	}
 
 static func classico_completo() -> Dictionary:
