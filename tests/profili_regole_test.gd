@@ -19,7 +19,7 @@ func _init() -> void:
 		assert(ProfiliRegole.abilitata(p, "mostri"))
 		assert(ProfiliRegole.abilitata(p, "nativi"))
 		assert(ProfiliRegole.abilitata(p, "visitatori"))
-		assert(not ProfiliRegole.abilitata(p, "cavalli"))
+		assert(ProfiliRegole.abilitata(p, "cavalli"))
 		assert(ProfiliRegole.abilitata(p, "combattimento_mostri") == (n >= 2))
 		assert(ProfiliRegole.abilitata(p, "ingaggio") == (n >= 3))
 		assert(ProfiliRegole.abilitata(p, "magia") == (n >= 4))
