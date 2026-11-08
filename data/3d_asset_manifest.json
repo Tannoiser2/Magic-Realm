@@ -3,20 +3,416 @@
   "project": "Magic Realm - 3D asset register",
   "generator_preference": "MakerWorld MakerLab Image-to-3D",
   "units": "millimeters",
-  "statuses": ["to_inventory", "reference_ready", "submitted", "generated", "needs_repair", "approved"],
-  "example_asset": {
-    "original_id": "REPLACE_WITH_TTS_ID",
-    "category": "character",
-    "variant": "default",
-    "image_source": "",
-    "reference_front": "",
-    "reference_back": "",
-    "mesh_glb": "",
-    "mesh_stl": "",
-    "dimensions_mm": null,
-    "pivot": "base_center",
-    "status": "to_inventory",
-    "notes": "Template only: not a generated asset"
-  },
-  "assets": []
+  "statuses": [
+    "to_inventory",
+    "reference_ready",
+    "submitted",
+    "generated",
+    "needs_repair",
+    "approved"
+  ],
+  "assets": [
+    {
+      "original_id": "amazzone",
+      "category": "character",
+      "name": "Amazzone",
+      "edition": [
+        "classic",
+        "super"
+      ],
+      "source_image": "assets/personaggi/amazon_pedina.webp",
+      "reference_front": "assets/personaggi/amazon_simbolo.webp",
+      "mesh_glb": "assets/3d/personaggi/amazon.glb",
+      "mesh_stl": "exports/3d/personaggi/amazon.stl",
+      "dimensions_mm": null,
+      "pivot": "base_center",
+      "status": "to_inventory",
+      "notes": "Model 3D non ancora generato; riferimento 2D originale"
+    },
+    {
+      "original_id": "barbaro",
+      "category": "character",
+      "name": "Barbaro",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/personaggi/barbarian_pedina.webp",
+      "reference_front": "assets/personaggi/barbarian_simbolo.webp",
+      "mesh_glb": "assets/3d/personaggi/barbarian.glb",
+      "mesh_stl": "exports/3d/personaggi/barbarian.stl",
+      "dimensions_mm": null,
+      "pivot": "base_center",
+      "status": "to_inventory",
+      "notes": "Model 3D non ancora generato; riferimento 2D originale"
+    },
+    {
+      "original_id": "bardo",
+      "category": "character",
+      "name": "Bardo",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/personaggi/bard_pedina.webp",
+      "reference_front": "assets/personaggi/bard_simbolo.webp",
+      "mesh_glb": "assets/3d/personaggi/bard.glb",
+      "mesh_stl": "exports/3d/personaggi/bard.stl",
+      "dimensions_mm": null,
+      "pivot": "base_center",
+      "status": "to_inventory",
+      "notes": "Model 3D non ancora generato; riferimento 2D originale"
+    },
+    {
+      "original_id": "berserker",
+      "category": "character",
+      "name": "Berserker",
+      "edition": [
+        "classic",
+        "super"
+      ],
+      "source_image": "assets/personaggi/berserker_pedina.webp",
+      "reference_front": "assets/personaggi/berserker_simbolo.webp",
+      "mesh_glb": "assets/3d/personaggi/berserker.glb",
+      "mesh_stl": "exports/3d/personaggi/berserker.stl",
+      "dimensions_mm": null,
+      "pivot": "base_center",
+      "status": "to_inventory",
+      "notes": "Model 3D non ancora generato; riferimento 2D originale"
+    },
+    {
+      "original_id": "cavaliere_nero",
+      "category": "character",
+      "name": "Cavaliere Nero",
+      "edition": [
+        "classic",
+        "super"
+      ],
+      "source_image": "assets/personaggi/black_knight_pedina.webp",
+      "reference_front": "assets/personaggi/black_knight_simbolo.webp",
+      "mesh_glb": "assets/3d/personaggi/black_knight.glb",
+      "mesh_stl": "exports/3d/personaggi/black_knight.stl",
+      "dimensions_mm": null,
+      "pivot": "base_center",
+      "status": "to_inventory",
+      "notes": "Model 3D non ancora generato; riferimento 2D originale"
+    },
+    {
+      "original_id": "capitano",
+      "category": "character",
+      "name": "Capitano",
+      "edition": [
+        "classic",
+        "super"
+      ],
+      "source_image": "assets/personaggi/captain_pedina.webp",
+      "reference_front": "assets/personaggi/captain_simbolo.webp",
+      "mesh_glb": "assets/3d/personaggi/captain.glb",
+      "mesh_stl": "exports/3d/personaggi/captain.stl",
+      "dimensions_mm": null,
+      "pivot": "base_center",
+      "status": "to_inventory",
+      "notes": "Model 3D non ancora generato; riferimento 2D originale"
+    },
+    {
+      "original_id": "druido",
+      "category": "character",
+      "name": "Druido",
+      "edition": [
+        "classic",
+        "super"
+      ],
+      "source_image": "assets/personaggi/druid_pedina.webp",
+      "reference_front": "assets/personaggi/druid_simbolo.webp",
+      "mesh_glb": "assets/3d/personaggi/druid.glb",
+      "mesh_stl": "exports/3d/personaggi/druid.stl",
+      "dimensions_mm": null,
+      "pivot": "base_center",
+      "status": "to_inventory",
+      "notes": "Model 3D non ancora generato; riferimento 2D originale"
+    },
+    {
+      "original_id": "nano",
+      "category": "character",
+      "name": "Nano",
+      "edition": [
+        "classic",
+        "super"
+      ],
+      "source_image": "assets/personaggi/dwarf_pedina.webp",
+      "reference_front": "assets/personaggi/dwarf_simbolo.webp",
+      "mesh_glb": "assets/3d/personaggi/dwarf.glb",
+      "mesh_stl": "exports/3d/personaggi/dwarf.stl",
+      "dimensions_mm": null,
+      "pivot": "base_center",
+      "status": "to_inventory",
+      "notes": "Model 3D non ancora generato; riferimento 2D originale"
+    },
+    {
+      "original_id": "elfo",
+      "category": "character",
+      "name": "Elfo",
+      "edition": [
+        "classic",
+        "super"
+      ],
+      "source_image": "assets/personaggi/elf_pedina.webp",
+      "reference_front": "assets/personaggi/elf_simbolo.webp",
+      "mesh_glb": "assets/3d/personaggi/elf.glb",
+      "mesh_stl": "exports/3d/personaggi/elf.stl",
+      "dimensions_mm": null,
+      "pivot": "base_center",
+      "status": "to_inventory",
+      "notes": "Model 3D non ancora generato; riferimento 2D originale"
+    },
+    {
+      "original_id": "gladiatore",
+      "category": "character",
+      "name": "Gladiatore",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/personaggi/gladiator_pedina.webp",
+      "reference_front": "assets/personaggi/gladiator_simbolo.webp",
+      "mesh_glb": "assets/3d/personaggi/gladiator.glb",
+      "mesh_stl": "exports/3d/personaggi/gladiator.stl",
+      "dimensions_mm": null,
+      "pivot": "base_center",
+      "status": "to_inventory",
+      "notes": "Model 3D non ancora generato; riferimento 2D originale"
+    },
+    {
+      "original_id": "mago",
+      "category": "character",
+      "name": "Mago",
+      "edition": [
+        "classic",
+        "super"
+      ],
+      "source_image": "assets/personaggi/magician_pedina.webp",
+      "reference_front": "assets/personaggi/magician_simbolo.webp",
+      "mesh_glb": "assets/3d/personaggi/magician.glb",
+      "mesh_stl": "exports/3d/personaggi/magician.stl",
+      "dimensions_mm": null,
+      "pivot": "base_center",
+      "status": "to_inventory",
+      "notes": "Model 3D non ancora generato; riferimento 2D originale"
+    },
+    {
+      "original_id": "negromante",
+      "category": "character",
+      "name": "Negromante",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/personaggi/necromancer_pedina.webp",
+      "reference_front": "assets/personaggi/necromancer_simbolo.webp",
+      "mesh_glb": "assets/3d/personaggi/necromancer.glb",
+      "mesh_stl": "exports/3d/personaggi/necromancer.stl",
+      "dimensions_mm": null,
+      "pivot": "base_center",
+      "status": "to_inventory",
+      "notes": "Model 3D non ancora generato; riferimento 2D originale"
+    },
+    {
+      "original_id": "paladino",
+      "category": "character",
+      "name": "Paladino",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/personaggi/paladin_pedina.webp",
+      "reference_front": "assets/personaggi/paladin_simbolo.webp",
+      "mesh_glb": "assets/3d/personaggi/paladin.glb",
+      "mesh_stl": "exports/3d/personaggi/paladin.stl",
+      "dimensions_mm": null,
+      "pivot": "base_center",
+      "status": "to_inventory",
+      "notes": "Model 3D non ancora generato; riferimento 2D originale"
+    },
+    {
+      "original_id": "pellegrino",
+      "category": "character",
+      "name": "Pellegrino",
+      "edition": [
+        "classic",
+        "super"
+      ],
+      "source_image": "assets/personaggi/pilgrim_pedina.webp",
+      "reference_front": "assets/personaggi/pilgrim_simbolo.webp",
+      "mesh_glb": "assets/3d/personaggi/pilgrim.glb",
+      "mesh_stl": "exports/3d/personaggi/pilgrim.stl",
+      "dimensions_mm": null,
+      "pivot": "base_center",
+      "status": "to_inventory",
+      "notes": "Model 3D non ancora generato; riferimento 2D originale"
+    },
+    {
+      "original_id": "sensitiva",
+      "category": "character",
+      "name": "Sensitiva",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/personaggi/psychic_pedina.webp",
+      "reference_front": "assets/personaggi/psychic_simbolo.webp",
+      "mesh_glb": "assets/3d/personaggi/psychic.glb",
+      "mesh_stl": "exports/3d/personaggi/psychic.stl",
+      "dimensions_mm": null,
+      "pivot": "base_center",
+      "status": "to_inventory",
+      "notes": "Model 3D non ancora generato; riferimento 2D originale"
+    },
+    {
+      "original_id": "stregone",
+      "category": "character",
+      "name": "Stregone",
+      "edition": [
+        "classic",
+        "super"
+      ],
+      "source_image": "assets/personaggi/sorcerer_pedina.webp",
+      "reference_front": "assets/personaggi/sorcerer_simbolo.webp",
+      "mesh_glb": "assets/3d/personaggi/sorcerer.glb",
+      "mesh_stl": "exports/3d/personaggi/sorcerer.stl",
+      "dimensions_mm": null,
+      "pivot": "base_center",
+      "status": "to_inventory",
+      "notes": "Model 3D non ancora generato; riferimento 2D originale"
+    },
+    {
+      "original_id": "spadaccino",
+      "category": "character",
+      "name": "Spadaccino",
+      "edition": [
+        "classic",
+        "super"
+      ],
+      "source_image": "assets/personaggi/swordsman_pedina.webp",
+      "reference_front": "assets/personaggi/swordsman_simbolo.webp",
+      "mesh_glb": "assets/3d/personaggi/swordsman.glb",
+      "mesh_stl": "exports/3d/personaggi/swordsman.stl",
+      "dimensions_mm": null,
+      "pivot": "base_center",
+      "status": "to_inventory",
+      "notes": "Model 3D non ancora generato; riferimento 2D originale"
+    },
+    {
+      "original_id": "pescatore",
+      "category": "character",
+      "name": "Pescatore",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/personaggi/trawler_pedina.webp",
+      "reference_front": "assets/personaggi/trawler_simbolo.webp",
+      "mesh_glb": "assets/3d/personaggi/trawler.glb",
+      "mesh_stl": "exports/3d/personaggi/trawler.stl",
+      "dimensions_mm": null,
+      "pivot": "base_center",
+      "status": "to_inventory",
+      "notes": "Model 3D non ancora generato; riferimento 2D originale"
+    },
+    {
+      "original_id": "viandante",
+      "category": "character",
+      "name": "Viandante",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/personaggi/wanderer_pedina.webp",
+      "reference_front": "assets/personaggi/wanderer_simbolo.webp",
+      "mesh_glb": "assets/3d/personaggi/wanderer.glb",
+      "mesh_stl": "exports/3d/personaggi/wanderer.stl",
+      "dimensions_mm": null,
+      "pivot": "base_center",
+      "status": "to_inventory",
+      "notes": "Model 3D non ancora generato; riferimento 2D originale"
+    },
+    {
+      "original_id": "cavaliere_bianco",
+      "category": "character",
+      "name": "Cavaliere Bianco",
+      "edition": [
+        "classic",
+        "super"
+      ],
+      "source_image": "assets/personaggi/white_knight_pedina.webp",
+      "reference_front": "assets/personaggi/white_knight_simbolo.webp",
+      "mesh_glb": "assets/3d/personaggi/white_knight.glb",
+      "mesh_stl": "exports/3d/personaggi/white_knight.stl",
+      "dimensions_mm": null,
+      "pivot": "base_center",
+      "status": "to_inventory",
+      "notes": "Model 3D non ancora generato; riferimento 2D originale"
+    },
+    {
+      "original_id": "strega",
+      "category": "character",
+      "name": "Strega",
+      "edition": [
+        "classic",
+        "super"
+      ],
+      "source_image": "assets/personaggi/witch_pedina.webp",
+      "reference_front": "assets/personaggi/witch_simbolo.webp",
+      "mesh_glb": "assets/3d/personaggi/witch.glb",
+      "mesh_stl": "exports/3d/personaggi/witch.stl",
+      "dimensions_mm": null,
+      "pivot": "base_center",
+      "status": "to_inventory",
+      "notes": "Model 3D non ancora generato; riferimento 2D originale"
+    },
+    {
+      "original_id": "re_stregone",
+      "category": "character",
+      "name": "Re Stregone",
+      "edition": [
+        "classic",
+        "super"
+      ],
+      "source_image": "assets/personaggi/witch_king_pedina.webp",
+      "reference_front": "assets/personaggi/witch_king_simbolo.webp",
+      "mesh_glb": "assets/3d/personaggi/witch_king.glb",
+      "mesh_stl": "exports/3d/personaggi/witch_king.stl",
+      "dimensions_mm": null,
+      "pivot": "base_center",
+      "status": "to_inventory",
+      "notes": "Model 3D non ancora generato; riferimento 2D originale"
+    },
+    {
+      "original_id": "stregone_bianco",
+      "category": "character",
+      "name": "Arcimago",
+      "edition": [
+        "classic",
+        "super"
+      ],
+      "source_image": "assets/personaggi/wizard_pedina.webp",
+      "reference_front": "assets/personaggi/wizard_simbolo.webp",
+      "mesh_glb": "assets/3d/personaggi/wizard.glb",
+      "mesh_stl": "exports/3d/personaggi/wizard.stl",
+      "dimensions_mm": null,
+      "pivot": "base_center",
+      "status": "to_inventory",
+      "notes": "Model 3D non ancora generato; riferimento 2D originale"
+    },
+    {
+      "original_id": "ragazza_boschi",
+      "category": "character",
+      "name": "Ragazza dei Boschi",
+      "edition": [
+        "classic",
+        "super"
+      ],
+      "source_image": "assets/personaggi/woods_girl_pedina.webp",
+      "reference_front": "assets/personaggi/woods_girl_simbolo.webp",
+      "mesh_glb": "assets/3d/personaggi/woods_girl.glb",
+      "mesh_stl": "exports/3d/personaggi/woods_girl.stl",
+      "dimensions_mm": null,
+      "pivot": "base_center",
+      "status": "to_inventory",
+      "notes": "Model 3D non ancora generato; riferimento 2D originale"
+    }
+  ],
+  "asset_count": 24,
+  "last_audited": "2026-11-08"
 }
