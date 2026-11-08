@@ -59,7 +59,16 @@ static func tipo(c: Dictionary) -> String:
 static func cavalcabile(p: Dictionary, c: Dictionary, carico: int, vulnerabilita: int, in_grotta: bool) -> bool:
  if in_grotta or c.get("morto", false):
   return false
- return forza(c) >= maxi(carico, vulnerabilita)
+ var peso_cavaliere := forza(c)
+ if peso_cavaliere < vulnerabilita:
+  return false
+ if carico <= peso_cavaliere:
+  return true
+ # Equipaggiamento piu pesante del cavallo montato puo viaggiare su un pack horse.
+ for altro in p.get("cavalli", []):
+  if altro["id"] != c["id"] and not altro.get("morto", false) and forza(altro) >= carico:
+   return true
+ return false
 
 static func portata(p: Dictionary, carico_personale: int) -> int:
  # Cavalli da soma inattivi possono portare gli oggetti senza cumulare pesi.
