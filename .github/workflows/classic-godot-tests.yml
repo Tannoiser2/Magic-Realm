@@ -34,6 +34,8 @@ jobs:
         run: godot --headless --editor --path . --import --quit
       - name: Rule profile checks
         run: godot --headless --path . --script res://tests/profili_regole_test.gd
+      - name: All four original 2e Encounters and save round-trip
+        run: godot --headless --path . --script res://tests/quattro_encounter_test.gd
       - name: Original map generation
         run: godot --headless --path . --script res://tests/mappa_classica_test.gd
       - name: Original map chits and lost places
