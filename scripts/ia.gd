@@ -348,6 +348,8 @@ func azione(p: Dictionary, d: Dictionary) -> Dictionary:
 	var magia := _incantesimo_combattimento(p, d)
 	if not magia.is_empty() and (sal[0] > 3 or d["fuga"].is_empty()):
 		return magia
+	if d.get("fuga_cavallo", false) and (sal[0] <= 4 or _assegnati_pericolosi(p) or _imbattibili(p) or _letali(p)):
+		return {"tipo": "fuga_cavallo"}
 	if not d["fuga"].is_empty() and (sal[0] <= 4 or _assegnati_pericolosi(p) or _imbattibili(p) or _letali(p)):
 		return {"tipo": "fuga", "chit": d["fuga"][0]}
 	if d["berserk"] >= 0:
@@ -523,7 +525,9 @@ func mischia(p: Dictionary, d: Dictionary) -> Dictionary:
 		if best >= 0:
 			res["attacco"] = {"cerchio": dirs[r.rng.randi_range(0, 2)], "chit": best}
 			sforzo += int(p["chits"][best]["sforzi"])
-	if not d["move"].is_empty() and d.get("minacciato", true):
+	if d.get("cavallo", false) and d.get("minacciato", true):
+		res["manovra"] = {"casella": mans[r.rng.randi_range(0, 2)], "cavallo": true}
+	elif not d["move"].is_empty() and d.get("minacciato", true):
 		var best := -1
 		var bv := -999
 		for i in d["move"]:
