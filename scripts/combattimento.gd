@@ -152,6 +152,9 @@ func _round() -> bool:
 	C["pos"] = {}
 	C["colpi_t"] = {}
 	for p in _in_lotta():
+		if r.e_classico() and r.usa_regola("cavalli"):
+			for cavallo in p.get("cavalli", []):
+				cavallo["galoppo_usato"] = false
 		C["uso"][p["pid"]] = {"usati": {}, "sforzo": 0, "cariche": [], "bersaglio": "", "attacco": {}, "parata": {}, "manovra": {}, "scudo": "", "ferite": 0, "ucciso_da": "", "incantesimo": {}}
 	r.scrivi("— Round %d —" % C["round"], "round")
 	r.cambiato.emit()
@@ -222,6 +225,8 @@ func _round() -> bool:
 		match sc.get("tipo", ""):
 			"fuga_cavallo":
 				if opz.get("fuga_cavallo", false):
+					var cavallo: Dictionary = r._cavallo_cavalcato(p)
+					if not cavallo.is_empty(): cavallo["galoppo_usato"] = true
 					_fuggi(p)
 					ev = true
 			"fuga":
@@ -401,7 +406,7 @@ func _opzioni_azione(p: Dictionary) -> Dictionary:
 	if not _trattenuto(p) and not ("Distratto" in p["maledizioni"]):
 		fuga = _chit_mossa_validi(p, v)
 	var cavallo: Dictionary = r._cavallo_cavalcato(p)
-	var fuga_cavallo: bool = not cavallo.is_empty() and CavalliClassici.tempo(cavallo, true) < v and not _trattenuto(p)
+	var fuga_cavallo: bool = not cavallo.is_empty() and CavalliClassici.tempo(cavallo, not cavallo.get("galoppo_usato", false)) < v and not _trattenuto(p)
 	var allerta := []
 	var a := r.arma_attiva(p)
 	if not a.is_empty() and not a["allerta"] and not ("Stanco" in p["maledizioni"]):
@@ -491,7 +496,7 @@ func _opzioni_mischia(p: Dictionary) -> Dictionary:
 	for pid in C["uso"]:
 		if C["uso"][pid]["bersaglio"] == p["pid"]:
 			minacciato = true
-	return {"fight": fight, "move": move, "cavallo": not cavallo.is_empty(), "tempo_cavallo": CavalliClassici.tempo(cavallo, true) if not cavallo.is_empty() else 99, "scudo": ha_scudo, "missile": missile, "bersaglio": C["uso"][p["pid"]]["bersaglio"], "minacciato": minacciato,
+	return {"fight": fight, "move": move, "cavallo": not cavallo.is_empty(), "tempo_cavallo": CavalliClassici.tempo(cavallo, not cavallo.get("galoppo_usato", false)) if not cavallo.is_empty() else 99, "scudo": ha_scudo, "missile": missile, "bersaglio": C["uso"][p["pid"]]["bersaglio"], "minacciato": minacciato,
 		"sforzo": C["uso"][p["pid"]]["sforzo"], "arma": a.get("id", "pugnale")}
 
 func _registra_mischia(p: Dictionary, sc: Dictionary, dati: Dictionary) -> void:
@@ -513,7 +518,9 @@ func _registra_mischia(p: Dictionary, sc: Dictionary, dati: Dictionary) -> void:
 	if ma is Dictionary and ma.get("cavallo", false) and dati.get("cavallo", false):
 		var cavallo: Dictionary = r._cavallo_cavalcato(p)
 		if not cavallo.is_empty():
-			u["manovra"] = {"casella": ma.get("casella", "dodge"), "cavallo": true, "tempo": CavalliClassici.tempo(cavallo, true)}
+			var galoppa: bool = not cavallo.get("galoppo_usato", false)
+			u["manovra"] = {"casella": ma.get("casella", "dodge"), "cavallo": true, "tempo": CavalliClassici.tempo(cavallo, galoppa)}
+			if galoppa: cavallo["galoppo_usato"] = true
 	elif ma is Dictionary and ma.has("chit"):
 		var ci := int(ma["chit"])
 		var cas: String = ma.get("casella", "charge")
