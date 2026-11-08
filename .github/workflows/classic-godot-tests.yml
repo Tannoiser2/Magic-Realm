@@ -36,6 +36,8 @@ jobs:
         run: timeout 45s godot --headless --path . --script res://tests/profili_regole_test.gd
       - name: All four original 2e Encounters and save round-trip
         run: timeout 45s godot --headless --path . --script res://tests/quattro_encounter_test.gd
+      - name: Original horse trading and movement phases
+        run: timeout 45s godot --headless --path . --script res://tests/cavalli_classici_test.gd
       - name: Full automatic game each Encounter
         run: timeout 45s godot --headless --path . --script res://tests/partite_quattro_encounter_test.gd
       - name: Original map generation
