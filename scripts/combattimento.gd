@@ -152,6 +152,9 @@ func _round() -> bool:
 	C["pos"] = {}
 	C["colpi_t"] = {}
 	for p in _in_lotta():
+		if r.e_classico() and r.usa_regola("cavalli"):
+			for cavallo in p.get("cavalli", []):
+				cavallo["galoppo_usato"] = false
 		C["uso"][p["pid"]] = {"usati": {}, "sforzo": 0, "cariche": [], "bersaglio": "", "attacco": {}, "parata": {}, "manovra": {}, "scudo": "", "ferite": 0, "ucciso_da": "", "incantesimo": {}}
 	r.scrivi("— Round %d —" % C["round"], "round")
 	r.cambiato.emit()
@@ -220,6 +223,12 @@ func _round() -> bool:
 		if not (sc is Dictionary):
 			continue
 		match sc.get("tipo", ""):
+			"fuga_cavallo":
+				if opz.get("fuga_cavallo", false):
+					var cavallo: Dictionary = r._cavallo_cavalcato(p)
+					if not cavallo.is_empty(): cavallo["galoppo_usato"] = true
+					_fuggi(p)
+					ev = true
 			"fuga":
 				var ci := int(sc.get("chit", -1))
 				if ci in opz["fuga"] and _sforzo_ok(p, ci):
@@ -365,6 +374,8 @@ func _sforzo_ok(p: Dictionary, ci: int) -> bool:
 func _chit_mossa_validi(p: Dictionary, vel_max: int) -> Array:
 	var a := []
 	var carico := r.carico_max(p)
+	if r.e_classico() and not r._cavallo_cavalcato(p).is_empty():
+		return a # chi cavalca non gioca i MOVE chits per fuggire
 	for i in r.chit_attivi(p):
 		var c: Dictionary = p["chits"][i]
 		if c["tipo"] == "M" and r.forza_chit(c) >= carico and r.vel_chit(p, c) < vel_max and not C["uso"][p["pid"]]["usati"].has(i):
@@ -394,6 +405,8 @@ func _opzioni_azione(p: Dictionary) -> Dictionary:
 	var fuga := []
 	if not _trattenuto(p) and not ("Distratto" in p["maledizioni"]):
 		fuga = _chit_mossa_validi(p, v)
+	var cavallo: Dictionary = r._cavallo_cavalcato(p)
+	var fuga_cavallo: bool = not cavallo.is_empty() and CavalliClassici.tempo(cavallo, not cavallo.get("galoppo_usato", false)) < v and not _trattenuto(p)
 	var allerta := []
 	var a := r.arma_attiva(p)
 	if not a.is_empty() and not a["allerta"] and not ("Stanco" in p["maledizioni"]):
@@ -424,7 +437,7 @@ func _opzioni_azione(p: Dictionary) -> Dictionary:
 		for o in p["oggetti"]:
 			if str(Arcano.tesoro(o["id"]).get("eff", {}).get("monouso", "")) == "luce":
 				usabili.append(o["id"])
-	return {"fuga": fuga, "allerta": allerta, "berserk": berserk, "riflessi": riflessi, "oggetti": attivabili, "minaccia": v,
+	return {"fuga": fuga, "fuga_cavallo": fuga_cavallo, "allerta": allerta, "berserk": berserk, "riflessi": riflessi, "oggetti": attivabili, "minaccia": v,
 		"incantesimi": incs, "bersagli_inc": bers, "usabili": usabili}
 
 func _attiva(p: Dictionary, id: String) -> void:
@@ -462,13 +475,14 @@ func _opzioni_mischia(p: Dictionary) -> Dictionary:
 	var fight := []
 	var move := []
 	var carico := r.carico_max(p)
+	var cavallo: Dictionary = r._cavallo_cavalcato(p)
 	for i in r.chit_attivi(p):
 		var c: Dictionary = p["chits"][i]
 		if C["uso"][p["pid"]]["usati"].has(i):
 			continue
 		if c["tipo"] == "F" and r.forza_chit(c) >= peso_arma:
 			fight.append(i)
-		if (c["tipo"] == "M" and r.forza_chit(c) >= carico) or c["tipo"] == "D":
+		if cavallo.is_empty() and ((c["tipo"] == "M" and r.forza_chit(c) >= carico) or c["tipo"] == "D"):
 			move.append(i)
 	var ha_scudo := false
 	for o in p["oggetti"]:
@@ -482,7 +496,7 @@ func _opzioni_mischia(p: Dictionary) -> Dictionary:
 	for pid in C["uso"]:
 		if C["uso"][pid]["bersaglio"] == p["pid"]:
 			minacciato = true
-	return {"fight": fight, "move": move, "scudo": ha_scudo, "missile": missile, "bersaglio": C["uso"][p["pid"]]["bersaglio"], "minacciato": minacciato,
+	return {"fight": fight, "move": move, "cavallo": not cavallo.is_empty(), "tempo_cavallo": CavalliClassici.tempo(cavallo, not cavallo.get("galoppo_usato", false)) if not cavallo.is_empty() else 99, "scudo": ha_scudo, "missile": missile, "bersaglio": C["uso"][p["pid"]]["bersaglio"], "minacciato": minacciato,
 		"sforzo": C["uso"][p["pid"]]["sforzo"], "arma": a.get("id", "pugnale")}
 
 func _registra_mischia(p: Dictionary, sc: Dictionary, dati: Dictionary) -> void:
@@ -501,7 +515,13 @@ func _registra_mischia(p: Dictionary, sc: Dictionary, dati: Dictionary) -> void:
 			_usa(p, ci)
 			u["parata"] = {"cerchio": pa.get("cerchio", "thrust"), "chit": ci}
 	var ma = sc.get("manovra")
-	if ma is Dictionary and ma.has("chit"):
+	if ma is Dictionary and ma.get("cavallo", false) and dati.get("cavallo", false):
+		var cavallo: Dictionary = r._cavallo_cavalcato(p)
+		if not cavallo.is_empty():
+			var galoppa: bool = not cavallo.get("galoppo_usato", false)
+			u["manovra"] = {"casella": ma.get("casella", "dodge"), "cavallo": true, "tempo": CavalliClassici.tempo(cavallo, galoppa)}
+			if galoppa: cavallo["galoppo_usato"] = true
+	elif ma is Dictionary and ma.has("chit"):
 		var ci := int(ma["chit"])
 		var cas: String = ma.get("casella", "charge")
 		if p["chits"][ci]["tipo"] == "D":
@@ -519,7 +539,7 @@ func _registra_mischia(p: Dictionary, sc: Dictionary, dati: Dictionary) -> void:
 	if not u["parata"].is_empty():
 		parti.append("parata %s" % DIREZIONI[u["parata"]["cerchio"]])
 	if not u["manovra"].is_empty():
-		parti.append("%s (%s)" % [MANOVRE[u["manovra"]["casella"]], r.descr_chit(p["chits"][u["manovra"]["chit"]])])
+		parti.append("%s (%s)" % [MANOVRE[u["manovra"]["casella"]], "a cavallo" if u["manovra"].get("cavallo", false) else r.descr_chit(p["chits"][u["manovra"]["chit"]])])
 	if not parti.is_empty():
 		r.scrivi("%s: %s." % [p["nome"], ", ".join(parti)])
 
@@ -683,7 +703,7 @@ func _risolvi() -> bool:
 				colpisce = true
 			else:
 				var q := _pg(bersaglio)
-				vel_m = r.vel_chit(q, q["chits"][mu["chit"]])
+				vel_m = int(mu["tempo"]) if mu.get("cavallo", false) else r.vel_chit(q, q["chits"][mu["chit"]])
 				if C["magia"]["grazia"].has(bersaglio):
 					vel_m -= 1
 				col = mu["casella"]
@@ -770,8 +790,10 @@ func _colpisci_pg(q: Dictionary, c: Dictionary, attaccante) -> bool:
 		C["magia"]["scudo_sacro"].erase(q["pid"])
 		r.scrivi("Lo Scudo sacro ferma il colpo di %s contro %s." % [_nome(c["da"]), q["nome"]], "bene")
 		return false
-	var arm := _armatura_colpita(q, c["dir"])
-	var corazzato: bool = not arm.is_empty() or (C.has("magia") and C["magia"]["corteccia"].has(q["pid"]))
+	var montato: Dictionary = r._cavallo_cavalcato(q)
+	var su_cavallo: bool = not montato.is_empty() and bool(u.get("manovra", {}).get("cavallo", false)) and not c.get("rosso", false)
+	var arm := {} if su_cavallo else _armatura_colpita(q, c["dir"])
+	var corazzato: bool = (su_cavallo and CavalliClassici.tipo(montato) == "guerra") or (not su_cavallo and (not arm.is_empty() or (C.has("magia") and C["magia"]["corteccia"].has(q["pid"]))))
 	var h := 0
 	var testo := ""
 	var x_puro := false
@@ -805,6 +827,14 @@ func _colpisci_pg(q: Dictionary, c: Dictionary, attaccante) -> bool:
 				testo = " (proiettili, dado %d)" % mt[1]
 				h = mt[0]
 	var chi := _nome(c["da"])
+	if su_cavallo:
+		var soglia: int = Dati.peso_i(str(CavalliClassici.definizione(montato["id"])["vulnerabilita"]))
+		if h >= soglia:
+			q["cavalli"].erase(montato)
+			r.scrivi("%s colpisce e uccide il cavallo di %s!" % [chi, q["nome"]], "male")
+		else:
+			r.scrivi("%s colpisce il cavallo di %s, che resiste." % [chi, q["nome"]])
+		return false
 	if (x_puro or (c["missile"] and h >= 5)) and true:
 		if not arm.is_empty():
 			q["oggetti"].erase(arm)

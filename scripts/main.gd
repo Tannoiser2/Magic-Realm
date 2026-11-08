@@ -809,7 +809,7 @@ func _mostra_guida_classica() -> void:
 	_apri_modale("Magic Realm Classico — guida")
 	box_modale.add_child(_lab("Quattro incontri della seconda edizione: I — esplorazione e caccia al tesoro senza combattimenti; II — combattimento con i mostri; III — guerra tra personaggi, nativi e assoldamenti; IV — incantesimi ed incantamenti.", 17))
 	box_modale.add_child(_lab("Ogni incontro dura 28 giorni, usa 20 tessere e assegna cinque punti tra grandi tesori, incantesimi (solo nel IV), fama, notorietà e oro. Alla fine si calcolano bonus e penalità: punteggio non negativo = requisiti raggiunti; il più alto è il vincitore assoluto.", 16))
-	box_modale.add_child(_lab("Versione sperimentale: Seguire, cavalli, missioni e campagne classiche, comandi ai nativi e diversi incantesimi avanzati non riproducono ancora tutte le regole fisiche. Super Realm resta separato.", 15))
+	box_modale.add_child(_lab("Versione sperimentale: cavalli personali e combattimento montato presenti; restano da completare cavalli dei nativi, parte delle missioni e campagne classiche, comandi ai nativi e diversi incantesimi avanzati. Super Realm resta separato.", 15))
 	_riga_bottoni().add_child(_bott("Chiudi", func(): modale.visible = false, 18, true))
 	_ricentra()
 
@@ -1241,6 +1241,16 @@ func _aggiorna_scheda() -> void:
 	elif g.s["scenario"] == 2:
 		punti += " · uccisioni %d/4" % u["uccisi_pg"]
 	scheda.add_child(_lab(punti, 17, f_tit))
+	# Cavalli esclusivi del Classico: uno cavalcato, altri come animali da soma.
+	if g.e_classico() and g.usa_regola("cavalli") and not u.get("cavalli", []).is_empty():
+		scheda.add_child(_lab("Cavalli · uno attivo, gli altri da soma", 18, f_tit))
+		var scuderia := HFlowContainer.new()
+		scheda.add_child(scuderia)
+		for cavallo in u["cavalli"]:
+			var definizione: Dictionary = CavalliClassici.definizione(cavallo["id"])
+			var cavalcato: bool = cavallo.get("attivo", false)
+			scuderia.add_child(_bott(("%s: %s" % [definizione["nome"], "cavalcato" if cavalcato else "da soma"]),
+				func(): _attiva_cavallo(cavallo["id"]), 14, cavalcato))
 	# segnalini d'azione
 	scheda.add_child(_lab("Segnalini d'azione", 18, f_tit))
 	var gr := GridContainer.new()
@@ -1435,6 +1445,21 @@ func _carta_inc(id: String) -> void:
 		if not g.richiesta.is_empty() and g.richiesta["tipo"] != "piano": _chiede(g.richiesta), 17))
 	_ricentra()
 
+func _attiva_cavallo(id: String) -> void:
+	if not g.e_classico() or not g.usa_regola("cavalli"):
+		return
+	if g.richiesta.get("tipo", "") != "piano":
+		_avviso("Puoi cambiare cavallo prima di confermare il piano del giorno.")
+		return
+	var u: Dictionary = g.umano()
+	if not CavalliClassici.attiva(u, id, g.carico_max(u), g.vulnerabilita(u), g.tipo_radura(u["dove"]) == "C"):
+		_avviso("Non puoi cavalcare questo animale: grotta o carico troppo pesante.")
+		return
+	fasi = g.fasi_disponibili(u)
+	piano = []
+	_aggiorna_scheda()
+	_pannello_piano()
+
 func _attiva_oggetto(id: String) -> void:
 	if g.richiesta.get("tipo", "") != "piano":
 		_avviso("Gli oggetti si attivano all'alba (o come azione in combattimento).")
@@ -1512,7 +1537,7 @@ func _pannello_piano() -> void:
 	var tot := _fasi_totali()
 	var testo := "Alba del giorno %d: registra le attività di %s (%d fasi" % [g.s["giorno"], u["nome"], tot]
 	if not fasi["extra"].is_empty():
-		var nomi := {"M": "movimento", "R": "riposo", "H": "nascondersi", "S": "ricerca", "A": "allerta", "*": "qualsiasi", "E": "incanto", "T": "commercio", "HR": "ingaggio", "V": "volo"}
+		var nomi := {"M": "movimento", "R": "riposo", "H": "nascondersi", "S": "ricerca", "A": "allerta", "*": "qualsiasi", "E": "incanto", "T": "commercio", "HR": "ingaggio", "V": "volo", "MP": "pony (movimento)", "MC": "cavallo da lavoro (movimento)"}
 		testo += ", di cui extra: " + ", ".join(fasi["extra"].map(func(x): return nomi[x]))
 	testo += ")."
 	if fasi["grotta"]:
@@ -1938,6 +1963,8 @@ func _richiesta_combattimento(req: Dictionary) -> void:
 			if not unici.is_empty():
 				box_modale.add_child(_scegli_chit(unici, sel))
 			var h := _riga_bottoni()
+			if d.get("fuga_cavallo", false):
+				h.add_child(_bott("Fuggi a cavallo", func(): _rispondi({"tipo": "fuga_cavallo"}), 17))
 			if not d["fuga"].is_empty():
 				h.add_child(_bott("Fuggi", func():
 					if sel.is_empty() or not (sel[0] in d["fuga"]): _avviso("Scegli un segnalino Movimento valido per fuggire.")
@@ -2002,8 +2029,11 @@ func _pannello_mischia(d: Dictionary) -> void:
 		mischia["f"] = [sug["attacco"]["chit"]]
 		mischia["cerchio"] = sug["attacco"]["cerchio"]
 	if sug.has("manovra"):
-		mischia["m"] = [sug["manovra"]["chit"]]
 		mischia["casella"] = sug["manovra"]["casella"]
+		if sug["manovra"].get("cavallo", false):
+			mischia["cavallo"] = true
+		else:
+			mischia["m"] = [sug["manovra"]["chit"]]
 	mischia["scudo"] = sug.get("scudo", "thrust")
 	var bers: String = d["bersaglio"]
 	box_modale.add_child(_lab("Bersaglio: %s · arma: %s%s · sforzo già usato: %d asterischi (massimo 2)" % [
@@ -2033,7 +2063,7 @@ func _pannello_mischia(d: Dictionary) -> void:
 		_evidenzia(gruppo, Combattimento.DIREZIONI[mischia["cerchio"]] + " (attacco)")
 		box_modale.add_child(_lab("Segnalino Combattimento (forza almeno pari al peso dell'arma):", 14))
 		box_modale.add_child(_scegli_chit(d["fight"], mischia["f"]))
-	if not d["move"].is_empty():
+	if not d["move"].is_empty() or d.get("cavallo", false):
 		var h2 := _riga_bottoni()
 		h2.add_child(_lab_riga("Manovra:"))
 		var gruppo2 := []
@@ -2044,8 +2074,12 @@ func _pannello_mischia(d: Dictionary) -> void:
 			gruppo2.append(b)
 			h2.add_child(b)
 		_evidenzia(gruppo2, Combattimento.MANOVRE[mischia["casella"]])
-		box_modale.add_child(_lab("Segnalino Movimento (deve reggere tutto ciò che porti):", 14))
-		box_modale.add_child(_scegli_chit(d["move"], mischia["m"]))
+		if d.get("cavallo", false):
+			mischia["cavallo"] = true
+			box_modale.add_child(_lab("Manovra con il cavallo (galoppo: tempo %d). Se un colpo colpisce la manovra, il cavallo assorbe il danno." % d["tempo_cavallo"], 14))
+		else:
+			box_modale.add_child(_lab("Segnalino Movimento (deve reggere tutto ciò che porti):", 14))
+			box_modale.add_child(_scegli_chit(d["move"], mischia["m"]))
 	if d["scudo"]:
 		var h3 := _riga_bottoni()
 		h3.add_child(_lab_riga("Scudo contro:"))
@@ -2062,7 +2096,9 @@ func _pannello_mischia(d: Dictionary) -> void:
 		var r := {"scudo": mischia["scudo"]}
 		if not mischia["f"].is_empty():
 			r[mischia["modo"]] = {"cerchio": mischia["cerchio"], "chit": mischia["f"][0]}
-		if not mischia["m"].is_empty():
+		if mischia.get("cavallo", false):
+			r["manovra"] = {"casella": mischia["casella"], "cavallo": true}
+		elif not mischia["m"].is_empty():
 			r["manovra"] = {"casella": mischia["casella"], "chit": mischia["m"][0]}
 		_rispondi(r), 20, true))
 	hb.add_child(_bott("Non giocare nulla", func(): _rispondi({"scudo": mischia["scudo"]}), 16))

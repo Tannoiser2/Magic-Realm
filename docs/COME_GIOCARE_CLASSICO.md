@@ -21,7 +21,7 @@ Seleziona il personaggio fra i 16 originali, un'abitazione iniziale consentita e
 
 ## Usare Godot localmente
 
-Clona il ramo pubblicato `main` con `git clone https://github.com/Tannoiser2/Magic-Realm.git`, aprilo in Godot 4.7.2 e premi F5. Durante lo sviluppo, per provare modifiche non ancora pubblicate, clona `feature/classic-four-encounters`.
+Clona il ramo pubblicato `main` con `git clone https://github.com/Tannoiser2/Magic-Realm.git`, aprilo in Godot 4.7.2 e premi F5. Durante lo sviluppo, per provare modifiche non ancora pubblicate, clona `feature/classic-horses-combat`.
 
 ## Salvataggi
 
@@ -29,7 +29,7 @@ Super e Classico usano salvataggi locali e percorsi Firebase separati. Il Classi
 
 ## Stato delle regole
 
-**Modalità sperimentale, non conversione integrale dell'originale**. Cavalli, alcune missioni e campagne classiche, diversi incantesimi di controllo e trasformazione, gestione completa dei leader ingaggiati ed effetti particolari dei tesori rimangono incompleti. La scelta di Seguire condivide i principali movimenti e risultati, ma non tutte le interazioni avanzate sono riprodotte.
+**Modalità sperimentale, non conversione integrale dell'originale**. I cavalli dei personaggi possono essere comprati presso i nativi, cavalcati oppure utilizzati per trasportare oggetti. Un pony aggiunge movimenti alternati, un cavallo da lavoro un movimento extra, e in grotta bisogna smontare. Le manovre a cavallo possono far colpire il cavallo al posto del cavaliere. Mancano ancora i cavalli dei nativi e diversi casi particolari. Alcune missioni e campagne classiche, diversi incantesimi di controllo e trasformazione, gestione completa dei leader ingaggiati ed effetti particolari dei tesori rimangono incompleti. La scelta di Seguire condivide i principali movimenti e risultati, ma non tutte le interazioni avanzate sono riprodotte.
 
 Per un elenco verificabile di quanto implementato e dei limiti attuali, leggi [AUDIT_REGOLE_CLASSICHE_2E.md](AUDIT_REGOLE_CLASSICHE_2E.md). Non confondere le quattro modalità praticabili con l'intero regolamento da torneo.
 

@@ -105,6 +105,9 @@ func prepara() -> void:
 	for x in tabella_twt:
 		r.s["twt"][luoghi[i % luoghi.size()]]["carte"].append(x)
 		i += 1
+	if r.e_classico() and r.usa_regola("cavalli"):
+		r.s["twt"]["w_enchanted_meadow"]["carte"].append("horse:pony_l2")
+		r.s["twt"]["w_crypt_of_the_knight"]["carte"].append("horse:guerra_t3")
 	var tipi := mazzi.keys()
 	for id in luoghi:
 		if tesoro(id)["twt"] != "luogo":
@@ -456,6 +459,12 @@ func saccheggia(p: Dictionary, fonte: String) -> void:
 	r.cambiato.emit()
 
 func _ricevi_carta(p: Dictionary, id: String, pila: Array, stagno: bool) -> void:
+	if r.e_classico() and r.usa_regola("cavalli") and id.begins_with("horse:"):
+		var cavallo: Dictionary = CavalliClassici.nuovo(id.substr(6))
+		if not cavallo.is_empty():
+			p["cavalli"].append(cavallo)
+			r.scrivi("%s trova %s: ora puo cavalcarlo o condurlo come animale da soma." % [p["nome"], CavalliClassici.definizione(cavallo["id"])["nome"]], "bene")
+		return
 	var d := tesoro(id)
 	if d.get("taglia", "") == "W":
 		match d["twt"]:
