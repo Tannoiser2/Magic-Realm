@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "project": "Magic Realm - 3D asset register",
+  "generator_preference": "MakerWorld MakerLab Image-to-3D",
+  "units": "millimeters",
+  "statuses": ["to_inventory", "reference_ready", "submitted", "generated", "needs_repair", "approved"],
+  "example_asset": {
+    "original_id": "REPLACE_WITH_TTS_ID",
+    "category": "character",
+    "variant": "default",
+    "image_source": "",
+    "reference_front": "",
+    "reference_back": "",
+    "mesh_glb": "",
+    "mesh_stl": "",
+    "dimensions_mm": null,
+    "pivot": "base_center",
+    "status": "to_inventory",
+    "notes": "Template only: not a generated asset"
+  },
+  "assets": []
+}
