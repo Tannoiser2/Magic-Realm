@@ -400,13 +400,16 @@ func _radura_abitazione(t: int) -> String:
 	var k := Mappa.chiave(t, 5)
 	if mappa.radure.has(k) and mappa.collegata_acqua(k):
 		return k
+	var tipica := Mappa.chiave(t, 4)
+	if e_classico() and mappa.radure.has(tipica):
+		return tipica
 	var radure_t: Array = mappa.radure_tessera(t)
 	return radure_t[0] if not radure_t.is_empty() else ""
 
 func _prepara_abitazioni() -> void:
 	for t in mappa.per_tessera:
 		var c := cat_tessera(t)
-		if c != "V" and c != "H":
+		if c != "V" and c != "H" and not (e_classico() and c == "W"):
 			continue
 		var st: Dictionary = s["tessere"][str(t)]
 		var av: Dictionary = Dati.segnalini.get(st["avviso"], {})
