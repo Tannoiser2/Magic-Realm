@@ -1,28 +1,38 @@
-# Come provare Magic Realm Classico (versione sperimentale)
+# Magic Realm Classico — quattro Encounter della seconda edizione
 
-**Non usare il link GitHub Pages attuale** per verificare le modifiche: pubblica ancora il ramo `main` e quindi solo Super Magic Realm.
+Questa conversione conserva **Super Magic Realm** come gioco distinto, accessibile dal menu del portale.
 
-## Avvio nel Godot Editor (Mac, Windows, Linux)
+## Giocare online
 
-1. Scaricare il ramo `feature/magic-realm-classic-3d` come ZIP o eseguire `git clone -b feature/magic-realm-classic-3d https://github.com/Tannoiser2/Magic-Realm.git`.
-2. Aprire la cartella estratta con **Godot 4.7.2**.
-3. Attendere la prima importazione e avviare il progetto (F6/F5 secondo l'editor; F5 esegue il progetto).
-4. Nel menu selezionare **Magic Realm Classico (sperimentale)**, poi un personaggio classico e da 0 a 3 rivali IA.
-5. Iniziare la partita e distribuire i 5 Punti Vittoria fra le cinque categorie.
-6. Giocare i 28 giorni. Il punteggio finale verrà calcolato secondo la modalità classica implementata.
+- Portale: https://tannoiser2.github.io/Magic-Realm/
+- Super: https://tannoiser2.github.io/Magic-Realm/super/
+- Classico: https://tannoiser2.github.io/Magic-Realm/classico/
 
-## Limitazioni conosciute
+Nel menu del Classico scegli uno dei quattro Encounter:
 
-- Le regole di Magic Realm originale NON sono ancora riprodotte integralmente: alcuni dettagli del commercio, incontri, magia, cavalli, combattimento e IA utilizzano adattamenti del motore Super.
-- Sono presenti i 16 personaggi classici, la mappa a 20 tessere, la durata di 28 giorni, il setup dei segnalini e il conteggio dei 5 Punti Vittoria.
-- I quattro Encounter originali non sono ancora disponibili singolarmente nel menu.
-- Le miniature GLB vengono caricate se esistono in `assets/3d/`, altrimenti rimangono le pedine originali.
-- La modalità classica in versione browser viene pubblicata **solo dopo** test di esportazione e revisione, non automaticamente su GitHub Pages.
+| Incontro | Contenuto |
+| --- | --- |
+| I — Caccia al tesoro | Esplorazione, ricerca, commercio, tesori; senza combattimento |
+| II — I mostri attaccano | Come I, con combattimento fra personaggi e mostri |
+| III — Guerra | Come II, con guerra fra personaggi e nativi, ingaggio e attività Seguire |
+| IV — Magia | Come III, con incanti, incantesimi, rune e magie disponibili nel motore |
 
-## Test automatici
+Seleziona il personaggio fra i 16 originali, un'abitazione iniziale consentita e fino a tre rivali IA. Distribuisci i cinque punti vittoria, gioca 28 giorni e cerca di ottenere un punteggio non negativo. Il punteggio maggiore definisce il vincitore assoluto. La mappa ha 20 tessere e inizia da Borderland.
 
-I workflow `.github/workflows/classic-godot-tests.yml` e `.github/workflows/classic-web-preview.yml` sono separati dal workflow di pubblicazione del sito ufficiale.
+## Usare Godot localmente
 
-Il secondo workflow crea un artefatto Web scaricabile da GitHub Actions senza sovrascrivere la pagina Super esistente. L'artefatto, quando presente, va estratto e servito tramite un piccolo server HTTP locale, ad esempio `python3 -m http.server 8000` dalla cartella contenente `index.html`, poi aprendo `http://localhost:8000` nel browser.
+Clona il ramo pubblicato `main` con `git clone https://github.com/Tannoiser2/Magic-Realm.git`, aprilo in Godot 4.7.2 e premi F5. Durante lo sviluppo, per provare modifiche non ancora pubblicate, clona `feature/classic-four-encounters`.
 
-**Non unire la pull request #1 finché i test CI e l'interfaccia non sono verificati.**
+## Salvataggi
+
+Super e Classico usano salvataggi locali e percorsi Firebase separati. Il Classico mantiene l'Encounter scelto anche dopo ricaricamento.
+
+## Stato delle regole
+
+**Modalità sperimentale, non conversione integrale dell'originale**. Cavalli, alcune missioni e campagne classiche, diversi incantesimi di controllo e trasformazione, gestione completa dei leader ingaggiati ed effetti particolari dei tesori rimangono incompleti. La scelta di Seguire condivide i principali movimenti e risultati, ma non tutte le interazioni avanzate sono riprodotte.
+
+Per un elenco verificabile di quanto implementato e dei limiti attuali, leggi [AUDIT_REGOLE_CLASSICHE_2E.md](AUDIT_REGOLE_CLASSICHE_2E.md). Non confondere le quattro modalità praticabili con l'intero regolamento da torneo.
+
+## Pubblicazione
+
+Il workflow `Pubblica` genera e distribuisce un sito con tre indirizzi (portale, `super/`, `classico/`), senza cancellare i salvataggi Super. Il ramo di sviluppo viene unito a `main` solamente dopo i test automatici Godot.
