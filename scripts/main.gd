@@ -71,7 +71,7 @@ const GUIDA_CFG := "user://guida_magicrealm.cfg"
 const SCENARI := [1, 2, 3, 4, 5, 6]
 var modo_mossa := false
 var codice := ""
-var scelte_menu := {"scenario": 3, "pg": "amazzone", "rivali": 2}
+var scelte_menu := {"edizione": "super", "scenario": 3, "pg": "amazzone", "rivali": 2}
 var mischia := {}
 
 func _ready() -> void:
@@ -815,6 +815,12 @@ func _mostra_menu() -> void:
 	var st := _lab("Super Realm · il capostipite dei giochi d'esplorazione fantasy, in versione digitale", 20, f_fell)
 	st.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	v.add_child(st)
+	# Selezione indipendente del regolamento, mantenendo Super come default.
+	var ed := HBoxContainer.new()
+	ed.add_theme_constant_override("separation", 10)
+	v.add_child(ed)
+	ed.add_child(_bott("Super Magic Realm", func(): _scegli_menu("edizione", "super"), 20, scelte_menu["edizione"] == "super"))
+	ed.add_child(_bott("Magic Realm Classico (sperimentale)", func(): _scegli_menu("edizione", "classico"), 20, scelte_menu["edizione"] == "classico"))
 	# scenario
 	v.add_child(_lab("Scenario", 24, f_tit))
 	var hs := GridContainer.new()
@@ -828,12 +834,12 @@ func _mostra_menu() -> void:
 		4: ["4 · Tesori e magia", "Saccheggia i siti, leggi le rune, incanta i segnalini e lancia incantesimi: il primo a 10 Punti Vittoria vince."],
 		5: ["5 · I nativi si destano", "Nativi nelle abitazioni: commercia, ingaggia e attento a chi ti è ostile. Il primo a 10 Punti Vittoria vince."],
 		6: ["6 · Arrivano i viaggiatori", "Il gioco completo: viaggiatori, visitatori e Punti Vittoria assegnati in segreto."]}
-	for n in SCENARI:
+	for n in (SCENARI if scelte_menu["edizione"] == "super" else []):
 		var b := _bott(descr[n][0], func(): _scegli_menu("scenario", n), 18, scelte_menu["scenario"] == n)
 		b.tooltip_text = descr[n][1]
 		b.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		hs.add_child(b)
-	v.add_child(_lab(descr[scelte_menu["scenario"]][1], 18))
+	v.add_child(_lab(descr[scelte_menu["scenario"]][1] if scelte_menu["edizione"] == "super" else "Partita completa classica: 20 tessere, 28 giorni, cinque Punti Vittoria. Prima versione sperimentale: alcune regole speciali restano da verificare.", 18))
 	# personaggio
 	v.add_child(_lab("Personaggio", 24, f_tit))
 	var grid := GridContainer.new()
@@ -872,7 +878,7 @@ func _mostra_menu() -> void:
 	hr.add_theme_constant_override("separation", 8)
 	v.add_child(hr)
 	hr.add_child(_lab_riga("Personaggi rivali (IA):"))
-	var minimo := 1 if scelte_menu["scenario"] == 2 else 0
+	var minimo := 1 if scelte_menu["scenario"] == 2 and scelte_menu["edizione"] == "super" else 0
 	for n in range(minimo, 4):
 		hr.add_child(_bott(str(n), func(): _scegli_menu("rivali", n), 18, scelte_menu["rivali"] == n))
 	# avvio
@@ -899,6 +905,10 @@ func _mostra_menu() -> void:
 func _personaggi_validi(sc: int) -> Array:
 	var r := []
 	for id in Dati.ordine_pg:
+		if scelte_menu["edizione"] == "classico":
+			if ProfiliRegole.personaggio_classico(id):
+				r.append(id)
+			continue
 		var d: Dictionary = Dati.personaggi[id]
 		if sc == 1 and id in ["pescatore", "re_stregone", "stregone_bianco"]:
 			continue
@@ -913,7 +923,7 @@ func _descr_pg(d: Dictionary) -> String:
 	var t := "%s — peso e vulnerabilità %s" % [d["nome"], Dati.NOMI_PESO[d["vuln"]]]
 	for a in d["abilita"]:
 		t += "\n%s: %s" % [a["nome"], a["testo"]]
-	if not d["equip"].is_empty() and scelte_menu["scenario"] >= 2:
+	if not d["equip"].is_empty() and (scelte_menu["scenario"] >= 2 or scelte_menu["edizione"] == "classico"):
 		t += "\nEquipaggiamento: " + ", ".join(d["equip"].map(func(x): return Dati.nome_arma(x)))
 	return t
 
@@ -935,7 +945,10 @@ func _nuova_partita() -> void:
 		rivali.append(validi[j])
 		validi.remove_at(j)
 	codice = _nuovo_codice(rng)
-	_avvia(func(): g.nuova(sc, scelte_menu["pg"], rivali, rng.randi()))
+	if scelte_menu["edizione"] == "classico":
+		_avvia(func(): return g.nuova_con_profilo(ProfiliRegole.classico_completo(), scelte_menu["pg"], rivali, rng.randi()))
+	else:
+		_avvia(func(): g.nuova(sc, scelte_menu["pg"], rivali, rng.randi()))
 
 func _nuovo_codice(rng: RandomNumberGenerator) -> String:
 	var a := "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"
@@ -954,6 +967,9 @@ func _avvia(prepara: Callable) -> void:
 	g.cambiato.connect(_aggiorna)
 	g.messaggio.connect(_messaggio)
 	prepara.call()
+	if g.s.is_empty():
+		_avviso("Impossibile creare la partita: verifica il generatore e riprova.")
+		return
 	menu.visible = false
 	hud.visible = true
 	registro.clear()
@@ -964,7 +980,8 @@ func _avvia(prepara: Callable) -> void:
 	_centra()
 	_aggiorna()
 	g.gioca()
-	_mostra_guida_scenario(false)
+	if not g.e_classico():
+		_mostra_guida_scenario(false)
 
 func _continua() -> void:
 	var f := FileAccess.open(SALVATAGGIO, FileAccess.READ)
@@ -1119,7 +1136,9 @@ func _aggiorna_scheda() -> void:
 	var punti := "Fama %d · Notorietà %d" % [u["fama"], u["noto"]]
 	if g.s["scenario"] >= 5:
 		punti += " · Oro %d" % u["oro"]
-	if g.s["scenario"] >= 6:
+	if g.e_classico():
+		punti += " · Classico: %d PV · giorno %d/28" % [g.pv(u), int(g.s["giorno"])]
+	elif g.s["scenario"] >= 6:
 		punti += " · punteggio %d" % g.viaggi.punteggio(u)
 	elif g.s["scenario"] >= 3:
 		punti += " · PV %d/%d" % [g.pv(u), g.obiettivo_pv()]
@@ -1208,9 +1227,15 @@ func _aggiorna_scheda() -> void:
 		if g.s["tessere"][str(g.tessera(u["dove"]))].get("incantata", false):
 			tx += " (tessera incantata)"
 		scheda.add_child(_lab(tx, 14, f_txt, C_VERDE))
-	if g.s["scenario"] >= 6 and u.has("vp"):
+	if (g.e_classico() or g.s["scenario"] >= 6) and u.has("vp"):
 		scheda.add_child(_lab("Traguardi dei Punti Vittoria", 18, f_tit))
-		for x in g.viaggi.requisiti(u):
+		if g.e_classico():
+			var risultato: Dictionary = g.punteggio_classico(u)
+			for cat in PunteggioClassico.CATEGORIE:
+				var val: Dictionary = risultato.get("categorie", {}).get(cat, {})
+				scheda.add_child(_lab("%s: %d / %d · punti %d" % [Viaggi.NOMI_CAT[cat], val.get("valore", 0), val.get("richiesti", 0), val.get("totale", 0)], 15, f_txt))
+
+		for x in ([] if g.e_classico() else g.viaggi.requisiti(u)):
 			if x["serve"] > 0 or x["ha"] > 0:
 				scheda.add_child(_lab("%s: %d su %d%s" % [x["nome"], x["ha"], x["serve"], "" if x["ok"] else " (manca)"], 15, f_txt, C_VERDE if x["ok"] else C_ROSSO))
 		var con := []
@@ -1597,8 +1622,9 @@ func _richiesta_commercio(req: Dictionary) -> void:
 
 func _richiesta_pv(req: Dictionary) -> void:
 	var vp: Dictionary = req["dati"]["vp"]
-	_apri_modale("Assegna i tuoi 12 Punti Vittoria")
-	box_modale.add_child(_lab("Ogni punto è un traguardo da raggiungere: 1 grande tesoro, 2 incantesimi imparati, 10 Fama, 20 Notorietà o 30 Oro. Ogni sito o luogo scoperto e ogni missione o compito completato toglie punti. A fine mese vince chi ha soddisfatto tutti i traguardi con il margine più ampio.", 15))
+	var tot_pv := 5 if g.e_classico() else 12
+	_apri_modale("Assegna i tuoi %d Punti Vittoria" % tot_pv)
+	box_modale.add_child(_lab("Classico: assegna cinque punti tra tesori, magia, fama, notorietà e oro. I risultati sono calcolati dopo 28 giorni con penalità per gli obiettivi mancati." if g.e_classico() else "Ogni punto è un traguardo da raggiungere: 1 grande tesoro, 2 incantesimi imparati, 10 Fama, 20 Notorietà o 30 Oro. Ogni sito o luogo scoperto e ogni missione o compito completato toglie punti. A fine mese vince chi ha soddisfatto tutti i traguardi con il margine più ampio.", 15))
 	var tot_l := _lab("", 18, f_tit, C_ROSSO)
 	var righe := {}
 	var aggiorna := func():
@@ -1606,7 +1632,7 @@ func _richiesta_pv(req: Dictionary) -> void:
 		for c in Viaggi.CATEGORIE:
 			t += int(vp[c])
 			righe[c].text = "%s: %d (%d)" % [Viaggi.NOMI_CAT[c], int(vp[c]), int(vp[c]) * Viaggi.UNITA[c]]
-		tot_l.text = "Totale: %d su 12" % t
+		tot_l.text = "Totale: %d su %d" % [t, tot_pv]
 	for c in Viaggi.CATEGORIE:
 		var h := _riga_bottoni()
 		var l := _lab_riga("")
@@ -1624,7 +1650,7 @@ func _richiesta_pv(req: Dictionary) -> void:
 	_riga_bottoni().add_child(_bott("Conferma", func():
 		var t := 0
 		for c in Viaggi.CATEGORIE: t += int(vp[c])
-		if t != 12: _avviso("Devi assegnare esattamente 12 punti.")
+		if t != tot_pv: _avviso("Devi assegnare esattamente %d punti." % tot_pv)
 		else: _rispondi(vp), 18, true))
 	_ricentra()
 
