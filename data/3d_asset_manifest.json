@@ -1,5 +1,5 @@
 {
-  "schema": 1,
+  "schema": 2,
   "project": "Magic Realm - 3D asset register",
   "generator_preference": "MakerWorld MakerLab Image-to-3D",
   "units": "millimeters",
@@ -21,13 +21,11 @@
         "super"
       ],
       "source_image": "assets/personaggi/amazon_pedina.webp",
-      "reference_front": "assets/personaggi/amazon_simbolo.webp",
       "mesh_glb": "assets/3d/personaggi/amazon.glb",
       "mesh_stl": "exports/3d/personaggi/amazon.stl",
+      "method": "image_to_3d",
       "dimensions_mm": null,
-      "pivot": "base_center",
-      "status": "to_inventory",
-      "notes": "Model 3D non ancora generato; riferimento 2D originale"
+      "status": "to_inventory"
     },
     {
       "original_id": "barbaro",
@@ -37,13 +35,11 @@
         "super"
       ],
       "source_image": "assets/personaggi/barbarian_pedina.webp",
-      "reference_front": "assets/personaggi/barbarian_simbolo.webp",
       "mesh_glb": "assets/3d/personaggi/barbarian.glb",
       "mesh_stl": "exports/3d/personaggi/barbarian.stl",
+      "method": "image_to_3d",
       "dimensions_mm": null,
-      "pivot": "base_center",
-      "status": "to_inventory",
-      "notes": "Model 3D non ancora generato; riferimento 2D originale"
+      "status": "to_inventory"
     },
     {
       "original_id": "bardo",
@@ -53,13 +49,11 @@
         "super"
       ],
       "source_image": "assets/personaggi/bard_pedina.webp",
-      "reference_front": "assets/personaggi/bard_simbolo.webp",
       "mesh_glb": "assets/3d/personaggi/bard.glb",
       "mesh_stl": "exports/3d/personaggi/bard.stl",
+      "method": "image_to_3d",
       "dimensions_mm": null,
-      "pivot": "base_center",
-      "status": "to_inventory",
-      "notes": "Model 3D non ancora generato; riferimento 2D originale"
+      "status": "to_inventory"
     },
     {
       "original_id": "berserker",
@@ -70,13 +64,11 @@
         "super"
       ],
       "source_image": "assets/personaggi/berserker_pedina.webp",
-      "reference_front": "assets/personaggi/berserker_simbolo.webp",
       "mesh_glb": "assets/3d/personaggi/berserker.glb",
       "mesh_stl": "exports/3d/personaggi/berserker.stl",
+      "method": "image_to_3d",
       "dimensions_mm": null,
-      "pivot": "base_center",
-      "status": "to_inventory",
-      "notes": "Model 3D non ancora generato; riferimento 2D originale"
+      "status": "to_inventory"
     },
     {
       "original_id": "cavaliere_nero",
@@ -87,13 +79,11 @@
         "super"
       ],
       "source_image": "assets/personaggi/black_knight_pedina.webp",
-      "reference_front": "assets/personaggi/black_knight_simbolo.webp",
       "mesh_glb": "assets/3d/personaggi/black_knight.glb",
       "mesh_stl": "exports/3d/personaggi/black_knight.stl",
+      "method": "image_to_3d",
       "dimensions_mm": null,
-      "pivot": "base_center",
-      "status": "to_inventory",
-      "notes": "Model 3D non ancora generato; riferimento 2D originale"
+      "status": "to_inventory"
     },
     {
       "original_id": "capitano",
@@ -104,13 +94,11 @@
         "super"
       ],
       "source_image": "assets/personaggi/captain_pedina.webp",
-      "reference_front": "assets/personaggi/captain_simbolo.webp",
       "mesh_glb": "assets/3d/personaggi/captain.glb",
       "mesh_stl": "exports/3d/personaggi/captain.stl",
+      "method": "image_to_3d",
       "dimensions_mm": null,
-      "pivot": "base_center",
-      "status": "to_inventory",
-      "notes": "Model 3D non ancora generato; riferimento 2D originale"
+      "status": "to_inventory"
     },
     {
       "original_id": "druido",
@@ -121,13 +109,11 @@
         "super"
       ],
       "source_image": "assets/personaggi/druid_pedina.webp",
-      "reference_front": "assets/personaggi/druid_simbolo.webp",
       "mesh_glb": "assets/3d/personaggi/druid.glb",
       "mesh_stl": "exports/3d/personaggi/druid.stl",
+      "method": "image_to_3d",
       "dimensions_mm": null,
-      "pivot": "base_center",
-      "status": "to_inventory",
-      "notes": "Model 3D non ancora generato; riferimento 2D originale"
+      "status": "to_inventory"
     },
     {
       "original_id": "nano",
@@ -138,13 +124,11 @@
         "super"
       ],
       "source_image": "assets/personaggi/dwarf_pedina.webp",
-      "reference_front": "assets/personaggi/dwarf_simbolo.webp",
       "mesh_glb": "assets/3d/personaggi/dwarf.glb",
       "mesh_stl": "exports/3d/personaggi/dwarf.stl",
+      "method": "image_to_3d",
       "dimensions_mm": null,
-      "pivot": "base_center",
-      "status": "to_inventory",
-      "notes": "Model 3D non ancora generato; riferimento 2D originale"
+      "status": "to_inventory"
     },
     {
       "original_id": "elfo",
@@ -155,13 +139,11 @@
         "super"
       ],
       "source_image": "assets/personaggi/elf_pedina.webp",
-      "reference_front": "assets/personaggi/elf_simbolo.webp",
       "mesh_glb": "assets/3d/personaggi/elf.glb",
       "mesh_stl": "exports/3d/personaggi/elf.stl",
+      "method": "image_to_3d",
       "dimensions_mm": null,
-      "pivot": "base_center",
-      "status": "to_inventory",
-      "notes": "Model 3D non ancora generato; riferimento 2D originale"
+      "status": "to_inventory"
     },
     {
       "original_id": "gladiatore",
@@ -171,13 +153,11 @@
         "super"
       ],
       "source_image": "assets/personaggi/gladiator_pedina.webp",
-      "reference_front": "assets/personaggi/gladiator_simbolo.webp",
       "mesh_glb": "assets/3d/personaggi/gladiator.glb",
       "mesh_stl": "exports/3d/personaggi/gladiator.stl",
+      "method": "image_to_3d",
       "dimensions_mm": null,
-      "pivot": "base_center",
-      "status": "to_inventory",
-      "notes": "Model 3D non ancora generato; riferimento 2D originale"
+      "status": "to_inventory"
     },
     {
       "original_id": "mago",
@@ -188,13 +168,11 @@
         "super"
       ],
       "source_image": "assets/personaggi/magician_pedina.webp",
-      "reference_front": "assets/personaggi/magician_simbolo.webp",
       "mesh_glb": "assets/3d/personaggi/magician.glb",
       "mesh_stl": "exports/3d/personaggi/magician.stl",
+      "method": "image_to_3d",
       "dimensions_mm": null,
-      "pivot": "base_center",
-      "status": "to_inventory",
-      "notes": "Model 3D non ancora generato; riferimento 2D originale"
+      "status": "to_inventory"
     },
     {
       "original_id": "negromante",
@@ -204,13 +182,11 @@
         "super"
       ],
       "source_image": "assets/personaggi/necromancer_pedina.webp",
-      "reference_front": "assets/personaggi/necromancer_simbolo.webp",
       "mesh_glb": "assets/3d/personaggi/necromancer.glb",
       "mesh_stl": "exports/3d/personaggi/necromancer.stl",
+      "method": "image_to_3d",
       "dimensions_mm": null,
-      "pivot": "base_center",
-      "status": "to_inventory",
-      "notes": "Model 3D non ancora generato; riferimento 2D originale"
+      "status": "to_inventory"
     },
     {
       "original_id": "paladino",
@@ -220,13 +196,11 @@
         "super"
       ],
       "source_image": "assets/personaggi/paladin_pedina.webp",
-      "reference_front": "assets/personaggi/paladin_simbolo.webp",
       "mesh_glb": "assets/3d/personaggi/paladin.glb",
       "mesh_stl": "exports/3d/personaggi/paladin.stl",
+      "method": "image_to_3d",
       "dimensions_mm": null,
-      "pivot": "base_center",
-      "status": "to_inventory",
-      "notes": "Model 3D non ancora generato; riferimento 2D originale"
+      "status": "to_inventory"
     },
     {
       "original_id": "pellegrino",
@@ -237,13 +211,11 @@
         "super"
       ],
       "source_image": "assets/personaggi/pilgrim_pedina.webp",
-      "reference_front": "assets/personaggi/pilgrim_simbolo.webp",
       "mesh_glb": "assets/3d/personaggi/pilgrim.glb",
       "mesh_stl": "exports/3d/personaggi/pilgrim.stl",
+      "method": "image_to_3d",
       "dimensions_mm": null,
-      "pivot": "base_center",
-      "status": "to_inventory",
-      "notes": "Model 3D non ancora generato; riferimento 2D originale"
+      "status": "to_inventory"
     },
     {
       "original_id": "sensitiva",
@@ -253,13 +225,11 @@
         "super"
       ],
       "source_image": "assets/personaggi/psychic_pedina.webp",
-      "reference_front": "assets/personaggi/psychic_simbolo.webp",
       "mesh_glb": "assets/3d/personaggi/psychic.glb",
       "mesh_stl": "exports/3d/personaggi/psychic.stl",
+      "method": "image_to_3d",
       "dimensions_mm": null,
-      "pivot": "base_center",
-      "status": "to_inventory",
-      "notes": "Model 3D non ancora generato; riferimento 2D originale"
+      "status": "to_inventory"
     },
     {
       "original_id": "stregone",
@@ -270,13 +240,11 @@
         "super"
       ],
       "source_image": "assets/personaggi/sorcerer_pedina.webp",
-      "reference_front": "assets/personaggi/sorcerer_simbolo.webp",
       "mesh_glb": "assets/3d/personaggi/sorcerer.glb",
       "mesh_stl": "exports/3d/personaggi/sorcerer.stl",
+      "method": "image_to_3d",
       "dimensions_mm": null,
-      "pivot": "base_center",
-      "status": "to_inventory",
-      "notes": "Model 3D non ancora generato; riferimento 2D originale"
+      "status": "to_inventory"
     },
     {
       "original_id": "spadaccino",
@@ -287,13 +255,11 @@
         "super"
       ],
       "source_image": "assets/personaggi/swordsman_pedina.webp",
-      "reference_front": "assets/personaggi/swordsman_simbolo.webp",
       "mesh_glb": "assets/3d/personaggi/swordsman.glb",
       "mesh_stl": "exports/3d/personaggi/swordsman.stl",
+      "method": "image_to_3d",
       "dimensions_mm": null,
-      "pivot": "base_center",
-      "status": "to_inventory",
-      "notes": "Model 3D non ancora generato; riferimento 2D originale"
+      "status": "to_inventory"
     },
     {
       "original_id": "pescatore",
@@ -303,13 +269,11 @@
         "super"
       ],
       "source_image": "assets/personaggi/trawler_pedina.webp",
-      "reference_front": "assets/personaggi/trawler_simbolo.webp",
       "mesh_glb": "assets/3d/personaggi/trawler.glb",
       "mesh_stl": "exports/3d/personaggi/trawler.stl",
+      "method": "image_to_3d",
       "dimensions_mm": null,
-      "pivot": "base_center",
-      "status": "to_inventory",
-      "notes": "Model 3D non ancora generato; riferimento 2D originale"
+      "status": "to_inventory"
     },
     {
       "original_id": "viandante",
@@ -319,13 +283,11 @@
         "super"
       ],
       "source_image": "assets/personaggi/wanderer_pedina.webp",
-      "reference_front": "assets/personaggi/wanderer_simbolo.webp",
       "mesh_glb": "assets/3d/personaggi/wanderer.glb",
       "mesh_stl": "exports/3d/personaggi/wanderer.stl",
+      "method": "image_to_3d",
       "dimensions_mm": null,
-      "pivot": "base_center",
-      "status": "to_inventory",
-      "notes": "Model 3D non ancora generato; riferimento 2D originale"
+      "status": "to_inventory"
     },
     {
       "original_id": "cavaliere_bianco",
@@ -336,13 +298,11 @@
         "super"
       ],
       "source_image": "assets/personaggi/white_knight_pedina.webp",
-      "reference_front": "assets/personaggi/white_knight_simbolo.webp",
       "mesh_glb": "assets/3d/personaggi/white_knight.glb",
       "mesh_stl": "exports/3d/personaggi/white_knight.stl",
+      "method": "image_to_3d",
       "dimensions_mm": null,
-      "pivot": "base_center",
-      "status": "to_inventory",
-      "notes": "Model 3D non ancora generato; riferimento 2D originale"
+      "status": "to_inventory"
     },
     {
       "original_id": "strega",
@@ -353,13 +313,11 @@
         "super"
       ],
       "source_image": "assets/personaggi/witch_pedina.webp",
-      "reference_front": "assets/personaggi/witch_simbolo.webp",
       "mesh_glb": "assets/3d/personaggi/witch.glb",
       "mesh_stl": "exports/3d/personaggi/witch.stl",
+      "method": "image_to_3d",
       "dimensions_mm": null,
-      "pivot": "base_center",
-      "status": "to_inventory",
-      "notes": "Model 3D non ancora generato; riferimento 2D originale"
+      "status": "to_inventory"
     },
     {
       "original_id": "re_stregone",
@@ -370,13 +328,11 @@
         "super"
       ],
       "source_image": "assets/personaggi/witch_king_pedina.webp",
-      "reference_front": "assets/personaggi/witch_king_simbolo.webp",
       "mesh_glb": "assets/3d/personaggi/witch_king.glb",
       "mesh_stl": "exports/3d/personaggi/witch_king.stl",
+      "method": "image_to_3d",
       "dimensions_mm": null,
-      "pivot": "base_center",
-      "status": "to_inventory",
-      "notes": "Model 3D non ancora generato; riferimento 2D originale"
+      "status": "to_inventory"
     },
     {
       "original_id": "stregone_bianco",
@@ -387,13 +343,11 @@
         "super"
       ],
       "source_image": "assets/personaggi/wizard_pedina.webp",
-      "reference_front": "assets/personaggi/wizard_simbolo.webp",
       "mesh_glb": "assets/3d/personaggi/wizard.glb",
       "mesh_stl": "exports/3d/personaggi/wizard.stl",
+      "method": "image_to_3d",
       "dimensions_mm": null,
-      "pivot": "base_center",
-      "status": "to_inventory",
-      "notes": "Model 3D non ancora generato; riferimento 2D originale"
+      "status": "to_inventory"
     },
     {
       "original_id": "ragazza_boschi",
@@ -404,15 +358,5912 @@
         "super"
       ],
       "source_image": "assets/personaggi/woods_girl_pedina.webp",
-      "reference_front": "assets/personaggi/woods_girl_simbolo.webp",
       "mesh_glb": "assets/3d/personaggi/woods_girl.glb",
       "mesh_stl": "exports/3d/personaggi/woods_girl.stl",
+      "method": "image_to_3d",
       "dimensions_mm": null,
-      "pivot": "base_center",
-      "status": "to_inventory",
-      "notes": "Model 3D non ancora generato; riferimento 2D originale"
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t00",
+      "category": "tile",
+      "name": "Boschi Perduti",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tessere/t00.webp",
+      "mesh_glb": "assets/3d/tessere/t00.glb",
+      "mesh_stl": "exports/3d/tessere/t00.stl",
+      "method": "parametric_terrain",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t01",
+      "category": "tile",
+      "name": "Boschi Antichi",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tessere/t01.webp",
+      "mesh_glb": "assets/3d/tessere/t01.glb",
+      "mesh_stl": "exports/3d/tessere/t01.stl",
+      "method": "parametric_terrain",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t02",
+      "category": "tile",
+      "name": "Boschi Oscuri",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tessere/t02.webp",
+      "mesh_glb": "assets/3d/tessere/t02.glb",
+      "mesh_stl": "exports/3d/tessere/t02.stl",
+      "method": "parametric_terrain",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t03",
+      "category": "tile",
+      "name": "Boschi Profondi",
+      "edition": [
+        "classic",
+        "super"
+      ],
+      "source_image": "assets/tessere/t03.webp",
+      "mesh_glb": "assets/3d/tessere/t03.glb",
+      "mesh_stl": "exports/3d/tessere/t03.stl",
+      "method": "parametric_terrain",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t04",
+      "category": "tile",
+      "name": "Passo Alto",
+      "edition": [
+        "classic",
+        "super"
+      ],
+      "source_image": "assets/tessere/t04.webp",
+      "mesh_glb": "assets/3d/tessere/t04.glb",
+      "mesh_stl": "exports/3d/tessere/t04.stl",
+      "method": "parametric_terrain",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t05",
+      "category": "tile",
+      "name": "Terre di Confine",
+      "edition": [
+        "classic",
+        "super"
+      ],
+      "source_image": "assets/tessere/t05.webp",
+      "mesh_glb": "assets/3d/tessere/t05.glb",
+      "mesh_stl": "exports/3d/tessere/t05.stl",
+      "method": "parametric_terrain",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t06",
+      "category": "tile",
+      "name": "Grotte",
+      "edition": [
+        "classic",
+        "super"
+      ],
+      "source_image": "assets/tessere/t06.webp",
+      "mesh_glb": "assets/3d/tessere/t06.glb",
+      "mesh_stl": "exports/3d/tessere/t06.stl",
+      "method": "parametric_terrain",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t07",
+      "category": "tile",
+      "name": "Caverna",
+      "edition": [
+        "classic",
+        "super"
+      ],
+      "source_image": "assets/tessere/t07.webp",
+      "mesh_glb": "assets/3d/tessere/t07.glb",
+      "mesh_stl": "exports/3d/tessere/t07.stl",
+      "method": "parametric_terrain",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t08",
+      "category": "tile",
+      "name": "Colli dell'Edera",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tessere/t08.webp",
+      "mesh_glb": "assets/3d/tessere/t08.glb",
+      "mesh_stl": "exports/3d/tessere/t08.stl",
+      "method": "parametric_terrain",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t09",
+      "category": "tile",
+      "name": "Colli delle Felci",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tessere/t09.webp",
+      "mesh_glb": "assets/3d/tessere/t09.glb",
+      "mesh_stl": "exports/3d/tessere/t09.stl",
+      "method": "parametric_terrain",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t10",
+      "category": "tile",
+      "name": "Colli dell'Agrifoglio",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tessere/t10.webp",
+      "mesh_glb": "assets/3d/tessere/t10.glb",
+      "mesh_stl": "exports/3d/tessere/t10.stl",
+      "method": "parametric_terrain",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t11",
+      "category": "tile",
+      "name": "Colli Erbosi",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tessere/t11.webp",
+      "mesh_glb": "assets/3d/tessere/t11.glb",
+      "mesh_stl": "exports/3d/tessere/t11.stl",
+      "method": "parametric_terrain",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t12",
+      "category": "tile",
+      "name": "Colli Allegri",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tessere/t12.webp",
+      "mesh_glb": "assets/3d/tessere/t12.glb",
+      "mesh_stl": "exports/3d/tessere/t12.stl",
+      "method": "parametric_terrain",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t13",
+      "category": "tile",
+      "name": "Rupe",
+      "edition": [
+        "classic",
+        "super"
+      ],
+      "source_image": "assets/tessere/t13.webp",
+      "mesh_glb": "assets/3d/tessere/t13.glb",
+      "mesh_stl": "exports/3d/tessere/t13.stl",
+      "method": "parametric_terrain",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t14",
+      "category": "tile",
+      "name": "Montagna",
+      "edition": [
+        "classic",
+        "super"
+      ],
+      "source_image": "assets/tessere/t14.webp",
+      "mesh_glb": "assets/3d/tessere/t14.glb",
+      "mesh_stl": "exports/3d/tessere/t14.stl",
+      "method": "parametric_terrain",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t15",
+      "category": "tile",
+      "name": "Cenge",
+      "edition": [
+        "classic",
+        "super"
+      ],
+      "source_image": "assets/tessere/t15.webp",
+      "mesh_glb": "assets/3d/tessere/t15.glb",
+      "mesh_stl": "exports/3d/tessere/t15.stl",
+      "method": "parametric_terrain",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t16",
+      "category": "tile",
+      "name": "Picco",
+      "edition": [
+        "classic",
+        "super"
+      ],
+      "source_image": "assets/tessere/t16.webp",
+      "mesh_glb": "assets/3d/tessere/t16.glb",
+      "mesh_stl": "exports/3d/tessere/t16.stl",
+      "method": "parametric_terrain",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t17",
+      "category": "tile",
+      "name": "Rovine Desolate",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tessere/t17.webp",
+      "mesh_glb": "assets/3d/tessere/t17.glb",
+      "mesh_stl": "exports/3d/tessere/t17.stl",
+      "method": "parametric_terrain",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t18",
+      "category": "tile",
+      "name": "Rovine",
+      "edition": [
+        "classic",
+        "super"
+      ],
+      "source_image": "assets/tessere/t18.webp",
+      "mesh_glb": "assets/3d/tessere/t18.glb",
+      "mesh_stl": "exports/3d/tessere/t18.stl",
+      "method": "parametric_terrain",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t19",
+      "category": "tile",
+      "name": "Rovine Sparse",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tessere/t19.webp",
+      "mesh_glb": "assets/3d/tessere/t19.glb",
+      "mesh_stl": "exports/3d/tessere/t19.stl",
+      "method": "parametric_terrain",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t20",
+      "category": "tile",
+      "name": "Rovine Tetre",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tessere/t20.webp",
+      "mesh_glb": "assets/3d/tessere/t20.glb",
+      "mesh_stl": "exports/3d/tessere/t20.stl",
+      "method": "parametric_terrain",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t21",
+      "category": "tile",
+      "name": "Valle Malvagia",
+      "edition": [
+        "classic",
+        "super"
+      ],
+      "source_image": "assets/tessere/t21.webp",
+      "mesh_glb": "assets/3d/tessere/t21.glb",
+      "mesh_stl": "exports/3d/tessere/t21.stl",
+      "method": "parametric_terrain",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t22",
+      "category": "tile",
+      "name": "Valle Cattiva",
+      "edition": [
+        "classic",
+        "super"
+      ],
+      "source_image": "assets/tessere/t22.webp",
+      "mesh_glb": "assets/3d/tessere/t22.glb",
+      "mesh_stl": "exports/3d/tessere/t22.stl",
+      "method": "parametric_terrain",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t23",
+      "category": "tile",
+      "name": "Valle Orrenda",
+      "edition": [
+        "classic",
+        "super"
+      ],
+      "source_image": "assets/tessere/t23.webp",
+      "mesh_glb": "assets/3d/tessere/t23.glb",
+      "mesh_stl": "exports/3d/tessere/t23.stl",
+      "method": "parametric_terrain",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t24",
+      "category": "tile",
+      "name": "Valle Maledetta",
+      "edition": [
+        "classic",
+        "super"
+      ],
+      "source_image": "assets/tessere/t24.webp",
+      "mesh_glb": "assets/3d/tessere/t24.glb",
+      "mesh_stl": "exports/3d/tessere/t24.stl",
+      "method": "parametric_terrain",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t25",
+      "category": "tile",
+      "name": "Valle Oscura",
+      "edition": [
+        "classic",
+        "super"
+      ],
+      "source_image": "assets/tessere/t25.webp",
+      "mesh_glb": "assets/3d/tessere/t25.glb",
+      "mesh_stl": "exports/3d/tessere/t25.stl",
+      "method": "parametric_terrain",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t26",
+      "category": "tile",
+      "name": "Bosco dei Noci",
+      "edition": [
+        "classic",
+        "super"
+      ],
+      "source_image": "assets/tessere/t26.webp",
+      "mesh_glb": "assets/3d/tessere/t26.glb",
+      "mesh_stl": "exports/3d/tessere/t26.stl",
+      "method": "parametric_terrain",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t27",
+      "category": "tile",
+      "name": "Bosco degli Aceri",
+      "edition": [
+        "classic",
+        "super"
+      ],
+      "source_image": "assets/tessere/t27.webp",
+      "mesh_glb": "assets/3d/tessere/t27.glb",
+      "mesh_stl": "exports/3d/tessere/t27.stl",
+      "method": "parametric_terrain",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t28",
+      "category": "tile",
+      "name": "Bosco dei Pini",
+      "edition": [
+        "classic",
+        "super"
+      ],
+      "source_image": "assets/tessere/t28.webp",
+      "mesh_glb": "assets/3d/tessere/t28.glb",
+      "mesh_stl": "exports/3d/tessere/t28.stl",
+      "method": "parametric_terrain",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t29",
+      "category": "tile",
+      "name": "Bosco dei Tigli",
+      "edition": [
+        "classic",
+        "super"
+      ],
+      "source_image": "assets/tessere/t29.webp",
+      "mesh_glb": "assets/3d/tessere/t29.glb",
+      "mesh_stl": "exports/3d/tessere/t29.stl",
+      "method": "parametric_terrain",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t30",
+      "category": "tile",
+      "name": "Bosco delle Querce",
+      "edition": [
+        "classic",
+        "super"
+      ],
+      "source_image": "assets/tessere/t30.webp",
+      "mesh_glb": "assets/3d/tessere/t30.glb",
+      "mesh_stl": "exports/3d/tessere/t30.stl",
+      "method": "parametric_terrain",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t31",
+      "category": "tile",
+      "name": "Cascate",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tessere/t31.webp",
+      "mesh_glb": "assets/3d/tessere/t31.glb",
+      "mesh_stl": "exports/3d/tessere/t31.stl",
+      "method": "parametric_terrain",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t32",
+      "category": "tile",
+      "name": "Rovine Scoscese",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tessere/t32.webp",
+      "mesh_glb": "assets/3d/tessere/t32.glb",
+      "mesh_stl": "exports/3d/tessere/t32.stl",
+      "method": "parametric_terrain",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t33",
+      "category": "tile",
+      "name": "Boschi del Lago",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tessere/t33.webp",
+      "mesh_glb": "assets/3d/tessere/t33.glb",
+      "mesh_stl": "exports/3d/tessere/t33.stl",
+      "method": "parametric_terrain",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t34",
+      "category": "tile",
+      "name": "Grotta",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tessere/t34.webp",
+      "mesh_glb": "assets/3d/tessere/t34.glb",
+      "mesh_stl": "exports/3d/tessere/t34.stl",
+      "method": "parametric_terrain",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t35",
+      "category": "tile",
+      "name": "Fiume della Valle",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tessere/t35.webp",
+      "mesh_glb": "assets/3d/tessere/t35.glb",
+      "mesh_stl": "exports/3d/tessere/t35.stl",
+      "method": "parametric_terrain",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t36",
+      "category": "tile",
+      "name": "Fiume Rapido",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tessere/t36.webp",
+      "mesh_glb": "assets/3d/tessere/t36.glb",
+      "mesh_stl": "exports/3d/tessere/t36.stl",
+      "method": "parametric_terrain",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t37",
+      "category": "tile",
+      "name": "Fiume Scintillante",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tessere/t37.webp",
+      "mesh_glb": "assets/3d/tessere/t37.glb",
+      "mesh_stl": "exports/3d/tessere/t37.stl",
+      "method": "parametric_terrain",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t38",
+      "category": "tile",
+      "name": "Fiume delle Trote",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tessere/t38.webp",
+      "mesh_glb": "assets/3d/tessere/t38.glb",
+      "mesh_stl": "exports/3d/tessere/t38.stl",
+      "method": "parametric_terrain",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t39",
+      "category": "tile",
+      "name": "Fiume Estremo",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tessere/t39.webp",
+      "mesh_glb": "assets/3d/tessere/t39.glb",
+      "mesh_stl": "exports/3d/tessere/t39.stl",
+      "method": "parametric_terrain",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "fantasma",
+      "category": "monster",
+      "name": "Fantasma",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/mostri/fantasma_8D7728_a.webp",
+      "mesh_glb": "assets/3d/mostri/fantasma.glb",
+      "mesh_stl": "exports/3d/mostri/fantasma.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "goblin_ascia",
+      "category": "monster",
+      "name": "Goblin con ascia",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/mostri/goblin_ascia_A3D18C_a.webp",
+      "mesh_glb": "assets/3d/mostri/goblin_ascia.glb",
+      "mesh_stl": "exports/3d/mostri/goblin_ascia.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "goblin_arco",
+      "category": "monster",
+      "name": "Goblin con arco",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/mostri/goblin_arco_4DDC61_a.webp",
+      "mesh_glb": "assets/3d/mostri/goblin_arco.glb",
+      "mesh_stl": "exports/3d/mostri/goblin_arco.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "goblin_spadone",
+      "category": "monster",
+      "name": "Goblin con spadone",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/mostri/goblin_spadone_B465D8_a.webp",
+      "mesh_glb": "assets/3d/mostri/goblin_spadone.glb",
+      "mesh_stl": "exports/3d/mostri/goblin_spadone.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "goblin_lancia",
+      "category": "monster",
+      "name": "Goblin con lancia",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/mostri/goblin_lancia_A9CB3C_a.webp",
+      "mesh_glb": "assets/3d/mostri/goblin_lancia.glb",
+      "mesh_stl": "exports/3d/mostri/goblin_lancia.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "imp",
+      "category": "monster",
+      "name": "Imp",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/mostri/imp_2E6643_a.webp",
+      "mesh_glb": "assets/3d/mostri/imp.glb",
+      "mesh_stl": "exports/3d/mostri/imp.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "orco_m",
+      "category": "monster",
+      "name": "Orco",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/mostri/orco_m_ED3326_a.webp",
+      "mesh_glb": "assets/3d/mostri/orco_m.glb",
+      "mesh_stl": "exports/3d/mostri/orco_m.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "ratto_a",
+      "category": "monster",
+      "name": "Ratto",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/mostri/ratto_a_EEAAC8_a.webp",
+      "mesh_glb": "assets/3d/mostri/ratto_a.glb",
+      "mesh_stl": "exports/3d/mostri/ratto_a.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "ratto_b",
+      "category": "monster",
+      "name": "Ratto",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/mostri/ratto_b_BB8426_a.webp",
+      "mesh_glb": "assets/3d/mostri/ratto_b.glb",
+      "mesh_stl": "exports/3d/mostri/ratto_b.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "scheletro_ascia",
+      "category": "monster",
+      "name": "Scheletro con ascia",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/mostri/scheletro_ascia_3D5289_a.webp",
+      "mesh_glb": "assets/3d/mostri/scheletro_ascia.glb",
+      "mesh_stl": "exports/3d/mostri/scheletro_ascia.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "scheletro_arco",
+      "category": "monster",
+      "name": "Scheletro con arco",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/mostri/scheletro_arco_4C759E_a.webp",
+      "mesh_glb": "assets/3d/mostri/scheletro_arco.glb",
+      "mesh_stl": "exports/3d/mostri/scheletro_arco.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "scheletro_lancia",
+      "category": "monster",
+      "name": "Scheletro con lancia",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/mostri/scheletro_lancia_B99B02_a.webp",
+      "mesh_glb": "assets/3d/mostri/scheletro_lancia.glb",
+      "mesh_stl": "exports/3d/mostri/scheletro_lancia.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "scheletro_spada",
+      "category": "monster",
+      "name": "Scheletro con spada",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/mostri/scheletro_spada_FA9574_a.webp",
+      "mesh_glb": "assets/3d/mostri/scheletro_spada.glb",
+      "mesh_stl": "exports/3d/mostri/scheletro_spada.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "succubo",
+      "category": "monster",
+      "name": "Succube",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/mostri/succubo_BCB338_a.webp",
+      "mesh_glb": "assets/3d/mostri/succubo.glb",
+      "mesh_stl": "exports/3d/mostri/succubo.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "vipera",
+      "category": "monster",
+      "name": "Vipera",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/mostri/vipera_5C6EF7_a.webp",
+      "mesh_glb": "assets/3d/mostri/vipera.glb",
+      "mesh_stl": "exports/3d/mostri/vipera.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "lupo_a",
+      "category": "monster",
+      "name": "Lupo",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/mostri/lupo_a_D50D70_a.webp",
+      "mesh_glb": "assets/3d/mostri/lupo_a.glb",
+      "mesh_stl": "exports/3d/mostri/lupo_a.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "lupo_b",
+      "category": "monster",
+      "name": "Lupo",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/mostri/lupo_b_917808_a.webp",
+      "mesh_glb": "assets/3d/mostri/lupo_b.glb",
+      "mesh_stl": "exports/3d/mostri/lupo_b.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "alligatore",
+      "category": "monster",
+      "name": "Alligatore",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/mostri/alligatore_00F155_a.webp",
+      "mesh_glb": "assets/3d/mostri/alligatore.glb",
+      "mesh_stl": "exports/3d/mostri/alligatore.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "anomalia_grigia",
+      "category": "monster",
+      "name": "Anomalia grigia",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/mostri/anomalia_grigia_D748C4_a.webp",
+      "mesh_glb": "assets/3d/mostri/anomalia_grigia.glb",
+      "mesh_stl": "exports/3d/mostri/anomalia_grigia.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "anomalia_oro",
+      "category": "monster",
+      "name": "Anomalia dorata",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/mostri/anomalia_oro_71F2F5_a.webp",
+      "mesh_glb": "assets/3d/mostri/anomalia_oro.glb",
+      "mesh_stl": "exports/3d/mostri/anomalia_oro.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "anomalia_viola",
+      "category": "monster",
+      "name": "Anomalia viola",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/mostri/anomalia_viola_28671E_a.webp",
+      "mesh_glb": "assets/3d/mostri/anomalia_viola.glb",
+      "mesh_stl": "exports/3d/mostri/anomalia_viola.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "anomalia_prisma",
+      "category": "monster",
+      "name": "Anomalia prismatica",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/mostri/anomalia_prisma_99A4E0_a.webp",
+      "mesh_glb": "assets/3d/mostri/anomalia_prisma.glb",
+      "mesh_stl": "exports/3d/mostri/anomalia_prisma.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "orso",
+      "category": "monster",
+      "name": "Orso",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/mostri/orso_7E179E_a.webp",
+      "mesh_glb": "assets/3d/mostri/orso.glb",
+      "mesh_stl": "exports/3d/mostri/orso.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "drago",
+      "category": "monster",
+      "name": "Drago",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/mostri/drago_B938EF_a.webp",
+      "mesh_glb": "assets/3d/mostri/drago.glb",
+      "mesh_stl": "exports/3d/mostri/drago.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "drago_volante",
+      "category": "monster",
+      "name": "Drago volante",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/mostri/drago_volante_D18B82_a.webp",
+      "mesh_glb": "assets/3d/mostri/drago_volante.glb",
+      "mesh_stl": "exports/3d/mostri/drago_volante.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "gargoyle",
+      "category": "monster",
+      "name": "Gargoyle",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/mostri/gargoyle_EE0248_a.webp",
+      "mesh_glb": "assets/3d/mostri/gargoyle.glb",
+      "mesh_stl": "exports/3d/mostri/gargoyle.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "pipistrello",
+      "category": "monster",
+      "name": "Pipistrello gigante",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/mostri/pipistrello_BFA9AC_a.webp",
+      "mesh_glb": "assets/3d/mostri/pipistrello.glb",
+      "mesh_stl": "exports/3d/mostri/pipistrello.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "minotauro",
+      "category": "monster",
+      "name": "Minotauro",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/mostri/minotauro_A6C0CC_a.webp",
+      "mesh_glb": "assets/3d/mostri/minotauro.glb",
+      "mesh_stl": "exports/3d/mostri/minotauro.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "orco",
+      "category": "monster",
+      "name": "Orco guerriero",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/mostri/orco_C3D20F_a.webp",
+      "mesh_glb": "assets/3d/mostri/orco.glb",
+      "mesh_stl": "exports/3d/mostri/orco.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "scorpione",
+      "category": "monster",
+      "name": "Scorpione",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/mostri/scorpione_E84BD8_a.webp",
+      "mesh_glb": "assets/3d/mostri/scorpione.glb",
+      "mesh_stl": "exports/3d/mostri/scorpione.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "serpente",
+      "category": "monster",
+      "name": "Serpente",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/mostri/serpente_E0202D_a.webp",
+      "mesh_glb": "assets/3d/mostri/serpente.glb",
+      "mesh_stl": "exports/3d/mostri/serpente.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "cavaliere_scheletro",
+      "category": "monster",
+      "name": "Cavaliere scheletro",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/mostri/cavaliere_scheletro_6AA2A0_a.webp",
+      "mesh_glb": "assets/3d/mostri/cavaliere_scheletro.glb",
+      "mesh_stl": "exports/3d/mostri/cavaliere_scheletro.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "ragno",
+      "category": "monster",
+      "name": "Ragno",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/mostri/ragno_8B0401_a.webp",
+      "mesh_glb": "assets/3d/mostri/ragno.glb",
+      "mesh_stl": "exports/3d/mostri/ragno.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "troll",
+      "category": "monster",
+      "name": "Troll",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/mostri/troll_A448E3_a.webp",
+      "mesh_glb": "assets/3d/mostri/troll.glb",
+      "mesh_stl": "exports/3d/mostri/troll.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "vampiro",
+      "category": "monster",
+      "name": "Vampiro",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/mostri/vampiro_CA28BB_a.webp",
+      "mesh_glb": "assets/3d/mostri/vampiro.glb",
+      "mesh_stl": "exports/3d/mostri/vampiro.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "spettro",
+      "category": "monster",
+      "name": "Spettro",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/mostri/spettro_5A13C8_a.webp",
+      "mesh_glb": "assets/3d/mostri/spettro.glb",
+      "mesh_stl": "exports/3d/mostri/spettro.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "demone",
+      "category": "monster",
+      "name": "Demone",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/mostri/demone_DF7B6E_a.webp",
+      "mesh_glb": "assets/3d/mostri/demone.glb",
+      "mesh_stl": "exports/3d/mostri/demone.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "drago_t",
+      "category": "monster",
+      "name": "Drago tremendo",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/mostri/drago_t_1CB698_a.webp",
+      "mesh_glb": "assets/3d/mostri/drago_t.glb",
+      "mesh_stl": "exports/3d/mostri/drago_t.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "drago_volante_t",
+      "category": "monster",
+      "name": "Drago volante tremendo",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/mostri/drago_volante_t_60FB92_a.webp",
+      "mesh_glb": "assets/3d/mostri/drago_volante_t.glb",
+      "mesh_stl": "exports/3d/mostri/drago_volante_t.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "gargoyle_t",
+      "category": "monster",
+      "name": "Gargoyle tremendo",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/mostri/gargoyle_t_F59507_a.webp",
+      "mesh_glb": "assets/3d/mostri/gargoyle_t.glb",
+      "mesh_stl": "exports/3d/mostri/gargoyle_t.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "gigante",
+      "category": "monster",
+      "name": "Gigante",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/mostri/gigante_DAEDC1_a.webp",
+      "mesh_glb": "assets/3d/mostri/gigante.glb",
+      "mesh_stl": "exports/3d/mostri/gigante.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "baccello",
+      "category": "monster",
+      "name": "Baccello gigante",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/mostri/baccello_6E5DC3_a.webp",
+      "mesh_glb": "assets/3d/mostri/baccello.glb",
+      "mesh_stl": "exports/3d/mostri/baccello.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "golem",
+      "category": "monster",
+      "name": "Golem",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/mostri/golem_0C2136_a.webp",
+      "mesh_glb": "assets/3d/mostri/golem.glb",
+      "mesh_stl": "exports/3d/mostri/golem.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "piovra",
+      "category": "monster",
+      "name": "Piovra",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/mostri/piovra_E181E1_a.webp",
+      "mesh_glb": "assets/3d/mostri/piovra.glb",
+      "mesh_stl": "exports/3d/mostri/piovra.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "scorpione_t",
+      "category": "monster",
+      "name": "Scorpione tremendo",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/mostri/scorpione_t_66B3C0_a.webp",
+      "mesh_glb": "assets/3d/mostri/scorpione_t.glb",
+      "mesh_stl": "exports/3d/mostri/scorpione_t.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "serpente_t",
+      "category": "monster",
+      "name": "Serpente tremendo",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/mostri/serpente_t_7782E7_a.webp",
+      "mesh_glb": "assets/3d/mostri/serpente_t.glb",
+      "mesh_stl": "exports/3d/mostri/serpente_t.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "ragno_t",
+      "category": "monster",
+      "name": "Ragno tremendo",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/mostri/ragno_t_A87ACB_a.webp",
+      "mesh_glb": "assets/3d/mostri/ragno_t.glb",
+      "mesh_stl": "exports/3d/mostri/ragno_t.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "troll_t",
+      "category": "monster",
+      "name": "Troll tremendo",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/mostri/troll_t_657516_a.webp",
+      "mesh_glb": "assets/3d/mostri/troll_t.glb",
+      "mesh_stl": "exports/3d/mostri/troll_t.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "demone_alato",
+      "category": "monster",
+      "name": "Demone alato",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/mostri/demone_alato_3D4452_a.webp",
+      "mesh_glb": "assets/3d/mostri/demone_alato.glb",
+      "mesh_stl": "exports/3d/mostri/demone_alato.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "colosso",
+      "category": "monster",
+      "name": "Colosso",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/mostri/colosso_AA4158_a.webp",
+      "mesh_glb": "assets/3d/mostri/colosso.glb",
+      "mesh_stl": "exports/3d/mostri/colosso.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "titano",
+      "category": "monster",
+      "name": "Titano",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/mostri/titano_FB27E6_a.webp",
+      "mesh_glb": "assets/3d/mostri/titano.glb",
+      "mesh_stl": "exports/3d/mostri/titano.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "bandits",
+      "category": "native_group",
+      "name": "Banditi",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/nativi/bandits_hq_a.webp",
+      "mesh_glb": "assets/3d/nativi/bandits.glb",
+      "mesh_stl": "exports/3d/nativi/bandits.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "dwarves",
+      "category": "native_group",
+      "name": "Nani",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/nativi/dwarves_hq_a.webp",
+      "mesh_glb": "assets/3d/nativi/dwarves.glb",
+      "mesh_stl": "exports/3d/nativi/dwarves.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "elves",
+      "category": "native_group",
+      "name": "Elfi",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/nativi/elves_hq_a.webp",
+      "mesh_glb": "assets/3d/nativi/elves.glb",
+      "mesh_stl": "exports/3d/nativi/elves.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "cultists",
+      "category": "native_group",
+      "name": "Cultisti",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/nativi/cultists_hq_a.webp",
+      "mesh_glb": "assets/3d/nativi/cultists.glb",
+      "mesh_stl": "exports/3d/nativi/cultists.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "zealots",
+      "category": "native_group",
+      "name": "Zeloti",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/nativi/zealots_hq_a.webp",
+      "mesh_glb": "assets/3d/nativi/zealots.glb",
+      "mesh_stl": "exports/3d/nativi/zealots.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "order",
+      "category": "native_group",
+      "name": "Ordine",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/nativi/order_hq_a.webp",
+      "mesh_glb": "assets/3d/nativi/order.glb",
+      "mesh_stl": "exports/3d/nativi/order.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "patrol",
+      "category": "native_group",
+      "name": "Pattuglia",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/nativi/patrol_hq_a.webp",
+      "mesh_glb": "assets/3d/nativi/patrol.glb",
+      "mesh_stl": "exports/3d/nativi/patrol.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "aborigines",
+      "category": "native_group",
+      "name": "Aborigeni",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/nativi/aborigines_hq_a.webp",
+      "mesh_glb": "assets/3d/nativi/aborigines.glb",
+      "mesh_stl": "exports/3d/nativi/aborigines.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "coven",
+      "category": "native_group",
+      "name": "Congrega",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/nativi/coven_hq_a.webp",
+      "mesh_glb": "assets/3d/nativi/coven.glb",
+      "mesh_stl": "exports/3d/nativi/coven.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "hunters",
+      "category": "native_group",
+      "name": "Cacciatori",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/nativi/hunters_hq_a.webp",
+      "mesh_glb": "assets/3d/nativi/hunters.glb",
+      "mesh_stl": "exports/3d/nativi/hunters.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "mercenaries",
+      "category": "native_group",
+      "name": "Mercenari",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/nativi/mercenaries_1_a.webp",
+      "mesh_glb": "assets/3d/nativi/mercenaries.glb",
+      "mesh_stl": "exports/3d/nativi/mercenaries.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "enchanters",
+      "category": "native_group",
+      "name": "Incantatori",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/nativi/enchanters_hq_a.webp",
+      "mesh_glb": "assets/3d/nativi/enchanters.glb",
+      "mesh_stl": "exports/3d/nativi/enchanters.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "conjurors",
+      "category": "native_group",
+      "name": "Evocatori",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/nativi/conjurors_hq_a.webp",
+      "mesh_glb": "assets/3d/nativi/conjurors.glb",
+      "mesh_stl": "exports/3d/nativi/conjurors.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "pagans",
+      "category": "native_group",
+      "name": "Pagani",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/nativi/pagans_hq_a.webp",
+      "mesh_glb": "assets/3d/nativi/pagans.glb",
+      "mesh_stl": "exports/3d/nativi/pagans.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "mages",
+      "category": "native_group",
+      "name": "Magi",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/nativi/mages_hq_a.webp",
+      "mesh_glb": "assets/3d/nativi/mages.glb",
+      "mesh_stl": "exports/3d/nativi/mages.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "rogues",
+      "category": "native_group",
+      "name": "Furfanti",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/nativi/rogues_hq_a.webp",
+      "mesh_glb": "assets/3d/nativi/rogues.glb",
+      "mesh_stl": "exports/3d/nativi/rogues.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "soldiers",
+      "category": "native_group",
+      "name": "Soldati",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/nativi/soldiers_hq_a.webp",
+      "mesh_glb": "assets/3d/nativi/soldiers.glb",
+      "mesh_stl": "exports/3d/nativi/soldiers.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "bashkars",
+      "category": "native_group",
+      "name": "Bashkar",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/nativi/bashkars_hq_a.webp",
+      "mesh_glb": "assets/3d/nativi/bashkars.glb",
+      "mesh_stl": "exports/3d/nativi/bashkars.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "company",
+      "category": "native_group",
+      "name": "Compagnia",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/nativi/company_hq_a.webp",
+      "mesh_glb": "assets/3d/nativi/company.glb",
+      "mesh_stl": "exports/3d/nativi/company.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "woodfolk",
+      "category": "native_group",
+      "name": "Gente dei boschi",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/nativi/woodfolk_hq_a.webp",
+      "mesh_glb": "assets/3d/nativi/woodfolk.glb",
+      "mesh_stl": "exports/3d/nativi/woodfolk.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "lancers",
+      "category": "native_group",
+      "name": "Lancieri",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/nativi/lancers_hq_a.webp",
+      "mesh_glb": "assets/3d/nativi/lancers.glb",
+      "mesh_stl": "exports/3d/nativi/lancers.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "guard",
+      "category": "native_group",
+      "name": "Guardia",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/nativi/guard_hq_a.webp",
+      "mesh_glb": "assets/3d/nativi/guard.glb",
+      "mesh_stl": "exports/3d/nativi/guard.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "peasants",
+      "category": "native_group",
+      "name": "Contadini",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/nativi/peasants_hq_a.webp",
+      "mesh_glb": "assets/3d/nativi/peasants.glb",
+      "mesh_stl": "exports/3d/nativi/peasants.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "summoners",
+      "category": "native_group",
+      "name": "Convocatori",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/nativi/summoners_hq_a.webp",
+      "mesh_glb": "assets/3d/nativi/summoners.glb",
+      "mesh_stl": "exports/3d/nativi/summoners.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "apprentice",
+      "category": "traveler",
+      "name": "Apprendista",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/viaggiatori/apprentice.webp",
+      "mesh_glb": "assets/3d/viaggiatori/apprentice.glb",
+      "mesh_stl": "exports/3d/viaggiatori/apprentice.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "dominate",
+      "category": "traveler",
+      "name": "Dominare",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/viaggiatori/dominate.webp",
+      "mesh_glb": "assets/3d/viaggiatori/dominate.glb",
+      "mesh_stl": "exports/3d/viaggiatori/dominate.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "seek",
+      "category": "traveler",
+      "name": "Ricerca",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/viaggiatori/seek.webp",
+      "mesh_glb": "assets/3d/viaggiatori/seek.glb",
+      "mesh_stl": "exports/3d/viaggiatori/seek.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "confront",
+      "category": "traveler",
+      "name": "Affrontare",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/viaggiatori/confront.webp",
+      "mesh_glb": "assets/3d/viaggiatori/confront.glb",
+      "mesh_stl": "exports/3d/viaggiatori/confront.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "raid",
+      "category": "traveler",
+      "name": "Razzia",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/viaggiatori/raid.webp",
+      "mesh_glb": "assets/3d/viaggiatori/raid.glb",
+      "mesh_stl": "exports/3d/viaggiatori/raid.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "challenge",
+      "category": "traveler",
+      "name": "Sfida",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/viaggiatori/challenge.webp",
+      "mesh_glb": "assets/3d/viaggiatori/challenge.glb",
+      "mesh_stl": "exports/3d/viaggiatori/challenge.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "food_ale",
+      "category": "traveler",
+      "name": "Cibo e birra",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/viaggiatori/food_ale.webp",
+      "mesh_glb": "assets/3d/viaggiatori/food_ale.glb",
+      "mesh_stl": "exports/3d/viaggiatori/food_ale.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "war",
+      "category": "traveler",
+      "name": "Guerra",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/viaggiatori/war.webp",
+      "mesh_glb": "assets/3d/viaggiatori/war.glb",
+      "mesh_stl": "exports/3d/viaggiatori/war.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "blacksmith",
+      "category": "traveler",
+      "name": "Fabbro",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/viaggiatori/blacksmith.webp",
+      "mesh_glb": "assets/3d/viaggiatori/blacksmith.glb",
+      "mesh_stl": "exports/3d/viaggiatori/blacksmith.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "cleric",
+      "category": "traveler",
+      "name": "Chierico",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/viaggiatori/cleric.webp",
+      "mesh_glb": "assets/3d/viaggiatori/cleric.glb",
+      "mesh_stl": "exports/3d/viaggiatori/cleric.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "liberate",
+      "category": "traveler",
+      "name": "Liberare",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/viaggiatori/liberate.webp",
+      "mesh_glb": "assets/3d/viaggiatori/liberate.glb",
+      "mesh_stl": "exports/3d/viaggiatori/liberate.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "strongman",
+      "category": "traveler",
+      "name": "Forzuto",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/viaggiatori/strongman.webp",
+      "mesh_glb": "assets/3d/viaggiatori/strongman.glb",
+      "mesh_stl": "exports/3d/viaggiatori/strongman.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "hermit",
+      "category": "traveler",
+      "name": "Eremita",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/viaggiatori/hermit.webp",
+      "mesh_glb": "assets/3d/viaggiatori/hermit.glb",
+      "mesh_stl": "exports/3d/viaggiatori/hermit.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "fairy",
+      "category": "traveler",
+      "name": "Fata",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/viaggiatori/fairy.webp",
+      "mesh_glb": "assets/3d/viaggiatori/fairy.glb",
+      "mesh_stl": "exports/3d/viaggiatori/fairy.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "revolt",
+      "category": "traveler",
+      "name": "Rivolta",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/viaggiatori/revolt.webp",
+      "mesh_glb": "assets/3d/viaggiatori/revolt.glb",
+      "mesh_stl": "exports/3d/viaggiatori/revolt.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "pillage",
+      "category": "traveler",
+      "name": "Saccheggio",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/viaggiatori/pillage.webp",
+      "mesh_glb": "assets/3d/viaggiatori/pillage.glb",
+      "mesh_stl": "exports/3d/viaggiatori/pillage.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "escort_party",
+      "category": "traveler",
+      "name": "Scorta",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/viaggiatori/escort_party.webp",
+      "mesh_glb": "assets/3d/viaggiatori/escort_party.glb",
+      "mesh_stl": "exports/3d/viaggiatori/escort_party.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "skirmish",
+      "category": "traveler",
+      "name": "Schermaglia",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/viaggiatori/skirmish.webp",
+      "mesh_glb": "assets/3d/viaggiatori/skirmish.glb",
+      "mesh_stl": "exports/3d/viaggiatori/skirmish.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "books_art",
+      "category": "traveler",
+      "name": "Libri e arte",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/viaggiatori/books_art.webp",
+      "mesh_glb": "assets/3d/viaggiatori/books_art.glb",
+      "mesh_stl": "exports/3d/viaggiatori/books_art.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "barkeep",
+      "category": "traveler",
+      "name": "Oste",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/viaggiatori/barkeep.webp",
+      "mesh_glb": "assets/3d/viaggiatori/barkeep.glb",
+      "mesh_stl": "exports/3d/viaggiatori/barkeep.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "conquer",
+      "category": "traveler",
+      "name": "Conquista",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/viaggiatori/conquer.webp",
+      "mesh_glb": "assets/3d/viaggiatori/conquer.glb",
+      "mesh_stl": "exports/3d/viaggiatori/conquer.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "warlock",
+      "category": "traveler",
+      "name": "Stregone errante",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/viaggiatori/warlock.webp",
+      "mesh_glb": "assets/3d/viaggiatori/warlock.glb",
+      "mesh_stl": "exports/3d/viaggiatori/warlock.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "initiate",
+      "category": "traveler",
+      "name": "Iniziato",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/viaggiatori/initiate.webp",
+      "mesh_glb": "assets/3d/viaggiatori/initiate.glb",
+      "mesh_stl": "exports/3d/viaggiatori/initiate.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "odyssey",
+      "category": "traveler",
+      "name": "Odissea",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/viaggiatori/odyssey.webp",
+      "mesh_glb": "assets/3d/viaggiatori/odyssey.glb",
+      "mesh_stl": "exports/3d/viaggiatori/odyssey.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "ranger",
+      "category": "traveler",
+      "name": "Guardaboschi",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/viaggiatori/ranger.webp",
+      "mesh_glb": "assets/3d/viaggiatori/ranger.glb",
+      "mesh_stl": "exports/3d/viaggiatori/ranger.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "crone",
+      "category": "traveler",
+      "name": "Vecchia strega",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/viaggiatori/crone.webp",
+      "mesh_glb": "assets/3d/viaggiatori/crone.glb",
+      "mesh_stl": "exports/3d/viaggiatori/crone.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "priest",
+      "category": "traveler",
+      "name": "Sacerdote",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/viaggiatori/priest.webp",
+      "mesh_glb": "assets/3d/viaggiatori/priest.glb",
+      "mesh_stl": "exports/3d/viaggiatori/priest.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "quest",
+      "category": "traveler",
+      "name": "Impresa",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/viaggiatori/quest.webp",
+      "mesh_glb": "assets/3d/viaggiatori/quest.glb",
+      "mesh_stl": "exports/3d/viaggiatori/quest.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "miner",
+      "category": "traveler",
+      "name": "Minatore",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/viaggiatori/miner.webp",
+      "mesh_glb": "assets/3d/viaggiatori/miner.glb",
+      "mesh_stl": "exports/3d/viaggiatori/miner.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "hunt",
+      "category": "traveler",
+      "name": "Caccia",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/viaggiatori/hunt.webp",
+      "mesh_glb": "assets/3d/viaggiatori/hunt.glb",
+      "mesh_stl": "exports/3d/viaggiatori/hunt.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "scholar",
+      "category": "traveler",
+      "name": "Studioso",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/viaggiatori/scholar.webp",
+      "mesh_glb": "assets/3d/viaggiatori/scholar.glb",
+      "mesh_stl": "exports/3d/viaggiatori/scholar.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "journey",
+      "category": "traveler",
+      "name": "Viaggio",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/viaggiatori/journey.webp",
+      "mesh_glb": "assets/3d/viaggiatori/journey.glb",
+      "mesh_stl": "exports/3d/viaggiatori/journey.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "explore",
+      "category": "traveler",
+      "name": "Esplorazione",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/viaggiatori/explore.webp",
+      "mesh_glb": "assets/3d/viaggiatori/explore.glb",
+      "mesh_stl": "exports/3d/viaggiatori/explore.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "shadow",
+      "category": "traveler",
+      "name": "Ombra",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/viaggiatori/shadow.webp",
+      "mesh_glb": "assets/3d/viaggiatori/shadow.glb",
+      "mesh_stl": "exports/3d/viaggiatori/shadow.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "merchant",
+      "category": "traveler",
+      "name": "Mercante",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/viaggiatori/merchant.webp",
+      "mesh_glb": "assets/3d/viaggiatori/merchant.glb",
+      "mesh_stl": "exports/3d/viaggiatori/merchant.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "tour_guide",
+      "category": "traveler",
+      "name": "Guida turistica",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/viaggiatori/tour_guide.webp",
+      "mesh_glb": "assets/3d/viaggiatori/tour_guide.glb",
+      "mesh_stl": "exports/3d/viaggiatori/tour_guide.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "bargainer",
+      "category": "traveler",
+      "name": "Contrattatore",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/viaggiatori/bargainer.webp",
+      "mesh_glb": "assets/3d/viaggiatori/bargainer.glb",
+      "mesh_stl": "exports/3d/viaggiatori/bargainer.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "shaman",
+      "category": "traveler",
+      "name": "Sciamano",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/viaggiatori/shaman.webp",
+      "mesh_glb": "assets/3d/viaggiatori/shaman.glb",
+      "mesh_stl": "exports/3d/viaggiatori/shaman.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "tracker",
+      "category": "traveler",
+      "name": "Segugio",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/viaggiatori/tracker.webp",
+      "mesh_glb": "assets/3d/viaggiatori/tracker.glb",
+      "mesh_stl": "exports/3d/viaggiatori/tracker.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "cook",
+      "category": "traveler",
+      "name": "Cuoco",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/viaggiatori/cook.webp",
+      "mesh_glb": "assets/3d/viaggiatori/cook.glb",
+      "mesh_stl": "exports/3d/viaggiatori/cook.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_timeless_jewel",
+      "category": "treasure",
+      "name": "Gioiello senza tempo",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_timeless_jewel.webp",
+      "mesh_glb": "assets/3d/tesori/t_timeless_jewel.glb",
+      "mesh_stl": "exports/3d/tesori/t_timeless_jewel.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_sacred_grail",
+      "category": "treasure",
+      "name": "Sacro Graal",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_sacred_grail.webp",
+      "mesh_glb": "assets/3d/tesori/t_sacred_grail.glb",
+      "mesh_stl": "exports/3d/tesori/t_sacred_grail.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_regent_of_jewels",
+      "category": "treasure",
+      "name": "Reggente dei gioielli",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_regent_of_jewels.webp",
+      "mesh_glb": "assets/3d/tesori/t_regent_of_jewels.glb",
+      "mesh_stl": "exports/3d/tesori/t_regent_of_jewels.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_magic_wand",
+      "category": "treasure",
+      "name": "Bacchetta magica",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_magic_wand.webp",
+      "mesh_glb": "assets/3d/tesori/t_magic_wand.glb",
+      "mesh_stl": "exports/3d/tesori/t_magic_wand.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_lucky_charm",
+      "category": "treasure",
+      "name": "Portafortuna",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_lucky_charm.webp",
+      "mesh_glb": "assets/3d/tesori/t_lucky_charm.glb",
+      "mesh_stl": "exports/3d/tesori/t_lucky_charm.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_imperial_tabard",
+      "category": "treasure",
+      "name": "Tabarro imperiale",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_imperial_tabard.webp",
+      "mesh_glb": "assets/3d/tesori/t_imperial_tabard.glb",
+      "mesh_stl": "exports/3d/tesori/t_imperial_tabard.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_hidden_ring",
+      "category": "treasure",
+      "name": "Anello nascosto",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_hidden_ring.webp",
+      "mesh_glb": "assets/3d/tesori/t_hidden_ring.glb",
+      "mesh_stl": "exports/3d/tesori/t_hidden_ring.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_golden_icon",
+      "category": "treasure",
+      "name": "Icona d'oro",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_golden_icon.webp",
+      "mesh_glb": "assets/3d/tesori/t_golden_icon.glb",
+      "mesh_stl": "exports/3d/tesori/t_golden_icon.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_golden_crown",
+      "category": "treasure",
+      "name": "Corona d'oro",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_golden_crown.webp",
+      "mesh_glb": "assets/3d/tesori/t_golden_crown.glb",
+      "mesh_stl": "exports/3d/tesori/t_golden_crown.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_golden_arm_band",
+      "category": "treasure",
+      "name": "Bracciale d'oro",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_golden_arm_band.webp",
+      "mesh_glb": "assets/3d/tesori/t_golden_arm_band.glb",
+      "mesh_stl": "exports/3d/tesori/t_golden_arm_band.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_glowing_gem",
+      "category": "treasure",
+      "name": "Gemma lucente",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_glowing_gem.webp",
+      "mesh_glb": "assets/3d/tesori/t_glowing_gem.glb",
+      "mesh_stl": "exports/3d/tesori/t_glowing_gem.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_glimmering_ring",
+      "category": "treasure",
+      "name": "Anello scintillante",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_glimmering_ring.webp",
+      "mesh_glb": "assets/3d/tesori/t_glimmering_ring.glb",
+      "mesh_stl": "exports/3d/tesori/t_glimmering_ring.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_girdle_of_energy",
+      "category": "treasure",
+      "name": "Cintura dell'energia",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_girdle_of_energy.webp",
+      "mesh_glb": "assets/3d/tesori/t_girdle_of_energy.glb",
+      "mesh_stl": "exports/3d/tesori/t_girdle_of_energy.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_garb_of_speed",
+      "category": "treasure",
+      "name": "Veste della velocità",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_garb_of_speed.webp",
+      "mesh_glb": "assets/3d/tesori/t_garb_of_speed.glb",
+      "mesh_stl": "exports/3d/tesori/t_garb_of_speed.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_flying_carpet",
+      "category": "treasure",
+      "name": "Tappeto volante",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_flying_carpet.webp",
+      "mesh_glb": "assets/3d/tesori/t_flying_carpet.glb",
+      "mesh_stl": "exports/3d/tesori/t_flying_carpet.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_eye_of_the_moon",
+      "category": "treasure",
+      "name": "Occhio della luna",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_eye_of_the_moon.webp",
+      "mesh_glb": "assets/3d/tesori/t_eye_of_the_moon.glb",
+      "mesh_stl": "exports/3d/tesori/t_eye_of_the_moon.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_eye_of_the_idol",
+      "category": "treasure",
+      "name": "Occhio dell'idolo",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_eye_of_the_idol.webp",
+      "mesh_glb": "assets/3d/tesori/t_eye_of_the_idol.glb",
+      "mesh_stl": "exports/3d/tesori/t_eye_of_the_idol.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_enchanter_s_skull",
+      "category": "treasure",
+      "name": "Teschio dell'incantatore",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_enchanter_s_skull.webp",
+      "mesh_glb": "assets/3d/tesori/t_enchanter_s_skull.glb",
+      "mesh_stl": "exports/3d/tesori/t_enchanter_s_skull.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_blasted_jewel",
+      "category": "treasure",
+      "name": "Gioiello maledetto",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_blasted_jewel.webp",
+      "mesh_glb": "assets/3d/tesori/t_blasted_jewel.glb",
+      "mesh_stl": "exports/3d/tesori/t_blasted_jewel.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_belt_of_strength",
+      "category": "treasure",
+      "name": "Cintura della forza",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_belt_of_strength.webp",
+      "mesh_glb": "assets/3d/tesori/t_belt_of_strength.glb",
+      "mesh_stl": "exports/3d/tesori/t_belt_of_strength.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_bejeweled_dwarf_vest",
+      "category": "treasure",
+      "name": "Gilet nanico ingioiellato",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_bejeweled_dwarf_vest.webp",
+      "mesh_glb": "assets/3d/tesori/t_bejeweled_dwarf_vest.glb",
+      "mesh_stl": "exports/3d/tesori/t_bejeweled_dwarf_vest.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_battle_bracelets",
+      "category": "treasure",
+      "name": "Bracciali da battaglia",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_battle_bracelets.webp",
+      "mesh_glb": "assets/3d/tesori/t_battle_bracelets.glb",
+      "mesh_stl": "exports/3d/tesori/t_battle_bracelets.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_white_feathered_wing",
+      "category": "treasure",
+      "name": "Ala di piume bianche",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_white_feathered_wing.webp",
+      "mesh_glb": "assets/3d/tesori/t_white_feathered_wing.glb",
+      "mesh_stl": "exports/3d/tesori/t_white_feathered_wing.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_talisman",
+      "category": "treasure",
+      "name": "Talismano",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_talisman.webp",
+      "mesh_glb": "assets/3d/tesori/t_talisman.glb",
+      "mesh_stl": "exports/3d/tesori/t_talisman.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_faerie_statue",
+      "category": "treasure",
+      "name": "Statua fatata",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_faerie_statue.webp",
+      "mesh_glb": "assets/3d/tesori/t_faerie_statue.glb",
+      "mesh_stl": "exports/3d/tesori/t_faerie_statue.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_scribe_spectacles",
+      "category": "treasure",
+      "name": "Occhiali dello scriba",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_scribe_spectacles.webp",
+      "mesh_glb": "assets/3d/tesori/t_scribe_spectacles.glb",
+      "mesh_stl": "exports/3d/tesori/t_scribe_spectacles.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_scope",
+      "category": "treasure",
+      "name": "Cannocchiale",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_scope.webp",
+      "mesh_glb": "assets/3d/tesori/t_scope.glb",
+      "mesh_stl": "exports/3d/tesori/t_scope.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_pentagram",
+      "category": "treasure",
+      "name": "Pentagramma",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_pentagram.webp",
+      "mesh_glb": "assets/3d/tesori/t_pentagram.glb",
+      "mesh_stl": "exports/3d/tesori/t_pentagram.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_mist_crystal",
+      "category": "treasure",
+      "name": "Cristallo di nebbia",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_mist_crystal.webp",
+      "mesh_glb": "assets/3d/tesori/t_mist_crystal.glb",
+      "mesh_stl": "exports/3d/tesori/t_mist_crystal.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_mage_diary",
+      "category": "treasure",
+      "name": "Diario del mago",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_mage_diary.webp",
+      "mesh_glb": "assets/3d/tesori/t_mage_diary.glb",
+      "mesh_stl": "exports/3d/tesori/t_mage_diary.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_holy_ring",
+      "category": "treasure",
+      "name": "Anello sacro",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_holy_ring.webp",
+      "mesh_glb": "assets/3d/tesori/t_holy_ring.glb",
+      "mesh_stl": "exports/3d/tesori/t_holy_ring.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_golden_lyre",
+      "category": "treasure",
+      "name": "Lira d'oro",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_golden_lyre.webp",
+      "mesh_glb": "assets/3d/tesori/t_golden_lyre.glb",
+      "mesh_stl": "exports/3d/tesori/t_golden_lyre.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_glider",
+      "category": "treasure",
+      "name": "Aliante",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_glider.webp",
+      "mesh_glb": "assets/3d/tesori/t_glider.glb",
+      "mesh_stl": "exports/3d/tesori/t_glider.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_expert_adventure_guide",
+      "category": "treasure",
+      "name": "Guida esperta d'avventura",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_expert_adventure_guide.webp",
+      "mesh_glb": "assets/3d/tesori/t_expert_adventure_guide.glb",
+      "mesh_stl": "exports/3d/tesori/t_expert_adventure_guide.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_elven_ring",
+      "category": "treasure",
+      "name": "Anello elfico",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_elven_ring.webp",
+      "mesh_glb": "assets/3d/tesori/t_elven_ring.glb",
+      "mesh_stl": "exports/3d/tesori/t_elven_ring.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_elemental_ring",
+      "category": "treasure",
+      "name": "Anello elementale",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_elemental_ring.webp",
+      "mesh_glb": "assets/3d/tesori/t_elemental_ring.glb",
+      "mesh_stl": "exports/3d/tesori/t_elemental_ring.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_demonic_ring",
+      "category": "treasure",
+      "name": "Anello demoniaco",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_demonic_ring.webp",
+      "mesh_glb": "assets/3d/tesori/t_demonic_ring.glb",
+      "mesh_stl": "exports/3d/tesori/t_demonic_ring.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_crystal_shard",
+      "category": "treasure",
+      "name": "Scheggia di cristallo",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_crystal_shard.webp",
+      "mesh_glb": "assets/3d/tesori/t_crystal_shard.glb",
+      "mesh_stl": "exports/3d/tesori/t_crystal_shard.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_crystal_ball",
+      "category": "treasure",
+      "name": "Sfera di cristallo",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_crystal_ball.webp",
+      "mesh_glb": "assets/3d/tesori/t_crystal_ball.glb",
+      "mesh_stl": "exports/3d/tesori/t_crystal_ball.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_conjure_ring",
+      "category": "treasure",
+      "name": "Anello della congiura",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_conjure_ring.webp",
+      "mesh_glb": "assets/3d/tesori/t_conjure_ring.glb",
+      "mesh_stl": "exports/3d/tesori/t_conjure_ring.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_color_prism",
+      "category": "treasure",
+      "name": "Prisma dei colori",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_color_prism.webp",
+      "mesh_glb": "assets/3d/tesori/t_color_prism.glb",
+      "mesh_stl": "exports/3d/tesori/t_color_prism.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_caged_bird",
+      "category": "treasure",
+      "name": "Uccello in gabbia",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_caged_bird.webp",
+      "mesh_glb": "assets/3d/tesori/t_caged_bird.glb",
+      "mesh_stl": "exports/3d/tesori/t_caged_bird.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_bard_s_lute",
+      "category": "treasure",
+      "name": "Liuto del bardo",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_bard_s_lute.webp",
+      "mesh_glb": "assets/3d/tesori/t_bard_s_lute.glb",
+      "mesh_stl": "exports/3d/tesori/t_bard_s_lute.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_bag_of_bones",
+      "category": "treasure",
+      "name": "Sacca di ossa",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_bag_of_bones.webp",
+      "mesh_glb": "assets/3d/tesori/t_bag_of_bones.glb",
+      "mesh_stl": "exports/3d/tesori/t_bag_of_bones.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_ancient_tome",
+      "category": "treasure",
+      "name": "Tomo antico",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_ancient_tome.webp",
+      "mesh_glb": "assets/3d/tesori/t_ancient_tome.glb",
+      "mesh_stl": "exports/3d/tesori/t_ancient_tome.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_ancient_rune",
+      "category": "treasure",
+      "name": "Runa antica",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_ancient_rune.webp",
+      "mesh_glb": "assets/3d/tesori/t_ancient_rune.glb",
+      "mesh_stl": "exports/3d/tesori/t_ancient_rune.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_gripping_dust",
+      "category": "treasure",
+      "name": "Polvere tenace",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_gripping_dust.webp",
+      "mesh_glb": "assets/3d/tesori/t_gripping_dust.glb",
+      "mesh_stl": "exports/3d/tesori/t_gripping_dust.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_draught_of_speed",
+      "category": "treasure",
+      "name": "Pozione di velocità",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_draught_of_speed.webp",
+      "mesh_glb": "assets/3d/tesori/t_draught_of_speed.glb",
+      "mesh_stl": "exports/3d/tesori/t_draught_of_speed.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_curdle_of_bone",
+      "category": "treasure",
+      "name": "Grumo d'osso",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_curdle_of_bone.webp",
+      "mesh_glb": "assets/3d/tesori/t_curdle_of_bone.glb",
+      "mesh_stl": "exports/3d/tesori/t_curdle_of_bone.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_toadstool_ring",
+      "category": "treasure",
+      "name": "Anello di funghi",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_toadstool_ring.webp",
+      "mesh_glb": "assets/3d/tesori/t_toadstool_ring.glb",
+      "mesh_stl": "exports/3d/tesori/t_toadstool_ring.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_shoes_of_stealth",
+      "category": "treasure",
+      "name": "Scarpe furtive",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_shoes_of_stealth.webp",
+      "mesh_glb": "assets/3d/tesori/t_shoes_of_stealth.glb",
+      "mesh_stl": "exports/3d/tesori/t_shoes_of_stealth.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_sacred_statue",
+      "category": "treasure",
+      "name": "Statua sacra",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_sacred_statue.webp",
+      "mesh_glb": "assets/3d/tesori/t_sacred_statue.glb",
+      "mesh_stl": "exports/3d/tesori/t_sacred_statue.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_royal_scepter",
+      "category": "treasure",
+      "name": "Scettro reale",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_royal_scepter.webp",
+      "mesh_glb": "assets/3d/tesori/t_royal_scepter.glb",
+      "mesh_stl": "exports/3d/tesori/t_royal_scepter.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_dragonfang_necklace",
+      "category": "treasure",
+      "name": "Collana di zanne di drago",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_dragonfang_necklace.webp",
+      "mesh_glb": "assets/3d/tesori/t_dragonfang_necklace.glb",
+      "mesh_stl": "exports/3d/tesori/t_dragonfang_necklace.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_quick_boots",
+      "category": "treasure",
+      "name": "Stivali rapidi",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_quick_boots.webp",
+      "mesh_glb": "assets/3d/tesori/t_quick_boots.glb",
+      "mesh_stl": "exports/3d/tesori/t_quick_boots.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_power_gauntlets",
+      "category": "treasure",
+      "name": "Guanti della potenza",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_power_gauntlets.webp",
+      "mesh_glb": "assets/3d/tesori/t_power_gauntlets.glb",
+      "mesh_stl": "exports/3d/tesori/t_power_gauntlets.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_phantom_glass",
+      "category": "treasure",
+      "name": "Vetro fantasma",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_phantom_glass.webp",
+      "mesh_glb": "assets/3d/tesori/t_phantom_glass.glb",
+      "mesh_stl": "exports/3d/tesori/t_phantom_glass.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_map_of_lost_city",
+      "category": "treasure",
+      "name": "Mappa della Città Perduta",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_map_of_lost_city.webp",
+      "mesh_glb": "assets/3d/tesori/t_map_of_lost_city.glb",
+      "mesh_stl": "exports/3d/tesori/t_map_of_lost_city.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_map_of_lost_castle",
+      "category": "treasure",
+      "name": "Mappa del Castello Perduto",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_map_of_lost_castle.webp",
+      "mesh_glb": "assets/3d/tesori/t_map_of_lost_castle.glb",
+      "mesh_stl": "exports/3d/tesori/t_map_of_lost_castle.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_magic_spectacles",
+      "category": "treasure",
+      "name": "Occhiali magici",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_magic_spectacles.webp",
+      "mesh_glb": "assets/3d/tesori/t_magic_spectacles.glb",
+      "mesh_stl": "exports/3d/tesori/t_magic_spectacles.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_handy_gloves",
+      "category": "treasure",
+      "name": "Guanti abili",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_handy_gloves.webp",
+      "mesh_glb": "assets/3d/tesori/t_handy_gloves.glb",
+      "mesh_stl": "exports/3d/tesori/t_handy_gloves.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_good_book",
+      "category": "treasure",
+      "name": "Libro sacro",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_good_book.webp",
+      "mesh_glb": "assets/3d/tesori/t_good_book.glb",
+      "mesh_stl": "exports/3d/tesori/t_good_book.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_gloves_of_strength",
+      "category": "treasure",
+      "name": "Guanti della forza",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_gloves_of_strength.webp",
+      "mesh_glb": "assets/3d/tesori/t_gloves_of_strength.glb",
+      "mesh_stl": "exports/3d/tesori/t_gloves_of_strength.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_flowers_of_rest",
+      "category": "treasure",
+      "name": "Fiori del riposo",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_flowers_of_rest.webp",
+      "mesh_glb": "assets/3d/tesori/t_flowers_of_rest.glb",
+      "mesh_stl": "exports/3d/tesori/t_flowers_of_rest.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_elven_slippers",
+      "category": "treasure",
+      "name": "Pantofole elfiche",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_elven_slippers.webp",
+      "mesh_glb": "assets/3d/tesori/t_elven_slippers.glb",
+      "mesh_stl": "exports/3d/tesori/t_elven_slippers.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_elusive_cloak",
+      "category": "treasure",
+      "name": "Mantello sfuggente",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_elusive_cloak.webp",
+      "mesh_glb": "assets/3d/tesori/t_elusive_cloak.glb",
+      "mesh_stl": "exports/3d/tesori/t_elusive_cloak.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_deft_gloves",
+      "category": "treasure",
+      "name": "Guanti destri",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_deft_gloves.webp",
+      "mesh_glb": "assets/3d/tesori/t_deft_gloves.glb",
+      "mesh_stl": "exports/3d/tesori/t_deft_gloves.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_cloven_hoof",
+      "category": "treasure",
+      "name": "Zoccolo fesso",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_cloven_hoof.webp",
+      "mesh_glb": "assets/3d/tesori/t_cloven_hoof.glb",
+      "mesh_stl": "exports/3d/tesori/t_cloven_hoof.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_cloak_of_mist",
+      "category": "treasure",
+      "name": "Mantello di nebbia",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_cloak_of_mist.webp",
+      "mesh_glb": "assets/3d/tesori/t_cloak_of_mist.glb",
+      "mesh_stl": "exports/3d/tesori/t_cloak_of_mist.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_book_of_lore",
+      "category": "treasure",
+      "name": "Libro del sapere",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_book_of_lore.webp",
+      "mesh_glb": "assets/3d/tesori/t_book_of_lore.glb",
+      "mesh_stl": "exports/3d/tesori/t_book_of_lore.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_black_book",
+      "category": "treasure",
+      "name": "Libro nero",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_black_book.webp",
+      "mesh_glb": "assets/3d/tesori/t_black_book.glb",
+      "mesh_stl": "exports/3d/tesori/t_black_book.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_power_boots",
+      "category": "treasure",
+      "name": "Stivali della potenza",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_power_boots.webp",
+      "mesh_glb": "assets/3d/tesori/t_power_boots.glb",
+      "mesh_stl": "exports/3d/tesori/t_power_boots.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_beast_pipes",
+      "category": "treasure",
+      "name": "Flauto delle bestie",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_beast_pipes.webp",
+      "mesh_glb": "assets/3d/tesori/t_beast_pipes.glb",
+      "mesh_stl": "exports/3d/tesori/t_beast_pipes.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_ointment_of_steel",
+      "category": "treasure",
+      "name": "Unguento d'acciaio",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_ointment_of_steel.webp",
+      "mesh_glb": "assets/3d/tesori/t_ointment_of_steel.glb",
+      "mesh_stl": "exports/3d/tesori/t_ointment_of_steel.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_withered_claw",
+      "category": "treasure",
+      "name": "Artiglio avvizzito",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_withered_claw.webp",
+      "mesh_glb": "assets/3d/tesori/t_withered_claw.glb",
+      "mesh_stl": "exports/3d/tesori/t_withered_claw.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_spurs",
+      "category": "treasure",
+      "name": "Speroni",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_spurs.webp",
+      "mesh_glb": "assets/3d/tesori/t_spurs.glb",
+      "mesh_stl": "exports/3d/tesori/t_spurs.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_vial_of_healing",
+      "category": "treasure",
+      "name": "Fiala curativa",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_vial_of_healing.webp",
+      "mesh_glb": "assets/3d/tesori/t_vial_of_healing.glb",
+      "mesh_stl": "exports/3d/tesori/t_vial_of_healing.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_vial_of_healing_2",
+      "category": "treasure",
+      "name": "Fiala curativa",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_vial_of_healing_2.webp",
+      "mesh_glb": "assets/3d/tesori/t_vial_of_healing_2.glb",
+      "mesh_stl": "exports/3d/tesori/t_vial_of_healing_2.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_traveler_s_guide",
+      "category": "treasure",
+      "name": "Guida del viaggiatore",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_traveler_s_guide.webp",
+      "mesh_glb": "assets/3d/tesori/t_traveler_s_guide.glb",
+      "mesh_stl": "exports/3d/tesori/t_traveler_s_guide.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_flash_bomb",
+      "category": "treasure",
+      "name": "Bomba accecante",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_flash_bomb.webp",
+      "mesh_glb": "assets/3d/tesori/t_flash_bomb.glb",
+      "mesh_stl": "exports/3d/tesori/t_flash_bomb.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_shielded_lantern",
+      "category": "treasure",
+      "name": "Lanterna schermata",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_shielded_lantern.webp",
+      "mesh_glb": "assets/3d/tesori/t_shielded_lantern.glb",
+      "mesh_stl": "exports/3d/tesori/t_shielded_lantern.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_seven_league_boots",
+      "category": "treasure",
+      "name": "Stivali delle sette leghe",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_seven_league_boots.webp",
+      "mesh_glb": "assets/3d/tesori/t_seven_league_boots.glb",
+      "mesh_stl": "exports/3d/tesori/t_seven_league_boots.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_scroll_of_malice",
+      "category": "treasure",
+      "name": "Pergamena della malizia",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_scroll_of_malice.webp",
+      "mesh_glb": "assets/3d/tesori/t_scroll_of_malice.glb",
+      "mesh_stl": "exports/3d/tesori/t_scroll_of_malice.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_scroll_of_lore",
+      "category": "treasure",
+      "name": "Pergamena del sapere",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_scroll_of_lore.webp",
+      "mesh_glb": "assets/3d/tesori/t_scroll_of_lore.glb",
+      "mesh_stl": "exports/3d/tesori/t_scroll_of_lore.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_scroll_of_allure",
+      "category": "treasure",
+      "name": "Pergamena del fascino",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_scroll_of_allure.webp",
+      "mesh_glb": "assets/3d/tesori/t_scroll_of_allure.glb",
+      "mesh_stl": "exports/3d/tesori/t_scroll_of_allure.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_scroll_of_alchemy",
+      "category": "treasure",
+      "name": "Pergamena alchemica",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_scroll_of_alchemy.webp",
+      "mesh_glb": "assets/3d/tesori/t_scroll_of_alchemy.glb",
+      "mesh_stl": "exports/3d/tesori/t_scroll_of_alchemy.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_scented_bait",
+      "category": "treasure",
+      "name": "Esca profumata",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_scented_bait.webp",
+      "mesh_glb": "assets/3d/tesori/t_scented_bait.glb",
+      "mesh_stl": "exports/3d/tesori/t_scented_bait.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_sails",
+      "category": "treasure",
+      "name": "Vele",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_sails.webp",
+      "mesh_glb": "assets/3d/tesori/t_sails.glb",
+      "mesh_stl": "exports/3d/tesori/t_sails.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_ruby_ring",
+      "category": "treasure",
+      "name": "Anello di rubino",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_ruby_ring.webp",
+      "mesh_glb": "assets/3d/tesori/t_ruby_ring.glb",
+      "mesh_stl": "exports/3d/tesori/t_ruby_ring.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_repair_kit",
+      "category": "treasure",
+      "name": "Kit di riparazione",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_repair_kit.webp",
+      "mesh_glb": "assets/3d/tesori/t_repair_kit.glb",
+      "mesh_stl": "exports/3d/tesori/t_repair_kit.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_repair_kit_2",
+      "category": "treasure",
+      "name": "Kit di riparazione",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_repair_kit_2.webp",
+      "mesh_glb": "assets/3d/tesori/t_repair_kit_2.glb",
+      "mesh_stl": "exports/3d/tesori/t_repair_kit_2.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_reflecting_grease",
+      "category": "treasure",
+      "name": "Grasso riflettente",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_reflecting_grease.webp",
+      "mesh_glb": "assets/3d/tesori/t_reflecting_grease.glb",
+      "mesh_stl": "exports/3d/tesori/t_reflecting_grease.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_reflecting_grease_2",
+      "category": "treasure",
+      "name": "Grasso riflettente",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_reflecting_grease_2.webp",
+      "mesh_glb": "assets/3d/tesori/t_reflecting_grease_2.glb",
+      "mesh_stl": "exports/3d/tesori/t_reflecting_grease_2.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_realm_map",
+      "category": "treasure",
+      "name": "Mappa del Reame",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_realm_map.webp",
+      "mesh_glb": "assets/3d/tesori/t_realm_map.glb",
+      "mesh_stl": "exports/3d/tesori/t_realm_map.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_profane_idol",
+      "category": "treasure",
+      "name": "Idolo profano",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_profane_idol.webp",
+      "mesh_glb": "assets/3d/tesori/t_profane_idol.glb",
+      "mesh_stl": "exports/3d/tesori/t_profane_idol.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_poultice_of_health",
+      "category": "treasure",
+      "name": "Impiastro della salute",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_poultice_of_health.webp",
+      "mesh_glb": "assets/3d/tesori/t_poultice_of_health.glb",
+      "mesh_stl": "exports/3d/tesori/t_poultice_of_health.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_poultice_of_health_2",
+      "category": "treasure",
+      "name": "Impiastro della salute",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_poultice_of_health_2.webp",
+      "mesh_glb": "assets/3d/tesori/t_poultice_of_health_2.glb",
+      "mesh_stl": "exports/3d/tesori/t_poultice_of_health_2.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_potion_of_energy",
+      "category": "treasure",
+      "name": "Pozione d'energia",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_potion_of_energy.webp",
+      "mesh_glb": "assets/3d/tesori/t_potion_of_energy.glb",
+      "mesh_stl": "exports/3d/tesori/t_potion_of_energy.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_potion_of_energy_2",
+      "category": "treasure",
+      "name": "Pozione d'energia",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_potion_of_energy_2.webp",
+      "mesh_glb": "assets/3d/tesori/t_potion_of_energy_2.glb",
+      "mesh_stl": "exports/3d/tesori/t_potion_of_energy_2.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_spirit_charm",
+      "category": "treasure",
+      "name": "Amuleto degli spiriti",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_spirit_charm.webp",
+      "mesh_glb": "assets/3d/tesori/t_spirit_charm.glb",
+      "mesh_stl": "exports/3d/tesori/t_spirit_charm.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_penetrating_grease",
+      "category": "treasure",
+      "name": "Grasso penetrante",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_penetrating_grease.webp",
+      "mesh_glb": "assets/3d/tesori/t_penetrating_grease.glb",
+      "mesh_stl": "exports/3d/tesori/t_penetrating_grease.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_penetrating_grease_2",
+      "category": "treasure",
+      "name": "Grasso penetrante",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_penetrating_grease_2.webp",
+      "mesh_glb": "assets/3d/tesori/t_penetrating_grease_2.glb",
+      "mesh_stl": "exports/3d/tesori/t_penetrating_grease_2.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_pagan_ring",
+      "category": "treasure",
+      "name": "Anello pagano",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_pagan_ring.webp",
+      "mesh_glb": "assets/3d/tesori/t_pagan_ring.glb",
+      "mesh_stl": "exports/3d/tesori/t_pagan_ring.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_ointment_of_stone",
+      "category": "treasure",
+      "name": "Unguento di pietra",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_ointment_of_stone.webp",
+      "mesh_glb": "assets/3d/tesori/t_ointment_of_stone.glb",
+      "mesh_stl": "exports/3d/tesori/t_ointment_of_stone.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_ointment_of_stone_2",
+      "category": "treasure",
+      "name": "Unguento di pietra",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_ointment_of_stone_2.webp",
+      "mesh_glb": "assets/3d/tesori/t_ointment_of_stone_2.glb",
+      "mesh_stl": "exports/3d/tesori/t_ointment_of_stone_2.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_ointment_of_bite",
+      "category": "treasure",
+      "name": "Unguento del morso",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_ointment_of_bite.webp",
+      "mesh_glb": "assets/3d/tesori/t_ointment_of_bite.glb",
+      "mesh_stl": "exports/3d/tesori/t_ointment_of_bite.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_ointment_of_bite_2",
+      "category": "treasure",
+      "name": "Unguento del morso",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_ointment_of_bite_2.webp",
+      "mesh_glb": "assets/3d/tesori/t_ointment_of_bite_2.glb",
+      "mesh_stl": "exports/3d/tesori/t_ointment_of_bite_2.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_oil_of_poison",
+      "category": "treasure",
+      "name": "Olio velenoso",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_oil_of_poison.webp",
+      "mesh_glb": "assets/3d/tesori/t_oil_of_poison.glb",
+      "mesh_stl": "exports/3d/tesori/t_oil_of_poison.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_oil_of_poison_2",
+      "category": "treasure",
+      "name": "Olio velenoso",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_oil_of_poison_2.webp",
+      "mesh_glb": "assets/3d/tesori/t_oil_of_poison_2.glb",
+      "mesh_stl": "exports/3d/tesori/t_oil_of_poison_2.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_map_of_ruins",
+      "category": "treasure",
+      "name": "Mappa delle rovine",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_map_of_ruins.webp",
+      "mesh_glb": "assets/3d/tesori/t_map_of_ruins.glb",
+      "mesh_stl": "exports/3d/tesori/t_map_of_ruins.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_map_of_lost_palace",
+      "category": "treasure",
+      "name": "Mappa del Palazzo Perduto",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_map_of_lost_palace.webp",
+      "mesh_glb": "assets/3d/tesori/t_map_of_lost_palace.glb",
+      "mesh_stl": "exports/3d/tesori/t_map_of_lost_palace.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_map_of_lost_fortress",
+      "category": "treasure",
+      "name": "Mappa della Fortezza Perduta",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_map_of_lost_fortress.webp",
+      "mesh_glb": "assets/3d/tesori/t_map_of_lost_fortress.glb",
+      "mesh_stl": "exports/3d/tesori/t_map_of_lost_fortress.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_lost_keys",
+      "category": "treasure",
+      "name": "Chiavi perdute",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_lost_keys.webp",
+      "mesh_glb": "assets/3d/tesori/t_lost_keys.glb",
+      "mesh_stl": "exports/3d/tesori/t_lost_keys.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_links",
+      "category": "treasure",
+      "name": "Catene",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_links.webp",
+      "mesh_glb": "assets/3d/tesori/t_links.glb",
+      "mesh_stl": "exports/3d/tesori/t_links.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_hound",
+      "category": "treasure",
+      "name": "Segugio",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_hound.webp",
+      "mesh_glb": "assets/3d/tesori/t_hound.glb",
+      "mesh_stl": "exports/3d/tesori/t_hound.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_horse_armor",
+      "category": "treasure",
+      "name": "Bardatura",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_horse_armor.webp",
+      "mesh_glb": "assets/3d/tesori/t_horse_armor.glb",
+      "mesh_stl": "exports/3d/tesori/t_horse_armor.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_holy_water",
+      "category": "treasure",
+      "name": "Acqua santa",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_holy_water.webp",
+      "mesh_glb": "assets/3d/tesori/t_holy_water.glb",
+      "mesh_stl": "exports/3d/tesori/t_holy_water.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_holy_water_2",
+      "category": "treasure",
+      "name": "Acqua santa",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_holy_water_2.webp",
+      "mesh_glb": "assets/3d/tesori/t_holy_water_2.glb",
+      "mesh_stl": "exports/3d/tesori/t_holy_water_2.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_expert_travel_guide",
+      "category": "treasure",
+      "name": "Guida esperta di viaggio",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_expert_travel_guide.webp",
+      "mesh_glb": "assets/3d/tesori/t_expert_travel_guide.glb",
+      "mesh_stl": "exports/3d/tesori/t_expert_travel_guide.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_enchantment_potion",
+      "category": "treasure",
+      "name": "Pozione d'incanto",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_enchantment_potion.webp",
+      "mesh_glb": "assets/3d/tesori/t_enchantment_potion.glb",
+      "mesh_stl": "exports/3d/tesori/t_enchantment_potion.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_contorting_key",
+      "category": "treasure",
+      "name": "Chiave contorta",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_contorting_key.webp",
+      "mesh_glb": "assets/3d/tesori/t_contorting_key.glb",
+      "mesh_stl": "exports/3d/tesori/t_contorting_key.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_elven_scroll",
+      "category": "treasure",
+      "name": "Pergamena elfica",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_elven_scroll.webp",
+      "mesh_glb": "assets/3d/tesori/t_elven_scroll.glb",
+      "mesh_stl": "exports/3d/tesori/t_elven_scroll.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_draught_of_speed_2",
+      "category": "treasure",
+      "name": "Pozione di velocità",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_draught_of_speed_2.webp",
+      "mesh_glb": "assets/3d/tesori/t_draught_of_speed_2.glb",
+      "mesh_stl": "exports/3d/tesori/t_draught_of_speed_2.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_dragon_essence",
+      "category": "treasure",
+      "name": "Essenza di drago",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_dragon_essence.webp",
+      "mesh_glb": "assets/3d/tesori/t_dragon_essence.glb",
+      "mesh_stl": "exports/3d/tesori/t_dragon_essence.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_disenchant_potion",
+      "category": "treasure",
+      "name": "Pozione disincantante",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_disenchant_potion.webp",
+      "mesh_glb": "assets/3d/tesori/t_disenchant_potion.glb",
+      "mesh_stl": "exports/3d/tesori/t_disenchant_potion.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_disenchant_potion_2",
+      "category": "treasure",
+      "name": "Pozione disincantante",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_disenchant_potion_2.webp",
+      "mesh_glb": "assets/3d/tesori/t_disenchant_potion_2.glb",
+      "mesh_stl": "exports/3d/tesori/t_disenchant_potion_2.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_diamond_ring",
+      "category": "treasure",
+      "name": "Anello di diamante",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_diamond_ring.webp",
+      "mesh_glb": "assets/3d/tesori/t_diamond_ring.glb",
+      "mesh_stl": "exports/3d/tesori/t_diamond_ring.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_decayed_fang",
+      "category": "treasure",
+      "name": "Zanna marcita",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_decayed_fang.webp",
+      "mesh_glb": "assets/3d/tesori/t_decayed_fang.glb",
+      "mesh_stl": "exports/3d/tesori/t_decayed_fang.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_cursed_bell",
+      "category": "treasure",
+      "name": "Campana maledetta",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_cursed_bell.webp",
+      "mesh_glb": "assets/3d/tesori/t_cursed_bell.glb",
+      "mesh_stl": "exports/3d/tesori/t_cursed_bell.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_curdle_of_bone_2",
+      "category": "treasure",
+      "name": "Grumo d'osso",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_curdle_of_bone_2.webp",
+      "mesh_glb": "assets/3d/tesori/t_curdle_of_bone_2.glb",
+      "mesh_stl": "exports/3d/tesori/t_curdle_of_bone_2.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_bottled_light",
+      "category": "treasure",
+      "name": "Luce imbottigliata",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_bottled_light.webp",
+      "mesh_glb": "assets/3d/tesori/t_bottled_light.glb",
+      "mesh_stl": "exports/3d/tesori/t_bottled_light.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_book_of_nature",
+      "category": "treasure",
+      "name": "Libro della natura",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_book_of_nature.webp",
+      "mesh_glb": "assets/3d/tesori/t_book_of_nature.glb",
+      "mesh_stl": "exports/3d/tesori/t_book_of_nature.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_book_of_alchemy",
+      "category": "treasure",
+      "name": "Libro d'alchimia",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_book_of_alchemy.webp",
+      "mesh_glb": "assets/3d/tesori/t_book_of_alchemy.glb",
+      "mesh_stl": "exports/3d/tesori/t_book_of_alchemy.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_bone_necklace",
+      "category": "treasure",
+      "name": "Collana d'ossa",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_bone_necklace.webp",
+      "mesh_glb": "assets/3d/tesori/t_bone_necklace.glb",
+      "mesh_stl": "exports/3d/tesori/t_bone_necklace.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_ancient_telescope",
+      "category": "treasure",
+      "name": "Telescopio antico",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_ancient_telescope.webp",
+      "mesh_glb": "assets/3d/tesori/t_ancient_telescope.glb",
+      "mesh_stl": "exports/3d/tesori/t_ancient_telescope.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_amulet",
+      "category": "treasure",
+      "name": "Amuleto",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_amulet.webp",
+      "mesh_glb": "assets/3d/tesori/t_amulet.glb",
+      "mesh_stl": "exports/3d/tesori/t_amulet.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_amulet_2",
+      "category": "treasure",
+      "name": "Amuleto",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_amulet_2.webp",
+      "mesh_glb": "assets/3d/tesori/t_amulet_2.glb",
+      "mesh_stl": "exports/3d/tesori/t_amulet_2.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_alchemist_s_mixture",
+      "category": "treasure",
+      "name": "Miscela dell'alchimista",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_alchemist_s_mixture.webp",
+      "mesh_glb": "assets/3d/tesori/t_alchemist_s_mixture.glb",
+      "mesh_stl": "exports/3d/tesori/t_alchemist_s_mixture.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_alchemist_s_mixture_2",
+      "category": "treasure",
+      "name": "Miscela dell'alchimista",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_alchemist_s_mixture_2.webp",
+      "mesh_glb": "assets/3d/tesori/t_alchemist_s_mixture_2.glb",
+      "mesh_stl": "exports/3d/tesori/t_alchemist_s_mixture_2.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "t_adventure_guide",
+      "category": "treasure",
+      "name": "Guida d'avventura",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/t_adventure_guide.webp",
+      "mesh_glb": "assets/3d/tesori/t_adventure_guide.glb",
+      "mesh_stl": "exports/3d/tesori/t_adventure_guide.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "w_toadstool_circle",
+      "category": "treasure",
+      "name": "Cerchio di funghi",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/w_toadstool_circle.webp",
+      "mesh_glb": "assets/3d/tesori/w_toadstool_circle.glb",
+      "mesh_stl": "exports/3d/tesori/w_toadstool_circle.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "w_remains_of_thief",
+      "category": "treasure",
+      "name": "Resti del ladro",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/w_remains_of_thief.webp",
+      "mesh_glb": "assets/3d/tesori/w_remains_of_thief.glb",
+      "mesh_stl": "exports/3d/tesori/w_remains_of_thief.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "w_mouldy_skeleton",
+      "category": "treasure",
+      "name": "Scheletro ammuffito",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/w_mouldy_skeleton.webp",
+      "mesh_glb": "assets/3d/tesori/w_mouldy_skeleton.glb",
+      "mesh_stl": "exports/3d/tesori/w_mouldy_skeleton.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "w_enchanted_meadow",
+      "category": "treasure",
+      "name": "Prato incantato",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/w_enchanted_meadow.webp",
+      "mesh_glb": "assets/3d/tesori/w_enchanted_meadow.glb",
+      "mesh_stl": "exports/3d/tesori/w_enchanted_meadow.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "w_crypt_of_the_knight",
+      "category": "treasure",
+      "name": "Cripta del cavaliere",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/w_crypt_of_the_knight.webp",
+      "mesh_glb": "assets/3d/tesori/w_crypt_of_the_knight.glb",
+      "mesh_stl": "exports/3d/tesori/w_crypt_of_the_knight.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "w_chest",
+      "category": "treasure",
+      "name": "Forziere",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/w_chest.webp",
+      "mesh_glb": "assets/3d/tesori/w_chest.glb",
+      "mesh_stl": "exports/3d/tesori/w_chest.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "w_mage_library",
+      "category": "treasure",
+      "name": "Biblioteca del mago",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/w_mage_library.webp",
+      "mesh_glb": "assets/3d/tesori/w_mage_library.glb",
+      "mesh_stl": "exports/3d/tesori/w_mage_library.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "w_circle_of_stones",
+      "category": "treasure",
+      "name": "Cerchio di pietre",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/w_circle_of_stones.webp",
+      "mesh_glb": "assets/3d/tesori/w_circle_of_stones.glb",
+      "mesh_stl": "exports/3d/tesori/w_circle_of_stones.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "w_haunted_grave",
+      "category": "treasure",
+      "name": "Tomba infestata",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/w_haunted_grave.webp",
+      "mesh_glb": "assets/3d/tesori/w_haunted_grave.glb",
+      "mesh_stl": "exports/3d/tesori/w_haunted_grave.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "w_fairy_grove",
+      "category": "treasure",
+      "name": "Boschetto fatato",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/w_fairy_grove.webp",
+      "mesh_glb": "assets/3d/tesori/w_fairy_grove.glb",
+      "mesh_stl": "exports/3d/tesori/w_fairy_grove.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "w_ethereal_abbey",
+      "category": "treasure",
+      "name": "Abbazia eterea",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/w_ethereal_abbey.webp",
+      "mesh_glb": "assets/3d/tesori/w_ethereal_abbey.glb",
+      "mesh_stl": "exports/3d/tesori/w_ethereal_abbey.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "w_conjuror_s_remains",
+      "category": "treasure",
+      "name": "Resti dell'evocatore",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/tesori/w_conjuror_s_remains.webp",
+      "mesh_glb": "assets/3d/tesori/w_conjuror_s_remains.glb",
+      "mesh_stl": "exports/3d/tesori/w_conjuror_s_remains.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "arco_leggero",
+      "category": "weapon",
+      "name": "Arco leggero",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/oggetti/arco_leggero_a.webp",
+      "mesh_glb": "assets/3d/oggetti/arco_leggero.glb",
+      "mesh_stl": "exports/3d/oggetti/arco_leggero.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "arco_medio",
+      "category": "weapon",
+      "name": "Arco medio",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/oggetti/arco_medio_a.webp",
+      "mesh_glb": "assets/3d/oggetti/arco_medio.glb",
+      "mesh_stl": "exports/3d/oggetti/arco_medio.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "balestra",
+      "category": "weapon",
+      "name": "Balestra",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/oggetti/balestra_a.webp",
+      "mesh_glb": "assets/3d/oggetti/balestra.glb",
+      "mesh_stl": "exports/3d/oggetti/balestra.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "lancia",
+      "category": "weapon",
+      "name": "Lancia",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/oggetti/lancia_a.webp",
+      "mesh_glb": "assets/3d/oggetti/lancia.glb",
+      "mesh_stl": "exports/3d/oggetti/lancia.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "bastone",
+      "category": "weapon",
+      "name": "Bastone",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/oggetti/bastone_a.webp",
+      "mesh_glb": "assets/3d/oggetti/bastone.glb",
+      "mesh_stl": "exports/3d/oggetti/bastone.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "spadone",
+      "category": "weapon",
+      "name": "Spadone",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/oggetti/spadone_a.webp",
+      "mesh_glb": "assets/3d/oggetti/spadone.glb",
+      "mesh_stl": "exports/3d/oggetti/spadone.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "spada_funesta",
+      "category": "weapon",
+      "name": "Spada funesta",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/oggetti/spada_funesta_a.webp",
+      "mesh_glb": "assets/3d/oggetti/spada_funesta.glb",
+      "mesh_stl": "exports/3d/oggetti/spada_funesta.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "spada_larga",
+      "category": "weapon",
+      "name": "Spada larga",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/oggetti/spada_larga_a.webp",
+      "mesh_glb": "assets/3d/oggetti/spada_larga.glb",
+      "mesh_stl": "exports/3d/oggetti/spada_larga.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "ascia_dorata",
+      "category": "weapon",
+      "name": "Ascia dorata",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/oggetti/ascia_dorata_a.webp",
+      "mesh_glb": "assets/3d/oggetti/ascia_dorata.glb",
+      "mesh_stl": "exports/3d/oggetti/ascia_dorata.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "mazza_ferrata",
+      "category": "weapon",
+      "name": "Mazza ferrata",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/oggetti/mazza_ferrata_a.webp",
+      "mesh_glb": "assets/3d/oggetti/mazza_ferrata.glb",
+      "mesh_stl": "exports/3d/oggetti/mazza_ferrata.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "ascia_grande",
+      "category": "weapon",
+      "name": "Ascia grande",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/oggetti/ascia_grande_a.webp",
+      "mesh_glb": "assets/3d/oggetti/ascia_grande.glb",
+      "mesh_stl": "exports/3d/oggetti/ascia_grande.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "stocco",
+      "category": "weapon",
+      "name": "Stocco",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/oggetti/stocco_a.webp",
+      "mesh_glb": "assets/3d/oggetti/stocco.glb",
+      "mesh_stl": "exports/3d/oggetti/stocco.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "spada_corta",
+      "category": "weapon",
+      "name": "Spada corta",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/oggetti/spada_corta_a.webp",
+      "mesh_glb": "assets/3d/oggetti/spada_corta.glb",
+      "mesh_stl": "exports/3d/oggetti/spada_corta.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "ascia",
+      "category": "weapon",
+      "name": "Ascia",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/oggetti/ascia_a.webp",
+      "mesh_glb": "assets/3d/oggetti/ascia.glb",
+      "mesh_stl": "exports/3d/oggetti/ascia.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "mazza",
+      "category": "weapon",
+      "name": "Mazza",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/oggetti/mazza_a.webp",
+      "mesh_glb": "assets/3d/oggetti/mazza.glb",
+      "mesh_stl": "exports/3d/oggetti/mazza.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "pugnale",
+      "category": "weapon",
+      "name": "Pugnale",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/oggetti/pugnale_a.webp",
+      "mesh_glb": "assets/3d/oggetti/pugnale.glb",
+      "mesh_stl": "exports/3d/oggetti/pugnale.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "elmo",
+      "category": "armor",
+      "name": "Elmo",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/oggetti/elmo_a.webp",
+      "mesh_glb": "assets/3d/oggetti/elmo.glb",
+      "mesh_stl": "exports/3d/oggetti/elmo.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "corazza",
+      "category": "armor",
+      "name": "Corazza",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/oggetti/corazza_a.webp",
+      "mesh_glb": "assets/3d/oggetti/corazza.glb",
+      "mesh_stl": "exports/3d/oggetti/corazza.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "scudo",
+      "category": "armor",
+      "name": "Scudo",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/oggetti/scudo_a.webp",
+      "mesh_glb": "assets/3d/oggetti/scudo.glb",
+      "mesh_stl": "exports/3d/oggetti/scudo.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "armatura",
+      "category": "armor",
+      "name": "Armatura completa",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/oggetti/armatura_a.webp",
+      "mesh_glb": "assets/3d/oggetti/armatura.glb",
+      "mesh_stl": "exports/3d/oggetti/armatura.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "perduto_castle",
+      "category": "chit",
+      "name": "Castello Perduto",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/perduto_castle.webp",
+      "mesh_glb": "assets/3d/segnalini/perduto_castle.glb",
+      "mesh_stl": "exports/3d/segnalini/perduto_castle.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "perduto_city",
+      "category": "chit",
+      "name": "Città Perduta",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/perduto_city.webp",
+      "mesh_glb": "assets/3d/segnalini/perduto_city.glb",
+      "mesh_stl": "exports/3d/segnalini/perduto_city.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "bones_c",
+      "category": "chit",
+      "name": "Ossa C",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/bones_c.webp",
+      "mesh_glb": "assets/3d/segnalini/bones_c.glb",
+      "mesh_stl": "exports/3d/segnalini/bones_c.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "dank_c",
+      "category": "chit",
+      "name": "Muffa C",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/dank_c.webp",
+      "mesh_glb": "assets/3d/segnalini/dank_c.glb",
+      "mesh_stl": "exports/3d/segnalini/dank_c.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "smoke_c",
+      "category": "chit",
+      "name": "Fumo C",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/smoke_c.webp",
+      "mesh_glb": "assets/3d/segnalini/smoke_c.glb",
+      "mesh_stl": "exports/3d/segnalini/smoke_c.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "ruins_c",
+      "category": "chit",
+      "name": "Rovine C",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/ruins_c.webp",
+      "mesh_glb": "assets/3d/segnalini/ruins_c.glb",
+      "mesh_stl": "exports/3d/segnalini/ruins_c.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "stink_c",
+      "category": "chit",
+      "name": "Fetore C",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/stink_c.webp",
+      "mesh_glb": "assets/3d/segnalini/stink_c.glb",
+      "mesh_stl": "exports/3d/segnalini/stink_c.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "smoke_v",
+      "category": "chit",
+      "name": "Fumo V",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/smoke_v.webp",
+      "mesh_glb": "assets/3d/segnalini/smoke_v.glb",
+      "mesh_stl": "exports/3d/segnalini/smoke_v.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "stink_v",
+      "category": "chit",
+      "name": "Fetore V",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/stink_v.webp",
+      "mesh_glb": "assets/3d/segnalini/stink_v.glb",
+      "mesh_stl": "exports/3d/segnalini/stink_v.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "ruins_v",
+      "category": "chit",
+      "name": "Rovine V",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/ruins_v.webp",
+      "mesh_glb": "assets/3d/segnalini/ruins_v.glb",
+      "mesh_stl": "exports/3d/segnalini/ruins_v.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "bones_v",
+      "category": "chit",
+      "name": "Ossa V",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/bones_v.webp",
+      "mesh_glb": "assets/3d/segnalini/bones_v.glb",
+      "mesh_stl": "exports/3d/segnalini/bones_v.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "dank_v",
+      "category": "chit",
+      "name": "Muffa V",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/dank_v.webp",
+      "mesh_glb": "assets/3d/segnalini/dank_v.glb",
+      "mesh_stl": "exports/3d/segnalini/dank_v.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "dank_w",
+      "category": "chit",
+      "name": "Muffa W",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/dank_w.webp",
+      "mesh_glb": "assets/3d/segnalini/dank_w.glb",
+      "mesh_stl": "exports/3d/segnalini/dank_w.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "ruins_w",
+      "category": "chit",
+      "name": "Rovine W",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/ruins_w.webp",
+      "mesh_glb": "assets/3d/segnalini/ruins_w.glb",
+      "mesh_stl": "exports/3d/segnalini/ruins_w.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "smoke_w",
+      "category": "chit",
+      "name": "Fumo W",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/smoke_w.webp",
+      "mesh_glb": "assets/3d/segnalini/smoke_w.glb",
+      "mesh_stl": "exports/3d/segnalini/smoke_w.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "bones_w",
+      "category": "chit",
+      "name": "Ossa W",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/bones_w.webp",
+      "mesh_glb": "assets/3d/segnalini/bones_w.glb",
+      "mesh_stl": "exports/3d/segnalini/bones_w.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "stink_w",
+      "category": "chit",
+      "name": "Fetore W",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/stink_w.webp",
+      "mesh_glb": "assets/3d/segnalini/stink_w.glb",
+      "mesh_stl": "exports/3d/segnalini/stink_w.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "dank_m",
+      "category": "chit",
+      "name": "Muffa M",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/dank_m.webp",
+      "mesh_glb": "assets/3d/segnalini/dank_m.glb",
+      "mesh_stl": "exports/3d/segnalini/dank_m.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "bones_m",
+      "category": "chit",
+      "name": "Ossa M",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/bones_m.webp",
+      "mesh_glb": "assets/3d/segnalini/bones_m.glb",
+      "mesh_stl": "exports/3d/segnalini/bones_m.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "ruins_m",
+      "category": "chit",
+      "name": "Rovine M",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/ruins_m.webp",
+      "mesh_glb": "assets/3d/segnalini/ruins_m.glb",
+      "mesh_stl": "exports/3d/segnalini/ruins_m.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "stink_m",
+      "category": "chit",
+      "name": "Fetore M",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/stink_m.webp",
+      "mesh_glb": "assets/3d/segnalini/stink_m.glb",
+      "mesh_stl": "exports/3d/segnalini/stink_m.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "smoke_m",
+      "category": "chit",
+      "name": "Fumo M",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/smoke_m.webp",
+      "mesh_glb": "assets/3d/segnalini/smoke_m.glb",
+      "mesh_stl": "exports/3d/segnalini/smoke_m.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "dank_h",
+      "category": "chit",
+      "name": "Muffa H",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/dank_h.webp",
+      "mesh_glb": "assets/3d/segnalini/dank_h.glb",
+      "mesh_stl": "exports/3d/segnalini/dank_h.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "ruins_h",
+      "category": "chit",
+      "name": "Rovine H",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/ruins_h.webp",
+      "mesh_glb": "assets/3d/segnalini/ruins_h.glb",
+      "mesh_stl": "exports/3d/segnalini/ruins_h.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "stink_h",
+      "category": "chit",
+      "name": "Fetore H",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/stink_h.webp",
+      "mesh_glb": "assets/3d/segnalini/stink_h.glb",
+      "mesh_stl": "exports/3d/segnalini/stink_h.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "bones_h",
+      "category": "chit",
+      "name": "Ossa H",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/bones_h.webp",
+      "mesh_glb": "assets/3d/segnalini/bones_h.glb",
+      "mesh_stl": "exports/3d/segnalini/bones_h.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "smoke_h",
+      "category": "chit",
+      "name": "Fumo H",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/smoke_h.webp",
+      "mesh_glb": "assets/3d/segnalini/smoke_h.glb",
+      "mesh_stl": "exports/3d/segnalini/smoke_h.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "bones_s",
+      "category": "chit",
+      "name": "Ossa S",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/bones_s.webp",
+      "mesh_glb": "assets/3d/segnalini/bones_s.glb",
+      "mesh_stl": "exports/3d/segnalini/bones_s.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "dank_s",
+      "category": "chit",
+      "name": "Muffa S",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/dank_s.webp",
+      "mesh_glb": "assets/3d/segnalini/dank_s.glb",
+      "mesh_stl": "exports/3d/segnalini/dank_s.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "ruins_s",
+      "category": "chit",
+      "name": "Rovine S",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/ruins_s.webp",
+      "mesh_glb": "assets/3d/segnalini/ruins_s.glb",
+      "mesh_stl": "exports/3d/segnalini/ruins_s.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "stink_s",
+      "category": "chit",
+      "name": "Fetore S",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/stink_s.webp",
+      "mesh_glb": "assets/3d/segnalini/stink_s.glb",
+      "mesh_stl": "exports/3d/segnalini/stink_s.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "smoke_s",
+      "category": "chit",
+      "name": "Fumo S",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/smoke_s.webp",
+      "mesh_glb": "assets/3d/segnalini/smoke_s.glb",
+      "mesh_stl": "exports/3d/segnalini/smoke_s.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "stink_f",
+      "category": "chit",
+      "name": "Fetore F",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/stink_f.webp",
+      "mesh_glb": "assets/3d/segnalini/stink_f.glb",
+      "mesh_stl": "exports/3d/segnalini/stink_f.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "bones_f",
+      "category": "chit",
+      "name": "Ossa F",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/bones_f.webp",
+      "mesh_glb": "assets/3d/segnalini/bones_f.glb",
+      "mesh_stl": "exports/3d/segnalini/bones_f.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "dank_f",
+      "category": "chit",
+      "name": "Muffa F",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/dank_f.webp",
+      "mesh_glb": "assets/3d/segnalini/dank_f.glb",
+      "mesh_stl": "exports/3d/segnalini/dank_f.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "ruins_f",
+      "category": "chit",
+      "name": "Rovine F",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/ruins_f.webp",
+      "mesh_glb": "assets/3d/segnalini/ruins_f.glb",
+      "mesh_stl": "exports/3d/segnalini/ruins_f.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "smoke_f",
+      "category": "chit",
+      "name": "Fumo F",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/smoke_f.webp",
+      "mesh_glb": "assets/3d/segnalini/smoke_f.glb",
+      "mesh_stl": "exports/3d/segnalini/smoke_f.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "stink_r",
+      "category": "chit",
+      "name": "Fetore R",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/stink_r.webp",
+      "mesh_glb": "assets/3d/segnalini/stink_r.glb",
+      "mesh_stl": "exports/3d/segnalini/stink_r.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "dank_r",
+      "category": "chit",
+      "name": "Muffa R",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/dank_r.webp",
+      "mesh_glb": "assets/3d/segnalini/dank_r.glb",
+      "mesh_stl": "exports/3d/segnalini/dank_r.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "bones_r",
+      "category": "chit",
+      "name": "Ossa R",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/bones_r.webp",
+      "mesh_glb": "assets/3d/segnalini/bones_r.glb",
+      "mesh_stl": "exports/3d/segnalini/bones_r.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "ruins_r",
+      "category": "chit",
+      "name": "Rovine R",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/ruins_r.webp",
+      "mesh_glb": "assets/3d/segnalini/ruins_r.glb",
+      "mesh_stl": "exports/3d/segnalini/ruins_r.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "smoke_r",
+      "category": "chit",
+      "name": "Fumo R",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/smoke_r.webp",
+      "mesh_glb": "assets/3d/segnalini/smoke_r.glb",
+      "mesh_stl": "exports/3d/segnalini/smoke_r.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "sito_lair",
+      "category": "chit",
+      "name": "Covo 3",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/sito_lair.webp",
+      "mesh_glb": "assets/3d/segnalini/sito_lair.glb",
+      "mesh_stl": "exports/3d/segnalini/sito_lair.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "sito_tomb",
+      "category": "chit",
+      "name": "Tomba 4",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/sito_tomb.webp",
+      "mesh_glb": "assets/3d/segnalini/sito_tomb.glb",
+      "mesh_stl": "exports/3d/segnalini/sito_tomb.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "sito_den",
+      "category": "chit",
+      "name": "Tana 2",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/sito_den.webp",
+      "mesh_glb": "assets/3d/segnalini/sito_den.glb",
+      "mesh_stl": "exports/3d/segnalini/sito_den.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "sito_shrine",
+      "category": "chit",
+      "name": "Santuario 4",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/sito_shrine.webp",
+      "mesh_glb": "assets/3d/segnalini/sito_shrine.glb",
+      "mesh_stl": "exports/3d/segnalini/sito_shrine.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "sito_hoard",
+      "category": "chit",
+      "name": "Bottino 6",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/sito_hoard.webp",
+      "mesh_glb": "assets/3d/segnalini/sito_hoard.glb",
+      "mesh_stl": "exports/3d/segnalini/sito_hoard.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "sito_altar",
+      "category": "chit",
+      "name": "Altare 1",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/sito_altar.webp",
+      "mesh_glb": "assets/3d/segnalini/sito_altar.glb",
+      "mesh_stl": "exports/3d/segnalini/sito_altar.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "sito_pit",
+      "category": "chit",
+      "name": "Fossa 1",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/sito_pit.webp",
+      "mesh_glb": "assets/3d/segnalini/sito_pit.glb",
+      "mesh_stl": "exports/3d/segnalini/sito_pit.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "sito_vault",
+      "category": "chit",
+      "name": "Sotterraneo 3",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/sito_vault.webp",
+      "mesh_glb": "assets/3d/segnalini/sito_vault.glb",
+      "mesh_stl": "exports/3d/segnalini/sito_vault.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "sito_maze",
+      "category": "chit",
+      "name": "Labirinto 3",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/sito_maze.webp",
+      "mesh_glb": "assets/3d/segnalini/sito_maze.glb",
+      "mesh_stl": "exports/3d/segnalini/sito_maze.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "sito_pool",
+      "category": "chit",
+      "name": "Stagno 6",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/sito_pool.webp",
+      "mesh_glb": "assets/3d/segnalini/sito_pool.glb",
+      "mesh_stl": "exports/3d/segnalini/sito_pool.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "sito_garden",
+      "category": "chit",
+      "name": "Giardino 1",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/sito_garden.webp",
+      "mesh_glb": "assets/3d/segnalini/sito_garden.glb",
+      "mesh_stl": "exports/3d/segnalini/sito_garden.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "sito_tower",
+      "category": "chit",
+      "name": "Torre 5",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/sito_tower.webp",
+      "mesh_glb": "assets/3d/segnalini/sito_tower.glb",
+      "mesh_stl": "exports/3d/segnalini/sito_tower.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "sito_cairns",
+      "category": "chit",
+      "name": "Tumuli 5",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/sito_cairns.webp",
+      "mesh_glb": "assets/3d/segnalini/sito_cairns.glb",
+      "mesh_stl": "exports/3d/segnalini/sito_cairns.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "sito_statue",
+      "category": "chit",
+      "name": "Statua 2",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/sito_statue.webp",
+      "mesh_glb": "assets/3d/segnalini/sito_statue.glb",
+      "mesh_stl": "exports/3d/segnalini/sito_statue.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "sito_temple",
+      "category": "chit",
+      "name": "Tempio 5",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/sito_temple.webp",
+      "mesh_glb": "assets/3d/segnalini/sito_temple.glb",
+      "mesh_stl": "exports/3d/segnalini/sito_temple.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "sito_spire",
+      "category": "chit",
+      "name": "Guglia 6",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/sito_spire.webp",
+      "mesh_glb": "assets/3d/segnalini/sito_spire.glb",
+      "mesh_stl": "exports/3d/segnalini/sito_spire.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "slither_3",
+      "category": "chit",
+      "name": "Fruscio 3",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/slither_3.webp",
+      "mesh_glb": "assets/3d/segnalini/slither_3.glb",
+      "mesh_stl": "exports/3d/segnalini/slither_3.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "slither_6",
+      "category": "chit",
+      "name": "Fruscio 6",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/slither_6.webp",
+      "mesh_glb": "assets/3d/segnalini/slither_6.glb",
+      "mesh_stl": "exports/3d/segnalini/slither_6.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "slither_1",
+      "category": "chit",
+      "name": "Fruscio 1",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/slither_1.webp",
+      "mesh_glb": "assets/3d/segnalini/slither_1.glb",
+      "mesh_stl": "exports/3d/segnalini/slither_1.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "slither_5",
+      "category": "chit",
+      "name": "Fruscio 5",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/slither_5.webp",
+      "mesh_glb": "assets/3d/segnalini/slither_5.glb",
+      "mesh_stl": "exports/3d/segnalini/slither_5.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "roar_6",
+      "category": "chit",
+      "name": "Ruggito 6",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/roar_6.webp",
+      "mesh_glb": "assets/3d/segnalini/roar_6.glb",
+      "mesh_stl": "exports/3d/segnalini/roar_6.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "roar_5",
+      "category": "chit",
+      "name": "Ruggito 5",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/roar_5.webp",
+      "mesh_glb": "assets/3d/segnalini/roar_5.glb",
+      "mesh_stl": "exports/3d/segnalini/roar_5.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "roar_4",
+      "category": "chit",
+      "name": "Ruggito 4",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/roar_4.webp",
+      "mesh_glb": "assets/3d/segnalini/roar_4.glb",
+      "mesh_stl": "exports/3d/segnalini/roar_4.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "roar_3",
+      "category": "chit",
+      "name": "Ruggito 3",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/roar_3.webp",
+      "mesh_glb": "assets/3d/segnalini/roar_3.glb",
+      "mesh_stl": "exports/3d/segnalini/roar_3.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "patter_5",
+      "category": "chit",
+      "name": "Zampettio 5",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/patter_5.webp",
+      "mesh_glb": "assets/3d/segnalini/patter_5.glb",
+      "mesh_stl": "exports/3d/segnalini/patter_5.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "patter_4",
+      "category": "chit",
+      "name": "Zampettio 4",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/patter_4.webp",
+      "mesh_glb": "assets/3d/segnalini/patter_4.glb",
+      "mesh_stl": "exports/3d/segnalini/patter_4.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "patter_2",
+      "category": "chit",
+      "name": "Zampettio 2",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/patter_2.webp",
+      "mesh_glb": "assets/3d/segnalini/patter_2.glb",
+      "mesh_stl": "exports/3d/segnalini/patter_2.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "patter_1",
+      "category": "chit",
+      "name": "Zampettio 1",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/patter_1.webp",
+      "mesh_glb": "assets/3d/segnalini/patter_1.glb",
+      "mesh_stl": "exports/3d/segnalini/patter_1.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "howl_5",
+      "category": "chit",
+      "name": "Ululato 5",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/howl_5.webp",
+      "mesh_glb": "assets/3d/segnalini/howl_5.glb",
+      "mesh_stl": "exports/3d/segnalini/howl_5.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "howl_4",
+      "category": "chit",
+      "name": "Ululato 4",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/howl_4.webp",
+      "mesh_glb": "assets/3d/segnalini/howl_4.glb",
+      "mesh_stl": "exports/3d/segnalini/howl_4.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "howl_3",
+      "category": "chit",
+      "name": "Ululato 3",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/howl_3.webp",
+      "mesh_glb": "assets/3d/segnalini/howl_3.glb",
+      "mesh_stl": "exports/3d/segnalini/howl_3.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "howl_2",
+      "category": "chit",
+      "name": "Ululato 2",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/howl_2.webp",
+      "mesh_glb": "assets/3d/segnalini/howl_2.glb",
+      "mesh_stl": "exports/3d/segnalini/howl_2.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "flutter_6",
+      "category": "chit",
+      "name": "Frullo 6",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/flutter_6.webp",
+      "mesh_glb": "assets/3d/segnalini/flutter_6.glb",
+      "mesh_stl": "exports/3d/segnalini/flutter_6.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "flutter_4",
+      "category": "chit",
+      "name": "Frullo 4",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/flutter_4.webp",
+      "mesh_glb": "assets/3d/segnalini/flutter_4.glb",
+      "mesh_stl": "exports/3d/segnalini/flutter_4.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "flutter_2",
+      "category": "chit",
+      "name": "Frullo 2",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/flutter_2.webp",
+      "mesh_glb": "assets/3d/segnalini/flutter_2.glb",
+      "mesh_stl": "exports/3d/segnalini/flutter_2.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "flutter_1",
+      "category": "chit",
+      "name": "Frullo 1",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/flutter_1.webp",
+      "mesh_glb": "assets/3d/segnalini/flutter_1.glb",
+      "mesh_stl": "exports/3d/segnalini/flutter_1.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "perduto_palace",
+      "category": "chit",
+      "name": "Palazzo Perduto",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/perduto_palace.webp",
+      "mesh_glb": "assets/3d/segnalini/perduto_palace.glb",
+      "mesh_stl": "exports/3d/segnalini/perduto_palace.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "perduto_fortress",
+      "category": "chit",
+      "name": "Fortezza Perduta",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/segnalini/perduto_fortress.webp",
+      "mesh_glb": "assets/3d/segnalini/perduto_fortress.glb",
+      "mesh_stl": "exports/3d/segnalini/perduto_fortress.stl",
+      "method": "parametric_token",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "locanda",
+      "category": "dwelling",
+      "name": "locanda",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/abitazioni/locanda.webp",
+      "mesh_glb": "assets/3d/abitazioni/locanda.glb",
+      "mesh_stl": "exports/3d/abitazioni/locanda.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "casa",
+      "category": "dwelling",
+      "name": "casa",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/abitazioni/casa.webp",
+      "mesh_glb": "assets/3d/abitazioni/casa.glb",
+      "mesh_stl": "exports/3d/abitazioni/casa.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "cappella",
+      "category": "dwelling",
+      "name": "cappella",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/abitazioni/cappella.webp",
+      "mesh_glb": "assets/3d/abitazioni/cappella.glb",
+      "mesh_stl": "exports/3d/abitazioni/cappella.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "corpo_guardia",
+      "category": "dwelling",
+      "name": "corpo guardia",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/abitazioni/corpo_guardia.webp",
+      "mesh_glb": "assets/3d/abitazioni/corpo_guardia.glb",
+      "mesh_stl": "exports/3d/abitazioni/corpo_guardia.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "borgo",
+      "category": "dwelling",
+      "name": "borgo",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/abitazioni/borgo.webp",
+      "mesh_glb": "assets/3d/abitazioni/borgo.glb",
+      "mesh_stl": "exports/3d/abitazioni/borgo.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "casolare",
+      "category": "dwelling",
+      "name": "casolare",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/abitazioni/casolare.webp",
+      "mesh_glb": "assets/3d/abitazioni/casolare.glb",
+      "mesh_stl": "exports/3d/abitazioni/casolare.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "insediamento",
+      "category": "dwelling",
+      "name": "insediamento",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/abitazioni/insediamento.webp",
+      "mesh_glb": "assets/3d/abitazioni/insediamento.glb",
+      "mesh_stl": "exports/3d/abitazioni/insediamento.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "capanna",
+      "category": "dwelling",
+      "name": "capanna",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/abitazioni/capanna.webp",
+      "mesh_glb": "assets/3d/abitazioni/capanna.glb",
+      "mesh_stl": "exports/3d/abitazioni/capanna.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "fuoco_piccolo",
+      "category": "dwelling",
+      "name": "fuoco piccolo",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/abitazioni/fuoco_piccolo.webp",
+      "mesh_glb": "assets/3d/abitazioni/fuoco_piccolo.glb",
+      "mesh_stl": "exports/3d/abitazioni/fuoco_piccolo.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "fuoco_grande",
+      "category": "dwelling",
+      "name": "fuoco grande",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/abitazioni/fuoco_grande.webp",
+      "mesh_glb": "assets/3d/abitazioni/fuoco_grande.glb",
+      "mesh_stl": "exports/3d/abitazioni/fuoco_grande.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "campo_piccolo",
+      "category": "dwelling",
+      "name": "campo piccolo",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/abitazioni/campo_piccolo.webp",
+      "mesh_glb": "assets/3d/abitazioni/campo_piccolo.glb",
+      "mesh_stl": "exports/3d/abitazioni/campo_piccolo.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
+    },
+    {
+      "original_id": "campo_grande",
+      "category": "dwelling",
+      "name": "campo grande",
+      "edition": [
+        "super"
+      ],
+      "source_image": "assets/abitazioni/campo_grande.webp",
+      "mesh_glb": "assets/3d/abitazioni/campo_grande.glb",
+      "mesh_stl": "exports/3d/abitazioni/campo_grande.stl",
+      "method": "image_to_3d",
+      "dimensions_mm": null,
+      "status": "to_inventory"
     }
   ],
-  "asset_count": 24,
-  "last_audited": "2026-11-08"
+  "asset_count": 443,
+  "last_audited": "2026-11-08",
+  "category_counts": {
+    "character": 24,
+    "tile": 40,
+    "monster": 51,
+    "native_group": 24,
+    "traveler": 40,
+    "treasure": 152,
+    "weapon": 16,
+    "armor": 4,
+    "chit": 80,
+    "dwelling": 12
+  },
+  "notes": "Inventory of IDs and candidate image paths; image files not all verified, and no GLB/STL model has been generated yet. Classic edition filters for other than characters and tiles pending full rules comparison."
 }
