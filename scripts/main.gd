@@ -830,7 +830,7 @@ func _mostra_menu() -> void:
 	edizione_bar.add_child(_bott("Super Magic Realm", func(): _scegli_menu("edizione", "super"), 20, scelte_menu["edizione"] == "super"))
 	edizione_bar.add_child(_bott("Magic Realm Classico (sperimentale)", func(): _scegli_menu("edizione", "classico"), 20, scelte_menu["edizione"] == "classico"))
 	# scenario
-	v.add_child(_lab("Scenario", 24, f_tit))
+	v.add_child(_lab("Scenario" if scelte_menu["edizione"] == "super" else "Modalità classica", 24, f_tit))
 	var hs := GridContainer.new()
 	hs.columns = 3
 	hs.add_theme_constant_override("h_separation", 8)
@@ -847,6 +847,8 @@ func _mostra_menu() -> void:
 		b.tooltip_text = descr[n][1]
 		b.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		hs.add_child(b)
+	if scelte_menu["edizione"] == "classico":
+		hs.add_child(_lab("Partita completa — 28 giorni", 20, f_tit, C_ROSSO))
 	v.add_child(_lab(descr[scelte_menu["scenario"]][1] if scelte_menu["edizione"] == "super" else "Partita completa classica: 20 tessere, 28 giorni, cinque Punti Vittoria. Prima versione sperimentale: alcune regole speciali restano da verificare.", 18))
 	# personaggio
 	v.add_child(_lab("Personaggio", 24, f_tit))
