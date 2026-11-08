@@ -1642,15 +1642,20 @@ func _richiesta_pv(req: Dictionary) -> void:
 		h.add_child(_bott("meno", func():
 			vp[c] = max(0, int(vp[c]) - 1)
 			aggiorna.call(), 15))
-		h.add_child(_bott("più", func():
+		var aumenta := _bott("più", func():
 			vp[c] = int(vp[c]) + 1
-			aggiorna.call(), 15))
+			aggiorna.call(), 15)
+		if g.e_classico() and c == "inc" and int(Dati.personaggi[g.umano()["pg"]].get("magia", 0)) == 0:
+			aumenta.disabled = true
+		h.add_child(aumenta)
 	box_modale.add_child(tot_l)
 	aggiorna.call()
 	_riga_bottoni().add_child(_bott("Conferma", func():
 		var t := 0
 		for c in Viaggi.CATEGORIE: t += int(vp[c])
 		if t != tot_pv: _avviso("Devi assegnare esattamente %d punti." % tot_pv)
+		elif g.e_classico() and not PunteggioClassico.valida_assegnazione(vp, int(Dati.personaggi[g.umano()["pg"]].get("magia", 0)) > 0):
+			_avviso("Assegnazione non valida: il personaggio non puo ricevere punti magia.")
 		else: _rispondi(vp), 18, true))
 	_ricentra()
 
