@@ -139,7 +139,13 @@ func nuova_classica(pg_umano: String, rivali: Array, seme: int, profilo: Diction
 		if not usa_regola("magia"):
 			p["incantesimi"] = []
 			p["inc_iniziali"] = []
-		p["oro_iniziale"] = int(p["oro"])
+		# Regola 4.7/1: dal GOLD finale si sottraggono 10 monete piu
+		# il prezzo iniziale di armi e armature ricevute gratuitamente.
+		var credito := 10
+		for equip in Dati.personaggi[p["pg"]]["equip"]:
+			var item: Dictionary = Dati.oggetti["armi"].get(equip, Dati.oggetti["armature"].get(equip, {}))
+			credito += int(item.get("oro", 0))
+		p["oro_iniziale"] = credito
 		s["pg"].append(p)
 	s["pv_assegnati"] = false
 	scrivi("Magic Realm classico: Incontro %d, 20 tessere, 28 giorni, 5 punti vittoria." % incontro_classico(), "titolo")
