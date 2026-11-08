@@ -2058,9 +2058,9 @@ func _plancia_mischia(d: Dictionary) -> void:
 	var manovre := ["charge", "dodge", "duck"]
 	var riepilogo_scelte := _lab("", 15, f_tit, C_ORO)
 	var aggiorna := func():
-		var att := ("Parata" if mischia["modo"] == "parata" else "Attacco") + ": " + Combattimento.DIREZIONI[mischia["cerchio"]]
-		var man := "Manovra: " + Combattimento.MANOVRE[mischia["casella"]]
-		var scudo := "Scudo: " + (Combattimento.DIREZIONI[mischia["scudo"]] if d["scudo"] else "nessuno")
+		var att: String = ("Parata" if mischia["modo"] == "parata" else "Attacco") + ": " + Combattimento.DIREZIONI[mischia["cerchio"]]
+		var man: String = "Manovra: " + Combattimento.MANOVRE[mischia["casella"]]
+		var scudo: String = "Scudo: " + (Combattimento.DIREZIONI[mischia["scudo"]] if d["scudo"] else "nessuno")
 		riepilogo_scelte.text = "%s    |    %s    |    %s" % [att, man, scudo]
 	# L'attacco e la parata occupano lo stesso spazio FIGHT, ma
 	# la parata non e disponibile con un'arma da tiro.
