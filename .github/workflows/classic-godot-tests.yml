@@ -43,3 +43,5 @@ jobs:
         run: godot --headless --path . --script res://tests/punteggio_classico_test.gd
       - name: Complete classic preview
         run: godot --headless --path . --script res://tests/anteprima_classica_test.gd
+      - name: Full classic playthroughs
+        run: godot --headless --path . --script res://tests/partita_classica_auto_test.gd
