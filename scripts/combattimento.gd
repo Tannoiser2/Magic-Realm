@@ -1025,6 +1025,9 @@ func _morte(p: Dictionary, da: String) -> void:
 			C["assegnati"].erase(mid)
 	C["ordine"].erase(p["pid"])
 	p["dove_morte"] = k
+	if r.e_classico() and int(r.s["giorno"]) < 28:
+		# In seconda edizione un personaggio caduto puo rientrare dal giorno seguente.
+		p["reingresso_giorno"] = int(r.s["giorno"]) + 1
 	r.controlla_vittoria()
 
 # ------------------------------------------------------------ incantesimi in combattimento
