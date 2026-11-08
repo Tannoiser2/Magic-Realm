@@ -340,7 +340,19 @@ func movimento_max(p: Dictionary) -> int:
 	for c in p["chits"]:
 		if c["tipo"] == "M" and c["stato"] == "a":
 			m = max(m, forza_chit(c))
+	if e_classico() and usa_regola("cavalli"):
+		return CavalliClassici.portata(p, m)
 	return m
+
+func _cavallo_cavalcato(p: Dictionary) -> Dictionary:
+	return CavalliClassici.attivo(p) if e_classico() and usa_regola("cavalli") else {}
+
+func _sincronizza_cavalli(p: Dictionary) -> void:
+	if not e_classico() or not usa_regola("cavalli"):
+		return
+	var attivo: Dictionary = _cavallo_cavalcato(p)
+	if not attivo.is_empty() and not CavalliClassici.cavalcabile(p, attivo, carico_max(p), vulnerabilita(p), tipo_radura(p["dove"]) == "C"):
+		attivo["attivo"] = false
 
 func chit_attivi(p: Dictionary) -> Array:
 	var r := []
@@ -392,7 +404,7 @@ func nuova(scenario: int, pg_umano: String, rivali: Array, seme: int) -> void:
 func _nuovo_pg(pid: String, idp: String, um: bool) -> Dictionary:
 	var d: Dictionary = Dati.personaggi[idp]
 	var p := {"pid": pid, "pg": idp, "nome": d["nome"], "umano": um, "dove": "", "nascosto": true, "morto": false,
-		"chits": [], "oggetti": [], "fama": 0, "noto": 0, "oro": 10, "missioni": [], "fatte": [], "siti": [],
+		"chits": [], "oggetti": [], "cavalli": [], "fama": 0, "noto": 0, "oro": 10, "missioni": [], "fatte": [], "siti": [],
 		"scoperti": {}, "indizi": {}, "nemici": false, "maledizioni": [], "uccisi": {}, "uccisi_pg": 0,
 		"berserk": false, "piano": [], "bloccato": false, "turno_fatto": false, "entrato_da": "", "sbirciati": {},
 		"pv_missioni": 0, "dettagli": {}, "incantesimi": [], "inc_iniziali": [], "twt": [], "effetti": {}}
@@ -594,6 +606,9 @@ func _numeri(x) -> void:
 		for k in ["incantesimi", "inc_iniziali", "twt"]:
 			if not p.has(k): p[k] = []
 		if not p.has("effetti"): p["effetti"] = {}
+		if not p.has("cavalli"): p["cavalli"] = []
+		for cavallo in p["cavalli"]:
+			if not cavallo.has("galoppo_usato"): cavallo["galoppo_usato"] = false
 		if p.has("vp"):
 			for categoria in p["vp"]:
 				p["vp"][categoria] = int(p["vp"][categoria])
@@ -765,6 +780,14 @@ func fasi_disponibili(p: Dictionary) -> Dictionary:
 	if usa_regola("magia"):
 		extra.append_array(arcano.fasi_extra(p))
 	var grotta := tipo_radura(p["dove"]) == "C"
+	if e_classico() and usa_regola("cavalli") and not grotta:
+		var cavallo: Dictionary = _cavallo_cavalcato(p)
+		if not cavallo.is_empty():
+			var normale := base + luce + extra.count("M")
+			match CavalliClassici.tipo(cavallo):
+				"lavoro": extra.append("MC")
+				"pony":
+					for i in range(normale): extra.append("MP")
 	return {"base": base, "luce": 0 if grotta else luce, "extra": extra, "grotta": grotta}
 
 ## costo in fasi per entrare nella radura b dalla radura a
@@ -829,7 +852,8 @@ func esegui_turno(p: Dictionary) -> void:
 	cambiato.emit()
 	await pausa(0.25)
 	var st := {"base": 0, "luce": 0, "extra": fasi_disponibili(p)["extra"].duplicate(),
-		"grotta": tipo_radura(p["dove"]) == "C", "max_luce": 0 if ha_abilita(p, "gambe_corte") else 2}
+		"grotta": tipo_radura(p["dove"]) == "C", "max_luce": 0 if ha_abilita(p, "gambe_corte") else 2,
+		"mosse_normali": 0, "mosse_pony": 0}
 	var piano: Array = p["piano"]
 	var i := 0
 	while i < piano.size() and not p["bloccato"] and not p["morto"]:
@@ -906,17 +930,31 @@ func esegui_turno(p: Dictionary) -> void:
 	cambiato.emit()
 
 func _slot(p: Dictionary, st: Dictionary, tipo: String) -> String:
+	if tipo == "M" and e_classico() and usa_regola("cavalli"):
+		var cavallo: Dictionary = _cavallo_cavalcato(p)
+		if not cavallo.is_empty() and "MP" in st["extra"] and int(st["mosse_normali"]) > int(st["mosse_pony"]):
+			st["extra"].erase("MP")
+			st["mosse_pony"] += 1
+			return "pony"
+		if not cavallo.is_empty() and "MC" in st["extra"]:
+			st["extra"].erase("MC")
+			st["mosse_normali"] += 1
+			return "cavallo"
 	if tipo in st["extra"]:
 		st["extra"].erase(tipo)
+		if tipo == "M": st["mosse_normali"] += 1
 		return "extra"
 	if "*" in st["extra"] and abitazione_in(p["dove"]) != "":
 		st["extra"].erase("*")
+		if tipo == "M": st["mosse_normali"] += 1
 		return "extra"
 	if st["base"] < 2:
 		st["base"] += 1
+		if tipo == "M": st["mosse_normali"] += 1
 		return "base"
 	if not st["grotta"] and st["luce"] < st["max_luce"]:
 		st["luce"] += 1
+		if tipo == "M": st["mosse_normali"] += 1
 		return "luce"
 	return ""
 
@@ -940,6 +978,7 @@ func _muovi(p: Dictionary, dest: String) -> void:
 	# sentieri usati: chi li percorre li conosce
 	p["entrato_da"] = p["dove"]
 	p["dove"] = dest
+	_sincronizza_cavalli(p)
 	if e_classico() and str(s.get("attivo", "")) == p["pid"]:
 		for q in _seguitori_di(p):
 			if q["dove"] != p["entrato_da"] or movimento_max(q) < carico_max(q):
