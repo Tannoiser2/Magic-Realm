@@ -1,7 +1,5 @@
-# Costruisce la versione web del gioco con Godot e la pubblica su GitHub Pages (e, se ci sono i segreti,
-# sulla ludoteca privata di Cloudflare).
-# Non parte a ogni modifica: si avvia a mano (Actions → Pubblica → Run workflow)
-# oppure con un commit che nel messaggio contiene [pubblica].
+# Main launcher + two independent Web games under /super and /classico.
+# The classic build remains labelled experimental until all original rules are audited.
 name: Pubblica
 
 on:
@@ -20,43 +18,59 @@ concurrency:
 
 jobs:
   build:
-    if: ${{ github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[pubblica]') }}
     runs-on: ubuntu-latest
+    timeout-minutes: 30
+    container:
+      image: barichello/godot-ci:4.7.2
     steps:
       - uses: actions/checkout@v4
 
-      - name: Scarica Godot 4.7 e il modello di esportazione web
+      - name: Resolve Godot Web export templates
+        shell: bash
         run: |
-          wget -q https://github.com/godotengine/godot/releases/download/4.7-stable/Godot_v4.7-stable_linux.x86_64.zip
-          unzip -q Godot_v4.7-stable_linux.x86_64.zip
-          wget -q https://github.com/godotengine/godot/releases/download/4.7-stable/Godot_v4.7-stable_export_templates.tpz
-          T=~/.local/share/godot/export_templates/4.7.stable
-          mkdir -p $T
-          unzip -q -j Godot_v4.7-stable_export_templates.tpz templates/web_nothreads_release.zip -d $T
-          cp $T/web_nothreads_release.zip $T/web_nothreads_debug.zip
+          set -euo pipefail
+          TARGET="$HOME/.local/share/godot/export_templates/4.7.2.stable"
+          mkdir -p "$TARGET"
+          FOUND="$(find /root /opt /usr/local /home -type f -name 'web_nothreads_release.zip' -print -quit 2>/dev/null || true)"
+          if [ -z "$FOUND" ]; then echo "Godot 4.7.2 Web export templates missing"; exit 1; fi
+          SRC="$(dirname "$FOUND")"
+          cp "$SRC"/web_nothreads_*.zip "$TARGET"/
 
-      - name: Esporta la versione web
+      - name: Export Godot Web runtime
+        shell: bash
         run: |
-          mkdir -p build/web
-          ./Godot_v4.7-stable_linux.x86_64 --headless --path . --import || true
-          ./Godot_v4.7-stable_linux.x86_64 --headless --path . --export-release "Web" build/web/index.html
-          test -f build/web/index.pck
-          touch build/web/.nojekyll
+          set -euo pipefail
+          godot --headless --editor --path . --import --quit
+          mkdir -p build/runtime build/site/super build/site/classico
+          godot --headless --path . --export-release Web build/runtime/index.html
+          test -s build/runtime/index.pck
+          test -s build/runtime/index.html
 
-      # Ludoteca privata: con i segreti CLOUDFLARE_API_TOKEN e CLOUDFLARE_ACCOUNT_ID pubblica il gioco su
-      # https://magic-realm.<dominio>/ protetto da email e codice. Senza segreti non fa nulla.
-      - name: Pubblica su Cloudflare (ludoteca privata)
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          LUDOTECA_DOMINIO: ludoteca-digitale.com
-        run: python3 tools/pubblica_cloudflare.py build/web magic-realm magic-realm
+      - name: Assemble protected two-edition site
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp -a build/runtime/. build/site/super/
+          cp -a build/runtime/. build/site/classico/
+          cp web/portal/index.html build/site/index.html
+          touch build/site/.nojekyll
+          test -s build/site/super/index.pck
+          test -s build/site/classico/index.pck
+          test -s build/site/index.html
 
-      # GitHub Pages solo finché il repository è pubblico
-      - uses: actions/upload-pages-artifact@v3
-        if: ${{ !github.event.repository.private }}
+      - name: Upload assembled game for private Cloudflare publishing
+        uses: actions/upload-artifact@v4
         with:
-          path: build/web
+          name: magic-realm-published-site
+          path: build/site/
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Upload public GitHub Pages artifact
+        if: ${{ !github.event.repository.private }}
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: build/site/
 
   deploy:
     needs: build
@@ -68,3 +82,19 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+
+  cloudflare:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: magic-realm-published-site
+          path: build/site
+      - name: Publish private Ludoteca site if credentials exist
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          LUDOTECA_DOMINIO: ludoteca-digitale.com
+        run: python3 tools/pubblica_cloudflare.py build/site magic-realm magic-realm

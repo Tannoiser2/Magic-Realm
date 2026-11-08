@@ -1,0 +1,55 @@
+name: Classic Magic Realm — Godot tests
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: magic-realm-classic-tests-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  godot-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout experimental branch
+        uses: actions/checkout@v4
+      - name: Install Godot 4.7.2 from SourceForge release mirror
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --location --retry 5 --retry-delay 6 --connect-timeout 30 \
+            'https://sourceforge.net/projects/godot-engine.mirror/files/4.7.2-stable/Godot_v4.7.2-stable_linux.x86_64.zip/download' \
+            --output /tmp/godot-4.7.2.zip
+          unzip -q /tmp/godot-4.7.2.zip -d /tmp/godot-dist
+          sudo install -m 755 /tmp/godot-dist/Godot_v4.7.2-stable_linux.x86_64 /usr/local/bin/godot
+      - name: Print Godot version
+        run: godot --version
+      - name: Import resources and parse scripts
+        run: godot --headless --editor --path . --import --quit
+      - name: Rule profile checks
+        run: godot --headless --path . --script res://tests/profili_regole_test.gd
+      - name: Original map generation
+        run: godot --headless --path . --script res://tests/mappa_classica_test.gd
+      - name: Original map chits and lost places
+        run: godot --headless --path . --script res://tests/preparazione_classica_test.gd
+      - name: Original endgame scoring
+        run: godot --headless --path . --script res://tests/punteggio_classico_test.gd
+      - name: Complete classic preview
+        run: godot --headless --path . --script res://tests/anteprima_classica_test.gd
+      - name: Full classic playthroughs
+        run: godot --headless --path . --script res://tests/partita_classica_auto_test.gd
+      - name: Classic menu and UI smoke test
+        timeout-minutes: 4
+        run: godot --headless --path . --script res://tests/ui_classico_smoke_test.gd
+      - name: Super free-play UI and separated saves
+        timeout-minutes: 4
+        run: godot --headless --path . --script res://tests/ui_super_libera_test.gd
+      - name: Legacy save compatibility
+        timeout-minutes: 4
+        run: godot --headless --path . --script res://tests/profili_salvataggi_test.gd

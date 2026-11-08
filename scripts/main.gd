@@ -2,7 +2,8 @@
 ## scheda del personaggio, pianificazione dell'alba, decisioni e combattimento, registro, salvataggi.
 extends Node
 
-const SALVATAGGIO := "user://partita_magicrealm.json"
+const SALVATAGGIO_SUPER := "user://partita_magicrealm.json"
+const SALVATAGGIO_CLASSICO := "user://partita_magicrealm_classico.json"
 const C_FONDO := Color(0.10, 0.07, 0.05)
 const C_PERG := Color(0.93, 0.86, 0.70)
 const C_PERG_SCURA := Color(0.80, 0.70, 0.52)
@@ -71,15 +72,38 @@ const GUIDA_CFG := "user://guida_magicrealm.cfg"
 const SCENARI := [1, 2, 3, 4, 5, 6]
 var modo_mossa := false
 var codice := ""
-var scelte_menu := {"scenario": 3, "pg": "amazzone", "rivali": 2}
+var scelte_menu := {"edizione": "super", "scenario": 3, "pg": "amazzone", "rivali": 2, "partita_libera": false, "durata_libera": 84}
 var mischia := {}
+var edizione_portale := "" # "super" o "classico" per le build sul sito; vuoto in Godot locale
+
+func _edizione_attuale() -> String:
+	return ("classico" if g.e_classico() else "super") if g != null and not g.s.is_empty() else str(scelte_menu["edizione"])
+
+func _percorso_salvataggio(edizione: String) -> String:
+	return SALVATAGGIO_CLASSICO if edizione == "classico" else SALVATAGGIO_SUPER
+
+func _torna_portale() -> void:
+	if OS.has_feature("web") and edizione_portale != "":
+		JavaScriptBridge.eval("window.location.href = '../';", true)
+
 
 func _ready() -> void:
 	Dati.carica()
+	if OS.has_feature("web"):
+		var url_path: String = str(JavaScriptBridge.eval("window.location.pathname", true))
+		if url_path.ends_with("/classico/") or url_path.ends_with("/classico/index.html"):
+			edizione_portale = "classico"
+		elif url_path.ends_with("/super/") or url_path.ends_with("/super/index.html"):
+			edizione_portale = "super"
+		if edizione_portale != "":
+			scelte_menu["edizione"] = edizione_portale
 	f_tit = load("res://assets/font/Titoli.ttf")
 	f_txt = load("res://assets/font/Testo.ttf")
 	f_fell = load("res://assets/font/Fell.ttf")
 	net = load("res://scripts/net.gd").new()
+	if edizione_portale == "classico":
+		net.root_partite = "magicrealm/classico/partite"
+		net.sessione = "user://online_magicrealm_classico.cfg"
 	add_child(net)
 	_crea_mondo()
 	_crea_ui()
@@ -234,6 +258,22 @@ func _gettone(img: String, lato: float, retro := "", spessore := 0.035, colore :
 	n.add_child(top)
 	return n
 
+# Preferisce una miniatura GLB, mantenendo la pedina originale come fallback.
+# Contratto asset 3D: soggetto centrato sull'asse Y, base a Y=0, larghezza 1 unita.
+func _gettone_o_modello(id_modello: String, img: String, lato: float, spessore := 0.035, colore := Color(0.18, 0.12, 0.08)) -> Node3D:
+	var path := "res://assets/3d/%s.glb" % id_modello
+	if ResourceLoader.exists(path):
+		var risorsa = load(path)
+		if risorsa is PackedScene:
+			var modello = risorsa.instantiate()
+			if modello is Node3D:
+				var contenitore := Node3D.new()
+				modello.scale = Vector3.ONE * lato
+				contenitore.add_child(modello)
+				return contenitore
+			modello.queue_free()
+	return _gettone(img, lato, "", spessore, colore)
+
 func _anello(pos: Vector2, colore: Color, r := 0.17, spessore := 0.025) -> void:
 	var a := MeshInstance3D.new()
 	var tm := TorusMesh.new()
@@ -271,7 +311,7 @@ func _aggiorna_pezzi() -> void:
 		per_radura[k].append([nodo, lato])
 	# abitazioni
 	for a in g.s["abitazioni"]:
-		aggiungi.call(g.s["abitazioni"][a], _gettone("res://assets/abitazioni/%s.webp" % a, 0.26, "", 0.05, Color(0.3, 0.25, 0.2)), 0.26)
+		aggiungi.call(g.s["abitazioni"][a], _gettone_o_modello("abitazioni/%s" % a, "res://assets/abitazioni/%s.webp" % a, 0.26, 0.05, Color(0.3, 0.25, 0.2)), 0.26)
 	# mostri (dei nativi si mostra un solo segnalino per gruppo e radura)
 	var gruppi_visti := {}
 	for id in g.s["mostri"]:
@@ -285,14 +325,14 @@ func _aggiorna_pezzi() -> void:
 			gruppi_visti[kg] = true
 		var peso: String = Dati.tipo_mostro(m["tipo"]).get("peso", "M")
 		var lato := {"M": 0.19, "H": 0.23, "T": 0.29, "X": 0.31}.get(peso, 0.2) as float
-		aggiungi.call(m["dove"], _gettone(_img_mostro(m), lato, "", 0.04), lato)
+		aggiungi.call(m["dove"], _gettone_o_modello("nativi/%s" % m["nativo"] if m.has("nativo") else "mostri/%s" % m["tipo"], _img_mostro(m), lato, 0.04), lato)
 	# viaggiatori
 	for id in g.s.get("viaggi", {}):
 		var x: Dictionary = g.s["viaggi"][id]
 		if x["dove"] == "" or x["chi"] != "":
 			continue
 		var img: String = "res://assets/" + Viaggi.v(id)["img"] if x["su"] else "res://assets/viaggiatori/retro.webp"
-		aggiungi.call(x["dove"], _gettone(img, 0.17, "", 0.03), 0.17)
+		aggiungi.call(x["dove"], _gettone_o_modello("viaggiatori/%s" % id, img, 0.17, 0.03), 0.17)
 	# personaggi (la tua pedina sta al centro della radura, più grande, sotto il segnalino rosso)
 	var mia: Node3D = null
 	var mia_k := ""
@@ -303,10 +343,10 @@ func _aggiorna_pezzi() -> void:
 		var nasc: bool = p["nascosto"] and g.s["scenario"] >= 2
 		var img := "res://assets/personaggi/%s_%s.webp" % [d["pedina"], "nascosto" if nasc else "pedina"]
 		if p["umano"]:
-			mia = _gettone(img, 0.36, "", 0.09, Color(0.6, 0.08, 0.05))
+			mia = _gettone_o_modello("personaggi/%s" % d["pedina"], img, 0.36, 0.09, Color(0.6, 0.08, 0.05))
 			mia_k = p["dove"]
 			continue
-		var gt := _gettone(img, 0.27, "", 0.06, Color(0.12, 0.1, 0.1))
+		var gt := _gettone_o_modello("personaggi/%s" % d["pedina"], img, 0.27, 0.06, Color(0.12, 0.1, 0.1))
 		aggiungi.call(p["dove"], gt, 0.24)
 	for k in per_radura:
 		if not g.mappa.radure.has(k):
@@ -648,7 +688,7 @@ func _crea_ui() -> void:
 	hb.add_child(lbl_codice)
 	hb.add_child(_bott("Centra", _centra, 16))
 	hb.add_child(_bott("Salva online", _salva_online, 16))
-	hb.add_child(_bott("Guida", func(): _mostra_guida_scenario(true), 16))
+	hb.add_child(_bott("Guida", func(): _mostra_guida_classica() if g != null and g.e_classico() else _mostra_guida_scenario(true), 16))
 	hb.add_child(_bott("Regole", func(): aiuto.visible = not aiuto.visible, 16))
 	hb.add_child(_bott("Menu", _torna_menu, 16))
 	# scheda personaggio a sinistra
@@ -765,6 +805,14 @@ func _centra() -> void:
 		_aggiorna_camera()
 
 # ============================================================ menu
+func _mostra_guida_classica() -> void:
+	_apri_modale("Magic Realm Classico — guida")
+	box_modale.add_child(_lab("Partita sperimentale di 28 giorni sulla mappa originale di 20 tessere. Esplora il Reame, visita i siti, commercia con i nativi, raccogli tesori e sopravvivi ai mostri.", 17))
+	box_modale.add_child(_lab("All'inizio assegni 5 punti tra grandi tesori, incantesimi, fama, notorieta e oro. Alla fine del ventottesimo giorno vengono calcolati bonus e penalita per gli obiettivi scelti. Vince il personaggio sopravvissuto con il miglior punteggio non negativo.", 16))
+	box_modale.add_child(_lab("Alcune regole avanzate del gioco fisico, come cavalli e determinati incantesimi, non sono ancora completamente disponibili. La logica di alcuni incontri e adattata dal motore Super.", 15))
+	_riga_bottoni().add_child(_bott("Chiudi", func(): modale.visible = false, 18, true))
+	_ricentra()
+
 func _crea_menu() -> void:
 	menu = Control.new()
 	menu.set_anchors_preset(Control.PRESET_FULL_RECT)
@@ -793,14 +841,31 @@ func _mostra_menu() -> void:
 	var v := VBoxContainer.new()
 	v.add_theme_constant_override("separation", 10)
 	p.add_child(v)
-	var t := _lab("Magic Realm", 46, f_tit, C_ROSSO)
+	var t := _lab("Magic Realm Classico" if scelte_menu["edizione"] == "classico" else "Super Magic Realm", 46, f_tit, C_ROSSO)
 	t.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	v.add_child(t)
-	var st := _lab("Super Realm · il capostipite dei giochi d'esplorazione fantasy, in versione digitale", 20, f_fell)
+	var st := _lab("Magic Realm originale · 20 tessere · 28 giorni" if scelte_menu["edizione"] == "classico" else "Super Realm · esplorazione fantasy in versione digitale", 20, f_fell)
 	st.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	v.add_child(st)
-	# scenario
-	v.add_child(_lab("Scenario", 24, f_tit))
+	# Selezione indipendente del regolamento, mantenendo Super come default.
+	if edizione_portale == "":
+		var edizione_bar := HBoxContainer.new()
+		edizione_bar.add_theme_constant_override("separation", 10)
+		v.add_child(edizione_bar)
+		edizione_bar.add_child(_bott("Super Magic Realm", func(): _scegli_menu("edizione", "super"), 20, scelte_menu["edizione"] == "super"))
+		edizione_bar.add_child(_bott("Magic Realm Classico (sperimentale)", func(): _scegli_menu("edizione", "classico"), 20, scelte_menu["edizione"] == "classico"))
+	else:
+		v.add_child(_bott("‹ Torna alla scelta dei giochi", _torna_portale, 17))
+	# The six Super modes are progressive scenarios; free play uses full Scenario 6 rules.
+	if scelte_menu["edizione"] == "super":
+		v.add_child(_lab("Scegli come giocare", 24, f_tit))
+		var modebar := HBoxContainer.new()
+		modebar.add_theme_constant_override("separation", 12)
+		v.add_child(modebar)
+		modebar.add_child(_bott("Partita libera — tutte le regole", func(): _scegli_menu("partita_libera", true), 21, scelte_menu["partita_libera"]))
+		modebar.add_child(_bott("Sei scenari progressivi", func(): _scegli_menu("partita_libera", false), 19, not scelte_menu["partita_libera"]))
+	else:
+		v.add_child(_lab("Modalità classica", 24, f_tit))
 	var hs := GridContainer.new()
 	hs.columns = 3
 	hs.add_theme_constant_override("h_separation", 8)
@@ -812,12 +877,22 @@ func _mostra_menu() -> void:
 		4: ["4 · Tesori e magia", "Saccheggia i siti, leggi le rune, incanta i segnalini e lancia incantesimi: il primo a 10 Punti Vittoria vince."],
 		5: ["5 · I nativi si destano", "Nativi nelle abitazioni: commercia, ingaggia e attento a chi ti è ostile. Il primo a 10 Punti Vittoria vince."],
 		6: ["6 · Arrivano i viaggiatori", "Il gioco completo: viaggiatori, visitatori e Punti Vittoria assegnati in segreto."]}
-	for n in SCENARI:
+	for n in (SCENARI if scelte_menu["edizione"] == "super" and not scelte_menu["partita_libera"] else []):
 		var b := _bott(descr[n][0], func(): _scegli_menu("scenario", n), 18, scelte_menu["scenario"] == n)
 		b.tooltip_text = descr[n][1]
 		b.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		hs.add_child(b)
-	v.add_child(_lab(descr[scelte_menu["scenario"]][1], 18))
+	if scelte_menu["edizione"] == "classico":
+		hs.add_child(_lab("Partita completa — 28 giorni", 20, f_tit, C_ROSSO))
+	elif scelte_menu["partita_libera"]:
+		hs.add_child(_lab("Tutte le regole Super disponibili · 12 punti vittoria", 19, f_tit, C_ROSSO))
+	v.add_child(_lab("Partita libera: scegli la durata e gioca il Super Realm completo, con mostri, magia, tesori, nativi e viaggiatori." if scelte_menu["edizione"] == "super" and scelte_menu["partita_libera"] else (descr[scelte_menu["scenario"]][1] if scelte_menu["edizione"] == "super" else "Partita completa classica: 20 tessere, 28 giorni, cinque Punti Vittoria. Prima versione sperimentale: alcune regole speciali restano da verificare."), 18))
+	if scelte_menu["edizione"] == "super" and scelte_menu["partita_libera"]:
+		var durata := HBoxContainer.new()
+		v.add_child(durata)
+		durata.add_child(_lab_riga("Durata:"))
+		for giorni in [28, 56, 84]:
+			durata.add_child(_bott("%d giorni" % giorni, func(): _scegli_menu("durata_libera", giorni), 18, int(scelte_menu["durata_libera"]) == giorni))
 	# personaggio
 	v.add_child(_lab("Personaggio", 24, f_tit))
 	var grid := GridContainer.new()
@@ -825,7 +900,7 @@ func _mostra_menu() -> void:
 	grid.add_theme_constant_override("h_separation", 6)
 	grid.add_theme_constant_override("v_separation", 6)
 	v.add_child(grid)
-	var validi := _personaggi_validi(scelte_menu["scenario"])
+	var validi := _personaggi_validi(6 if scelte_menu["edizione"] == "super" and scelte_menu["partita_libera"] else scelte_menu["scenario"])
 	if not (scelte_menu["pg"] in validi):
 		scelte_menu["pg"] = validi[0]
 	for id in validi:
@@ -856,7 +931,7 @@ func _mostra_menu() -> void:
 	hr.add_theme_constant_override("separation", 8)
 	v.add_child(hr)
 	hr.add_child(_lab_riga("Personaggi rivali (IA):"))
-	var minimo := 1 if scelte_menu["scenario"] == 2 else 0
+	var minimo := 1 if scelte_menu["scenario"] == 2 and scelte_menu["edizione"] == "super" and not scelte_menu["partita_libera"] else 0
 	for n in range(minimo, 4):
 		hr.add_child(_bott(str(n), func(): _scegli_menu("rivali", n), 18, scelte_menu["rivali"] == n))
 	# avvio
@@ -866,7 +941,7 @@ func _mostra_menu() -> void:
 	v.add_child(hb)
 	hb.add_child(_bott("Nuova partita", _nuova_partita, 22, true))
 	var cont := _bott("Continua", _continua, 22)
-	cont.disabled = not FileAccess.file_exists(SALVATAGGIO)
+	cont.disabled = not FileAccess.file_exists(_percorso_salvataggio(str(scelte_menu["edizione"])))
 	hb.add_child(cont)
 	var ed := LineEdit.new()
 	ed.placeholder_text = "codice partita"
@@ -876,13 +951,17 @@ func _mostra_menu() -> void:
 	hb.add_child(ed)
 	hb.add_child(_bott("Carica online", func(): _carica_online(ed.text.strip_edges().to_upper()), 20))
 	hb.add_child(_bott("Regole", func(): aiuto.visible = true, 20))
-	var nota := _lab("Versione digitale per uso personale del modulo Super Magic Realm (espansione non ufficiale di Magic Realm, Avalon Hill).", 14, f_txt, Color(0.4, 0.3, 0.2))
+	var nota := _lab("Modalita classica sperimentale: obiettivi e punteggio originali; alcuni effetti e l’IA restano in verifica." if scelte_menu["edizione"] == "classico" else "Versione digitale per uso personale del modulo Super Magic Realm (espansione non ufficiale di Magic Realm, Avalon Hill).", 14, f_txt, Color(0.4, 0.3, 0.2))
 	nota.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	v.add_child(nota)
 
 func _personaggi_validi(sc: int) -> Array:
 	var r := []
 	for id in Dati.ordine_pg:
+		if scelte_menu["edizione"] == "classico":
+			if ProfiliRegole.personaggio_classico(id):
+				r.append(id)
+			continue
 		var d: Dictionary = Dati.personaggi[id]
 		if sc == 1 and id in ["pescatore", "re_stregone", "stregone_bianco"]:
 			continue
@@ -897,18 +976,24 @@ func _descr_pg(d: Dictionary) -> String:
 	var t := "%s — peso e vulnerabilità %s" % [d["nome"], Dati.NOMI_PESO[d["vuln"]]]
 	for a in d["abilita"]:
 		t += "\n%s: %s" % [a["nome"], a["testo"]]
-	if not d["equip"].is_empty() and scelte_menu["scenario"] >= 2:
+	if not d["equip"].is_empty() and (scelte_menu["scenario"] >= 2 or scelte_menu["edizione"] == "classico"):
 		t += "\nEquipaggiamento: " + ", ".join(d["equip"].map(func(x): return Dati.nome_arma(x)))
 	return t
 
 func _scegli_menu(k: String, v) -> void:
 	scelte_menu[k] = v
-	if k == "scenario" and v == 2 and scelte_menu["rivali"] < 1:
+	if k == "edizione":
+		net.root_partite = "magicrealm/classico/partite" if v == "classico" else "magicrealm/partite"
+		net.sessione = "user://online_magicrealm_classico.cfg" if v == "classico" else "user://online_magicrealm.cfg"
+		net.id_token = ""
+		net.refresh_token = ""
+	if k == "scenario" and v == 2 and scelte_menu["edizione"] == "super" and not scelte_menu["partita_libera"] and scelte_menu["rivali"] < 1:
 		scelte_menu["rivali"] = 1
 	_mostra_menu()
 
 func _nuova_partita() -> void:
-	var sc: int = scelte_menu["scenario"]
+	var libera: bool = scelte_menu["edizione"] == "super" and scelte_menu["partita_libera"]
+	var sc: int = 6 if libera else scelte_menu["scenario"]
 	var validi := _personaggi_validi(sc)
 	validi.erase(scelte_menu["pg"])
 	var rng := RandomNumberGenerator.new()
@@ -919,7 +1004,14 @@ func _nuova_partita() -> void:
 		rivali.append(validi[j])
 		validi.remove_at(j)
 	codice = _nuovo_codice(rng)
-	_avvia(func(): g.nuova(sc, scelte_menu["pg"], rivali, rng.randi()))
+	if scelte_menu["edizione"] == "classico":
+		_avvia(func(): return g.nuova_con_profilo(ProfiliRegole.classico_completo(), scelte_menu["pg"], rivali, rng.randi()))
+	else:
+		_avvia(func():
+			g.nuova(sc, scelte_menu["pg"], rivali, rng.randi())
+			if libera:
+				g.s["partita_libera"] = true
+				g.s["giorni_max"] = int(scelte_menu["durata_libera"]))
 
 func _nuovo_codice(rng: RandomNumberGenerator) -> String:
 	var a := "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"
@@ -938,6 +1030,9 @@ func _avvia(prepara: Callable) -> void:
 	g.cambiato.connect(_aggiorna)
 	g.messaggio.connect(_messaggio)
 	prepara.call()
+	if g.s.is_empty():
+		_avviso("Impossibile creare la partita: verifica il generatore e riprova.")
+		return
 	menu.visible = false
 	hud.visible = true
 	registro.clear()
@@ -948,15 +1043,22 @@ func _avvia(prepara: Callable) -> void:
 	_centra()
 	_aggiorna()
 	g.gioca()
-	_mostra_guida_scenario(false)
+	if not g.e_classico():
+		_mostra_guida_scenario(false)
+
+func _salvataggio_compatibile(d: Dictionary) -> bool:
+	if not (d.get("s") is Dictionary):
+		return false
+	var famiglia: String = str(d["s"].get("profilo_regole", {}).get("famiglia", "super"))
+	return famiglia == str(scelte_menu["edizione"])
 
 func _continua() -> void:
-	var f := FileAccess.open(SALVATAGGIO, FileAccess.READ)
+	var f := FileAccess.open(_percorso_salvataggio(str(scelte_menu["edizione"])), FileAccess.READ)
 	if f == null:
 		return
 	var d = JSON.parse_string(f.get_as_text())
-	if not (d is Dictionary):
-		_avviso("Salvataggio non leggibile.")
+	if not (d is Dictionary) or not _salvataggio_compatibile(d):
+		_avviso("Salvataggio non leggibile o appartenente a un’altra edizione.")
 		return
 	codice = d.get("codice", "")
 	_avvia(func(): g.importa(d))
@@ -970,19 +1072,22 @@ func _carica_online(c: String) -> void:
 	if not (d is Dictionary):
 		_avviso("Partita %s non trovata (o rete non raggiungibile)." % c)
 		return
+	if not _salvataggio_compatibile(d):
+		_avviso("Il codice appartiene a un’altra edizione di Magic Realm.")
+		return
 	codice = c
 	_avvia(func(): g.importa(d))
 
 func _salva_locale() -> void:
-	if g == null:
+	if g == null or g.s.is_empty():
 		return
 	var d := g.esporta()
 	d["codice"] = codice
-	var f := FileAccess.open(SALVATAGGIO, FileAccess.WRITE)
+	var f := FileAccess.open(_percorso_salvataggio(_edizione_attuale()), FileAccess.WRITE)
 	f.store_string(JSON.stringify(d))
 
 func _salva_online() -> void:
-	if g == null:
+	if g == null or g.s.is_empty():
 		return
 	if g.s["fase"] != "alba":
 		_avviso("Si salva all'alba, quando si registrano le attività.")
@@ -1017,7 +1122,7 @@ func _aggiorna() -> void:
 	if g == null or g.s.is_empty():
 		return
 	var fasi_n := {"alba": "Alba: registra le attività", "giorno": "Giorno", "sera": "Sera: combattimenti", "mezzanotte": "Mezzanotte"}
-	lbl_giorno.text = "Giorno %d · %s" % [g.s["giorno"], g.settimana_mese()]
+	lbl_giorno.text = ("Classico · giorno %d/28" % g.s["giorno"]) if g.e_classico() else ("Giorno %d · %s" % [g.s["giorno"], g.settimana_mese()])
 	var f: String = fasi_n.get(g.s["fase"], "")
 	if g.s["scenario"] >= 3 and g.s["riga_mostri"] > 0:
 		f += "   ·   mostri in agguato: riga %d" % g.s["riga_mostri"]
@@ -1103,7 +1208,9 @@ func _aggiorna_scheda() -> void:
 	var punti := "Fama %d · Notorietà %d" % [u["fama"], u["noto"]]
 	if g.s["scenario"] >= 5:
 		punti += " · Oro %d" % u["oro"]
-	if g.s["scenario"] >= 6:
+	if g.e_classico():
+		punti += " · Classico: %d PV · giorno %d/28" % [g.pv(u), int(g.s["giorno"])]
+	elif g.s["scenario"] >= 6:
 		punti += " · punteggio %d" % g.viaggi.punteggio(u)
 	elif g.s["scenario"] >= 3:
 		punti += " · PV %d/%d" % [g.pv(u), g.obiettivo_pv()]
@@ -1192,9 +1299,15 @@ func _aggiorna_scheda() -> void:
 		if g.s["tessere"][str(g.tessera(u["dove"]))].get("incantata", false):
 			tx += " (tessera incantata)"
 		scheda.add_child(_lab(tx, 14, f_txt, C_VERDE))
-	if g.s["scenario"] >= 6 and u.has("vp"):
+	if (g.e_classico() or g.s["scenario"] >= 6) and u.has("vp"):
 		scheda.add_child(_lab("Traguardi dei Punti Vittoria", 18, f_tit))
-		for x in g.viaggi.requisiti(u):
+		if g.e_classico():
+			var risultato: Dictionary = g.punteggio_classico(u)
+			for cat in PunteggioClassico.CATEGORIE:
+				var val: Dictionary = risultato.get("categorie", {}).get(cat, {})
+				scheda.add_child(_lab("%s: %d / %d · punti %d" % [Viaggi.NOMI_CAT[cat], val.get("valore", 0), val.get("richiesti", 0), val.get("totale", 0)], 15, f_txt))
+
+		for x in ([] if g.e_classico() else g.viaggi.requisiti(u)):
 			if x["serve"] > 0 or x["ha"] > 0:
 				scheda.add_child(_lab("%s: %d su %d%s" % [x["nome"], x["ha"], x["serve"], "" if x["ok"] else " (manca)"], 15, f_txt, C_VERDE if x["ok"] else C_ROSSO))
 		var con := []
@@ -1209,6 +1322,8 @@ func _aggiorna_scheda() -> void:
 	if g.s["scenario"] >= 5:
 		var rr := {2: [], 1: [], -1: [], -2: []}
 		for gid in Dati.nativi["gruppi"]:
+			if g.e_classico() and not (gid in Nativi.GRUPPI_CLASSICI):
+				continue
 			var v := g.nativi.rapporto(u, gid)
 			if rr.has(v):
 				rr[v].append(Dati.nativi["gruppi"][gid]["nome"])
@@ -1581,8 +1696,9 @@ func _richiesta_commercio(req: Dictionary) -> void:
 
 func _richiesta_pv(req: Dictionary) -> void:
 	var vp: Dictionary = req["dati"]["vp"]
-	_apri_modale("Assegna i tuoi 12 Punti Vittoria")
-	box_modale.add_child(_lab("Ogni punto è un traguardo da raggiungere: 1 grande tesoro, 2 incantesimi imparati, 10 Fama, 20 Notorietà o 30 Oro. Ogni sito o luogo scoperto e ogni missione o compito completato toglie punti. A fine mese vince chi ha soddisfatto tutti i traguardi con il margine più ampio.", 15))
+	var tot_pv := 5 if g.e_classico() else 12
+	_apri_modale("Assegna i tuoi %d Punti Vittoria" % tot_pv)
+	box_modale.add_child(_lab("Classico: assegna cinque punti tra tesori, magia, fama, notorietà e oro. I risultati sono calcolati dopo 28 giorni con penalità per gli obiettivi mancati." if g.e_classico() else "Ogni punto è un traguardo da raggiungere: 1 grande tesoro, 2 incantesimi imparati, 10 Fama, 20 Notorietà o 30 Oro. Ogni sito o luogo scoperto e ogni missione o compito completato toglie punti. A fine mese vince chi ha soddisfatto tutti i traguardi con il margine più ampio.", 15))
 	var tot_l := _lab("", 18, f_tit, C_ROSSO)
 	var righe := {}
 	var aggiorna := func():
@@ -1590,7 +1706,7 @@ func _richiesta_pv(req: Dictionary) -> void:
 		for c in Viaggi.CATEGORIE:
 			t += int(vp[c])
 			righe[c].text = "%s: %d (%d)" % [Viaggi.NOMI_CAT[c], int(vp[c]), int(vp[c]) * Viaggi.UNITA[c]]
-		tot_l.text = "Totale: %d su 12" % t
+		tot_l.text = "Totale: %d su %d" % [t, tot_pv]
 	for c in Viaggi.CATEGORIE:
 		var h := _riga_bottoni()
 		var l := _lab_riga("")
@@ -1600,15 +1716,20 @@ func _richiesta_pv(req: Dictionary) -> void:
 		h.add_child(_bott("meno", func():
 			vp[c] = max(0, int(vp[c]) - 1)
 			aggiorna.call(), 15))
-		h.add_child(_bott("più", func():
+		var aumenta := _bott("più", func():
 			vp[c] = int(vp[c]) + 1
-			aggiorna.call(), 15))
+			aggiorna.call(), 15)
+		if g.e_classico() and c == "inc" and int(Dati.personaggi[g.umano()["pg"]].get("magia", 0)) == 0:
+			aumenta.disabled = true
+		h.add_child(aumenta)
 	box_modale.add_child(tot_l)
 	aggiorna.call()
 	_riga_bottoni().add_child(_bott("Conferma", func():
 		var t := 0
 		for c in Viaggi.CATEGORIE: t += int(vp[c])
-		if t != 12: _avviso("Devi assegnare esattamente 12 punti.")
+		if t != tot_pv: _avviso("Devi assegnare esattamente %d punti." % tot_pv)
+		elif g.e_classico() and not PunteggioClassico.valida_assegnazione(vp, int(Dati.personaggi[g.umano()["pg"]].get("magia", 0)) > 0):
+			_avviso("Assegnazione non valida: il personaggio non puo ricevere punti magia.")
 		else: _rispondi(vp), 18, true))
 	_ricentra()
 
@@ -1932,8 +2053,9 @@ func _fine() -> void:
 	var h := HBoxContainer.new()
 	box_azioni.add_child(h)
 	h.add_child(_bott("Nuova partita", _torna_menu, 18, true))
-	if FileAccess.file_exists(SALVATAGGIO):
-		DirAccess.remove_absolute(ProjectSettings.globalize_path(SALVATAGGIO))
+	var finito_path := _percorso_salvataggio(_edizione_attuale())
+	if FileAccess.file_exists(finito_path):
+		DirAccess.remove_absolute(ProjectSettings.globalize_path(finito_path))
 
 # ============================================================ regole
 func _crea_aiuto() -> void:

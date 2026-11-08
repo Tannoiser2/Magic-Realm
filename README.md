@@ -7,6 +7,14 @@ abitazioni e armi sono le immagini originali del modulo.
 
 Si gioca nel browser da GitHub Pages: https://tannoiser2.github.io/Magic-Realm/
 
+## Magic Realm Classico — modalità sperimentale (ramo feature)
+
+Questo ramo include una **partita completa classica sperimentale**, selezionabile dal menu: mappa di 20 tessere, 16 personaggi originali, segnalini delle due Località Perdute, nove fazioni native originali, limite di 28 giorni e assegnazione di cinque Punti Vittoria. Il codice riutilizza parte del motore Super e non riproduce ancora tutte le regole fisiche classiche; in particolare i quattro Encounter originali sono ancora da sviluppare, così come cavalli ed effetti speciali mancanti.
+
+I test Godot 4.7.2 hanno confermato la generazione delle mappe, la preparazione, il punteggio, la conclusione automatica delle partite e l'apertura del menu Classico. I primi tre test di campagna sono terminati per la morte dell'avventuriero prima del 28º giorno. I test di conclusione al 28º giorno sono predisposti separatamente.
+
+**Il sito pubblico GitHub Pages continua a mostrare Super Realm sul ramo principale**: per provarla aprire il ramo sperimentale in Godot 4.7.2 seguendo [COME_GIOCARE_CLASSICO.md](docs/COME_GIOCARE_CLASSICO.md). Per una build HTML5 scaricabile consultare il workflow `classic-web-preview.yml`; la sua riuscita va verificata su GitHub Actions.
+
 ## Cosa c'è
 
 - **Il Reame in 3D**: le 40 tessere esagonali vengono disposte a caso a ogni partita come da regole

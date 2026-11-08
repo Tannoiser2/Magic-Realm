@@ -1,0 +1,69 @@
+name: Classic Magic Realm — downloadable Web preview
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [feature/magic-realm-classic-3d]
+    paths:
+      - '.github/workflows/classic-web-preview.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/classic-web-preview.yml'
+
+concurrency:
+  group: magic-realm-classic-web-preview-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  export-web-preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    container:
+      image: barichello/godot-ci:4.7.2
+    steps:
+      - name: Checkout experimental code (not main)
+        uses: actions/checkout@v4
+      - name: Print engine version
+        run: godot --version
+      - name: Import Godot resources
+        run: godot --headless --editor --path . --import --quit
+      - name: Resolve preinstalled Web export templates
+        run: |
+          set -eu
+          echo "Runner HOME=$HOME"
+          TARGET="$HOME/.local/share/godot/export_templates/4.7.2.stable"
+          mkdir -p "$TARGET"
+          FOUND="$(find /root /opt /usr/local /home -type f -name 'web_nothreads_release.zip' -print -quit 2>/dev/null || true)"
+          if [ -z "$FOUND" ]; then
+            echo "Could not find preinstalled Web export templates"
+            exit 1
+          fi
+          SRC="$(dirname "$FOUND")"
+          echo "Using templates in $SRC"
+          cp "$SRC"/web_nothreads_*.zip "$TARGET"/
+          ls -lh "$TARGET"/web_nothreads_*.zip
+      - name: Build both Web editions and public portal
+        run: |
+          set -eu
+          mkdir -p build/runtime build/site/super build/site/classico
+          godot --headless --path . --export-release Web build/runtime/index.html
+          cp -a build/runtime/. build/site/super/
+          cp -a build/runtime/. build/site/classico/
+          cp web/portal/index.html build/site/index.html
+          touch build/site/.nojekyll
+          test -s build/site/index.html
+          test -s build/site/super/index.pck
+          test -s build/site/classico/index.pck
+          grep -q 'href="./super/"' build/site/index.html
+          grep -q 'href="./classico/"' build/site/index.html
+      - name: Upload complete portal preview (not public Pages)
+        uses: actions/upload-artifact@v4
+        with:
+          name: magic-realm-dual-portal-preview
+          path: build/site/
+          if-no-files-found: error
+          retention-days: 14

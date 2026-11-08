@@ -45,6 +45,102 @@ func _init() -> void:
 	nativi = Nativi.new(self)
 	viaggi = Viaggi.new(self)
 
+# Profili serializzati; i salvataggi storici ricevono il profilo Super equivalente.
+func profilo_regole() -> Dictionary:
+	if s.has("profilo_regole") and s["profilo_regole"] is Dictionary:
+		return s["profilo_regole"]
+	return ProfiliRegole.super_scenario(int(s.get("scenario", 3)))
+
+func usa_regola(funzione: String) -> bool:
+	return ProfiliRegole.abilitata(profilo_regole(), funzione)
+
+# Anteprima isolata del classico: mappa e segnalini reali, senza avviare una
+# partita e senza toccare lo stato Super eventualmente presente.
+func anteprima_classica(seme: int) -> Dictionary:
+	var rng_locale := RandomNumberGenerator.new()
+	rng_locale.seed = seme
+	var mappa_locale := MappaClassica.new()
+	if not mappa_locale.genera_classica(rng_locale):
+		return {}
+	var segnalini := PreparazioneClassica.prepara(rng_locale)
+	if segnalini.is_empty():
+		return {}
+	return {
+		"profilo": ProfiliRegole.classico_completo(),
+		"seme": seme,
+		"mappa": mappa_locale.esporta(),
+		"segnalini": segnalini
+	}
+
+func e_classico() -> bool:
+	return s.get("profilo_regole", {}).get("famiglia", "") == ProfiliRegole.CLASSICO
+
+func nuova_con_profilo(profilo: Dictionary, pg_umano: String, rivali: Array, seme: int) -> bool:
+	if not ProfiliRegole.valido(profilo):
+		push_warning("Profilo non valido")
+		return false
+	if profilo.get("famiglia", "") == ProfiliRegole.CLASSICO:
+		if profilo.get("id", "") != "classico_completo":
+			push_warning("Encounter classico non ancora implementato")
+			return false
+		return nuova_classica(pg_umano, rivali, seme)
+	if not profilo.get("implementato", false) or profilo.get("famiglia", "") != ProfiliRegole.SUPER:
+		return false
+	nuova(int(profilo["scenario"]), pg_umano, rivali, seme)
+	return true
+
+# Modalita Classica sperimentale: usa le fasi mature del motore Super 5,
+# ma sostituisce mappa, segnalini, durata, obiettivi e regole di punteggio.
+func nuova_classica(pg_umano: String, rivali: Array, seme: int) -> bool:
+	if not ProfiliRegole.personaggio_classico(pg_umano):
+		return false
+	for id in rivali:
+		if not ProfiliRegole.personaggio_classico(id):
+			return false
+	Dati.carica()
+	rng.seed = seme
+	var mc := MappaClassica.new()
+	if not mc.genera_classica(rng):
+		return false
+	mappa = mc
+	var preparazione := PreparazioneClassica.prepara(rng)
+	if preparazione.is_empty():
+		return false
+	s = {"versione": 3, "profilo_regole": ProfiliRegole.classico_completo(),
+		"scenario": 5, "seme": seme, "giorno": 1, "giorni_max": 28,
+		"fine": "", "vincitori": [], "fase": "alba", "riga_mostri": 0,
+		"mostri": {}, "tabella": [], "siti_box": {}, "abitazioni": {},
+		"tessere": {}, "riserve": preparazione["riserve"], "pool_rossi": [],
+		"pg": [], "missioni_pubbliche": []}
+	# Manteniamo i 40 indici del database per compatibilita dei sottosistemi.
+	# Solo le venti tessere della mappa ricevono segnalini o sono raggiungibili.
+	for t in range(40):
+		s["tessere"][str(t)] = {"avviso": "", "rossi": [],
+			"scoperti": false, "evocati": [], "aggiunti": false}
+	for t in preparazione["tessere"]:
+		s["tessere"][t] = preparazione["tessere"][t]
+	_prepara_abitazioni()
+	arcano.prepara()
+	_prepara_mostri()
+	nativi.prepara()
+	var tutti: Array = [pg_umano] + rivali
+	for i in range(tutti.size()):
+		var p: Dictionary = _nuovo_pg("p%d" % i, tutti[i], i == 0)
+		p["vp"] = {"grandi": 1, "inc": 0, "fama": 2, "noto": 1, "oro": 1}
+		if int(Dati.personaggi[p["pg"]].get("magia", 0)) > 0:
+			p["vp"] = {"grandi": 1, "inc": 1, "fama": 1, "noto": 1, "oro": 1}
+		p["oro_iniziale"] = int(p["oro"])
+		s["pg"].append(p)
+	s["pv_assegnati"] = false
+	scrivi("Magic Realm classico: 20 tessere, 28 giorni, 5 punti vittoria.", "titolo")
+	return true
+
+func punteggio_classico(p: Dictionary) -> Dictionary:
+	if not p.has("vp"):
+		return {}
+	return PunteggioClassico.calcola(p["vp"], viaggi.valori(p), int(p.get("oro_iniziale", 10)), int(Dati.personaggi[p["pg"]].get("magia", 0)) > 0)
+
+
 # ------------------------------------------------------------ utilità
 func scrivi(t: String, tipo := "") -> void:
 	while t.find("{oa}") >= 0:
@@ -206,23 +302,23 @@ func nuova(scenario: int, pg_umano: String, rivali: Array, seme: int) -> void:
 	rng.seed = seme
 	mappa = Mappa.new()
 	mappa.genera(rng)
-	s = {"versione": 1, "scenario": scenario, "seme": seme, "giorno": 1, "fine": "", "vincitori": [],
+	s = {"versione": 2, "profilo_regole": ProfiliRegole.super_scenario(scenario), "scenario": scenario, "seme": seme, "giorno": 1, "fine": "", "vincitori": [],
 		"mostri": {}, "tabella": [], "siti_box": {}, "abitazioni": {}, "tessere": {}, "riserve": {},
 		"pool_rossi": [], "pg": [], "riga_mostri": 0, "missioni_pubbliche": [], "giorni_max": 56,
 		"fase": "alba"}
 	_prepara_segnalini()
 	_prepara_abitazioni()
-	if scenario >= 4:
+	if usa_regola("tesori"):
 		arcano.prepara()
-	if scenario >= 3:
+	if usa_regola("mostri"):
 		_prepara_mostri()
-	if scenario >= 5:
+	if usa_regola("nativi"):
 		nativi.prepara()
 	var tutti := [pg_umano] + rivali
 	for i in range(tutti.size()):
 		s["pg"].append(_nuovo_pg("p%d" % i, tutti[i], i == 0))
 	_prepara_missioni()
-	if scenario >= 6:
+	if usa_regola("viaggiatori"):
 		viaggi.prepara()
 		s["giorni_max"] = 84
 	if ha_abilita(umano(), "esperienza"):
@@ -304,15 +400,19 @@ func _radura_abitazione(t: int) -> String:
 	var k := Mappa.chiave(t, 5)
 	if mappa.radure.has(k) and mappa.collegata_acqua(k):
 		return k
-	return Mappa.chiave(t, 4)
+	var tipica := Mappa.chiave(t, 4)
+	if e_classico() and mappa.radure.has(tipica):
+		return tipica
+	var radure_t: Array = mappa.radure_tessera(t)
+	return radure_t[0] if not radure_t.is_empty() else ""
 
 func _prepara_abitazioni() -> void:
-	for t in range(40):
+	for t in mappa.per_tessera:
 		var c := cat_tessera(t)
-		if c != "V" and c != "H":
+		if c != "V" and c != "H" and not (e_classico() and c == "W"):
 			continue
 		var st: Dictionary = s["tessere"][str(t)]
-		var av: Dictionary = Dati.segnalini[st["avviso"]]
+		var av: Dictionary = Dati.segnalini.get(st["avviso"], {})
 		var dw = av.get("abitazione")
 		st["scoperti"] = true
 		if dw == null:
@@ -404,7 +504,9 @@ func esporta() -> Dictionary:
 func importa(d: Dictionary) -> void:
 	s = d["s"]
 	_numeri(s)
-	mappa = Mappa.new()
+	if not s.has("profilo_regole"):
+		s["profilo_regole"] = ProfiliRegole.super_scenario(int(s["scenario"]))
+	mappa = MappaClassica.new() if e_classico() else Mappa.new()
 	mappa.importa(d["mappa"])
 	rng.state = int(d["rng"])
 	log_righe = d.get("log", [])
@@ -415,6 +517,11 @@ func _numeri(x) -> void:
 		for k in ["incantesimi", "inc_iniziali", "twt"]:
 			if not p.has(k): p[k] = []
 		if not p.has("effetti"): p["effetti"] = {}
+		if p.has("vp"):
+			for categoria in p["vp"]:
+				p["vp"][categoria] = int(p["vp"][categoria])
+		if p.has("oro_iniziale"):
+			p["oro_iniziale"] = int(p["oro_iniziale"])
 		for c in p["chits"]:
 			c["vel"] = int(c["vel"])
 			c["sforzi"] = int(c["sforzi"])
@@ -453,7 +560,7 @@ func rispondi(r) -> void:
 func gioca() -> void:
 	## ciclo principale: un giorno dopo l'altro fino alla fine della partita
 	in_corso = true
-	if s["scenario"] >= 6 and not s.get("pv_assegnati", false):
+	if (e_classico() or s["scenario"] >= 6) and not s.get("pv_assegnati", false):
 		s["pv_assegnati"] = true
 		var u := umano()
 		var sc = await decidi(u, "assegna_pv", {"vp": u["vp"].duplicate()})
@@ -461,7 +568,7 @@ func gioca() -> void:
 			var tot := 0
 			for c in Viaggi.CATEGORIE:
 				tot += int(sc.get(c, 0))
-			if tot == 12:
+			if tot == (5 if e_classico() else 12):
 				for c in Viaggi.CATEGORIE:
 					u["vp"][c] = int(sc[c])
 	while s["fine"] == "":
@@ -1260,6 +1367,8 @@ func _radura_suono(r: String) -> String:
 	return ""
 
 func pv(p: Dictionary) -> int:
+	if e_classico():
+		return int(punteggio_classico(p).get("totale", -999))
 	if s.get("scenario", 1) >= 6:
 		return viaggi.punteggio(p)
 	var tot := 0
@@ -1294,6 +1403,27 @@ func pv(p: Dictionary) -> int:
 
 func controlla_vittoria() -> void:
 	if s["fine"] != "":
+		return
+	if e_classico():
+		var um := umano()
+		if um.get("morto", false):
+			s["fine"] = "sconfitta"
+			scrivi("Il personaggio e morto: partita terminata.", "titolo")
+			return
+		if int(s["giorno"]) < int(s["giorni_max"]):
+			return
+		var migliori: Array = []
+		var best := -999999
+		for p in vivi():
+			var punti: int = int(punteggio_classico(p).get("totale", -999999))
+			if punti > best:
+				best = punti
+				migliori = [p]
+			elif punti == best:
+				migliori.append(p)
+		s["vincitori"] = migliori.map(func(p): return p["pid"])
+		s["fine"] = "vittoria" if um in migliori and best >= 0 else "sconfitta"
+		scrivi("Fine dei 28 giorni: miglior punteggio %d." % best, "titolo")
 		return
 	var sc: int = s["scenario"]
 	var v := []
