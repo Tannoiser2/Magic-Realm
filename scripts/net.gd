@@ -14,6 +14,9 @@ const REFRESH_URL := "https://securetoken.googleapis.com/v1/token?key="
 const ROOT := "magicrealm/partite"
 const SESSIONE := "user://online_magicrealm.cfg"
 
+# Backward-compatible Super storage, separated Classic namespace.
+var root_partite := ROOT
+var sessione := SESSIONE
 var db_url := DB_URL
 var uid := ""
 var id_token := ""
@@ -63,7 +66,7 @@ func accedi() -> bool:
 	if id_token != "":
 		return await _rinnova()
 	var c := ConfigFile.new()
-	c.load(SESSIONE)
+	c.load(sessione)
 	var rt: String = c.get_value("s", "refresh", "")
 	if rt != "":
 		var r := await _richiesta(HTTPClient.METHOD_POST, REFRESH_URL + API_KEY, "grant_type=refresh_token&refresh_token=" + rt.uri_encode(), true)
@@ -86,9 +89,9 @@ func accedi() -> bool:
 
 func _ricorda() -> void:
 	var c := ConfigFile.new()
-	c.load(SESSIONE)
+	c.load(sessione)
 	c.set_value("s", "refresh", refresh_token)
-	c.save(SESSIONE)
+	c.save(sessione)
 
 ## Il gettone dura un'ora: dopo 50 minuti lo si rinnova.
 func _rinnova() -> bool:
@@ -118,14 +121,14 @@ func salva_partita(codice: String, dati: Dictionary) -> bool:
 		"aggiornata": int(dati.get("aggiornata", 0)),
 		"uid": uid,
 	}
-	var r := await _richiesta(HTTPClient.METHOD_PUT, _url(ROOT + "/" + codice), corpo)
+	var r := await _richiesta(HTTPClient.METHOD_PUT, _url(root_partite + "/" + codice), corpo)
 	return r["code"] == 200
 
 ## Carica una partita dal codice; null se non esiste o la rete non risponde.
 func carica_partita(codice: String):
 	if codice == "" or not await accedi():
 		return null
-	var r := await _richiesta(HTTPClient.METHOD_GET, _url(ROOT + "/" + codice))
+	var r := await _richiesta(HTTPClient.METHOD_GET, _url(root_partite + "/" + codice))
 	if r["code"] != 200 or not (r["data"] is Dictionary):
 		return null
 	var x = JSON.parse_string(str(r["data"].get("json", "")))
