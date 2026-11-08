@@ -46,16 +46,24 @@ jobs:
           echo "Using templates in $SRC"
           cp "$SRC"/web_nothreads_*.zip "$TARGET"/
           ls -lh "$TARGET"/web_nothreads_*.zip
-      - name: Build Web HTML5 artifact
+      - name: Build both Web editions and public portal
         run: |
-          mkdir -p build/web
-          godot --headless --path . --export-release Web build/web/index.html
-          test -s build/web/index.html
-          test -s build/web/index.pck
-      - name: Upload playable preview (not public Pages)
+          set -eu
+          mkdir -p build/runtime build/site/super build/site/classico
+          godot --headless --path . --export-release Web build/runtime/index.html
+          cp -a build/runtime/. build/site/super/
+          cp -a build/runtime/. build/site/classico/
+          cp web/portal/index.html build/site/index.html
+          touch build/site/.nojekyll
+          test -s build/site/index.html
+          test -s build/site/super/index.pck
+          test -s build/site/classico/index.pck
+          grep -q 'href="./super/"' build/site/index.html
+          grep -q 'href="./classico/"' build/site/index.html
+      - name: Upload complete portal preview (not public Pages)
         uses: actions/upload-artifact@v4
         with:
-          name: magic-realm-classic-web-preview
-          path: build/web/
+          name: magic-realm-dual-portal-preview
+          path: build/site/
           if-no-files-found: error
-          retention-days: 30
+          retention-days: 14
