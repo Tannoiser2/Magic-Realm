@@ -51,7 +51,7 @@ static func classico_incontro(numero: int) -> Dictionary:
 			"magia": numero >= 4, "nativi": true,
 			"commercio": true, "ingaggio": numero >= 3,
 			"viaggiatori": false, "visitatori": true,
-			"missioni_viaggiatori": numero >= 3, "cavalli": false
+			"missioni_viaggiatori": numero >= 3, "cavalli": true
 		},
 		"implementato": true
 	}
