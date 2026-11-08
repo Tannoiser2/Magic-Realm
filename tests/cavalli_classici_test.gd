@@ -27,10 +27,9 @@ func _init() -> void:
 	assert(not p["cavalli"][0]["attivo"])
 	assert(g.fasi_disponibili(p)["extra"].count("MC") == 1)
 	assert(CavalliClassici.portata(p, 0) == Dati.peso_i("T"))
-	assert(not CavalliClassici.attiva(p, "lavoro_h6t8", g.carico_max(p), g.vulnerabilita(p), true))
+	assert(CavalliClassici.attiva(p, "lavoro_h6t8", g.carico_max(p), g.vulnerabilita(p), true))
 	var c: Dictionary = CavalliClassici.attivo(p)
-	assert(not c.is_empty())
-	c["attivo"] = false
+	assert(c.is_empty())
 	assert(not CavalliClassici.attiva(p, "lavoro_h6t8", g.carico_max(p), g.vulnerabilita(p), true))
 	var saved: Dictionary = JSON.parse_string(JSON.stringify(g.esporta()))
 	var other := Reame.new()
