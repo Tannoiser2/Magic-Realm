@@ -43,6 +43,8 @@ func prepara() -> void:
 	var piccoli: Array = r.s.get("fuori_gioco", [])
 	var mazzi: Dictionary = r.s.get("mazzi_inc", {})
 	for gid in Dati.nativi["gruppi"]:
+		if r.e_classico() and not (gid in GRUPPI_CLASSICI):
+			continue
 		var g := gruppo(gid)
 		var box := {"tesori": [], "inc": [], "oggetti": []}
 		if not g["vagante"]:
