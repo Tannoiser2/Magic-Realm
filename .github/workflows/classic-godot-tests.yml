@@ -1,0 +1,39 @@
+name: Classic Magic Realm — Godot tests
+
+on:
+  push:
+    branches:
+      - feature/magic-realm-classic-3d
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  godot-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout experimental branch
+        uses: actions/checkout@v4
+      - name: Install Godot 4.7.2
+        uses: chickensoft-games/setup-godot@v2
+        with:
+          version: '4.7.2'
+          use-dotnet: false
+      - name: Print Godot version
+        run: godot --version
+      - name: Import resources and parse scripts
+        run: godot --headless --editor --path . --import --quit
+      - name: Rule profile checks
+        run: godot --headless --path . --script res://tests/profili_regole_test.gd
+      - name: Legacy save compatibility
+        run: godot --headless --path . --script res://tests/profili_salvataggi_test.gd
+      - name: Original map generation
+        run: godot --headless --path . --script res://tests/mappa_classica_test.gd
+      - name: Original map chits and lost places
+        run: godot --headless --path . --script res://tests/preparazione_classica_test.gd
+      - name: Original endgame scoring
+        run: godot --headless --path . --script res://tests/punteggio_classico_test.gd
+      - name: Complete classic preview
+        run: godot --headless --path . --script res://tests/anteprima_classica_test.gd
