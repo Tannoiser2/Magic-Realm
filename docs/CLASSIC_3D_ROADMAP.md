@@ -65,3 +65,28 @@ Il supporto GLB è scritto ma non è stato ancora testato con un progetto Godot 
 Creato `scripts/mappa_classica.gd` con le 20 tessere elencate nel regolamento originale, divise in 5 Caves, 5 Mountain, 5 Valley e 5 Woods. Borderland (ID 5) è sempre la prima tessera. Il codice tenta disposizioni casuali collegate da varchi, riutilizzando le informazioni originali di `data/tessere.json`, e fornisce un controllo di connessione a livello di tessera. Disponibile `tests/mappa_classica_test.gd` con cinque semi. **Non collegato alle partite** e **test runtime ancora da eseguire**: generatore da considerare sperimentale e non ancora equivalente alle procedure di piazzamento multiplayer del regolamento.
 
 Lista ID: Cave [4,5,6,7,18]; Mountain [3,13,14,15,16]; Valley [21,22,23,24,25]; Woods [26,27,28,29,30]. Riferimento: 2a edizione, Preparazione della mappa e Tabella dei segnalini mappa.
+
+
+## Seconda iterazione - 8 novembre 2026
+
+### Implementato sul ramo sperimentale
+- `scripts/mappa_classica.gd`: allineamento a step 2 del setup originale, piazzamento vicino a 2 tessere dopo la seconda, coincidenza delle strade, raggiungibilita di Borderland; High Pass e Ledges devono collegare tutte le radure.
+- `scripts/preparazione_classica.gd`: 20 warning originali C/M/V/W; 8 siti, 10 suoni originali; due segnalini Lost e riserve da 5. Non si usano i segnalini extra di Super.
+- `scripts/punteggio_classico.gd`: calcolo categoria per categoria, penalita x3 per valori sotto soglia, arrotondamento verso il basso e bonus moltiplicativo dei PV assegnati. Oro iniziale e valore dell'equipaggiamento iniziale vanno detratti dal chiamante.
+- `Reame.anteprima_classica(seme)`: produce una preparazione isolata senza avviare il gioco classico e senza alterare partite Super.
+- `ProfiliRegole.PERSONAGGI_CLASSICI`: 16 personaggi originali, separati dalle 8 aggiunte Super.
+- CI GitHub Actions `.github/workflows/classic-godot-tests.yml`: Godot 4.7.2 esegue i test al push del ramo sperimentale. **Stato dell'esecuzione non ancora verificato dall'assistente.**
+- `data/3d_asset_manifest.json`: inventario di 443 voci candidate, suddivise per famiglia. Nessuna mesh generativa ancora prodotta. Le immagini di riferimento in inventario sono percorsi candidati, alcune potrebbero non esistere.
+
+### Differenze originali da ricordare
+- Primo Encounter: mostri e nativi compaiono e si puo commerciare, ma il combattimento e escluso.
+- Secondo Encounter: si introduce il combattimento contro i mostri.
+- Terzo Encounter: combattimento con i nativi, assunzioni e missioni.
+- Quarto Encounter: magia.
+- Fine partita standard dopo 28 giorni, con 5 punti di vittoria assegnati. La variante solitaria classica usa due tiri della riga dei mostri al sorgere del sole: **non ancora implementata**.
+- Non confondere gli asset extra Super con i componenti autorizzati in una partita classica: serve un filtro per mostri, nativi, viaggiatori, carte, tesori e armi.
+
+### Ancora da completare per poter giocare
+Setup dei tesori originali, formazione dei mazzi, regole dei visitatori, disponibilita dei cavalli, selezione della dimora iniziale, conversione della giornata ai flag, IA, 4 Encounter, salvataggi completi in modalita classica e verifica runtime dei test.
+
+Riferimento regole: https://magicrealm.ca/magic-realm-rules-second-edition/
