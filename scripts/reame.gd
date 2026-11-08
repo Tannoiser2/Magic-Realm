@@ -1118,6 +1118,8 @@ func fine_turno(p: Dictionary) -> void:
 			scrivi("Compare: %s." % Dati.ABITAZIONI[av], "mostri")
 			if usa_regola("nativi"):
 				for gid in Dati.nativi["gruppi"]:
+					if e_classico() and not (gid in Nativi.GRUPPI_CLASSICI):
+						continue
 					if Dati.nativi["gruppi"][gid].get("guarnigione") == av:
 						nativi.compari(gid, s["abitazioni"][av])
 	if usa_regola("nativi"):
