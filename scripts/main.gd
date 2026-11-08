@@ -809,7 +809,7 @@ func _mostra_guida_classica() -> void:
 	_apri_modale("Magic Realm Classico — guida")
 	box_modale.add_child(_lab("Quattro incontri della seconda edizione: I — esplorazione e caccia al tesoro senza combattimenti; II — combattimento con i mostri; III — guerra tra personaggi, nativi e assoldamenti; IV — incantesimi ed incantamenti.", 17))
 	box_modale.add_child(_lab("Ogni incontro dura 28 giorni, usa 20 tessere e assegna cinque punti tra grandi tesori, incantesimi (solo nel IV), fama, notorietà e oro. Alla fine si calcolano bonus e penalità: punteggio non negativo = requisiti raggiunti; il più alto è il vincitore assoluto.", 16))
-	box_modale.add_child(_lab("Versione sperimentale: Seguire, cavalli, missioni e campagne classiche, comandi ai nativi e diversi incantesimi avanzati non riproducono ancora tutte le regole fisiche. Super Realm resta separato.", 15))
+	box_modale.add_child(_lab("Versione sperimentale: cavalli personali e combattimento montato presenti; restano da completare cavalli dei nativi, parte delle missioni e campagne classiche, comandi ai nativi e diversi incantesimi avanzati. Super Realm resta separato.", 15))
 	_riga_bottoni().add_child(_bott("Chiudi", func(): modale.visible = false, 18, true))
 	_ricentra()
 
