@@ -1589,6 +1589,12 @@ func _pannello_piano() -> void:
 		_aggiorna_evidenze(), 16))
 	var conf := _bott("Conferma il giorno", func(): _rispondi(piano.duplicate(true)), 18, true)
 	hb2.add_child(conf)
+	if g.e_classico() and g.usa_regola("combattimento_pg"):
+		for guida in g.vivi():
+			if guida == u or guida["dove"] != u["dove"]:
+				continue
+			hb2.add_child(_bott("Segui %s (tutto il giorno)" % guida["nome"],
+				func(): _rispondi([{"a": "F", "guida": guida["pid"]}]), 15))
 
 func _aggiungi(a: String) -> void:
 	if piano.size() >= _fasi_totali():
