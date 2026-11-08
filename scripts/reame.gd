@@ -1559,9 +1559,13 @@ func controlla_vittoria() -> void:
 				migliori = [p]
 			elif punti == best:
 				migliori.append(p)
-		s["vincitori"] = migliori.map(func(p): return p["pid"])
-		s["fine"] = "vittoria" if um in migliori and best >= 0 else "sconfitta"
-		scrivi("Fine dei 28 giorni: miglior punteggio %d." % best, "titolo")
+		# I requisiti sono raggiunti se il punteggio personale non e negativo.
+		# Il punteggio piu alto identifica invece il vincitore assoluto.
+		var vincitori: Array = vivi().filter(func(p): return int(punteggio_classico(p).get("totale", -999999)) >= 0)
+		s["vincitori"] = vincitori.map(func(p): return p["pid"])
+		s["vincitore_assoluto"] = migliori.map(func(p): return p["pid"])
+		s["fine"] = "vittoria" if um in vincitori else "sconfitta"
+		scrivi("Fine dei 28 giorni: miglior punteggio %d; requisiti raggiunti da %d avventurieri." % [best, vincitori.size()], "titolo")
 		return
 	var sc: int = s["scenario"]
 	var v := []
