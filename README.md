@@ -13,7 +13,7 @@ Questo ramo include una **partita completa classica sperimentale**, selezionabil
 
 I test Godot 4.7.2 hanno confermato la generazione delle mappe, la preparazione, il punteggio, la conclusione automatica delle partite e l'apertura del menu Classico. I primi tre test di campagna sono terminati per la morte dell'avventuriero prima del 28º giorno. I test di conclusione al 28º giorno sono predisposti separatamente.
 
-**Il sito pubblico GitHub Pages continua a mostrare Super Realm sul ramo principale**: per provarla aprire il ramo sperimentale in Godot 4.7.2 seguendo [COME_GIOCARE_CLASSICO.md](docs/COME_GIOCARE_CLASSICO.md). Per una build HTML5 scaricabile consultare il workflow `classic-web-preview.yml`; la sua riuscita va verificata su GitHub Actions.
+Il sito pubblico GitHub Pages presenta un portale separato per **Super Magic Realm** e **Magic Realm Classico**. La modalità Classica resta indicata come sperimentale; salvataggi locali e partite online sono separati tra le due edizioni.
 
 ## Cosa c'è
 

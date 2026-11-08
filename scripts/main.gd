@@ -866,26 +866,27 @@ func _mostra_menu() -> void:
 		modebar.add_child(_bott("Sei scenari progressivi", func(): _scegli_menu("partita_libera", false), 19, not scelte_menu["partita_libera"]))
 	else:
 		v.add_child(_lab("Modalità classica", 24, f_tit))
-	var hs := GridContainer.new()
-	hs.columns = 3
-	hs.add_theme_constant_override("h_separation", 8)
-	hs.add_theme_constant_override("v_separation", 6)
-	v.add_child(hs)
 	var descr := {1: ["1 · Esplorare il Reame", "Muoviti e cerca: completa per primo le 4 spedizioni pubbliche."],
 		2: ["2 · Duello tra personaggi", "Nasconditi, blocca e combatti: vince chi uccide 4 rivali o resta l'ultimo in piedi."],
 		3: ["3 · I mostri si risvegliano", "Mostri, siti, Luoghi Perduti e missioni: il primo a 10 Punti Vittoria vince."],
 		4: ["4 · Tesori e magia", "Saccheggia i siti, leggi le rune, incanta i segnalini e lancia incantesimi: il primo a 10 Punti Vittoria vince."],
 		5: ["5 · I nativi si destano", "Nativi nelle abitazioni: commercia, ingaggia e attento a chi ti è ostile. Il primo a 10 Punti Vittoria vince."],
 		6: ["6 · Arrivano i viaggiatori", "Il gioco completo: viaggiatori, visitatori e Punti Vittoria assegnati in segreto."]}
-	for n in (SCENARI if scelte_menu["edizione"] == "super" and not scelte_menu["partita_libera"] else []):
-		var b := _bott(descr[n][0], func(): _scegli_menu("scenario", n), 18, scelte_menu["scenario"] == n)
-		b.tooltip_text = descr[n][1]
-		b.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		hs.add_child(b)
 	if scelte_menu["edizione"] == "classico":
-		hs.add_child(_lab("Partita completa — 28 giorni", 20, f_tit, C_ROSSO))
+		v.add_child(_lab("Partita completa — 28 giorni", 20, f_tit, C_ROSSO))
 	elif scelte_menu["partita_libera"]:
-		hs.add_child(_lab("Tutte le regole Super disponibili · 12 punti vittoria", 19, f_tit, C_ROSSO))
+		v.add_child(_lab("Tutte le regole Super disponibili · 12 punti vittoria", 19, f_tit, C_ROSSO))
+	else:
+		var hs := GridContainer.new()
+		hs.columns = 3
+		hs.add_theme_constant_override("h_separation", 8)
+		hs.add_theme_constant_override("v_separation", 6)
+		v.add_child(hs)
+		for n in SCENARI:
+			var b := _bott(descr[n][0], func(): _scegli_menu("scenario", n), 18, scelte_menu["scenario"] == n)
+			b.tooltip_text = descr[n][1]
+			b.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+			hs.add_child(b)
 	v.add_child(_lab("Partita libera: scegli la durata e gioca il Super Realm completo, con mostri, magia, tesori, nativi e viaggiatori." if scelte_menu["edizione"] == "super" and scelte_menu["partita_libera"] else (descr[scelte_menu["scenario"]][1] if scelte_menu["edizione"] == "super" else "Partita completa classica: 20 tessere, 28 giorni, cinque Punti Vittoria. Prima versione sperimentale: alcune regole speciali restano da verificare."), 18))
 	if scelte_menu["edizione"] == "super" and scelte_menu["partita_libera"]:
 		var durata := HBoxContainer.new()
