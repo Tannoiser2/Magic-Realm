@@ -61,6 +61,13 @@ var avviso: Label
 var piano: Array = []
 var fasi: Dictionary = {}
 var modo_volo := false
+var guida_pannello: PanelContainer
+var guida_box: VBoxContainer
+var guida_visti := {}
+var guida_attiva := true
+var guida_coda: Array = []
+var marcatore: Node3D
+const GUIDA_CFG := "user://guida_magicrealm.cfg"
 const SCENARI := [1, 2, 3, 4, 5, 6]
 var modo_mossa := false
 var codice := ""
@@ -227,10 +234,10 @@ func _gettone(img: String, lato: float, retro := "", spessore := 0.035, colore :
 	n.add_child(top)
 	return n
 
-func _anello(pos: Vector2, colore: Color, r := 0.17) -> void:
+func _anello(pos: Vector2, colore: Color, r := 0.17, spessore := 0.025) -> void:
 	var a := MeshInstance3D.new()
 	var tm := TorusMesh.new()
-	tm.inner_radius = r - 0.025
+	tm.inner_radius = r - spessore
 	tm.outer_radius = r
 	tm.rings = 24
 	a.mesh = tm
@@ -286,13 +293,20 @@ func _aggiorna_pezzi() -> void:
 			continue
 		var img: String = "res://assets/" + Viaggi.v(id)["img"] if x["su"] else "res://assets/viaggiatori/retro.webp"
 		aggiungi.call(x["dove"], _gettone(img, 0.17, "", 0.03), 0.17)
-	# personaggi
+	# personaggi (la tua pedina sta al centro della radura, più grande, sotto il segnalino rosso)
+	var mia: Node3D = null
+	var mia_k := ""
 	for p in g.s["pg"]:
 		if p["morto"]:
 			continue
 		var d := Dati.personaggi[p["pg"]] as Dictionary
-		var img := "res://assets/personaggi/%s_%s.webp" % [d["pedina"], "nascosto" if p["nascosto"] else "pedina"]
-		var gt := _gettone(img, 0.27, "", 0.06, Color(0.25, 0.05, 0.05) if p["umano"] else Color(0.12, 0.1, 0.1))
+		var nasc: bool = p["nascosto"] and g.s["scenario"] >= 2
+		var img := "res://assets/personaggi/%s_%s.webp" % [d["pedina"], "nascosto" if nasc else "pedina"]
+		if p["umano"]:
+			mia = _gettone(img, 0.36, "", 0.09, Color(0.6, 0.08, 0.05))
+			mia_k = p["dove"]
+			continue
+		var gt := _gettone(img, 0.27, "", 0.06, Color(0.12, 0.1, 0.1))
 		aggiungi.call(p["dove"], gt, 0.24)
 	for k in per_radura:
 		if not g.mappa.radure.has(k):
@@ -309,6 +323,25 @@ func _aggiorna_pezzi() -> void:
 				off = Vector2(cos(ang), sin(ang)) * rr
 			nodo.position = _v3(pos + off, 0.002 * i)
 			nodo_pezzi.add_child(nodo)
+	if mia != null and g.mappa.radure.has(mia_k):
+		var pm: Vector2 = g.mappa.radure[mia_k]["pos"]
+		mia.position = _v3(pm, 0.03)
+		nodo_pezzi.add_child(mia)
+		marcatore = MeshInstance3D.new()
+		var cono := CylinderMesh.new()
+		cono.top_radius = 0.09
+		cono.bottom_radius = 0.0
+		cono.height = 0.18
+		cono.radial_segments = 4
+		(marcatore as MeshInstance3D).mesh = cono
+		var mc := StandardMaterial3D.new()
+		mc.albedo_color = Color(0.9, 0.12, 0.08)
+		mc.emission_enabled = true
+		mc.emission = Color(0.9, 0.12, 0.08)
+		mc.emission_energy_multiplier = 0.8
+		(marcatore as MeshInstance3D).material_override = mc
+		marcatore.position = _v3(pm, 0.62)
+		nodo_pezzi.add_child(marcatore)
 	# segnalini della mappa
 	var u := g.umano()
 	for i in range(g.mappa.pezzi.size()):
@@ -343,7 +376,7 @@ func _aggiorna_evidenze() -> void:
 	if u.is_empty() or u["morto"]:
 		return
 	if g.mappa.radure.has(u["dove"]):
-		_anello(g.mappa.radure[u["dove"]]["pos"], Color(0.95, 0.25, 0.15), 0.19)
+		_anello(g.mappa.radure[u["dove"]]["pos"], Color(0.95, 0.2, 0.1), 0.28, 0.05)
 	if modo_mossa and g.richiesta.get("tipo", "") == "piano" and modo_volo:
 		var t0 := g.tessera(_ultima_posizione())
 		for t1 in [t0] + g.mappa.tessere_adiacenti(t0):
@@ -352,12 +385,12 @@ func _aggiorna_evidenze() -> void:
 	elif modo_mossa and g.richiesta.get("tipo", "") == "piano":
 		var da := _ultima_posizione()
 		for k in g.vicini_di(u, da):
-			_anello(g.mappa.radure[k]["pos"], Color(1.0, 0.82, 0.25), 0.16)
+			_anello(g.mappa.radure[k]["pos"], Color(1.0, 0.85, 0.1), 0.24, 0.05)
 	# percorso pianificato
 	var prec: String = u["dove"]
 	for a in piano:
 		if a["a"] in ["M", "V"] and a["dest"] != prec and g.mappa.radure.has(a["dest"]):
-			_anello(g.mappa.radure[a["dest"]]["pos"], Color(0.3, 0.9, 0.5), 0.12)
+			_anello(g.mappa.radure[a["dest"]]["pos"], Color(0.2, 0.9, 0.4), 0.2, 0.045)
 			prec = a["dest"]
 	if hover != "" and g.mappa.radure.has(hover):
 		_anello(g.mappa.radure[hover]["pos"], Color(1, 1, 1), 0.21)
@@ -615,6 +648,7 @@ func _crea_ui() -> void:
 	hb.add_child(lbl_codice)
 	hb.add_child(_bott("Centra", _centra, 16))
 	hb.add_child(_bott("Salva online", _salva_online, 16))
+	hb.add_child(_bott("Guida", func(): _mostra_guida_scenario(true), 16))
 	hb.add_child(_bott("Regole", func(): aiuto.visible = not aiuto.visible, 16))
 	hb.add_child(_bott("Menu", _torna_menu, 16))
 	# scheda personaggio a sinistra
@@ -910,8 +944,11 @@ func _avvia(prepara: Callable) -> void:
 	for r in g.log_righe:
 		_messaggio(r[0], r[1])
 	_costruisci_mappa()
+	distanza = 5.5
+	_centra()
 	_aggiorna()
 	g.gioca()
+	_mostra_guida_scenario(false)
 
 func _continua() -> void:
 	var f := FileAccess.open(SALVATAGGIO, FileAccess.READ)
@@ -1274,6 +1311,12 @@ func _attiva_oggetto(id: String) -> void:
 # ============================================================ richieste del motore
 func _chiede(req: Dictionary) -> void:
 	modale.visible = false
+	var chiave_sugg: String = {"piano": "piano", "tabella": "tabella", "adesca": "combattimento", "azione": "combattimento", "mischia": "combattimento",
+		"incanto": "incanto", "commercio": "commercio", "incantesimo_sera": "sera"}.get(req["tipo"], "")
+	if req["tipo"] == "tabella" and not req["dati"].get("fonti", {}).get("saccheggia", []).is_empty():
+		chiave_sugg = "saccheggio" if guida_visti.has("tabella") else "tabella"
+	if chiave_sugg != "":
+		_suggerimento(chiave_sugg)
 	match req["tipo"]:
 		"piano":
 			_salva_locale()
@@ -1386,7 +1429,7 @@ func _pannello_piano() -> void:
 			_pannello_piano(), 17)
 		bv.disabled = pieno
 		hb.add_child(bv)
-	var lm := _lab("Muovi: clic su una radura evidenziata", 15, f_txt, C_VERDE)
+	var lm := _lab("Muovi: tocca una radura con l'anello giallo", 15, f_txt, C_VERDE)
 	lm.autowrap_mode = TextServer.AUTOWRAP_OFF
 	hb.add_child(lm)
 	var hb2 := HBoxContainer.new()
@@ -1920,3 +1963,97 @@ func _crea_aiuto() -> void:
 	rt.add_theme_color_override("default_color", C_INCHIOSTRO)
 	rt.text = load("res://scripts/regole.gd").TESTO
 	v.add_child(rt)
+
+# ============================================================ guida
+func _carica_guida() -> void:
+	var cf := ConfigFile.new()
+	if cf.load(GUIDA_CFG) == OK:
+		guida_visti = cf.get_value("guida", "visti", {})
+		guida_attiva = cf.get_value("guida", "attiva", true)
+
+func _salva_guida() -> void:
+	var cf := ConfigFile.new()
+	cf.set_value("guida", "visti", guida_visti)
+	cf.set_value("guida", "attiva", guida_attiva)
+	cf.save(GUIDA_CFG)
+
+func _crea_guida() -> void:
+	guida_pannello = _pannello(Color(1, 0.96, 0.84))
+	guida_pannello.add_theme_stylebox_override("panel", _stile(Color(1, 0.96, 0.84), C_ROSSO, 8, 3))
+	guida_pannello.custom_minimum_size = Vector2(620, 0)
+	guida_pannello.visible = false
+	hud.add_child(guida_pannello)
+	var m := MarginContainer.new()
+	for lato in ["left", "right", "top", "bottom"]:
+		m.add_theme_constant_override("margin_" + lato, 12)
+	guida_pannello.add_child(m)
+	guida_box = VBoxContainer.new()
+	guida_box.add_theme_constant_override("separation", 8)
+	m.add_child(guida_box)
+
+func _apri_guida(titolo: String, righe: Array) -> void:
+	if guida_pannello == null:
+		_crea_guida()
+	for c in guida_box.get_children():
+		c.queue_free()
+	guida_box.add_child(_lab(titolo, 22, f_tit, C_ROSSO))
+	for t in righe:
+		var l := _lab(t, 16)
+		l.custom_minimum_size = Vector2(596, 0)
+		guida_box.add_child(l)
+	var h := HBoxContainer.new()
+	h.add_theme_constant_override("separation", 10)
+	guida_box.add_child(h)
+	h.add_child(_bott("Ho capito", func():
+		guida_pannello.visible = false
+		if not guida_coda.is_empty():
+			var k: String = guida_coda.pop_front()
+			_apri_guida("Suggerimento", [Guida.SUGGERIMENTI[k]]), 17, true))
+	var cb := CheckBox.new()
+	cb.text = "Mostra i suggerimenti"
+	cb.button_pressed = guida_attiva
+	cb.add_theme_font_override("font", f_txt)
+	for nome in ["font_color", "font_pressed_color", "font_hover_color", "font_focus_color", "font_hover_pressed_color"]:
+		cb.add_theme_color_override(nome, C_INCHIOSTRO)
+	cb.toggled.connect(func(on):
+		guida_attiva = on
+		_salva_guida())
+	h.add_child(cb)
+	guida_pannello.visible = true
+	guida_pannello.size = Vector2.ZERO
+	guida_pannello.reset_size()
+	await get_tree().process_frame
+	guida_pannello.size = Vector2.ZERO
+	guida_pannello.reset_size()
+	guida_pannello.position = Vector2(hud.size.x - guida_pannello.size.x - 10, 64)
+
+func _mostra_guida_scenario(sempre: bool) -> void:
+	if g == null:
+		return
+	if guida_visti.is_empty():
+		_carica_guida()
+	var sc: int = g.s["scenario"]
+	var k := "scenario_%d" % sc
+	if not sempre and (not guida_attiva or guida_visti.has(k)):
+		return
+	var t: Array = Guida.SCENARI[sc]
+	_apri_guida(t[0], t.slice(1))
+	guida_visti[k] = true
+	_salva_guida()
+
+func _suggerimento(k: String) -> void:
+	if guida_visti.is_empty():
+		_carica_guida()
+	if not guida_attiva or guida_visti.has(k):
+		return
+	guida_visti[k] = true
+	_salva_guida()
+	if guida_pannello != null and guida_pannello.visible:
+		guida_coda.append(k)
+		return
+	_apri_guida("Suggerimento", [Guida.SUGGERIMENTI[k]])
+
+func _process(delta: float) -> void:
+	if marcatore != null and is_instance_valid(marcatore):
+		marcatore.position.y = 0.62 + 0.06 * sin(Time.get_ticks_msec() / 300.0)
+		marcatore.rotation.y += delta * 1.5
