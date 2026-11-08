@@ -807,9 +807,9 @@ func _centra() -> void:
 # ============================================================ menu
 func _mostra_guida_classica() -> void:
 	_apri_modale("Magic Realm Classico — guida")
-	box_modale.add_child(_lab("Partita sperimentale di 28 giorni sulla mappa originale di 20 tessere. Esplora il Reame, visita i siti, commercia con i nativi, raccogli tesori e sopravvivi ai mostri.", 17))
-	box_modale.add_child(_lab("All'inizio assegni 5 punti tra grandi tesori, incantesimi, fama, notorieta e oro. Alla fine del ventottesimo giorno vengono calcolati bonus e penalita per gli obiettivi scelti. Vince il personaggio sopravvissuto con il miglior punteggio non negativo.", 16))
-	box_modale.add_child(_lab("Alcune regole avanzate del gioco fisico, come cavalli e determinati incantesimi, non sono ancora completamente disponibili. La logica di alcuni incontri e adattata dal motore Super.", 15))
+	box_modale.add_child(_lab("Quattro incontri della seconda edizione: I — esplorazione e caccia al tesoro senza combattimenti; II — combattimento con i mostri; III — guerra tra personaggi, nativi e assoldamenti; IV — incantesimi ed incantamenti.", 17))
+	box_modale.add_child(_lab("Ogni incontro dura 28 giorni, usa 20 tessere e assegna cinque punti tra grandi tesori, incantesimi (solo nel IV), fama, notorietà e oro. Alla fine si calcolano bonus e penalità: punteggio non negativo = requisiti raggiunti; il più alto è il vincitore assoluto.", 16))
+	box_modale.add_child(_lab("Versione sperimentale: Seguire, cavalli, missioni e campagne classiche, comandi ai nativi e diversi incantesimi avanzati non riproducono ancora tutte le regole fisiche. Super Realm resta separato.", 15))
 	_riga_bottoni().add_child(_bott("Chiudi", func(): modale.visible = false, 18, true))
 	_ricentra()
 
