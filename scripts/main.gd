@@ -816,11 +816,11 @@ func _mostra_menu() -> void:
 	st.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	v.add_child(st)
 	# Selezione indipendente del regolamento, mantenendo Super come default.
-	var ed := HBoxContainer.new()
-	ed.add_theme_constant_override("separation", 10)
-	v.add_child(ed)
-	ed.add_child(_bott("Super Magic Realm", func(): _scegli_menu("edizione", "super"), 20, scelte_menu["edizione"] == "super"))
-	ed.add_child(_bott("Magic Realm Classico (sperimentale)", func(): _scegli_menu("edizione", "classico"), 20, scelte_menu["edizione"] == "classico"))
+	var edizione_bar := HBoxContainer.new()
+	edizione_bar.add_theme_constant_override("separation", 10)
+	v.add_child(edizione_bar)
+	edizione_bar.add_child(_bott("Super Magic Realm", func(): _scegli_menu("edizione", "super"), 20, scelte_menu["edizione"] == "super"))
+	edizione_bar.add_child(_bott("Magic Realm Classico (sperimentale)", func(): _scegli_menu("edizione", "classico"), 20, scelte_menu["edizione"] == "classico"))
 	# scenario
 	v.add_child(_lab("Scenario", 24, f_tit))
 	var hs := GridContainer.new()
