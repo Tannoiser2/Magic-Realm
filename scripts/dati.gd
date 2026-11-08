@@ -13,6 +13,8 @@ static var missioni: Dictionary = {}
 static var elenco_missioni: Array = []
 static var tesori: Dictionary = {}
 static var incantesimi: Dictionary = {}
+static var nativi: Dictionary = {}
+static var viaggiatori: Dictionary = {}
 
 const PESI := ["-", "L", "M", "H", "T", "X"]
 const NOMI_PESO := {"-": "Trascurabile", "L": "Leggero", "M": "Medio", "H": "Pesante", "T": "Tremendo", "X": "Massimo"}
@@ -38,6 +40,15 @@ static func carica() -> void:
 		missioni[m["id"]] = m
 	tesori = _json("res://data/tesori.json")
 	incantesimi = _json("res://data/incantesimi.json")
+	nativi = _json("res://data/nativi.json")
+	viaggiatori = _json("res://data/viaggiatori.json")
+	# i nativi combattono come le pedine dei mostri: registro i loro tipi
+	for gid in nativi["gruppi"]:
+		var g: Dictionary = nativi["gruppi"][gid]
+		for m in g["membri"]:
+			mostri["tipi"][m["id"]] = {"nome": "%s (%s)" % [m["tipo_it"], g["nome"]], "plurale": g["nome"], "peso": m["peso"],
+				"chiaro": m["luce"], "scuro": m["buio"], "fama": 0, "noto": m["noto"], "oro": m["oro"], "lung": [m["lung"], m["lung"]],
+				"armato": m["armato"], "vola": false, "missile": [m["missile"] and m["luce"][0] != "", m["missile"]], "incant": null, "extra": null, "nativo": gid}
 	_pronti = true
 
 static func _json(p: String):

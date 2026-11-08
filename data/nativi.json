@@ -1,0 +1,3376 @@
+{
+"gruppi": {
+"bandits": {
+"nome": "Banditi",
+"nome_en": "Bandits",
+"membri": [
+{
+"id": "bandits_hq",
+"capo": true,
+"tipo": "Assassin",
+"tipo_it": "Assassino",
+"peso": "M",
+"armato": false,
+"noto": 2,
+"oro": 1,
+"luce": [
+"M3*",
+4
+],
+"buio": [
+"L4*",
+2
+],
+"missile": false,
+"lung": 3,
+"img": "nativi/bandits_hq_a.webp",
+"img_b": "nativi/bandits_hq_b.webp"
+},
+{
+"id": "bandits_1",
+"capo": false,
+"tipo": "Assassin",
+"tipo_it": "Assassino",
+"peso": "M",
+"armato": false,
+"noto": 2,
+"oro": 1,
+"luce": [
+"M3*",
+4
+],
+"buio": [
+"L4*",
+2
+],
+"missile": false,
+"lung": 3,
+"img": "nativi/bandits_1_a.webp",
+"img_b": "nativi/bandits_1_b.webp"
+},
+{
+"id": "bandits_2",
+"capo": false,
+"tipo": "Assassin",
+"tipo_it": "Assassino",
+"peso": "M",
+"armato": false,
+"noto": 2,
+"oro": 1,
+"luce": [
+"M3*",
+4
+],
+"buio": [
+"L4*",
+2
+],
+"missile": false,
+"lung": 3,
+"img": "nativi/bandits_2_a.webp",
+"img_b": "nativi/bandits_2_b.webp"
+},
+{
+"id": "bandits_3",
+"capo": false,
+"tipo": "Swordsman",
+"tipo_it": "Spadaccino",
+"peso": "M",
+"armato": false,
+"noto": 2,
+"oro": 1,
+"luce": [
+"M3*",
+5
+],
+"buio": [
+"L3*",
+4
+],
+"missile": false,
+"lung": 4,
+"img": "nativi/bandits_3_a.webp",
+"img_b": "nativi/bandits_3_b.webp"
+},
+{
+"id": "bandits_4",
+"capo": false,
+"tipo": "Swordsman",
+"tipo_it": "Spadaccino",
+"peso": "M",
+"armato": false,
+"noto": 2,
+"oro": 1,
+"luce": [
+"M3*",
+5
+],
+"buio": [
+"L3*",
+4
+],
+"missile": false,
+"lung": 4,
+"img": "nativi/bandits_4_a.webp",
+"img_b": "nativi/bandits_4_b.webp"
+},
+{
+"id": "bandits_5",
+"capo": false,
+"tipo": "Swordsman",
+"tipo_it": "Spadaccino",
+"peso": "M",
+"armato": false,
+"noto": 2,
+"oro": 1,
+"luce": [
+"M3*",
+5
+],
+"buio": [
+"L3*",
+4
+],
+"missile": false,
+"lung": 4,
+"img": "nativi/bandits_5_a.webp",
+"img_b": "nativi/bandits_5_b.webp"
+}
+],
+"righe": [
+2,
+3
+],
+"perduto": "Castle",
+"inc": [],
+"oggetti": [],
+"vagante": true
+},
+"dwarves": {
+"nome": "Nani",
+"nome_en": "Dwarves",
+"membri": [
+{
+"id": "dwarves_hq",
+"capo": true,
+"tipo": "Dwarf",
+"tipo_it": "Nano",
+"peso": "H",
+"armato": true,
+"noto": 6,
+"oro": 4,
+"luce": [
+"T6*",
+5
+],
+"buio": [
+"T6*",
+4
+],
+"missile": false,
+"lung": 5,
+"img": "nativi/dwarves_hq_a.webp",
+"img_b": "nativi/dwarves_hq_b.webp"
+},
+{
+"id": "dwarves_1",
+"capo": false,
+"tipo": "Dwarf",
+"tipo_it": "Nano",
+"peso": "H",
+"armato": true,
+"noto": 6,
+"oro": 4,
+"luce": [
+"T6*",
+5
+],
+"buio": [
+"T6*",
+4
+],
+"missile": false,
+"lung": 5,
+"img": "nativi/dwarves_1_a.webp",
+"img_b": "nativi/dwarves_1_b.webp"
+},
+{
+"id": "dwarves_2",
+"capo": false,
+"tipo": "Dwarf",
+"tipo_it": "Nano",
+"peso": "H",
+"armato": true,
+"noto": 6,
+"oro": 4,
+"luce": [
+"T6*",
+5
+],
+"buio": [
+"T6*",
+4
+],
+"missile": false,
+"lung": 5,
+"img": "nativi/dwarves_2_a.webp",
+"img_b": "nativi/dwarves_2_b.webp"
+},
+{
+"id": "dwarves_3",
+"capo": false,
+"tipo": "Dwarf",
+"tipo_it": "Nano",
+"peso": "H",
+"armato": true,
+"noto": 6,
+"oro": 4,
+"luce": [
+"T6*",
+5
+],
+"buio": [
+"T6*",
+4
+],
+"missile": false,
+"lung": 5,
+"img": "nativi/dwarves_3_a.webp",
+"img_b": "nativi/dwarves_3_b.webp"
+},
+{
+"id": "dwarves_4",
+"capo": false,
+"tipo": "Dwarf",
+"tipo_it": "Nano",
+"peso": "H",
+"armato": true,
+"noto": 6,
+"oro": 4,
+"luce": [
+"T6*",
+5
+],
+"buio": [
+"T6*",
+4
+],
+"missile": false,
+"lung": 5,
+"img": "nativi/dwarves_4_a.webp",
+"img_b": "nativi/dwarves_4_b.webp"
+},
+{
+"id": "dwarves_5",
+"capo": false,
+"tipo": "Dwarf",
+"tipo_it": "Nano",
+"peso": "H",
+"armato": true,
+"noto": 6,
+"oro": 4,
+"luce": [
+"T6*",
+5
+],
+"buio": [
+"T6*",
+4
+],
+"missile": false,
+"lung": 5,
+"img": "nativi/dwarves_5_a.webp",
+"img_b": "nativi/dwarves_5_b.webp"
+}
+],
+"righe": [
+5,
+6
+],
+"perduto": "City",
+"inc": [],
+"oggetti": [],
+"vagante": true
+},
+"elves": {
+"nome": "Elfi",
+"nome_en": "Elves",
+"membri": [
+{
+"id": "elves_hq",
+"capo": true,
+"tipo": "Archer",
+"tipo_it": "Arciere",
+"peso": "M",
+"armato": false,
+"noto": 4,
+"oro": 2,
+"luce": [
+"",
+2
+],
+"buio": [
+"L1**",
+4
+],
+"missile": true,
+"lung": 14,
+"img": "nativi/elves_hq_a.webp",
+"img_b": "nativi/elves_hq_b.webp"
+},
+{
+"id": "elves_1",
+"capo": false,
+"tipo": "Archer",
+"tipo_it": "Arciere",
+"peso": "M",
+"armato": false,
+"noto": 4,
+"oro": 2,
+"luce": [
+"",
+2
+],
+"buio": [
+"L1**",
+4
+],
+"missile": true,
+"lung": 14,
+"img": "nativi/elves_1_a.webp",
+"img_b": "nativi/elves_1_b.webp"
+},
+{
+"id": "elves_2",
+"capo": false,
+"tipo": "Archer",
+"tipo_it": "Arciere",
+"peso": "M",
+"armato": false,
+"noto": 4,
+"oro": 2,
+"luce": [
+"",
+2
+],
+"buio": [
+"L1**",
+4
+],
+"missile": true,
+"lung": 14,
+"img": "nativi/elves_2_a.webp",
+"img_b": "nativi/elves_2_b.webp"
+},
+{
+"id": "elves_3",
+"capo": false,
+"tipo": "Archer",
+"tipo_it": "Arciere",
+"peso": "M",
+"armato": false,
+"noto": 4,
+"oro": 2,
+"luce": [
+"",
+2
+],
+"buio": [
+"L1**",
+4
+],
+"missile": true,
+"lung": 14,
+"img": "nativi/elves_3_a.webp",
+"img_b": "nativi/elves_3_b.webp"
+},
+{
+"id": "elves_4",
+"capo": false,
+"tipo": "Archer",
+"tipo_it": "Arciere",
+"peso": "M",
+"armato": false,
+"noto": 4,
+"oro": 2,
+"luce": [
+"",
+2
+],
+"buio": [
+"L1**",
+4
+],
+"missile": true,
+"lung": 14,
+"img": "nativi/elves_4_a.webp",
+"img_b": "nativi/elves_4_b.webp"
+},
+{
+"id": "elves_5",
+"capo": false,
+"tipo": "Archer",
+"tipo_it": "Arciere",
+"peso": "M",
+"armato": false,
+"noto": 4,
+"oro": 2,
+"luce": [
+"",
+2
+],
+"buio": [
+"L1**",
+4
+],
+"missile": true,
+"lung": 14,
+"img": "nativi/elves_5_a.webp",
+"img_b": "nativi/elves_5_b.webp"
+}
+],
+"righe": [
+3,
+4
+],
+"perduto": "Palace",
+"inc": [],
+"oggetti": [],
+"vagante": true
+},
+"cultists": {
+"nome": "Cultisti",
+"nome_en": "Cultists",
+"membri": [
+{
+"id": "cultists_hq",
+"capo": true,
+"tipo": "Caster",
+"tipo_it": "Incantatore",
+"peso": "M",
+"armato": false,
+"noto": 4,
+"oro": 2,
+"luce": [
+"",
+5
+],
+"buio": [
+"M4",
+4
+],
+"missile": false,
+"lung": 1,
+"img": "nativi/cultists_hq_a.webp",
+"img_b": "nativi/cultists_hq_b.webp"
+},
+{
+"id": "cultists_1",
+"capo": false,
+"tipo": "Caster",
+"tipo_it": "Incantatore",
+"peso": "M",
+"armato": false,
+"noto": 4,
+"oro": 2,
+"luce": [
+"",
+5
+],
+"buio": [
+"M4",
+4
+],
+"missile": false,
+"lung": 1,
+"img": "nativi/cultists_1_a.webp",
+"img_b": "nativi/cultists_1_b.webp"
+},
+{
+"id": "cultists_2",
+"capo": false,
+"tipo": "Caster",
+"tipo_it": "Incantatore",
+"peso": "M",
+"armato": false,
+"noto": 4,
+"oro": 2,
+"luce": [
+"",
+5
+],
+"buio": [
+"M4",
+4
+],
+"missile": false,
+"lung": 1,
+"img": "nativi/cultists_2_a.webp",
+"img_b": "nativi/cultists_2_b.webp"
+},
+{
+"id": "cultists_3",
+"capo": false,
+"tipo": "Caster",
+"tipo_it": "Incantatore",
+"peso": "M",
+"armato": false,
+"noto": 4,
+"oro": 2,
+"luce": [
+"",
+5
+],
+"buio": [
+"M4",
+4
+],
+"missile": false,
+"lung": 1,
+"img": "nativi/cultists_3_a.webp",
+"img_b": "nativi/cultists_3_b.webp"
+}
+],
+"righe": [
+1,
+2
+],
+"perduto": "Fortress",
+"inc": [],
+"oggetti": [],
+"vagante": true
+},
+"zealots": {
+"nome": "Zeloti",
+"nome_en": "Zealots",
+"membri": [
+{
+"id": "zealots_hq",
+"capo": true,
+"tipo": "Caster",
+"tipo_it": "Incantatore",
+"peso": "T",
+"armato": true,
+"noto": 12,
+"oro": 8,
+"luce": [
+"M3",
+5
+],
+"buio": [
+"M5",
+4
+],
+"missile": false,
+"lung": 1,
+"img": "nativi/zealots_hq_a.webp",
+"img_b": "nativi/zealots_hq_b.webp"
+},
+{
+"id": "zealots_1",
+"capo": false,
+"tipo": "Caster",
+"tipo_it": "Incantatore",
+"peso": "T",
+"armato": true,
+"noto": 12,
+"oro": 8,
+"luce": [
+"M3",
+5
+],
+"buio": [
+"M5",
+4
+],
+"missile": false,
+"lung": 1,
+"img": "nativi/zealots_1_a.webp",
+"img_b": "nativi/zealots_1_b.webp"
+},
+{
+"id": "zealots_2",
+"capo": false,
+"tipo": "Knight",
+"tipo_it": "Cavaliere",
+"peso": "T",
+"armato": true,
+"noto": 12,
+"oro": 8,
+"luce": [
+"H6*",
+4
+],
+"buio": [
+"T4*",
+6
+],
+"missile": false,
+"lung": 6,
+"img": "nativi/zealots_2_a.webp",
+"img_b": "nativi/zealots_2_b.webp"
+},
+{
+"id": "zealots_3",
+"capo": false,
+"tipo": "Knight",
+"tipo_it": "Cavaliere",
+"peso": "T",
+"armato": true,
+"noto": 12,
+"oro": 8,
+"luce": [
+"H6*",
+4
+],
+"buio": [
+"T4*",
+6
+],
+"missile": false,
+"lung": 6,
+"img": "nativi/zealots_3_a.webp",
+"img_b": "nativi/zealots_3_b.webp"
+}
+],
+"riga": 1,
+"guarnigione": null,
+"abitazioni": [
+"cappella",
+"corpo_guardia",
+"borgo",
+"campo_grande"
+],
+"inc": [
+"I"
+],
+"oggetti": [
+"armatura"
+],
+"vagante": false
+},
+"order": {
+"nome": "Ordine",
+"nome_en": "Order",
+"membri": [
+{
+"id": "order_hq",
+"capo": true,
+"tipo": "Knight",
+"tipo_it": "Cavaliere",
+"peso": "T",
+"armato": true,
+"noto": 12,
+"oro": 8,
+"luce": [
+"H6*",
+4
+],
+"buio": [
+"T4*",
+6
+],
+"missile": false,
+"lung": 6,
+"img": "nativi/order_hq_a.webp",
+"img_b": "nativi/order_hq_b.webp"
+},
+{
+"id": "order_1",
+"capo": false,
+"tipo": "Knight",
+"tipo_it": "Cavaliere",
+"peso": "T",
+"armato": true,
+"noto": 12,
+"oro": 8,
+"luce": [
+"H6*",
+4
+],
+"buio": [
+"T4*",
+6
+],
+"missile": false,
+"lung": 6,
+"img": "nativi/order_1_a.webp",
+"img_b": "nativi/order_1_b.webp"
+},
+{
+"id": "order_2",
+"capo": false,
+"tipo": "Knight",
+"tipo_it": "Cavaliere",
+"peso": "T",
+"armato": true,
+"noto": 12,
+"oro": 8,
+"luce": [
+"H6*",
+4
+],
+"buio": [
+"T4*",
+6
+],
+"missile": false,
+"lung": 6,
+"img": "nativi/order_2_a.webp",
+"img_b": "nativi/order_2_b.webp"
+},
+{
+"id": "order_3",
+"capo": false,
+"tipo": "Knight",
+"tipo_it": "Cavaliere",
+"peso": "T",
+"armato": true,
+"noto": 12,
+"oro": 8,
+"luce": [
+"H6*",
+4
+],
+"buio": [
+"T4*",
+6
+],
+"missile": false,
+"lung": 6,
+"img": "nativi/order_3_a.webp",
+"img_b": "nativi/order_3_b.webp"
+},
+{
+"id": "order_4",
+"capo": false,
+"tipo": "Knight",
+"tipo_it": "Cavaliere",
+"peso": "T",
+"armato": true,
+"noto": 12,
+"oro": 8,
+"luce": [
+"H6*",
+4
+],
+"buio": [
+"T4*",
+6
+],
+"missile": false,
+"lung": 6,
+"img": "nativi/order_4_a.webp",
+"img_b": "nativi/order_4_b.webp"
+}
+],
+"riga": 6,
+"guarnigione": "cappella",
+"abitazioni": [],
+"inc": [],
+"oggetti": [
+"armatura",
+"armatura",
+"spadone",
+"spadone",
+"mazza_ferrata",
+"ascia_grande",
+"ascia_grande"
+],
+"vagante": false
+},
+"patrol": {
+"nome": "Pattuglia",
+"nome_en": "Patrol",
+"membri": [
+{
+"id": "patrol_hq",
+"capo": true,
+"tipo": "S. Swordsman",
+"tipo_it": "Spada corta",
+"peso": "M",
+"armato": true,
+"noto": 3,
+"oro": 2,
+"luce": [
+"M4*",
+3
+],
+"buio": [
+"L4*",
+3
+],
+"missile": false,
+"lung": 3,
+"img": "nativi/patrol_hq_a.webp",
+"img_b": "nativi/patrol_hq_b.webp"
+},
+{
+"id": "patrol_1",
+"capo": false,
+"tipo": "S. Swordsman",
+"tipo_it": "Spada corta",
+"peso": "M",
+"armato": true,
+"noto": 3,
+"oro": 2,
+"luce": [
+"M4*",
+3
+],
+"buio": [
+"L4*",
+3
+],
+"missile": false,
+"lung": 3,
+"img": "nativi/patrol_1_a.webp",
+"img_b": "nativi/patrol_1_b.webp"
+},
+{
+"id": "patrol_2",
+"capo": false,
+"tipo": "S. Swordsman",
+"tipo_it": "Spada corta",
+"peso": "M",
+"armato": true,
+"noto": 3,
+"oro": 2,
+"luce": [
+"M4*",
+3
+],
+"buio": [
+"L4*",
+3
+],
+"missile": false,
+"lung": 3,
+"img": "nativi/patrol_2_a.webp",
+"img_b": "nativi/patrol_2_b.webp"
+},
+{
+"id": "patrol_3",
+"capo": false,
+"tipo": "S. Swordsman",
+"tipo_it": "Spada corta",
+"peso": "M",
+"armato": true,
+"noto": 3,
+"oro": 2,
+"luce": [
+"M4*",
+3
+],
+"buio": [
+"L4*",
+3
+],
+"missile": false,
+"lung": 3,
+"img": "nativi/patrol_3_a.webp",
+"img_b": "nativi/patrol_3_b.webp"
+}
+],
+"riga": 3,
+"guarnigione": null,
+"abitazioni": [
+"cappella",
+"corpo_guardia",
+"casa",
+"locanda"
+],
+"inc": [],
+"oggetti": [
+"elmo",
+"corazza",
+"scudo"
+],
+"vagante": false
+},
+"aborigines": {
+"nome": "Aborigeni",
+"nome_en": "Aborigines",
+"membri": [
+{
+"id": "aborigines_hq",
+"capo": true,
+"tipo": "Archer",
+"tipo_it": "Arciere",
+"peso": "M",
+"armato": false,
+"noto": 4,
+"oro": 2,
+"luce": [
+"",
+2
+],
+"buio": [
+"L1**",
+4
+],
+"missile": true,
+"lung": 14,
+"img": "nativi/aborigines_hq_a.webp",
+"img_b": "nativi/aborigines_hq_b.webp"
+},
+{
+"id": "aborigines_1",
+"capo": false,
+"tipo": "Archer",
+"tipo_it": "Arciere",
+"peso": "M",
+"armato": false,
+"noto": 4,
+"oro": 2,
+"luce": [
+"",
+2
+],
+"buio": [
+"L1**",
+4
+],
+"missile": true,
+"lung": 14,
+"img": "nativi/aborigines_1_a.webp",
+"img_b": "nativi/aborigines_1_b.webp"
+},
+{
+"id": "aborigines_2",
+"capo": false,
+"tipo": "Archer",
+"tipo_it": "Arciere",
+"peso": "M",
+"armato": false,
+"noto": 4,
+"oro": 2,
+"luce": [
+"",
+2
+],
+"buio": [
+"L1**",
+4
+],
+"missile": true,
+"lung": 14,
+"img": "nativi/aborigines_2_a.webp",
+"img_b": "nativi/aborigines_2_b.webp"
+},
+{
+"id": "aborigines_3",
+"capo": false,
+"tipo": "Axeman",
+"tipo_it": "Guerriero con ascia",
+"peso": "M",
+"armato": false,
+"noto": 2,
+"oro": 1,
+"luce": [
+"M5*",
+3
+],
+"buio": [
+"M3*",
+4
+],
+"missile": false,
+"lung": 2,
+"img": "nativi/aborigines_3_a.webp",
+"img_b": "nativi/aborigines_3_b.webp"
+},
+{
+"id": "aborigines_4",
+"capo": false,
+"tipo": "Axeman",
+"tipo_it": "Guerriero con ascia",
+"peso": "M",
+"armato": false,
+"noto": 2,
+"oro": 1,
+"luce": [
+"M5*",
+3
+],
+"buio": [
+"M3*",
+4
+],
+"missile": false,
+"lung": 2,
+"img": "nativi/aborigines_4_a.webp",
+"img_b": "nativi/aborigines_4_b.webp"
+},
+{
+"id": "aborigines_5",
+"capo": false,
+"tipo": "Axeman",
+"tipo_it": "Guerriero con ascia",
+"peso": "M",
+"armato": false,
+"noto": 2,
+"oro": 1,
+"luce": [
+"M5*",
+3
+],
+"buio": [
+"M3*",
+4
+],
+"missile": false,
+"lung": 2,
+"img": "nativi/aborigines_5_a.webp",
+"img_b": "nativi/aborigines_5_b.webp"
+}
+],
+"riga": 2,
+"guarnigione": null,
+"abitazioni": [
+"campo_grande",
+"campo_piccolo",
+"fuoco_piccolo"
+],
+"inc": [],
+"oggetti": [
+"arco_leggero",
+"ascia",
+"ascia"
+],
+"vagante": false
+},
+"coven": {
+"nome": "Congrega",
+"nome_en": "Coven",
+"membri": [
+{
+"id": "coven_hq",
+"capo": true,
+"tipo": "Caster",
+"tipo_it": "Incantatore",
+"peso": "L",
+"armato": false,
+"noto": 4,
+"oro": 3,
+"luce": [
+"",
+1
+],
+"buio": [
+"",
+1
+],
+"missile": false,
+"lung": 1,
+"img": "nativi/coven_hq_a.webp",
+"img_b": "nativi/coven_hq_b.webp"
+},
+{
+"id": "coven_1",
+"capo": false,
+"tipo": "Caster",
+"tipo_it": "Incantatore",
+"peso": "L",
+"armato": false,
+"noto": 4,
+"oro": 3,
+"luce": [
+"",
+1
+],
+"buio": [
+"",
+1
+],
+"missile": false,
+"lung": 1,
+"img": "nativi/coven_1_a.webp",
+"img_b": "nativi/coven_1_b.webp"
+},
+{
+"id": "coven_2",
+"capo": false,
+"tipo": "Caster",
+"tipo_it": "Incantatore",
+"peso": "L",
+"armato": false,
+"noto": 4,
+"oro": 3,
+"luce": [
+"",
+1
+],
+"buio": [
+"",
+1
+],
+"missile": false,
+"lung": 1,
+"img": "nativi/coven_2_a.webp",
+"img_b": "nativi/coven_2_b.webp"
+}
+],
+"riga": 2,
+"guarnigione": null,
+"abitazioni": [
+"casolare",
+"borgo",
+"capanna",
+"fuoco_grande"
+],
+"inc": [
+"V"
+],
+"oggetti": [
+"bastone",
+"bastone"
+],
+"vagante": false
+},
+"hunters": {
+"nome": "Cacciatori",
+"nome_en": "Hunters",
+"membri": [
+{
+"id": "hunters_hq",
+"capo": true,
+"tipo": "Archer",
+"tipo_it": "Arciere",
+"peso": "M",
+"armato": false,
+"noto": 4,
+"oro": 2,
+"luce": [
+"",
+2
+],
+"buio": [
+"L1**",
+4
+],
+"missile": true,
+"lung": 14,
+"img": "nativi/hunters_hq_a.webp",
+"img_b": "nativi/hunters_hq_b.webp"
+},
+{
+"id": "hunters_1",
+"capo": false,
+"tipo": "G. Axeman",
+"tipo_it": "Grande ascia",
+"peso": "H",
+"armato": false,
+"noto": 6,
+"oro": 4,
+"luce": [
+"H5*",
+4
+],
+"buio": [
+"T3*",
+5
+],
+"missile": false,
+"lung": 5,
+"img": "nativi/hunters_1_a.webp",
+"img_b": "nativi/hunters_1_b.webp"
+},
+{
+"id": "hunters_3",
+"capo": false,
+"tipo": "Spearman",
+"tipo_it": "Lanciere",
+"peso": "M",
+"armato": false,
+"noto": 2,
+"oro": 1,
+"luce": [
+"H5*",
+3
+],
+"buio": [
+"M3*",
+4
+],
+"missile": false,
+"lung": 10,
+"img": "nativi/hunters_3_a.webp",
+"img_b": "nativi/hunters_3_b.webp"
+},
+{
+"id": "hunters_3",
+"capo": false,
+"tipo": "Axeman",
+"tipo_it": "Guerriero con ascia",
+"peso": "L",
+"armato": false,
+"noto": 4,
+"oro": 2,
+"luce": [
+"M5*",
+3
+],
+"buio": [
+"M3*",
+4
+],
+"missile": false,
+"lung": 2,
+"img": "nativi/hunters_3_a.webp",
+"img_b": "nativi/hunters_3_b.webp"
+}
+],
+"riga": 4,
+"guarnigione": null,
+"abitazioni": [
+"locanda",
+"campo_grande",
+"fuoco_piccolo"
+],
+"inc": [],
+"oggetti": [
+"ascia",
+"arco_medio",
+"lancia"
+],
+"vagante": false
+},
+"mercenaries": {
+"nome": "Mercenari",
+"nome_en": "Mercenaries",
+"membri": [
+{
+"id": "mercenaries_1",
+"capo": false,
+"tipo": "G. Swordsman",
+"tipo_it": "Spadone",
+"peso": "H",
+"armato": true,
+"noto": 6,
+"oro": 4,
+"luce": [
+"T4*",
+6
+],
+"buio": [
+"H5*",
+5
+],
+"missile": false,
+"lung": 8,
+"img": "nativi/mercenaries_1_a.webp",
+"img_b": "nativi/mercenaries_1_b.webp"
+},
+{
+"id": "mercenaries_1",
+"capo": false,
+"tipo": "G. Swordsman",
+"tipo_it": "Spadone",
+"peso": "H",
+"armato": true,
+"noto": 6,
+"oro": 4,
+"luce": [
+"T4*",
+6
+],
+"buio": [
+"H5*",
+5
+],
+"missile": false,
+"lung": 8,
+"img": "nativi/mercenaries_1_a.webp",
+"img_b": "nativi/mercenaries_1_b.webp"
+},
+{
+"id": "mercenaries_2",
+"capo": false,
+"tipo": "G. Axeman",
+"tipo_it": "Grande ascia",
+"peso": "H",
+"armato": false,
+"noto": 6,
+"oro": 4,
+"luce": [
+"H5*",
+4
+],
+"buio": [
+"T3*",
+5
+],
+"missile": false,
+"lung": 5,
+"img": "nativi/mercenaries_2_a.webp",
+"img_b": "nativi/mercenaries_2_b.webp"
+},
+{
+"id": "mercenaries_3",
+"capo": false,
+"tipo": "G. Axeman",
+"tipo_it": "Grande ascia",
+"peso": "H",
+"armato": false,
+"noto": 6,
+"oro": 4,
+"luce": [
+"H5*",
+4
+],
+"buio": [
+"T3*",
+5
+],
+"missile": false,
+"lung": 5,
+"img": "nativi/mercenaries_3_a.webp",
+"img_b": "nativi/mercenaries_3_b.webp"
+},
+{
+"id": "mercenaries_4",
+"capo": false,
+"tipo": "Crossbowman",
+"tipo_it": "Balestriere",
+"peso": "M",
+"armato": true,
+"noto": 4,
+"oro": 2,
+"luce": [
+"",
+5
+],
+"buio": [
+"H1",
+4
+],
+"missile": true,
+"lung": 12,
+"img": "nativi/mercenaries_4_a.webp",
+"img_b": "nativi/mercenaries_4_b.webp"
+},
+{
+"id": "mercenaries_5",
+"capo": false,
+"tipo": "Crossbowman",
+"tipo_it": "Balestriere",
+"peso": "M",
+"armato": true,
+"noto": 4,
+"oro": 2,
+"luce": [
+"",
+5
+],
+"buio": [
+"H1",
+4
+],
+"missile": true,
+"lung": 12,
+"img": "nativi/mercenaries_5_a.webp",
+"img_b": "nativi/mercenaries_5_b.webp"
+}
+],
+"riga": 1,
+"guarnigione": null,
+"abitazioni": [
+"casolare",
+"insediamento",
+"capanna"
+],
+"inc": [],
+"oggetti": [
+"spadone",
+"balestra",
+"mazza_ferrata"
+],
+"vagante": false
+},
+"enchanters": {
+"nome": "Incantatori",
+"nome_en": "Enchanters",
+"membri": [
+{
+"id": "enchanters_hq",
+"capo": true,
+"tipo": "Caster",
+"tipo_it": "Incantatore",
+"peso": "L",
+"armato": true,
+"noto": 4,
+"oro": 3,
+"luce": [
+"",
+4
+],
+"buio": [
+"M4",
+3
+],
+"missile": false,
+"lung": 1,
+"img": "nativi/enchanters_hq_a.webp",
+"img_b": "nativi/enchanters_hq_b.webp"
+},
+{
+"id": "enchanters_1",
+"capo": false,
+"tipo": "Caster",
+"tipo_it": "Incantatore",
+"peso": "L",
+"armato": true,
+"noto": 4,
+"oro": 3,
+"luce": [
+"",
+4
+],
+"buio": [
+"M4",
+3
+],
+"missile": false,
+"lung": 1,
+"img": "nativi/enchanters_1_a.webp",
+"img_b": "nativi/enchanters_1_b.webp"
+},
+{
+"id": "enchanters_2",
+"capo": false,
+"tipo": "Caster",
+"tipo_it": "Incantatore",
+"peso": "L",
+"armato": true,
+"noto": 4,
+"oro": 3,
+"luce": [
+"",
+4
+],
+"buio": [
+"M4",
+3
+],
+"missile": false,
+"lung": 1,
+"img": "nativi/enchanters_2_a.webp",
+"img_b": "nativi/enchanters_2_b.webp"
+}
+],
+"riga": 6,
+"guarnigione": null,
+"abitazioni": [
+"corpo_guardia",
+"casa",
+"insediamento"
+],
+"inc": [
+"VII"
+],
+"oggetti": [
+"corazza",
+"scudo"
+],
+"vagante": false
+},
+"conjurors": {
+"nome": "Evocatori",
+"nome_en": "Conjurors",
+"membri": [
+{
+"id": "conjurors_hq",
+"capo": true,
+"tipo": "Caster",
+"tipo_it": "Incantatore",
+"peso": "M",
+"armato": true,
+"noto": 4,
+"oro": 3,
+"luce": [
+"",
+5
+],
+"buio": [
+"M4",
+4
+],
+"missile": false,
+"lung": 1,
+"img": "nativi/conjurors_hq_a.webp",
+"img_b": "nativi/conjurors_hq_b.webp"
+},
+{
+"id": "conjurors_1",
+"capo": false,
+"tipo": "Caster",
+"tipo_it": "Incantatore",
+"peso": "M",
+"armato": true,
+"noto": 4,
+"oro": 3,
+"luce": [
+"",
+5
+],
+"buio": [
+"M4",
+4
+],
+"missile": false,
+"lung": 1,
+"img": "nativi/conjurors_1_a.webp",
+"img_b": "nativi/conjurors_1_b.webp"
+},
+{
+"id": "conjurors_2",
+"capo": false,
+"tipo": "Caster",
+"tipo_it": "Incantatore",
+"peso": "M",
+"armato": true,
+"noto": 4,
+"oro": 3,
+"luce": [
+"",
+5
+],
+"buio": [
+"M4",
+4
+],
+"missile": false,
+"lung": 1,
+"img": "nativi/conjurors_2_a.webp",
+"img_b": "nativi/conjurors_2_b.webp"
+},
+{
+"id": "conjurors_3",
+"capo": false,
+"tipo": "Caster",
+"tipo_it": "Incantatore",
+"peso": "M",
+"armato": true,
+"noto": 4,
+"oro": 3,
+"luce": [
+"",
+5
+],
+"buio": [
+"M4",
+4
+],
+"missile": false,
+"lung": 1,
+"img": "nativi/conjurors_3_a.webp",
+"img_b": "nativi/conjurors_3_b.webp"
+}
+],
+"riga": 5,
+"guarnigione": null,
+"abitazioni": [
+"borgo",
+"insediamento",
+"campo_piccolo"
+],
+"inc": [
+"VI"
+],
+"oggetti": [
+"elmo",
+"corazza"
+],
+"vagante": false
+},
+"pagans": {
+"nome": "Pagani",
+"nome_en": "Pagans",
+"membri": [
+{
+"id": "pagans_hq",
+"capo": true,
+"tipo": "Caster",
+"tipo_it": "Incantatore",
+"peso": "L",
+"armato": true,
+"noto": 3,
+"oro": 2,
+"luce": [
+"",
+4
+],
+"buio": [
+"M5",
+3
+],
+"missile": false,
+"lung": 1,
+"img": "nativi/pagans_hq_a.webp",
+"img_b": "nativi/pagans_hq_b.webp"
+},
+{
+"id": "pagans_1",
+"capo": false,
+"tipo": "Caster",
+"tipo_it": "Incantatore",
+"peso": "L",
+"armato": true,
+"noto": 3,
+"oro": 2,
+"luce": [
+"",
+4
+],
+"buio": [
+"M5",
+3
+],
+"missile": false,
+"lung": 1,
+"img": "nativi/pagans_1_a.webp",
+"img_b": "nativi/pagans_1_b.webp"
+},
+{
+"id": "pagans_2",
+"capo": false,
+"tipo": "Caster",
+"tipo_it": "Incantatore",
+"peso": "L",
+"armato": true,
+"noto": 3,
+"oro": 2,
+"luce": [
+"",
+4
+],
+"buio": [
+"M5",
+3
+],
+"missile": false,
+"lung": 1,
+"img": "nativi/pagans_2_a.webp",
+"img_b": "nativi/pagans_2_b.webp"
+},
+{
+"id": "pagans_3",
+"capo": false,
+"tipo": "Caster",
+"tipo_it": "Incantatore",
+"peso": "L",
+"armato": true,
+"noto": 3,
+"oro": 2,
+"luce": [
+"",
+4
+],
+"buio": [
+"M5",
+3
+],
+"missile": false,
+"lung": 1,
+"img": "nativi/pagans_3_a.webp",
+"img_b": "nativi/pagans_3_b.webp"
+}
+],
+"riga": 4,
+"guarnigione": "capanna",
+"abitazioni": [],
+"inc": [
+"II",
+"II"
+],
+"oggetti": [
+"bastone",
+"bastone"
+],
+"vagante": false
+},
+"mages": {
+"nome": "Magi",
+"nome_en": "Mages",
+"membri": [
+{
+"id": "mages_hq",
+"capo": true,
+"tipo": "Caster",
+"tipo_it": "Incantatore",
+"peso": "M",
+"armato": true,
+"noto": 5,
+"oro": 4,
+"luce": [
+"",
+5
+],
+"buio": [
+"M3",
+4
+],
+"missile": false,
+"lung": 1,
+"img": "nativi/mages_hq_a.webp",
+"img_b": "nativi/mages_hq_b.webp"
+},
+{
+"id": "mages_1",
+"capo": false,
+"tipo": "Caster",
+"tipo_it": "Incantatore",
+"peso": "M",
+"armato": true,
+"noto": 5,
+"oro": 4,
+"luce": [
+"",
+5
+],
+"buio": [
+"M3",
+4
+],
+"missile": false,
+"lung": 1,
+"img": "nativi/mages_1_a.webp",
+"img_b": "nativi/mages_1_b.webp"
+},
+{
+"id": "mages_2",
+"capo": false,
+"tipo": "Caster",
+"tipo_it": "Incantatore",
+"peso": "M",
+"armato": true,
+"noto": 5,
+"oro": 4,
+"luce": [
+"",
+5
+],
+"buio": [
+"M3",
+4
+],
+"missile": false,
+"lung": 1,
+"img": "nativi/mages_2_a.webp",
+"img_b": "nativi/mages_2_b.webp"
+},
+{
+"id": "mages_3",
+"capo": false,
+"tipo": "Caster",
+"tipo_it": "Incantatore",
+"peso": "M",
+"armato": true,
+"noto": 5,
+"oro": 4,
+"luce": [
+"",
+5
+],
+"buio": [
+"M3",
+4
+],
+"missile": false,
+"lung": 1,
+"img": "nativi/mages_3_a.webp",
+"img_b": "nativi/mages_3_b.webp"
+}
+],
+"riga": 3,
+"guarnigione": "insediamento",
+"abitazioni": [],
+"inc": [
+"IV",
+"IV",
+"IV"
+],
+"oggetti": [
+"elmo",
+"elmo",
+"corazza",
+"corazza",
+"scudo",
+"scudo"
+],
+"vagante": false
+},
+"rogues": {
+"nome": "Furfanti",
+"nome_en": "Rogues",
+"membri": [
+{
+"id": "rogues_hq",
+"capo": true,
+"tipo": "Assassin",
+"tipo_it": "Assassino",
+"peso": "M",
+"armato": false,
+"noto": 2,
+"oro": 1,
+"luce": [
+"M3*",
+4
+],
+"buio": [
+"L4*",
+2
+],
+"missile": false,
+"lung": 3,
+"img": "nativi/rogues_hq_a.webp",
+"img_b": "nativi/rogues_hq_b.webp"
+},
+{
+"id": "rogues_1",
+"capo": false,
+"tipo": "G. Axeman",
+"tipo_it": "Grande ascia",
+"peso": "H",
+"armato": false,
+"noto": 6,
+"oro": 4,
+"luce": [
+"H5*",
+4
+],
+"buio": [
+"T3*",
+5
+],
+"missile": false,
+"lung": 5,
+"img": "nativi/rogues_1_a.webp",
+"img_b": "nativi/rogues_1_b.webp"
+},
+{
+"id": "rogues_2",
+"capo": false,
+"tipo": "G. Axeman",
+"tipo_it": "Grande ascia",
+"peso": "H",
+"armato": false,
+"noto": 6,
+"oro": 4,
+"luce": [
+"H5*",
+4
+],
+"buio": [
+"T3*",
+5
+],
+"missile": false,
+"lung": 5,
+"img": "nativi/rogues_2_a.webp",
+"img_b": "nativi/rogues_2_b.webp"
+},
+{
+"id": "rogues_3",
+"capo": false,
+"tipo": "S. Swordsman",
+"tipo_it": "Spada corta",
+"peso": "M",
+"armato": true,
+"noto": 3,
+"oro": 2,
+"luce": [
+"M4*",
+3
+],
+"buio": [
+"L4*",
+3
+],
+"missile": false,
+"lung": 3,
+"img": "nativi/rogues_3_a.webp",
+"img_b": "nativi/rogues_3_b.webp"
+},
+{
+"id": "rogues_4",
+"capo": false,
+"tipo": "S. Swordsman",
+"tipo_it": "Spada corta",
+"peso": "M",
+"armato": true,
+"noto": 3,
+"oro": 2,
+"luce": [
+"M4*",
+3
+],
+"buio": [
+"L4*",
+3
+],
+"missile": false,
+"lung": 3,
+"img": "nativi/rogues_4_a.webp",
+"img_b": "nativi/rogues_4_b.webp"
+},
+{
+"id": "rogues_5",
+"capo": false,
+"tipo": "Archer",
+"tipo_it": "Arciere",
+"peso": "M",
+"armato": false,
+"noto": 4,
+"oro": 2,
+"luce": [
+"",
+2
+],
+"buio": [
+"L1**",
+4
+],
+"missile": true,
+"lung": 14,
+"img": "nativi/rogues_5_a.webp",
+"img_b": "nativi/rogues_5_b.webp"
+},
+{
+"id": "rogues_6",
+"capo": false,
+"tipo": "Archer",
+"tipo_it": "Arciere",
+"peso": "M",
+"armato": false,
+"noto": 4,
+"oro": 2,
+"luce": [
+"",
+2
+],
+"buio": [
+"L1**",
+4
+],
+"missile": true,
+"lung": 14,
+"img": "nativi/rogues_6_a.webp",
+"img_b": "nativi/rogues_6_b.webp"
+},
+{
+"id": "rogues_7",
+"capo": false,
+"tipo": "Assassin",
+"tipo_it": "Assassino",
+"peso": "M",
+"armato": false,
+"noto": 2,
+"oro": 1,
+"luce": [
+"M3*",
+4
+],
+"buio": [
+"L4*",
+2
+],
+"missile": false,
+"lung": 3,
+"img": "nativi/rogues_7_a.webp",
+"img_b": "nativi/rogues_7_b.webp"
+},
+{
+"id": "rogues_8",
+"capo": false,
+"tipo": "Swordsman",
+"tipo_it": "Spadaccino",
+"peso": "M",
+"armato": false,
+"noto": 2,
+"oro": 1,
+"luce": [
+"M3*",
+5
+],
+"buio": [
+"L3*",
+4
+],
+"missile": false,
+"lung": 4,
+"img": "nativi/rogues_8_a.webp",
+"img_b": "nativi/rogues_8_b.webp"
+},
+{
+"id": "rogues_9",
+"capo": false,
+"tipo": "Swordsman",
+"tipo_it": "Spadaccino",
+"peso": "M",
+"armato": false,
+"noto": 2,
+"oro": 1,
+"luce": [
+"M3*",
+5
+],
+"buio": [
+"L3*",
+4
+],
+"missile": false,
+"lung": 4,
+"img": "nativi/rogues_9_a.webp",
+"img_b": "nativi/rogues_9_b.webp"
+}
+],
+"riga": 6,
+"guarnigione": "locanda",
+"abitazioni": [],
+"inc": [],
+"oggetti": [],
+"vagante": false
+},
+"soldiers": {
+"nome": "Soldati",
+"nome_en": "Soldiers",
+"membri": [
+{
+"id": "soldiers_hq",
+"capo": true,
+"tipo": "G. Swordsman",
+"tipo_it": "Spadone",
+"peso": "H",
+"armato": true,
+"noto": 6,
+"oro": 4,
+"luce": [
+"T4*",
+6
+],
+"buio": [
+"H5*",
+5
+],
+"missile": false,
+"lung": 8,
+"img": "nativi/soldiers_hq_a.webp",
+"img_b": "nativi/soldiers_hq_b.webp"
+},
+{
+"id": "soldiers_1",
+"capo": false,
+"tipo": "Pikeman",
+"tipo_it": "Picchiere",
+"peso": "M",
+"armato": true,
+"noto": 3,
+"oro": 2,
+"luce": [
+"H6*",
+4
+],
+"buio": [
+"M4*",
+5
+],
+"missile": false,
+"lung": 10,
+"img": "nativi/soldiers_1_a.webp",
+"img_b": "nativi/soldiers_1_b.webp"
+},
+{
+"id": "soldiers_2",
+"capo": false,
+"tipo": "Pikeman",
+"tipo_it": "Picchiere",
+"peso": "M",
+"armato": true,
+"noto": 3,
+"oro": 2,
+"luce": [
+"H6*",
+4
+],
+"buio": [
+"M4*",
+5
+],
+"missile": false,
+"lung": 10,
+"img": "nativi/soldiers_2_a.webp",
+"img_b": "nativi/soldiers_2_b.webp"
+},
+{
+"id": "soldiers_3",
+"capo": false,
+"tipo": "Pikeman",
+"tipo_it": "Picchiere",
+"peso": "M",
+"armato": false,
+"noto": 3,
+"oro": 2,
+"luce": [
+"H6*",
+4
+],
+"buio": [
+"M4*",
+5
+],
+"missile": false,
+"lung": 10,
+"img": "nativi/soldiers_3_a.webp",
+"img_b": "nativi/soldiers_3_b.webp"
+},
+{
+"id": "soldiers_4",
+"capo": false,
+"tipo": "Crossbowman",
+"tipo_it": "Balestriere",
+"peso": "M",
+"armato": true,
+"noto": 4,
+"oro": 2,
+"luce": [
+"",
+5
+],
+"buio": [
+"H1",
+4
+],
+"missile": true,
+"lung": 12,
+"img": "nativi/soldiers_4_a.webp",
+"img_b": "nativi/soldiers_4_b.webp"
+},
+{
+"id": "soldiers_5",
+"capo": false,
+"tipo": "Crossbowman",
+"tipo_it": "Balestriere",
+"peso": "M",
+"armato": true,
+"noto": 4,
+"oro": 2,
+"luce": [
+"",
+5
+],
+"buio": [
+"H1",
+4
+],
+"missile": true,
+"lung": 12,
+"img": "nativi/soldiers_5_a.webp",
+"img_b": "nativi/soldiers_5_b.webp"
+}
+],
+"riga": 4,
+"guarnigione": "casa",
+"abitazioni": [],
+"inc": [],
+"oggetti": [
+"spada_corta",
+"spada_corta",
+"stocco",
+"stocco",
+"spada_corta",
+"stocco",
+"spada_corta",
+"scudo",
+"scudo",
+"elmo",
+"elmo",
+"elmo"
+],
+"vagante": false
+},
+"bashkars": {
+"nome": "Bashkar",
+"nome_en": "Bashkars",
+"membri": [
+{
+"id": "bashkars_hq",
+"capo": true,
+"tipo": "Raider",
+"tipo_it": "Predone",
+"peso": "L",
+"armato": false,
+"noto": 4,
+"oro": 2,
+"luce": [
+"L4*",
+2
+],
+"buio": [
+"M4*",
+3
+],
+"missile": false,
+"lung": 3,
+"img": "nativi/bashkars_hq_a.webp",
+"img_b": "nativi/bashkars_hq_b.webp"
+},
+{
+"id": "bashkars_1",
+"capo": false,
+"tipo": "Raider",
+"tipo_it": "Predone",
+"peso": "L",
+"armato": false,
+"noto": 4,
+"oro": 2,
+"luce": [
+"L4*",
+2
+],
+"buio": [
+"M4*",
+3
+],
+"missile": false,
+"lung": 3,
+"img": "nativi/bashkars_1_a.webp",
+"img_b": "nativi/bashkars_1_b.webp"
+},
+{
+"id": "bashkars_2",
+"capo": false,
+"tipo": "Raider",
+"tipo_it": "Predone",
+"peso": "L",
+"armato": false,
+"noto": 4,
+"oro": 2,
+"luce": [
+"L4*",
+2
+],
+"buio": [
+"M4*",
+3
+],
+"missile": false,
+"lung": 3,
+"img": "nativi/bashkars_2_a.webp",
+"img_b": "nativi/bashkars_2_b.webp"
+},
+{
+"id": "bashkars_3",
+"capo": false,
+"tipo": "Raider",
+"tipo_it": "Predone",
+"peso": "L",
+"armato": false,
+"noto": 4,
+"oro": 2,
+"luce": [
+"L4*",
+2
+],
+"buio": [
+"M4*",
+3
+],
+"missile": false,
+"lung": 3,
+"img": "nativi/bashkars_3_a.webp",
+"img_b": "nativi/bashkars_3_b.webp"
+},
+{
+"id": "bashkars_4",
+"capo": false,
+"tipo": "Raider",
+"tipo_it": "Predone",
+"peso": "L",
+"armato": false,
+"noto": 4,
+"oro": 2,
+"luce": [
+"L4*",
+2
+],
+"buio": [
+"M4*",
+3
+],
+"missile": false,
+"lung": 3,
+"img": "nativi/bashkars_4_a.webp",
+"img_b": "nativi/bashkars_4_b.webp"
+},
+{
+"id": "bashkars_5",
+"capo": false,
+"tipo": "Raider",
+"tipo_it": "Predone",
+"peso": "L",
+"armato": false,
+"noto": 4,
+"oro": 2,
+"luce": [
+"L4*",
+2
+],
+"buio": [
+"M4*",
+3
+],
+"missile": false,
+"lung": 3,
+"img": "nativi/bashkars_5_a.webp",
+"img_b": "nativi/bashkars_5_b.webp"
+}
+],
+"riga": 3,
+"guarnigione": null,
+"abitazioni": [
+"campo_piccolo",
+"fuoco_piccolo",
+"fuoco_grande"
+],
+"inc": [],
+"oggetti": [],
+"vagante": false
+},
+"company": {
+"nome": "Compagnia",
+"nome_en": "Company",
+"membri": [
+{
+"id": "company_hq",
+"capo": true,
+"tipo": "S. Swordsman",
+"tipo_it": "Spada corta",
+"peso": "M",
+"armato": true,
+"noto": 3,
+"oro": 2,
+"luce": [
+"M4*",
+3
+],
+"buio": [
+"L4*",
+3
+],
+"missile": false,
+"lung": 3,
+"img": "nativi/company_hq_a.webp",
+"img_b": "nativi/company_hq_b.webp"
+},
+{
+"id": "company_1",
+"capo": false,
+"tipo": "S. Swordsman",
+"tipo_it": "Spada corta",
+"peso": "M",
+"armato": true,
+"noto": 3,
+"oro": 2,
+"luce": [
+"M4*",
+3
+],
+"buio": [
+"L4*",
+3
+],
+"missile": false,
+"lung": 3,
+"img": "nativi/company_1_a.webp",
+"img_b": "nativi/company_1_b.webp"
+},
+{
+"id": "company_2",
+"capo": false,
+"tipo": "Pikeman",
+"tipo_it": "Picchiere",
+"peso": "M",
+"armato": true,
+"noto": 3,
+"oro": 2,
+"luce": [
+"H6*",
+4
+],
+"buio": [
+"M4*",
+5
+],
+"missile": false,
+"lung": 10,
+"img": "nativi/company_2_a.webp",
+"img_b": "nativi/company_2_b.webp"
+},
+{
+"id": "company_3",
+"capo": false,
+"tipo": "Pikeman",
+"tipo_it": "Picchiere",
+"peso": "M",
+"armato": true,
+"noto": 3,
+"oro": 2,
+"luce": [
+"H6*",
+4
+],
+"buio": [
+"M4*",
+5
+],
+"missile": false,
+"lung": 10,
+"img": "nativi/company_3_a.webp",
+"img_b": "nativi/company_3_b.webp"
+},
+{
+"id": "company_4",
+"capo": false,
+"tipo": "Pikeman",
+"tipo_it": "Picchiere",
+"peso": "M",
+"armato": true,
+"noto": 3,
+"oro": 2,
+"luce": [
+"H6*",
+4
+],
+"buio": [
+"M4*",
+5
+],
+"missile": false,
+"lung": 10,
+"img": "nativi/company_4_a.webp",
+"img_b": "nativi/company_4_b.webp"
+},
+{
+"id": "company_5",
+"capo": false,
+"tipo": "G. Swordsman",
+"tipo_it": "Spadone",
+"peso": "H",
+"armato": true,
+"noto": 6,
+"oro": 4,
+"luce": [
+"T4*",
+6
+],
+"buio": [
+"H5*",
+5
+],
+"missile": false,
+"lung": 8,
+"img": "nativi/company_5_a.webp",
+"img_b": "nativi/company_5_b.webp"
+},
+{
+"id": "company_6",
+"capo": false,
+"tipo": "Crossbowman",
+"tipo_it": "Balestriere",
+"peso": "M",
+"armato": true,
+"noto": 4,
+"oro": 2,
+"luce": [
+"",
+5
+],
+"buio": [
+"H1",
+4
+],
+"missile": true,
+"lung": 12,
+"img": "nativi/company_6_a.webp",
+"img_b": "nativi/company_6_b.webp"
+},
+{
+"id": "company_6",
+"capo": false,
+"tipo": "Crossbowman",
+"tipo_it": "Balestriere",
+"peso": "M",
+"armato": true,
+"noto": 4,
+"oro": 2,
+"luce": [
+"",
+5
+],
+"buio": [
+"H1",
+4
+],
+"missile": true,
+"lung": 12,
+"img": "nativi/company_6_a.webp",
+"img_b": "nativi/company_6_b.webp"
+}
+],
+"riga": 5,
+"guarnigione": null,
+"abitazioni": [
+"locanda",
+"campo_grande",
+"fuoco_grande"
+],
+"inc": [],
+"oggetti": [
+"elmo",
+"corazza",
+"scudo"
+],
+"vagante": false
+},
+"woodfolk": {
+"nome": "Gente dei boschi",
+"nome_en": "Woodfolk",
+"membri": [
+{
+"id": "woodfolk_hq",
+"capo": true,
+"tipo": "Archer",
+"tipo_it": "Arciere",
+"peso": "M",
+"armato": false,
+"noto": 4,
+"oro": 2,
+"luce": [
+"",
+2
+],
+"buio": [
+"L1**",
+4
+],
+"missile": true,
+"lung": 14,
+"img": "nativi/woodfolk_hq_a.webp",
+"img_b": "nativi/woodfolk_hq_b.webp"
+},
+{
+"id": "woodfolk_1",
+"capo": false,
+"tipo": "Archer",
+"tipo_it": "Arciere",
+"peso": "M",
+"armato": false,
+"noto": 4,
+"oro": 2,
+"luce": [
+"",
+2
+],
+"buio": [
+"L1**",
+4
+],
+"missile": true,
+"lung": 14,
+"img": "nativi/woodfolk_1_a.webp",
+"img_b": "nativi/woodfolk_1_b.webp"
+},
+{
+"id": "woodfolk_2",
+"capo": false,
+"tipo": "Archer",
+"tipo_it": "Arciere",
+"peso": "M",
+"armato": false,
+"noto": 4,
+"oro": 2,
+"luce": [
+"",
+2
+],
+"buio": [
+"L1**",
+4
+],
+"missile": true,
+"lung": 14,
+"img": "nativi/woodfolk_2_a.webp",
+"img_b": "nativi/woodfolk_2_b.webp"
+},
+{
+"id": "woodfolk_3",
+"capo": false,
+"tipo": "Archer",
+"tipo_it": "Arciere",
+"peso": "M",
+"armato": false,
+"noto": 4,
+"oro": 2,
+"luce": [
+"",
+2
+],
+"buio": [
+"L1**",
+4
+],
+"missile": true,
+"lung": 14,
+"img": "nativi/woodfolk_3_a.webp",
+"img_b": "nativi/woodfolk_3_b.webp"
+}
+],
+"riga": 5,
+"guarnigione": null,
+"abitazioni": [
+"casa",
+"capanna",
+"fuoco_piccolo"
+],
+"inc": [],
+"oggetti": [
+"arco_medio",
+"arco_leggero",
+"arco_leggero"
+],
+"vagante": false
+},
+"lancers": {
+"nome": "Lancieri",
+"nome_en": "Lancers",
+"membri": [
+{
+"id": "lancers_hq",
+"capo": true,
+"tipo": "Spearman",
+"tipo_it": "Lanciere",
+"peso": "L",
+"armato": false,
+"noto": 4,
+"oro": 2,
+"luce": [
+"H5*",
+3
+],
+"buio": [
+"M3*",
+4
+],
+"missile": false,
+"lung": 10,
+"img": "nativi/lancers_hq_a.webp",
+"img_b": "nativi/lancers_hq_b.webp"
+},
+{
+"id": "lancers_1",
+"capo": false,
+"tipo": "Spearman",
+"tipo_it": "Lanciere",
+"peso": "L",
+"armato": false,
+"noto": 4,
+"oro": 2,
+"luce": [
+"H5*",
+3
+],
+"buio": [
+"M3*",
+4
+],
+"missile": false,
+"lung": 10,
+"img": "nativi/lancers_1_a.webp",
+"img_b": "nativi/lancers_1_b.webp"
+},
+{
+"id": "lancers_2",
+"capo": false,
+"tipo": "Spearman",
+"tipo_it": "Lanciere",
+"peso": "L",
+"armato": false,
+"noto": 4,
+"oro": 2,
+"luce": [
+"H5*",
+3
+],
+"buio": [
+"M3*",
+4
+],
+"missile": false,
+"lung": 10,
+"img": "nativi/lancers_2_a.webp",
+"img_b": "nativi/lancers_2_b.webp"
+},
+{
+"id": "lancers_3",
+"capo": false,
+"tipo": "Spearman",
+"tipo_it": "Lanciere",
+"peso": "L",
+"armato": false,
+"noto": 4,
+"oro": 2,
+"luce": [
+"H5*",
+3
+],
+"buio": [
+"M3*",
+4
+],
+"missile": false,
+"lung": 10,
+"img": "nativi/lancers_3_a.webp",
+"img_b": "nativi/lancers_3_b.webp"
+}
+],
+"riga": 6,
+"guarnigione": null,
+"abitazioni": [
+"cappella",
+"casolare",
+"campo_piccolo",
+"fuoco_grande"
+],
+"inc": [],
+"oggetti": [
+"lancia",
+"lancia",
+"lancia",
+"lancia"
+],
+"vagante": false
+},
+"guard": {
+"nome": "Guardia",
+"nome_en": "Guard",
+"membri": [
+{
+"id": "guard_hq",
+"capo": true,
+"tipo": "G. Swordsman",
+"tipo_it": "Spadone",
+"peso": "H",
+"armato": true,
+"noto": 6,
+"oro": 4,
+"luce": [
+"T4*",
+6
+],
+"buio": [
+"H5*",
+5
+],
+"missile": false,
+"lung": 8,
+"img": "nativi/guard_hq_a.webp",
+"img_b": "nativi/guard_hq_b.webp"
+},
+{
+"id": "guard_1",
+"capo": false,
+"tipo": "G. Swordsman",
+"tipo_it": "Spadone",
+"peso": "H",
+"armato": true,
+"noto": 6,
+"oro": 4,
+"luce": [
+"T4*",
+6
+],
+"buio": [
+"H5*",
+5
+],
+"missile": false,
+"lung": 8,
+"img": "nativi/guard_1_a.webp",
+"img_b": "nativi/guard_1_b.webp"
+},
+{
+"id": "guard_2",
+"capo": false,
+"tipo": "G. Swordsman",
+"tipo_it": "Spadone",
+"peso": "H",
+"armato": true,
+"noto": 6,
+"oro": 4,
+"luce": [
+"T4*",
+6
+],
+"buio": [
+"H5*",
+5
+],
+"missile": false,
+"lung": 8,
+"img": "nativi/guard_2_a.webp",
+"img_b": "nativi/guard_2_b.webp"
+},
+{
+"id": "guard_3",
+"capo": false,
+"tipo": "G. Swordsman",
+"tipo_it": "Spadone",
+"peso": "H",
+"armato": true,
+"noto": 6,
+"oro": 4,
+"luce": [
+"T4*",
+6
+],
+"buio": [
+"H5*",
+5
+],
+"missile": false,
+"lung": 8,
+"img": "nativi/guard_3_a.webp",
+"img_b": "nativi/guard_3_b.webp"
+}
+],
+"riga": 5,
+"guarnigione": "corpo_guardia",
+"abitazioni": [],
+"inc": [],
+"oggetti": [
+"spada_larga",
+"spada_larga",
+"mazza",
+"mazza",
+"ascia",
+"lancia",
+"corazza",
+"elmo"
+],
+"vagante": false
+},
+"peasants": {
+"nome": "Contadini",
+"nome_en": "Peasants",
+"membri": [
+{
+"id": "peasants_hq",
+"capo": true,
+"tipo": "Peasant",
+"tipo_it": "Contadino",
+"peso": "M",
+"armato": false,
+"noto": 1,
+"oro": 1,
+"luce": [
+"M4",
+5
+],
+"buio": [
+"L3",
+3
+],
+"missile": false,
+"lung": 1,
+"img": "nativi/peasants_hq_a.webp",
+"img_b": "nativi/peasants_hq_b.webp"
+},
+{
+"id": "peasants_1",
+"capo": false,
+"tipo": "Peasant",
+"tipo_it": "Contadino",
+"peso": "M",
+"armato": false,
+"noto": 1,
+"oro": 1,
+"luce": [
+"M4",
+5
+],
+"buio": [
+"L3",
+3
+],
+"missile": false,
+"lung": 1,
+"img": "nativi/peasants_1_a.webp",
+"img_b": "nativi/peasants_1_b.webp"
+},
+{
+"id": "peasants_2",
+"capo": false,
+"tipo": "Peasant",
+"tipo_it": "Contadino",
+"peso": "M",
+"armato": false,
+"noto": 1,
+"oro": 1,
+"luce": [
+"M4",
+5
+],
+"buio": [
+"L3",
+3
+],
+"missile": false,
+"lung": 1,
+"img": "nativi/peasants_2_a.webp",
+"img_b": "nativi/peasants_2_b.webp"
+},
+{
+"id": "peasants_3",
+"capo": false,
+"tipo": "Peasant",
+"tipo_it": "Contadino",
+"peso": "M",
+"armato": false,
+"noto": 1,
+"oro": 1,
+"luce": [
+"M4",
+5
+],
+"buio": [
+"L3",
+3
+],
+"missile": false,
+"lung": 1,
+"img": "nativi/peasants_3_a.webp",
+"img_b": "nativi/peasants_3_b.webp"
+},
+{
+"id": "peasants_4",
+"capo": false,
+"tipo": "Peasant",
+"tipo_it": "Contadino",
+"peso": "M",
+"armato": false,
+"noto": 1,
+"oro": 1,
+"luce": [
+"M4",
+5
+],
+"buio": [
+"L3",
+3
+],
+"missile": false,
+"lung": 1,
+"img": "nativi/peasants_4_a.webp",
+"img_b": "nativi/peasants_4_b.webp"
+},
+{
+"id": "peasants_5",
+"capo": false,
+"tipo": "Peasant",
+"tipo_it": "Contadino",
+"peso": "M",
+"armato": false,
+"noto": 1,
+"oro": 1,
+"luce": [
+"M4",
+5
+],
+"buio": [
+"L3",
+3
+],
+"missile": false,
+"lung": 1,
+"img": "nativi/peasants_5_a.webp",
+"img_b": "nativi/peasants_5_b.webp"
+},
+{
+"id": "peasants_6",
+"capo": false,
+"tipo": "Peasant",
+"tipo_it": "Contadino",
+"peso": "M",
+"armato": false,
+"noto": 1,
+"oro": 1,
+"luce": [
+"M4",
+5
+],
+"buio": [
+"L3",
+3
+],
+"missile": false,
+"lung": 1,
+"img": "nativi/peasants_6_a.webp",
+"img_b": "nativi/peasants_6_b.webp"
+}
+],
+"riga": 2,
+"guarnigione": "borgo",
+"abitazioni": [],
+"inc": [],
+"oggetti": [],
+"vagante": false
+},
+"summoners": {
+"nome": "Convocatori",
+"nome_en": "Summoners",
+"membri": [
+{
+"id": "summoners_hq",
+"capo": true,
+"tipo": "Caster",
+"tipo_it": "Incantatore",
+"peso": "M",
+"armato": false,
+"noto": 3,
+"oro": 2,
+"luce": [
+"M5",
+2
+],
+"buio": [
+"M4",
+2
+],
+"missile": false,
+"lung": 1,
+"img": "nativi/summoners_hq_a.webp",
+"img_b": "nativi/summoners_hq_b.webp"
+},
+{
+"id": "summoners_1",
+"capo": false,
+"tipo": "Caster",
+"tipo_it": "Incantatore",
+"peso": "M",
+"armato": false,
+"noto": 3,
+"oro": 2,
+"luce": [
+"M5",
+2
+],
+"buio": [
+"M4",
+2
+],
+"missile": false,
+"lung": 1,
+"img": "nativi/summoners_1_a.webp",
+"img_b": "nativi/summoners_1_b.webp"
+},
+{
+"id": "summoners_2",
+"capo": false,
+"tipo": "Caster",
+"tipo_it": "Incantatore",
+"peso": "M",
+"armato": false,
+"noto": 3,
+"oro": 2,
+"luce": [
+"M5",
+2
+],
+"buio": [
+"M4",
+2
+],
+"missile": false,
+"lung": 1,
+"img": "nativi/summoners_2_a.webp",
+"img_b": "nativi/summoners_2_b.webp"
+},
+{
+"id": "summoners_3",
+"capo": false,
+"tipo": "Caster",
+"tipo_it": "Incantatore",
+"peso": "M",
+"armato": false,
+"noto": 3,
+"oro": 2,
+"luce": [
+"M5",
+2
+],
+"buio": [
+"M4",
+2
+],
+"missile": false,
+"lung": 1,
+"img": "nativi/summoners_3_a.webp",
+"img_b": "nativi/summoners_3_b.webp"
+}
+],
+"riga": 1,
+"guarnigione": "casolare",
+"abitazioni": [],
+"inc": [
+"III",
+"III",
+"VII",
+"VII"
+],
+"oggetti": [],
+"vagante": false
+}
+},
+"relazioni": {
+"amazzone": {
+"lancers": 1,
+"patrol": 1,
+"mages": 1,
+"merchant": 1,
+"bashkars": -1,
+"company": -1,
+"peasants": -1
+},
+"barbaro": {
+"aborigines": 2,
+"bashkars": 1,
+"woodfolk": 1,
+"bandits": 1,
+"crone": 1,
+"guard": -1,
+"order": -1,
+"patrol": -1,
+"peasants": -2
+},
+"bardo": {
+"enchanters": 1,
+"pagans": 1,
+"summoners": 1,
+"scholar": 1,
+"mercenaries": -1,
+"soldiers": -1,
+"zealots": -1
+},
+"berserker": {
+"lancers": 1,
+"rogues": 1,
+"bandits": 1,
+"shaman": 1,
+"guard": -1,
+"patrol": -1,
+"peasants": -1
+},
+"cavaliere_nero": {
+"company": 2,
+"soldiers": 1,
+"dwarves": 1,
+"hunters": -1,
+"lancers": -1,
+"merchant": -1,
+"guard": -2
+},
+"capitano": {
+"enchanters": 1,
+"guard": 1,
+"patrol": 1,
+"soldiers": 1,
+"aborigines": -1,
+"woodfolk": -1,
+"merchant": -1,
+"bashkars": -2
+},
+"druido": {
+"bashkars": 2,
+"lancers": 1,
+"pagans": 1,
+"hunters": -1,
+"order": -1,
+"shaman": -1,
+"woodfolk": -2
+},
+"nano": {
+"company": 1,
+"guard": 1,
+"dwarves": 1,
+"aborigines": -1,
+"bashkars": -1,
+"woodfolk": -1,
+"priest": -1
+},
+"elfo": {
+"woodfolk": 2,
+"bashkars": 1,
+"summoners": 1,
+"elves": 1,
+"hunters": -1,
+"order": -1,
+"pagans": -1,
+"scholar": -1,
+"lancers": -2
+},
+"gladiatore": {
+"hunters": 1,
+"mages": 1,
+"peasants": 1,
+"scholar": 1,
+"conjurors": -1,
+"guard": -1,
+"patrol": -1
+},
+"mago": {
+"enchanters": 2,
+"company": 1,
+"rogues": 1,
+"patrol": -1,
+"soldiers": -1,
+"crone": -1,
+"pagans": -2
+},
+"negromante": {
+"coven": 2,
+"conjurors": 1,
+"mercenaries": 1,
+"cultists": 1,
+"mages": -1,
+"patrol": -1,
+"zealots": -1,
+"priest": -1,
+"order": -2
+},
+"paladino": {
+"zealots": 2,
+"order": 1,
+"peasants": 1,
+"priest": 1,
+"aborigines": -1,
+"coven": -1,
+"pagans": -1,
+"woodfolk": -1
+},
+"pellegrino": {
+"order": 2,
+"zealots": 1,
+"bashkars": -1,
+"company": -1,
+"coven": -1,
+"crone": -1
+},
+"sensitiva": {
+"conjurors": 2,
+"coven": 1,
+"enchanters": 1,
+"peasants": 1,
+"mages": -1,
+"shaman": -1,
+"pagans": -2,
+"summoners": -2
+},
+"stregone": {
+"lancers": 2,
+"bashkars": 1,
+"company": 1,
+"mages": 1,
+"conjurors": -1,
+"order": -1,
+"soldiers": -1,
+"warlock": -1,
+"guard": -2
+},
+"spadaccino": {
+"aborigines": 1,
+"company": 1,
+"rogues": 1,
+"warlock": 1,
+"hunters": -1,
+"patrol": -2
+},
+"pescatore": {
+"lancers": 2,
+"bashkars": 1,
+"hunters": 1,
+"mercenaries": 1,
+"merchant": 1,
+"aborigines": -1,
+"pagans": -1,
+"summoners": -1,
+"soldiers": -2
+},
+"viandante": {
+"summoners": 2,
+"aborigines": 1,
+"conjurors": 1,
+"patrol": 1,
+"company": -1,
+"mercenaries": -1,
+"pagans": -1,
+"crone": -1,
+"hunters": -2
+},
+"cavaliere_bianco": {
+"order": 2,
+"lancers": 1,
+"zealots": 1,
+"priest": 1,
+"bashkars": -1,
+"coven": -1,
+"company": -2
+},
+"strega": {
+"company": 2,
+"bashkars": 1,
+"coven": 1,
+"pagans": 1,
+"lancers": -1,
+"order": -1,
+"soldiers": -1,
+"shaman": -1,
+"zealots": -2
+},
+"re_stregone": {
+"bashkars": 2,
+"aborigines": 1,
+"company": 1,
+"cultists": 1,
+"lancers": -1,
+"mages": -1,
+"zealots": -1,
+"scholar": -1,
+"order": -2
+},
+"stregone_bianco": {
+"enchanters": 2,
+"guard": 1,
+"patrol": 1,
+"soldiers": 1,
+"woodfolk": 1,
+"bashkars": -1,
+"company": -1,
+"warlock": -1,
+"aborigines": -2,
+"lancers": -2
+},
+"ragazza_boschi": {
+"woodfolk": 2,
+"enchanters": 1,
+"lancers": 1,
+"elves": 1,
+"aborigines": -1,
+"soldiers": -1,
+"summoners": -1,
+"warlock": -1,
+"bashkars": -2
+}
+}
+}

@@ -1,0 +1,312 @@
+{
+"apprentice": {
+"nome": "Apprendista",
+"tipo": "N",
+"eff": {
+"undado": "rune"
+},
+"img": "viaggiatori/apprentice.webp"
+},
+"dominate": {
+"nome": "Dominare",
+"tipo": "C",
+"eff": {},
+"img": "viaggiatori/dominate.webp"
+},
+"seek": {
+"nome": "Ricerca",
+"tipo": "T",
+"eff": {
+"siti": [
+"altar",
+"cairns",
+"maze",
+"spire"
+]
+},
+"img": "viaggiatori/seek.webp"
+},
+"confront": {
+"nome": "Affrontare",
+"tipo": "C",
+"eff": {},
+"img": "viaggiatori/confront.webp"
+},
+"raid": {
+"nome": "Razzia",
+"tipo": "C",
+"eff": {},
+"img": "viaggiatori/raid.webp"
+},
+"challenge": {
+"nome": "Sfida",
+"tipo": "C",
+"eff": {},
+"img": "viaggiatori/challenge.webp"
+},
+"food_ale": {
+"nome": "Cibo e birra",
+"tipo": "M",
+"eff": {
+"dest": "locanda",
+"alt": "casa"
+},
+"img": "viaggiatori/food_ale.webp"
+},
+"war": {
+"nome": "Guerra",
+"tipo": "C",
+"eff": {},
+"img": "viaggiatori/war.webp"
+},
+"blacksmith": {
+"nome": "Fabbro",
+"tipo": "V",
+"eff": {},
+"img": "viaggiatori/blacksmith.webp"
+},
+"cleric": {
+"nome": "Chierico",
+"tipo": "V",
+"eff": {},
+"img": "viaggiatori/cleric.webp"
+},
+"liberate": {
+"nome": "Liberare",
+"tipo": "C",
+"eff": {},
+"img": "viaggiatori/liberate.webp"
+},
+"strongman": {
+"nome": "Forzuto",
+"tipo": "N",
+"eff": {
+"chit": [
+"M",
+"T",
+5
+],
+"chiave": true
+},
+"img": "viaggiatori/strongman.webp"
+},
+"hermit": {
+"nome": "Eremita",
+"tipo": "N",
+"eff": {
+"fase": "M"
+},
+"img": "viaggiatori/hermit.webp"
+},
+"fairy": {
+"nome": "Fata",
+"tipo": "N",
+"eff": {
+"fase": "A",
+"fiuto": true
+},
+"img": "viaggiatori/fairy.webp"
+},
+"revolt": {
+"nome": "Rivolta",
+"tipo": "C",
+"eff": {},
+"img": "viaggiatori/revolt.webp"
+},
+"pillage": {
+"nome": "Saccheggio",
+"tipo": "C",
+"eff": {},
+"img": "viaggiatori/pillage.webp"
+},
+"escort_party": {
+"nome": "Scorta",
+"tipo": "M",
+"eff": {
+"dest": "cappella",
+"alt": "corpo_guardia"
+},
+"img": "viaggiatori/escort_party.webp"
+},
+"skirmish": {
+"nome": "Schermaglia",
+"tipo": "C",
+"eff": {},
+"img": "viaggiatori/skirmish.webp"
+},
+"books_art": {
+"nome": "Libri e arte",
+"tipo": "M",
+"eff": {
+"dest": "insediamento",
+"alt": "borgo"
+},
+"img": "viaggiatori/books_art.webp"
+},
+"barkeep": {
+"nome": "Oste",
+"tipo": "N",
+"eff": {
+"undado": "incontro"
+},
+"img": "viaggiatori/barkeep.webp"
+},
+"conquer": {
+"nome": "Conquista",
+"tipo": "C",
+"eff": {},
+"img": "viaggiatori/conquer.webp"
+},
+"warlock": {
+"nome": "Stregone errante",
+"tipo": "V",
+"eff": {},
+"img": "viaggiatori/warlock.webp"
+},
+"initiate": {
+"nome": "Iniziato",
+"tipo": "N",
+"eff": {
+"fase": "E"
+},
+"img": "viaggiatori/initiate.webp"
+},
+"odyssey": {
+"nome": "Odissea",
+"tipo": "T",
+"eff": {
+"siti": [
+"den",
+"garden",
+"pool",
+"vault"
+]
+},
+"img": "viaggiatori/odyssey.webp"
+},
+"ranger": {
+"nome": "Guardaboschi",
+"tipo": "N",
+"eff": {
+"undado": "nascondi"
+},
+"img": "viaggiatori/ranger.webp"
+},
+"crone": {
+"nome": "Vecchia strega",
+"tipo": "V",
+"eff": {},
+"img": "viaggiatori/crone.webp"
+},
+"priest": {
+"nome": "Sacerdote",
+"tipo": "V",
+"eff": {},
+"img": "viaggiatori/priest.webp"
+},
+"quest": {
+"nome": "Impresa",
+"tipo": "C",
+"eff": {},
+"img": "viaggiatori/quest.webp"
+},
+"miner": {
+"nome": "Minatore",
+"tipo": "N",
+"eff": {
+"fase": "grotta"
+},
+"img": "viaggiatori/miner.webp"
+},
+"hunt": {
+"nome": "Caccia",
+"tipo": "C",
+"eff": {},
+"img": "viaggiatori/hunt.webp"
+},
+"scholar": {
+"nome": "Studioso",
+"tipo": "V",
+"eff": {},
+"img": "viaggiatori/scholar.webp"
+},
+"journey": {
+"nome": "Viaggio",
+"tipo": "T",
+"eff": {
+"siti": [
+"hoard",
+"statue",
+"tomb",
+"tower"
+]
+},
+"img": "viaggiatori/journey.webp"
+},
+"explore": {
+"nome": "Esplorazione",
+"tipo": "T",
+"eff": {
+"siti": [
+"lair",
+"pit",
+"shrine",
+"temple"
+]
+},
+"img": "viaggiatori/explore.webp"
+},
+"shadow": {
+"nome": "Ombra",
+"tipo": "N",
+"eff": {
+"fase": "S"
+},
+"img": "viaggiatori/shadow.webp"
+},
+"merchant": {
+"nome": "Mercante",
+"tipo": "V",
+"eff": {},
+"img": "viaggiatori/merchant.webp"
+},
+"tour_guide": {
+"nome": "Guida turistica",
+"tipo": "M",
+"eff": {
+"dest": "capanna",
+"alt": "casolare"
+},
+"img": "viaggiatori/tour_guide.webp"
+},
+"bargainer": {
+"nome": "Contrattatore",
+"tipo": "N",
+"eff": {
+"undado": "incontro"
+},
+"img": "viaggiatori/bargainer.webp"
+},
+"shaman": {
+"nome": "Sciamano",
+"tipo": "V",
+"eff": {},
+"img": "viaggiatori/shaman.webp"
+},
+"tracker": {
+"nome": "Segugio",
+"tipo": "N",
+"eff": {
+"undado": "cerca"
+},
+"img": "viaggiatori/tracker.webp"
+},
+"cook": {
+"nome": "Cuoco",
+"tipo": "N",
+"eff": {
+"riposo": "doppio"
+},
+"img": "viaggiatori/cook.webp"
+}
+}

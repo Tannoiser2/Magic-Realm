@@ -61,7 +61,7 @@ var avviso: Label
 var piano: Array = []
 var fasi: Dictionary = {}
 var modo_volo := false
-const SCENARI := [1, 2, 3, 4]
+const SCENARI := [1, 2, 3, 4, 5, 6]
 var modo_mossa := false
 var codice := ""
 var scelte_menu := {"scenario": 3, "pg": "amazzone", "rivali": 2}
@@ -246,6 +246,8 @@ func _anello(pos: Vector2, colore: Color, r := 0.17) -> void:
 
 func _img_mostro(m: Dictionary) -> String:
 	var lato := "b" if m["lato"] == 1 else "a"
+	if m.has("nativo"):
+		return "res://assets/nativi/%s_%s.webp" % [m["img"], lato]
 	var p := "res://assets/mostri/%s_%s.webp" % [m["img"], lato]
 	if not ResourceLoader.exists(p):
 		p = "res://assets/mostri/%s_a.webp" % m["img"]
@@ -263,14 +265,27 @@ func _aggiorna_pezzi() -> void:
 	# abitazioni
 	for a in g.s["abitazioni"]:
 		aggiungi.call(g.s["abitazioni"][a], _gettone("res://assets/abitazioni/%s.webp" % a, 0.26, "", 0.05, Color(0.3, 0.25, 0.2)), 0.26)
-	# mostri
+	# mostri (dei nativi si mostra un solo segnalino per gruppo e radura)
+	var gruppi_visti := {}
 	for id in g.s["mostri"]:
 		var m: Dictionary = g.s["mostri"][id]
 		if m["morto"] or m["dove"] == "":
 			continue
+		if m.has("nativo"):
+			var kg: String = m["dove"] + "|" + m["nativo"]
+			if gruppi_visti.has(kg):
+				continue
+			gruppi_visti[kg] = true
 		var peso: String = Dati.tipo_mostro(m["tipo"]).get("peso", "M")
 		var lato := {"M": 0.19, "H": 0.23, "T": 0.29, "X": 0.31}.get(peso, 0.2) as float
 		aggiungi.call(m["dove"], _gettone(_img_mostro(m), lato, "", 0.04), lato)
+	# viaggiatori
+	for id in g.s.get("viaggi", {}):
+		var x: Dictionary = g.s["viaggi"][id]
+		if x["dove"] == "" or x["chi"] != "":
+			continue
+		var img: String = "res://assets/" + Viaggi.v(id)["img"] if x["su"] else "res://assets/viaggiatori/retro.webp"
+		aggiungi.call(x["dove"], _gettone(img, 0.17, "", 0.03), 0.17)
 	# personaggi
 	for p in g.s["pg"]:
 		if p["morto"]:
@@ -1049,8 +1064,12 @@ func _aggiorna_scheda() -> void:
 	vv.add_child(_lab("Peso %s · %s" % [Dati.NOMI_PESO[d["vuln"]], stato_n], 15))
 	vv.add_child(_lab(g.nome_r(u["dove"]) if g.mappa.radure.has(u["dove"]) else "", 15, f_txt, C_VERDE))
 	var punti := "Fama %d · Notorietà %d" % [u["fama"], u["noto"]]
-	if g.s["scenario"] >= 3:
-		punti += " · PV %d/10" % g.pv(u)
+	if g.s["scenario"] >= 5:
+		punti += " · Oro %d" % u["oro"]
+	if g.s["scenario"] >= 6:
+		punti += " · punteggio %d" % g.viaggi.punteggio(u)
+	elif g.s["scenario"] >= 3:
+		punti += " · PV %d/%d" % [g.pv(u), g.obiettivo_pv()]
 	elif g.s["scenario"] == 2:
 		punti += " · uccisioni %d/4" % u["uccisi_pg"]
 	scheda.add_child(_lab(punti, 17, f_tit))
@@ -1136,6 +1155,38 @@ func _aggiorna_scheda() -> void:
 		if g.s["tessere"][str(g.tessera(u["dove"]))].get("incantata", false):
 			tx += " (tessera incantata)"
 		scheda.add_child(_lab(tx, 14, f_txt, C_VERDE))
+	if g.s["scenario"] >= 6 and u.has("vp"):
+		scheda.add_child(_lab("Traguardi dei Punti Vittoria", 18, f_tit))
+		for x in g.viaggi.requisiti(u):
+			if x["serve"] > 0 or x["ha"] > 0:
+				scheda.add_child(_lab("%s: %d su %d%s" % [x["nome"], x["ha"], x["serve"], "" if x["ok"] else " (manca)"], 15, f_txt, C_VERDE if x["ok"] else C_ROSSO))
+		var con := []
+		if str(u.get("nomade", "")) != "":
+			con.append("nomade " + Viaggi.v(u["nomade"])["nome"])
+		for m in u.get("missioni_v", []):
+			con.append("missione %s verso %s" % [Viaggi.v(m["id"])["nome"], g.nome_r(m["dest"])])
+		if not u.get("compito", {}).is_empty():
+			con.append("compito %s (%d/4)%s" % [Viaggi.v(u["compito"]["id"])["nome"], u["compito"]["visti"].size(), " completato" if u["compito"].get("fatto", false) else ""])
+		if not con.is_empty():
+			scheda.add_child(_lab("Con te: " + ", ".join(con), 14, f_txt, C_VERDE))
+	if g.s["scenario"] >= 5:
+		var rr := {2: [], 1: [], -1: [], -2: []}
+		for gid in Dati.nativi["gruppi"]:
+			var v := g.nativi.rapporto(u, gid)
+			if rr.has(v):
+				rr[v].append(Dati.nativi["gruppi"][gid]["nome"])
+		var tx := []
+		for v in [2, 1, -1, -2]:
+			if not rr[v].is_empty():
+				tx.append("%s: %s" % [Nativi.NOMI_REL[v], ", ".join(rr[v])])
+		scheda.add_child(_lab("Rapporti con i nativi", 18, f_tit))
+		scheda.add_child(_lab("; ".join(tx) + ". Gli altri sono neutrali.", 14))
+		var ing := []
+		for gid in g.s["nativi"]:
+			if g.s["nativi"][gid]["ingaggio"] == u["pid"]:
+				ing.append("%s (fino al giorno %d)" % [Dati.nativi["gruppi"][gid]["nome"], int(g.s["nativi"][gid]["scadenza"])])
+		if not ing.is_empty():
+			scheda.add_child(_lab("Al tuo servizio: " + ", ".join(ing), 15, f_txt, C_VERDE))
 	if not u["maledizioni"].is_empty():
 		scheda.add_child(_lab("Maledizioni: " + ", ".join(u["maledizioni"]), 16, f_txt, C_ROSSO))
 	if not u["siti"].is_empty():
@@ -1240,6 +1291,18 @@ func _chiede(req: Dictionary) -> void:
 		"adesca", "carica", "azione", "bersaglio", "mischia", "fatica", "ferita":
 			_richiesta_combattimento(req)
 		"incanto": _richiesta_incanto(req)
+		"commercio": _richiesta_commercio(req)
+		"viaggiatore": _richiesta_si_no(req["dati"]["testo"])
+		"assegna_pv": _richiesta_pv(req)
+		"ingaggio": _richiesta_ingaggio(req)
+		"conferma":
+			if req["dati"].get("puo", true):
+				_richiesta_si_no(req["dati"]["testo"])
+			else:
+				_apri_modale("Commercio")
+				box_modale.add_child(_lab(req["dati"]["testo"], 18))
+				_riga_bottoni().add_child(_bott("Va bene", func(): _rispondi(false), 18, true))
+				_ricentra()
 		"incantesimo_sera": _richiesta_sera(req)
 		_:
 			g.rispondi(null)
@@ -1303,6 +1366,9 @@ func _pannello_piano() -> void:
 	var att := ["S", "H", "R"] if g.s["scenario"] >= 2 else ["S"]
 	if g.s["scenario"] >= 2:
 		att.append("A")
+	if g.s["scenario"] >= 5:
+		att.append("T")
+		att.append("HR")
 	if g.s["scenario"] >= 4:
 		var magico: bool = "E" in fasi["extra"]
 		for c in u["chits"]:
@@ -1431,6 +1497,86 @@ func _richiesta_incanto(req: Dictionary) -> void:
 	var opz: Array = req["dati"]["opzioni"]
 	for i in range(opz.size()):
 		h.add_child(_bott(opz[i]["testo"], func(): _rispondi(i), 16, i == 0))
+	_ricentra()
+
+func _richiesta_commercio(req: Dictionary) -> void:
+	var d: Dictionary = req["dati"]
+	_apri_modale("Commercio")
+	box_modale.add_child(_lab("Hai %d oro. Per comprare tiri sulla Tabella degli incontri nella colonna del tuo rapporto con il gruppo: il risultato moltiplica il prezzo. Vendere non richiede tiri." % d["oro"], 15))
+	for gx in d["gruppi"]:
+		box_modale.add_child(_lab("%s (rapporto: %s)" % [gx["nome"], gx["rapporto"]], 19, f_tit, C_ROSSO))
+		var h := _riga_bottoni()
+		var merce: Array = gx["merce"]
+		if gx.has("servizio"):
+			h.add_child(_bott(gx["servizio"], func(): _rispondi({"gruppo": gx["gruppo"], "tipo": "servizio"}), 15, true))
+			continue
+		if merce.is_empty():
+			h.add_child(_lab_riga("Non hanno nulla da vendere."))
+		for i in range(merce.size()):
+			var x: Dictionary = merce[i]
+			var b := _bott("Compra %s (valore %d)" % [x["nome"], x["oro"]], func(): _rispondi({"gruppo": gx["gruppo"], "tipo": "compra", "merce": i}), 15)
+			if x["k"] == "t":
+				b.tooltip_text = Arcano.descrivi_tesoro(x["id"])
+			elif x["k"] == "s":
+				b.tooltip_text = Arcano.descrivi_inc(x["id"])
+			h.add_child(b)
+		if not d["vendibili"].is_empty():
+			var sel := []
+			var hv := _riga_bottoni()
+			for v in d["vendibili"]:
+				var cb := CheckBox.new()
+				cb.text = "%s (%d)" % [v["nome"], v["oro"]]
+				cb.add_theme_font_override("font", f_txt)
+				cb.add_theme_color_override("font_color", C_INCHIOSTRO)
+				cb.toggled.connect(func(on): (sel.append(v["id"]) if on else sel.erase(v["id"])))
+				hv.add_child(cb)
+			_riga_bottoni().add_child(_bott("Vendi a %s gli oggetti scelti" % gx["nome"], func():
+				if sel.is_empty(): _avviso("Scegli prima cosa vendere.")
+				else: _rispondi({"gruppo": gx["gruppo"], "tipo": "vendi", "oggetti": sel}), 16))
+	_riga_bottoni().add_child(_bott("Nessun affare", func(): _rispondi({}), 17, true))
+	_ricentra()
+
+func _richiesta_pv(req: Dictionary) -> void:
+	var vp: Dictionary = req["dati"]["vp"]
+	_apri_modale("Assegna i tuoi 12 Punti Vittoria")
+	box_modale.add_child(_lab("Ogni punto è un traguardo da raggiungere: 1 grande tesoro, 2 incantesimi imparati, 10 Fama, 20 Notorietà o 30 Oro. Ogni sito o luogo scoperto e ogni missione o compito completato toglie punti. A fine mese vince chi ha soddisfatto tutti i traguardi con il margine più ampio.", 15))
+	var tot_l := _lab("", 18, f_tit, C_ROSSO)
+	var righe := {}
+	var aggiorna := func():
+		var t := 0
+		for c in Viaggi.CATEGORIE:
+			t += int(vp[c])
+			righe[c].text = "%s: %d (%d)" % [Viaggi.NOMI_CAT[c], int(vp[c]), int(vp[c]) * Viaggi.UNITA[c]]
+		tot_l.text = "Totale: %d su 12" % t
+	for c in Viaggi.CATEGORIE:
+		var h := _riga_bottoni()
+		var l := _lab_riga("")
+		l.custom_minimum_size = Vector2(300, 0)
+		righe[c] = l
+		h.add_child(l)
+		h.add_child(_bott("meno", func():
+			vp[c] = max(0, int(vp[c]) - 1)
+			aggiorna.call(), 15))
+		h.add_child(_bott("più", func():
+			vp[c] = int(vp[c]) + 1
+			aggiorna.call(), 15))
+	box_modale.add_child(tot_l)
+	aggiorna.call()
+	_riga_bottoni().add_child(_bott("Conferma", func():
+		var t := 0
+		for c in Viaggi.CATEGORIE: t += int(vp[c])
+		if t != 12: _avviso("Devi assegnare esattamente 12 punti.")
+		else: _rispondi(vp), 18, true))
+	_ricentra()
+
+func _richiesta_ingaggio(req: Dictionary) -> void:
+	var d: Dictionary = req["dati"]
+	_apri_modale("Ingaggio")
+	box_modale.add_child(_lab("Hai %d oro. Il costo base è la somma delle paghe del gruppo; la Tabella degli incontri lo moltiplica. Gli ingaggiati ti seguono e combattono con te per 14 giorni." % d["oro"], 15))
+	var h := _riga_bottoni()
+	for gx in d["gruppi"]:
+		h.add_child(_bott("%s: %d membri, paga %d (rapporto %s)" % [gx["nome"], gx["membri"], gx["oro"], gx["rapporto"]], func(): _rispondi({"gruppo": gx["gruppo"]}), 16))
+	h.add_child(_bott("Nessuno", func(): _rispondi({}), 17, true))
 	_ricentra()
 
 func _richiesta_sera(req: Dictionary) -> void:

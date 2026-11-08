@@ -15,7 +15,8 @@
     "L",
     0,
     0
-   ]
+   ],
+   "oro": 6
   },
   "arco_medio": {
    "nome": "Arco medio",
@@ -32,7 +33,8 @@
     "M",
     0,
     0
-   ]
+   ],
+   "oro": 8
   },
   "balestra": {
    "nome": "Balestra",
@@ -49,7 +51,8 @@
     "H",
     0,
     0
-   ]
+   ],
+   "oro": 10
   },
   "lancia": {
    "nome": "Lancia",
@@ -66,7 +69,8 @@
     "-",
     0,
     6
-   ]
+   ],
+   "oro": 6
   },
   "bastone": {
    "nome": "Bastone",
@@ -83,7 +87,8 @@
     "L",
     0,
     0
-   ]
+   ],
+   "oro": 1
   },
   "spadone": {
    "nome": "Spadone",
@@ -100,7 +105,8 @@
     "H",
     1,
     6
-   ]
+   ],
+   "oro": 10
   },
   "spada_funesta": {
    "nome": "Spada funesta",
@@ -117,7 +123,8 @@
     "T",
     1,
     8
-   ]
+   ],
+   "oro": 20
   },
   "spada_larga": {
    "nome": "Spada larga",
@@ -134,7 +141,8 @@
     "M",
     1,
     5
-   ]
+   ],
+   "oro": 8
   },
   "ascia_dorata": {
    "nome": "Ascia dorata",
@@ -151,7 +159,8 @@
     "T",
     1,
     0
-   ]
+   ],
+   "oro": 20
   },
   "mazza_ferrata": {
    "nome": "Mazza ferrata",
@@ -168,7 +177,8 @@
     "H",
     0,
     6
-   ]
+   ],
+   "oro": 8
   },
   "ascia_grande": {
    "nome": "Ascia grande",
@@ -185,7 +195,8 @@
     "H",
     1,
     0
-   ]
+   ],
+   "oro": 8
   },
   "stocco": {
    "nome": "Stocco",
@@ -202,7 +213,8 @@
     "L",
     1,
     4
-   ]
+   ],
+   "oro": 6
   },
   "spada_corta": {
    "nome": "Spada corta",
@@ -219,7 +231,8 @@
     "L",
     1,
     0
-   ]
+   ],
+   "oro": 4
   },
   "ascia": {
    "nome": "Ascia",
@@ -236,7 +249,8 @@
     "M",
     1,
     5
-   ]
+   ],
+   "oro": 4
   },
   "mazza": {
    "nome": "Mazza",
@@ -253,7 +267,8 @@
     "M",
     0,
     0
-   ]
+   ],
+   "oro": 6
   },
   "pugnale": {
    "nome": "Pugnale",
@@ -270,7 +285,8 @@
     "-",
     1,
     0
-   ]
+   ],
+   "oro": 0
   }
  },
  "armature": {
@@ -280,7 +296,8 @@
    "prezzo": 5,
    "protegge": [
     "smash"
-   ]
+   ],
+   "oro": 5
   },
   "corazza": {
    "nome": "Corazza",
@@ -289,7 +306,8 @@
    "protegge": [
     "thrust",
     "swing"
-   ]
+   ],
+   "oro": 9
   },
   "scudo": {
    "nome": "Scudo",
@@ -297,7 +315,8 @@
    "prezzo": 7,
    "protegge": [
     "scudo"
-   ]
+   ],
+   "oro": 7
   },
   "armatura": {
    "nome": "Armatura completa",
@@ -307,7 +326,8 @@
     "thrust",
     "swing",
     "smash"
-   ]
+   ],
+   "oro": 17
   }
  }
 }

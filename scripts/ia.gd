@@ -26,6 +26,11 @@ func decidi(p: Dictionary, tipo: String, d: Dictionary):
 		"ferita": return _meno_utile(p, d["opzioni"], false)
 		"incanto": return _incanto(p, d)
 		"incantesimo_sera": return _sera(p, d)
+		"commercio": return _commercio(p, d)
+		"viaggiatore": return _viaggiatore(p, d)
+		"assegna_pv": return {}
+		"ingaggio": return _ingaggio(p, d)
+		"conferma": return d.get("puo", false) and d["testo"].find("ingaggi") < 0
 	return null
 
 func vuole_berserk(_p: Dictionary) -> bool:
@@ -74,6 +79,8 @@ func piano(p: Dictionary, d: Dictionary) -> Array:
 		pl.push_front({"a": "H"})
 		while pl.size() > n:
 			pl.pop_back()
+	if r.s["scenario"] >= 5 and pl.is_empty() and not _da_vendere(p).is_empty() and not r.nativi.opzioni_commercio(p).is_empty():
+		pl.append({"a": "T"})
 	if r.s["scenario"] >= 4 and _vuole_incantare(p) and pl.size() <= n - 2:
 		pl.append({"a": "E"})
 		pl.append({"a": "E"})
@@ -341,7 +348,7 @@ func azione(p: Dictionary, d: Dictionary) -> Dictionary:
 	var magia := _incantesimo_combattimento(p, d)
 	if not magia.is_empty() and (sal[0] > 3 or d["fuga"].is_empty()):
 		return magia
-	if not d["fuga"].is_empty() and (sal[0] <= 4 or _assegnati_pericolosi(p) or _imbattibili(p)):
+	if not d["fuga"].is_empty() and (sal[0] <= 4 or _assegnati_pericolosi(p) or _imbattibili(p) or _letali(p)):
 		return {"tipo": "fuga", "chit": d["fuga"][0]}
 	if d["berserk"] >= 0:
 		return {"tipo": "berserk", "chit": d["berserk"]}
@@ -402,6 +409,53 @@ func _sera(p: Dictionary, d: Dictionary) -> Dictionary:
 				continue
 			return {"inc": x["inc"], "mezzo": 0}
 	return {}
+
+func _da_vendere(p: Dictionary) -> Array:
+	var a := []
+	var armi := 0
+	for o in p["oggetti"]:
+		if Dati.oggetti["armi"].has(o["id"]):
+			armi += 1
+	for o in p["oggetti"]:
+		if Arcano.e_tesoro(o["id"]):
+			var t := Arcano.tesoro(o["id"])
+			if t.get("eff", {}).is_empty() and not t.get("grande", false) and int(t["oro"]) > 0:
+				a.append(o["id"])
+		elif Dati.oggetti["armi"].has(o["id"]) and not o["attivo"] and armi > 1:
+			a.append(o["id"])
+	return a
+
+func _viaggiatore(p: Dictionary, d: Dictionary) -> bool:
+	var t: String = Viaggi.v(d["id"]).get("tipo", "")
+	if t == "N":
+		return int(p["oro"]) >= 3
+	return t in ["M", "T"]
+
+func _commercio(p: Dictionary, d: Dictionary) -> Dictionary:
+	var v := _da_vendere(p)
+	if v.is_empty() or d["gruppi"].is_empty():
+		return {}
+	return {"gruppo": d["gruppi"][0]["gruppo"], "tipo": "vendi", "oggetti": v}
+
+func _ingaggio(p: Dictionary, d: Dictionary) -> Dictionary:
+	for g in d["gruppi"]:
+		if int(g["oro"]) * 2 <= int(p["oro"]) and g["rapporto"] in ["Amichevole", "Alleato"]:
+			return {"gruppo": g["gruppo"]}
+	return {}
+
+func _letali(p: Dictionary) -> bool:
+	## qualcuno che mi attacca può uccidermi con un colpo solo
+	var C: Dictionary = r.combat.C
+	var vu := r.vulnerabilita(p)
+	for mid in C.get("assegnati", {}):
+		if C["assegnati"][mid] == p["pid"]:
+			var m := r.M(mid)
+			var d := Dati.tipo_mostro(m["tipo"])
+			for lato in [d["chiaro"], d["scuro"]]:
+				var at := Dati.attacco(str(lato[0]))
+				if at["f"] != "" and Dati.peso_i(at["f"]) + int(at["s"]) >= vu:
+					return true
+	return false
 
 func _imbattibili(p: Dictionary) -> bool:
 	var C: Dictionary = r.combat.C

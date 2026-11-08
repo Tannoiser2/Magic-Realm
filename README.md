@@ -12,7 +12,7 @@ Si gioca nel browser da GitHub Pages: https://tannoiser2.github.io/Magic-Realm/
 - **Il Reame in 3D**: le 40 tessere esagonali vengono disposte a caso a ogni partita come da regole
   (il fiume parte dalle Cascate e finisce nella Grotta, le strade combaciano, ogni tessera è collegata al fiume).
   Mappa ruotabile e ingrandibile, pedine in rilievo, radure raggiungibili evidenziate.
-- **Tre scenari introduttivi** del Super Realm, che insegnano il gioco un pezzo alla volta:
+- **I sei scenari** del Super Realm, che insegnano il gioco un pezzo alla volta:
   1. *Esplorare il Reame* — movimento (montagne, grotte, fiume a monte e a valle), le tre tabelle di ricerca,
      sentieri nascosti e passaggi segreti, le quattro spedizioni pubbliche.
   2. *Duello tra personaggi* — nascondersi, bloccare, allertare, riposare e il combattimento completo:
@@ -23,15 +23,23 @@ Si gioca nel browser da GitHub Pages: https://tannoiser2.github.io/Magic-Realm/
      Minotauro con lo scudo, Cavaliere scheletro con il destriero, incantesimi di Imp, Succube, Vampiro e
      Demoni (maledizioni, ipnosi, Potere dell'Abisso), fama e notorietà con il moltiplicatore della sera,
      missioni pubbliche e private, rigenerazione a fine mese, 10 Punti Vittoria.
+  4. *Tesori e magia* — 152 carte tesoro (con i Tesori nei tesori) nei siti, saccheggio con i casi speciali di
+     Stagno, Tumuli, Fossa, Labirinto, Sotterraneo e Tomba, Lettura delle rune, 83 incantesimi (una quarantina
+     lanciabili), incanto dei segnalini e delle tessere, fonti di colore, volo, anelli magici.
+  5. *I nativi si destano* — 24 gruppi di nativi con le loro pedine, rapporti di ogni personaggio, tiro dei
+     nativi, Tabella degli incontri, commercio, ingaggio, blocchi e battaglie, nativi vaganti, 12 PV.
+  6. *Arrivano i viaggiatori* — 40 viaggiatori (nomadi, missioni, compiti, visitatori), Punti Vittoria
+     assegnati all'inizio e vittoria a fine mese.
 - **24 personaggi** con i loro 12 segnalini d'azione, peso, equipaggiamento di partenza e abilità speciali
   (Mira, Resistenza, Furia, Berserk, Gambe corte, Conoscenza delle grotte, Astuto, Navigatore, Affondo,
-  Scalatore, Esperienza, Segugio...). Negli scenari 2 e 3 si usano quelli con un'arma e meno di due segnalini magici.
+  Scalatore, Esperienza, Segugio...). Negli scenari 2 e 3 si usano quelli con un'arma e meno di due segnalini magici; dal 4 tutti.
 - **Rivali guidati dall'IA** (fino a tre) che esplorano, cercano, si nascondono, riposano e combattono.
 - **Salvataggi**: in automatico all'alba di ogni giorno sul dispositivo; con «Salva online» su Firebase
   (progetto `flammerouge-f8669`, radice `magicrealm/partite/<codice>`), da riprendere con il codice di 6 lettere.
 
-Non ancora presenti (scenari 4-6 del Super Realm): magia e incantesimi, tesori, nativi, scambi e ingaggi,
-viaggiatori, cavalli e l'attività «Seguire».
+Non ancora presenti: cavalli, l'attività «Seguire», il nascondiglio, i capi ingaggiati che agiscono da soli,
+le campagne dei viaggiatori, gli incantesimi di controllo e trasformazione (si imparano ma non si lanciano),
+alcuni effetti speciali dei tesori (la carta lo indica) e la magia dei nativi incantatori.
 
 ## Struttura
 

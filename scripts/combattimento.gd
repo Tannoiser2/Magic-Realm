@@ -23,17 +23,38 @@ func _pg_qui(k: String) -> Array:
 	return r.vivi().filter(func(p): return p["dove"] == k)
 
 func _mostri_qui(k: String) -> Array:
+	## mostri della radura e nativi in battaglia con qualcuno dei presenti
 	var a := []
 	for id in r.s["mostri"]:
 		var m: Dictionary = r.s["mostri"][id]
 		if m["dove"] == k and not m["morto"]:
+			if m.has("nativo"):
+				var st: Dictionary = r.s["nativi"][m["nativo"]]
+				if st["ingaggio"] != "" or st["ostili"].is_empty():
+					continue
+				var c := false
+				for pid in st["ostili"]:
+					if r.P(pid).get("dove", "") == k and not r.P(pid).get("morto", true):
+						c = true
+				if not c:
+					continue
 			a.append(m)
+	return a
+
+func _alleati_qui(k: String) -> Array:
+	var a := []
+	if r.s.get("scenario", 1) < 5:
+		return a
+	for p in _pg_qui(k):
+		a.append_array(r.nativi.ingaggiati(p))
 	return a
 
 func combatti(k: String) -> void:
 	var pgs := _pg_qui(k)
 	if pgs.is_empty() or r.s["scenario"] < 2:
 		return
+	if r.s["scenario"] >= 5:
+		r.nativi.inizio_combattimento(k)
 	var mostri := _mostri_qui(k)
 	var ostili := false
 	if mostri.is_empty():
@@ -155,7 +176,7 @@ func _round() -> bool:
 		if a != "" and not _pg(a)["morto"] and _pg(a)["dove"] == k:
 			continue
 		C["assegnati"].erase(m["id"])
-		var cand: Array = _in_lotta().filter(func(p): return not p["nascosto"] and not r.protetto(p, m))
+		var cand: Array = _in_lotta().filter(func(p): return not p["nascosto"] and not r.protetto(p, m) and (not m.has("nativo") or r.nativi.ostile_a(m, p)))
 		if cand.is_empty():
 			continue
 		var scelto: Dictionary = cand[0]
@@ -300,6 +321,8 @@ func _round() -> bool:
 	await r.pausa(0.3)
 	# 7) risoluzione dei colpi
 	if await _risolvi():
+		ev = true
+	if _attacchi_alleati():
 		ev = true
 	# 8) fatica e ferite
 	for p in _in_lotta():
@@ -1195,3 +1218,40 @@ func _colpo_magico(p: Dictionary, bid: String, peso: int, stelle: int, _lung: in
 		return true
 	r.scrivi("La magia di %s colpisce %s, ma non basta (danno %s%s)." % [p["nome"], r.nome_mostro(m), Dati.NOMI_PESO[Dati.peso_s(h2)], testo2])
 	return false
+
+# ------------------------------------------------------------ nativi ingaggiati
+func _attacchi_alleati() -> bool:
+	var ev := false
+	for a in _alleati_qui(C["k"]):
+		var nemici := _mostri_qui(C["k"])
+		if nemici.is_empty():
+			break
+		var bersaglio: Dictionary = nemici[r.rng.randi_range(0, nemici.size() - 1)]
+		var da := Dati.tipo_mostro(a["tipo"])
+		var at := Dati.attacco(str(da["chiaro"][0]))
+		if at["f"] == "":
+			at = Dati.attacco(str(da["scuro"][0]))
+		if at["f"] == "":
+			continue
+		var db := Dati.tipo_mostro(bersaglio["tipo"])
+		var colpisce: bool = int(at["v"]) < vel_mossa_mostro(bersaglio) or r.d6() <= 2
+		var nome_a: String = r.nome_mostro(a)
+		if not colpisce:
+			r.scrivi("%s manca %s." % [nome_a, r.nome_mostro(bersaglio)])
+			continue
+		var st: int = int(at["s"])
+		if db.get("armato", false) and st > 0:
+			st -= 1
+		var h := Dati.peso_i(at["f"]) + st
+		if h >= Dati.peso_i(db["peso"]):
+			bersaglio["morto"] = true
+			bersaglio["dove"] = ""
+			C["assegnati"].erase(bersaglio["id"])
+			r.scrivi("%s uccide %s." % [nome_a, r.nome_mostro(bersaglio)], "bene")
+			var capo := r.P(r.s["nativi"][a["nativo"]]["ingaggio"])
+			if not capo.is_empty():
+				r.uccisione_mostro(capo, bersaglio, 1)
+			ev = true
+		else:
+			r.scrivi("%s colpisce %s senza abbatterlo." % [nome_a, r.nome_mostro(bersaglio)])
+	return ev

@@ -9,7 +9,7 @@ func _init() -> void:
 			var g := Reame.new()
 			g.auto_umano = true
 			var pgs := ["amazzone", "capitano", "nano", "cavaliere_nero"] if int(sc) >= 2 else ["ragazza_boschi", "elfo", "druido", "capitano"]
-			if int(sc) >= 4: pgs = ["mago", "stregone", "amazzone", "re_stregone"]
+			if int(sc) >= 4: pgs = ["mago", "capitano", "amazzone", "nano"]
 			g.nuova(int(sc), pgs[0], pgs.slice(1), seme)
 			if int(sc) >= 3: g.s["giorni_max"] = 40
 			g.s["prova"] = true

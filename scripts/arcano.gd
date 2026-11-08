@@ -37,8 +37,12 @@ static func e_tesoro(id: String) -> bool:
 	return Dati.tesori.has(id)
 
 func eff(p: Dictionary, chiave: String) -> Array:
-	## valori dell'effetto `chiave` dei tesori attivi del personaggio
+	## valori dell'effetto `chiave` dei tesori attivi del personaggio (e del nomade che lo accompagna)
 	var a := []
+	if str(p.get("nomade", "")) != "":
+		var en: Dictionary = Viaggi.v(p["nomade"]).get("eff", {})
+		if en.has(chiave):
+			a.append(en[chiave])
 	for o in p["oggetti"]:
 		if not o.get("attivo", false) or not e_tesoro(o["id"]):
 			continue
@@ -168,6 +172,10 @@ func sincronizza(p: Dictionary) -> void:
 		var ch = tesoro(o["id"]).get("eff", {}).get("chit")
 		if ch is Array:
 			tenuti.append({"tipo": ch[0], "forza": ch[1], "vel": int(ch[2]), "sforzi": 0, "stato": "a", "tes": o["id"]})
+	if str(p.get("nomade", "")) != "":
+		var cn = Viaggi.v(p["nomade"]).get("eff", {}).get("chit")
+		if cn is Array:
+			tenuti.append({"tipo": cn[0], "forza": cn[1], "vel": int(cn[2]), "sforzi": 0, "stato": "a", "tes": p["nomade"]})
 	p["chits"] = tenuti
 
 # ------------------------------------------------------------ colori
@@ -404,6 +412,7 @@ func saccheggia(p: Dictionary, fonte: String) -> void:
 			if not _apri(p, nome):
 				return
 			st["aperto"] = true
+		r.viaggi.rilascia("s:" + id, p["dove"])
 		if id == "cairns" and not _affatica_uno(p, "scavare tra i Tumuli"):
 			return
 		if id == "pit":
@@ -456,6 +465,7 @@ func _ricevi_carta(p: Dictionary, id: String, pila: Array, stagno: bool) -> void
 				if not (id in p.get("twt", [])):
 					p["twt"].append(id)
 				r.scrivi("%s scopre un luogo nascosto: %s!" % [p["nome"], d["nome"]], "bene")
+				r.viaggi.deduci(p, 1)
 			"forziere":
 				if _apri(p, "il Forziere"):
 					var dentro: Array = r.s["twt"][id]["carte"]
@@ -531,6 +541,8 @@ func impara(p: Dictionary, id: String) -> void:
 
 func rune(p: Dictionary, fonte: String) -> void:
 	var pila := _pila_inc(fonte)
+	if fonte.begins_with("s:"):
+		r.viaggi.rilascia(fonte, p["dove"])
 	if pila.is_empty():
 		r.scrivi("Qui non ci sono rune da leggere.")
 		return
@@ -885,7 +897,7 @@ func pv_extra(p: Dictionary) -> int:
 	for id in p.get("incantesimi", []):
 		if not (id in p.get("inc_iniziali", [])) and lanciabile_in_teoria(p, id):
 			appresi += 1
-	tot += appresi / 2
+	tot += appresi if r.s["scenario"] >= 5 else appresi / 2
 	tot += p.get("twt", []).size()
 	return tot
 

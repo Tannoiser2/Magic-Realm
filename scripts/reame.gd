@@ -16,6 +16,8 @@ var rng := RandomNumberGenerator.new()
 var ia: IA
 var combat: Combattimento
 var arcano: Arcano
+var nativi: Nativi
+var viaggi: Viaggi
 var richiesta: Dictionary = {}
 var auto_umano := false          # nelle prove automatiche anche l'umano gioca da solo
 var pausa_cb: Callable           # per rallentare le mosse dei rivali nella UI
@@ -29,7 +31,7 @@ const TABELLE := {
 	"scruta": ["scopri", "indizi", "nemici", "nemici", "indizi", "niente"],
 	"localizza": ["scelta", "scelta", "sentieri", "scopri_indizi", "scopri_indizi", "niente"]}
 const NOMI_TABELLE := {"cerca": "Cerca", "scruta": "Scruta", "localizza": "Localizza"}
-const ATTIVITA := {"M": "Movimento", "S": "Ricerca", "H": "Nascondersi", "A": "Allerta", "R": "Riposo", "E": "Incanto", "V": "Volo"}
+const ATTIVITA := {"M": "Movimento", "S": "Ricerca", "H": "Nascondersi", "A": "Allerta", "R": "Riposo", "E": "Incanto", "V": "Volo", "T": "Commercio", "HR": "Ingaggio"}
 const BOSCHI := ["Lost Woods", "Old Woods", "Dark Woods", "Deep Woods", "Lake Woods", "Nut Woods", "Maple Woods", "Pine Woods", "Linden Woods", "Oak Woods"]
 const MALEDIZIONI := ["Nebbia agli occhi", "Squittio", "Avvizzimento", "Malattia", "Ceneri", "Disgusto"]
 const IPNOSI := ["Indebolito", "Ebbro", "Placato", "Distratto", "Svuotato", "Stanco"]
@@ -40,6 +42,8 @@ func _init() -> void:
 	ia = IA.new(self)
 	combat = Combattimento.new(self)
 	arcano = Arcano.new(self)
+	nativi = Nativi.new(self)
+	viaggi = Viaggi.new(self)
 
 # ------------------------------------------------------------ utilità
 func scrivi(t: String, tipo := "") -> void:
@@ -212,10 +216,15 @@ func nuova(scenario: int, pg_umano: String, rivali: Array, seme: int) -> void:
 		arcano.prepara()
 	if scenario >= 3:
 		_prepara_mostri()
+	if scenario >= 5:
+		nativi.prepara()
 	var tutti := [pg_umano] + rivali
 	for i in range(tutti.size()):
 		s["pg"].append(_nuovo_pg("p%d" % i, tutti[i], i == 0))
 	_prepara_missioni()
+	if scenario >= 6:
+		viaggi.prepara()
+		s["giorni_max"] = 84
 	if ha_abilita(umano(), "esperienza"):
 		pass
 	scrivi("Il Reame è pronto: %d tessere, il fiume corre dalle Cascate alla Grotta." % mappa.pezzi.size(), "titolo")
@@ -444,6 +453,17 @@ func rispondi(r) -> void:
 func gioca() -> void:
 	## ciclo principale: un giorno dopo l'altro fino alla fine della partita
 	in_corso = true
+	if s["scenario"] >= 6 and not s.get("pv_assegnati", false):
+		s["pv_assegnati"] = true
+		var u := umano()
+		var sc = await decidi(u, "assegna_pv", {"vp": u["vp"].duplicate()})
+		if sc is Dictionary:
+			var tot := 0
+			for c in Viaggi.CATEGORIE:
+				tot += int(sc.get(c, 0))
+			if tot == 12:
+				for c in Viaggi.CATEGORIE:
+					u["vp"][c] = int(sc[c])
 	while s["fine"] == "":
 		await gioca_giorno()
 	in_corso = false
@@ -464,7 +484,7 @@ func gioca_giorno() -> void:
 		p["entrato_da"] = ""
 		if s["scenario"] >= 4:
 			arcano.sincronizza(p)
-			if arcano.effetto(p, "fiuto"):
+			if arcano.effetto(p, "fiuto") or not arcano.eff(p, "fiuto").is_empty():
 				p["nemici"] = true
 	# Alba: si registrano le attività
 	for p in vivi():
@@ -474,6 +494,14 @@ func gioca_giorno() -> void:
 	if s["scenario"] >= 3:
 		s["riga_mostri"] = d6()
 		scrivi("Sorge il sole: si aggirano i mostri della riga %d (%s)." % [s["riga_mostri"], Dati.mostri["righe"][str(s["riga_mostri"])]], "mostri")
+	if s["scenario"] >= 5:
+		nativi.tiro_alba()
+		var nomi := []
+		for gid in Dati.nativi["gruppi"]:
+			var gg: Dictionary = Dati.nativi["gruppi"][gid]
+			if not gg["vagante"] and gg.get("guarnigione") == null and int(gg.get("riga", 0)) == int(s["riga_nativi"]):
+				nomi.append(gg["nome"])
+		scrivi("Tiro dei nativi: %d (in giro: %s)." % [s["riga_nativi"], ", ".join(nomi)], "mostri")
 	s["fase"] = "giorno"
 	cambiato.emit()
 	# Giorno: turni in ordine casuale
@@ -614,6 +642,8 @@ func esegui_turno(p: Dictionary) -> void:
 			"R": await attivita_riposo(p)
 			"E": await arcano.attivita_incanto(p)
 			"V": await attivita_volo(p, a.get("dest", ""))
+			"T": await nativi.attivita_commercio(p)
+			"HR": await nativi.attivita_ingaggio(p)
 		await fine_fase(p)
 		i += 1
 	if not p["morto"]:
@@ -658,6 +688,8 @@ func _muovi(p: Dictionary, dest: String) -> void:
 	p["entrato_da"] = p["dove"]
 	p["dove"] = dest
 	scrivi("%s si muove a %s." % [p["nome"], nome_r(dest)])
+	if s["scenario"] >= 5:
+		nativi.segui(p)
 	cambiato.emit()
 	await pausa(0.35)
 
@@ -872,6 +904,7 @@ func scopri_segnalini(p: Dictionary, dove: String) -> void:
 		scrivi("%s cerca a fondo %s ma non trova siti." % [p["nome"], nome_r(dove)])
 	else:
 		scrivi("%s scopre il sito: %s!" % [p["nome"], ", ".join(trovati)], "bene")
+		viaggi.deduci(p, trovati.size())
 	controlla_missioni_scoperta(p, dove)
 
 func _completa_rossi(t: int, pubblico: bool) -> void:
@@ -903,7 +936,7 @@ func fine_fase(p: Dictionary) -> void:
 		var bl := []
 		for id in s["mostri"]:
 			var m: Dictionary = s["mostri"][id]
-			if m["dove"] == k and not m["morto"] and not protetto(p, m):
+			if m["dove"] == k and not m["morto"] and not protetto(p, m) and not m.has("nativo"):
 				m["bloccato"] = true
 				bl.append(m)
 		if not bl.is_empty():
@@ -911,6 +944,11 @@ func fine_fase(p: Dictionary) -> void:
 			scrivi("%s è bloccat{oa} da %s!" % [p["nome"], nome_mostro(bl[0]) + (" e altri" if bl.size() > 1 else "")], "male")
 			cambiato.emit()
 			return
+	if s["scenario"] >= 6:
+		viaggi.fine_fase(p)
+	if s["scenario"] >= 5 and nativi.blocco(p):
+		cambiato.emit()
+		return
 	# blocchi tra personaggi
 	for q in vivi():
 		if q == p or q["dove"] != k:
@@ -955,6 +993,14 @@ func fine_turno(p: Dictionary) -> void:
 		if av != null and av != "fantasmi" and not s["abitazioni"].has(av):
 			s["abitazioni"][av] = _radura_abitazione(t)
 			scrivi("Compare: %s." % Dati.ABITAZIONI[av], "mostri")
+			if s["scenario"] >= 5:
+				for gid in Dati.nativi["gruppi"]:
+					if Dati.nativi["gruppi"][gid].get("guarnigione") == av:
+						nativi.compari(gid, s["abitazioni"][av])
+	if s["scenario"] >= 5:
+		nativi.fine_turno(p)
+	if s["scenario"] >= 6:
+		await viaggi.fine_turno(p)
 	if s["scenario"] >= 3:
 		await muovi_ed_evoca(p)
 	cambiato.emit()
@@ -968,7 +1014,7 @@ func muovi_ed_evoca(p: Dictionary) -> void:
 	# 1) i mostri in agguato nella tessera raggiungono la radura
 	for id in s["mostri"]:
 		var m: Dictionary = s["mostri"][id]
-		if m["morto"] or m["dove"] == "" or tessera(m["dove"]) != t or m["dove"] == k or m["bloccato"]:
+		if m["morto"] or m["dove"] == "" or tessera(m["dove"]) != t or m["dove"] == k or m["bloccato"] or m.has("nativo"):
 			continue
 		if Dati.tipo_mostro(m["tipo"])["peso"] == "X":
 			continue
@@ -1084,6 +1130,9 @@ func sera() -> void:
 	if s["scenario"] >= 4:
 		for p in vivi():
 			await arcano.sera_incantesimi(p)
+	if s["scenario"] >= 6:
+		for p in vivi():
+			await viaggi.sera(p)
 
 func mezzanotte() -> void:
 	s["fase"] = "mezzanotte"
@@ -1104,6 +1153,10 @@ func mezzanotte() -> void:
 			p["maledizioni"] = []
 	if s["scenario"] >= 4:
 		arcano.scadenze()
+	if s["scenario"] >= 5:
+		nativi.fine_giorno()
+	if s["scenario"] >= 6 and s["giorno"] % 28 == 0:
+		viaggi.fine_mese()
 	if s["giorno"] % 28 == 0 and s["scenario"] >= 3:
 		_rigenerazione()
 
@@ -1114,6 +1167,8 @@ func _rigenerazione() -> void:
 			g[bi] = []
 	for id in s["mostri"]:
 		var m: Dictionary = s["mostri"][id]
+		if m.has("nativo"):
+			continue
 		m["morto"] = false
 		m["dove"] = ""
 		if m.has("ext"):
@@ -1168,6 +1223,7 @@ func _compiuta(p: Dictionary, q: String) -> void:
 	p["fatte"].append(q)
 	var m: Dictionary = Dati.missioni[q]
 	scrivi("%s completa la missione «%s» (+%d PV)." % [p["nome"], m["nome"], m["pv"]], "bene")
+	viaggi.deduci(p, int(Dati.missioni[q]["pv"]))
 
 func uccisione_mostro(p: Dictionary, m: Dictionary, molt: int) -> void:
 	var d := Dati.tipo_mostro(m["tipo"])
@@ -1176,6 +1232,8 @@ func uccisione_mostro(p: Dictionary, m: Dictionary, molt: int) -> void:
 	p["fama"] += f
 	p["noto"] += n
 	p["uccisi"][m["tipo"]] = p["uccisi"].get(m["tipo"], 0) + 1
+	if m.has("nativo"):
+		nativi.uccisione(p, m)
 	scrivi("%s uccide %s: +%d fama, +%d notorietà%s." % [p["nome"], nome_mostro(m), f, n, (" (×%d)" % molt) if molt > 1 else ""], "bene")
 	# missioni legate all'uccisione
 	for q in s["missioni_pubbliche"] + p["missioni"]:
@@ -1202,6 +1260,8 @@ func _radura_suono(r: String) -> String:
 	return ""
 
 func pv(p: Dictionary) -> int:
+	if s.get("scenario", 1) >= 6:
+		return viaggi.punteggio(p)
 	var tot := 0
 	for q in p["fatte"]:
 		tot += int(Dati.missioni[q]["pv"])
@@ -1212,6 +1272,8 @@ func pv(p: Dictionary) -> int:
 		var noto: int = p["noto"]
 		if sc >= 4:
 			tot += arcano.pv_extra(p)
+		if sc >= 5:
+			tot += nativi.pv_oro(p)
 			fama += arcano.fama_tesori(p)
 			noto += arcano.noto_tesori(p)
 		if not ("Disgusto" in p["maledizioni"]):
@@ -1250,9 +1312,20 @@ func controlla_vittoria() -> void:
 				v.append(p)
 		if v.is_empty() and rimasti.size() <= 1:
 			v = rimasti
+	elif sc >= 6:
+		if s["giorno"] % 28 == 0:
+			var ok: Array = vivi().filter(func(p): return viaggi.soddisfatti(p))
+			var best := -999
+			for p in ok:
+				best = max(best, viaggi.punteggio(p))
+			for p in ok:
+				if viaggi.punteggio(p) == best:
+					v.append(p)
+			if v.is_empty():
+				scrivi("Fine del mese: nessuno ha raggiunto i suoi Punti Vittoria, la partita continua.", "titolo")
 	else:
 		for p in vivi():
-			if pv(p) >= 10:
+			if pv(p) >= obiettivo_pv():
 				v.append(p)
 	var u := umano()
 	if s.get("prova", false):
@@ -1320,3 +1393,6 @@ func attivita_volo(p: Dictionary, dest: String) -> void:
 	scrivi("%s vola fino a %s e atterra a %s." % [p["nome"], Dati.tessere[t]["nome"], nome_r(arrivo)], "bene")
 	cambiato.emit()
 	await pausa(0.35)
+
+func obiettivo_pv() -> int:
+	return 12 if s.get("scenario", 1) >= 5 else 10
