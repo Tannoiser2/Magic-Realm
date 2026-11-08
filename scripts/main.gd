@@ -72,7 +72,7 @@ const GUIDA_CFG := "user://guida_magicrealm.cfg"
 const SCENARI := [1, 2, 3, 4, 5, 6]
 var modo_mossa := false
 var codice := ""
-var scelte_menu := {"edizione": "super", "scenario": 3, "pg": "amazzone", "rivali": 2}
+var scelte_menu := {"edizione": "super", "scenario": 3, "pg": "amazzone", "rivali": 2, "partita_libera": false, "durata_libera": 84}
 var mischia := {}
 var edizione_portale := "" # "super" o "classico" per le build sul sito; vuoto in Godot locale
 
@@ -103,6 +103,7 @@ func _ready() -> void:
 	net = load("res://scripts/net.gd").new()
 	if edizione_portale == "classico":
 		net.root_partite = "magicrealm/classico/partite"
+		net.sessione = "user://online_magicrealm_classico.cfg"
 	add_child(net)
 	_crea_mondo()
 	_crea_ui()
@@ -855,8 +856,16 @@ func _mostra_menu() -> void:
 		edizione_bar.add_child(_bott("Magic Realm Classico (sperimentale)", func(): _scegli_menu("edizione", "classico"), 20, scelte_menu["edizione"] == "classico"))
 	else:
 		v.add_child(_bott("‹ Torna alla scelta dei giochi", _torna_portale, 17))
-	# scenario
-	v.add_child(_lab("Scenario" if scelte_menu["edizione"] == "super" else "Modalità classica", 24, f_tit))
+	# The six Super modes are progressive scenarios; free play uses full Scenario 6 rules.
+	if scelte_menu["edizione"] == "super":
+		v.add_child(_lab("Scegli come giocare", 24, f_tit))
+		var modebar := HBoxContainer.new()
+		modebar.add_theme_constant_override("separation", 12)
+		v.add_child(modebar)
+		modebar.add_child(_bott("Partita libera — tutte le regole", func(): _scegli_menu("partita_libera", true), 21, scelte_menu["partita_libera"]))
+		modebar.add_child(_bott("Sei scenari progressivi", func(): _scegli_menu("partita_libera", false), 19, not scelte_menu["partita_libera"]))
+	else:
+		v.add_child(_lab("Modalità classica", 24, f_tit))
 	var hs := GridContainer.new()
 	hs.columns = 3
 	hs.add_theme_constant_override("h_separation", 8)
@@ -868,14 +877,22 @@ func _mostra_menu() -> void:
 		4: ["4 · Tesori e magia", "Saccheggia i siti, leggi le rune, incanta i segnalini e lancia incantesimi: il primo a 10 Punti Vittoria vince."],
 		5: ["5 · I nativi si destano", "Nativi nelle abitazioni: commercia, ingaggia e attento a chi ti è ostile. Il primo a 10 Punti Vittoria vince."],
 		6: ["6 · Arrivano i viaggiatori", "Il gioco completo: viaggiatori, visitatori e Punti Vittoria assegnati in segreto."]}
-	for n in (SCENARI if scelte_menu["edizione"] == "super" else []):
+	for n in (SCENARI if scelte_menu["edizione"] == "super" and not scelte_menu["partita_libera"] else []):
 		var b := _bott(descr[n][0], func(): _scegli_menu("scenario", n), 18, scelte_menu["scenario"] == n)
 		b.tooltip_text = descr[n][1]
 		b.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		hs.add_child(b)
 	if scelte_menu["edizione"] == "classico":
 		hs.add_child(_lab("Partita completa — 28 giorni", 20, f_tit, C_ROSSO))
-	v.add_child(_lab(descr[scelte_menu["scenario"]][1] if scelte_menu["edizione"] == "super" else "Partita completa classica: 20 tessere, 28 giorni, cinque Punti Vittoria. Prima versione sperimentale: alcune regole speciali restano da verificare.", 18))
+	elif scelte_menu["partita_libera"]:
+		hs.add_child(_lab("Tutte le regole Super disponibili · 12 punti vittoria", 19, f_tit, C_ROSSO))
+	v.add_child(_lab("Partita libera: scegli la durata e gioca il Super Realm completo, con mostri, magia, tesori, nativi e viaggiatori." if scelte_menu["edizione"] == "super" and scelte_menu["partita_libera"] else (descr[scelte_menu["scenario"]][1] if scelte_menu["edizione"] == "super" else "Partita completa classica: 20 tessere, 28 giorni, cinque Punti Vittoria. Prima versione sperimentale: alcune regole speciali restano da verificare."), 18))
+	if scelte_menu["edizione"] == "super" and scelte_menu["partita_libera"]:
+		var durata := HBoxContainer.new()
+		v.add_child(durata)
+		durata.add_child(_lab_riga("Durata:"))
+		for giorni in [28, 56, 84]:
+			durata.add_child(_bott("%d giorni" % giorni, func(): _scegli_menu("durata_libera", giorni), 18, int(scelte_menu["durata_libera"]) == giorni))
 	# personaggio
 	v.add_child(_lab("Personaggio", 24, f_tit))
 	var grid := GridContainer.new()
@@ -883,7 +900,7 @@ func _mostra_menu() -> void:
 	grid.add_theme_constant_override("h_separation", 6)
 	grid.add_theme_constant_override("v_separation", 6)
 	v.add_child(grid)
-	var validi := _personaggi_validi(scelte_menu["scenario"])
+	var validi := _personaggi_validi(6 if scelte_menu["edizione"] == "super" and scelte_menu["partita_libera"] else scelte_menu["scenario"])
 	if not (scelte_menu["pg"] in validi):
 		scelte_menu["pg"] = validi[0]
 	for id in validi:
@@ -914,7 +931,7 @@ func _mostra_menu() -> void:
 	hr.add_theme_constant_override("separation", 8)
 	v.add_child(hr)
 	hr.add_child(_lab_riga("Personaggi rivali (IA):"))
-	var minimo := 1 if scelte_menu["scenario"] == 2 and scelte_menu["edizione"] == "super" else 0
+	var minimo := 1 if scelte_menu["scenario"] == 2 and scelte_menu["edizione"] == "super" and not scelte_menu["partita_libera"] else 0
 	for n in range(minimo, 4):
 		hr.add_child(_bott(str(n), func(): _scegli_menu("rivali", n), 18, scelte_menu["rivali"] == n))
 	# avvio
@@ -965,12 +982,13 @@ func _descr_pg(d: Dictionary) -> String:
 
 func _scegli_menu(k: String, v) -> void:
 	scelte_menu[k] = v
-	if k == "scenario" and v == 2 and scelte_menu["rivali"] < 1:
+	if k == "scenario" and v == 2 and scelte_menu["edizione"] == "super" and not scelte_menu["partita_libera"] and scelte_menu["rivali"] < 1:
 		scelte_menu["rivali"] = 1
 	_mostra_menu()
 
 func _nuova_partita() -> void:
-	var sc: int = scelte_menu["scenario"]
+	var libera: bool = scelte_menu["edizione"] == "super" and scelte_menu["partita_libera"]
+	var sc: int = 6 if libera else scelte_menu["scenario"]
 	var validi := _personaggi_validi(sc)
 	validi.erase(scelte_menu["pg"])
 	var rng := RandomNumberGenerator.new()
@@ -984,7 +1002,11 @@ func _nuova_partita() -> void:
 	if scelte_menu["edizione"] == "classico":
 		_avvia(func(): return g.nuova_con_profilo(ProfiliRegole.classico_completo(), scelte_menu["pg"], rivali, rng.randi()))
 	else:
-		_avvia(func(): g.nuova(sc, scelte_menu["pg"], rivali, rng.randi()))
+		_avvia(func():
+			g.nuova(sc, scelte_menu["pg"], rivali, rng.randi())
+			if libera:
+				g.s["partita_libera"] = true
+				g.s["giorni_max"] = int(scelte_menu["durata_libera"]))
 
 func _nuovo_codice(rng: RandomNumberGenerator) -> String:
 	var a := "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"
