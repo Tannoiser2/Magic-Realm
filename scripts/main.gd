@@ -1250,6 +1250,8 @@ func _aggiorna_scheda() -> void:
 	if g.s["scenario"] >= 5:
 		var rr := {2: [], 1: [], -1: [], -2: []}
 		for gid in Dati.nativi["gruppi"]:
+			if g.e_classico() and not (gid in Nativi.GRUPPI_CLASSICI):
+				continue
 			var v := g.nativi.rapporto(u, gid)
 			if rr.has(v):
 				rr[v].append(Dati.nativi["gruppi"][gid]["nome"])
