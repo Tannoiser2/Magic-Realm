@@ -18,11 +18,15 @@ jobs:
     steps:
       - name: Checkout experimental branch
         uses: actions/checkout@v4
-      - name: Install Godot 4.7.2
-        uses: chickensoft-games/setup-godot@v2
-        with:
-          version: '4.7.2'
-          use-dotnet: false
+      - name: Install Godot 4.7.2 from SourceForge release mirror
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --location --retry 5 --retry-delay 6 --connect-timeout 30 \
+            'https://sourceforge.net/projects/godot-engine.mirror/files/4.7.2-stable/Godot_v4.7.2-stable_linux.x86_64.zip/download' \
+            --output /tmp/godot-4.7.2.zip
+          unzip -q /tmp/godot-4.7.2.zip -d /tmp/godot-dist
+          sudo install -m 755 /tmp/godot-dist/Godot_v4.7.2-stable_linux.x86_64 /usr/local/bin/godot
       - name: Print Godot version
         run: godot --version
       - name: Import resources and parse scripts
