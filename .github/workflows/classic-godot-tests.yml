@@ -6,7 +6,7 @@ on:
     branches: [main]
 
 concurrency:
-  group: magic-realm-classic-tests-\${{ github.event.pull_request.number || github.ref }}
+  group: magic-realm-classic-tests-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
 permissions:
