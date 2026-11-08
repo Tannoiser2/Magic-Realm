@@ -1241,6 +1241,16 @@ func _aggiorna_scheda() -> void:
 	elif g.s["scenario"] == 2:
 		punti += " · uccisioni %d/4" % u["uccisi_pg"]
 	scheda.add_child(_lab(punti, 17, f_tit))
+	# Cavalli esclusivi del Classico: uno cavalcato, altri come animali da soma.
+	if g.e_classico() and g.usa_regola("cavalli") and not u.get("cavalli", []).is_empty():
+		scheda.add_child(_lab("Cavalli · uno attivo, gli altri da soma", 18, f_tit))
+		var scuderia := HFlowContainer.new()
+		scheda.add_child(scuderia)
+		for cavallo in u["cavalli"]:
+			var definizione: Dictionary = CavalliClassici.definizione(cavallo["id"])
+			var cavalcato: bool = cavallo.get("attivo", false)
+			scuderia.add_child(_bott(("%s: %s" % [definizione["nome"], "cavalcato" if cavalcato else "da soma"]),
+				func(): _attiva_cavallo(cavallo["id"]), 14, cavalcato))
 	# segnalini d'azione
 	scheda.add_child(_lab("Segnalini d'azione", 18, f_tit))
 	var gr := GridContainer.new()
@@ -1435,6 +1445,21 @@ func _carta_inc(id: String) -> void:
 		if not g.richiesta.is_empty() and g.richiesta["tipo"] != "piano": _chiede(g.richiesta), 17))
 	_ricentra()
 
+func _attiva_cavallo(id: String) -> void:
+	if not g.e_classico() or not g.usa_regola("cavalli"):
+		return
+	if g.richiesta.get("tipo", "") != "piano":
+		_avviso("Puoi cambiare cavallo prima di confermare il piano del giorno.")
+		return
+	var u: Dictionary = g.umano()
+	if not CavalliClassici.attiva(u, id, g.carico_max(u), g.vulnerabilita(u), g.tipo_radura(u["dove"]) == "C"):
+		_avviso("Non puoi cavalcare questo animale: grotta o carico troppo pesante.")
+		return
+	fasi = g.fasi_disponibili(u)
+	piano = []
+	_aggiorna_scheda()
+	_pannello_piano()
+
 func _attiva_oggetto(id: String) -> void:
 	if g.richiesta.get("tipo", "") != "piano":
 		_avviso("Gli oggetti si attivano all'alba (o come azione in combattimento).")
@@ -1512,7 +1537,7 @@ func _pannello_piano() -> void:
 	var tot := _fasi_totali()
 	var testo := "Alba del giorno %d: registra le attività di %s (%d fasi" % [g.s["giorno"], u["nome"], tot]
 	if not fasi["extra"].is_empty():
-		var nomi := {"M": "movimento", "R": "riposo", "H": "nascondersi", "S": "ricerca", "A": "allerta", "*": "qualsiasi", "E": "incanto", "T": "commercio", "HR": "ingaggio", "V": "volo"}
+		var nomi := {"M": "movimento", "R": "riposo", "H": "nascondersi", "S": "ricerca", "A": "allerta", "*": "qualsiasi", "E": "incanto", "T": "commercio", "HR": "ingaggio", "V": "volo", "MP": "pony (movimento)", "MC": "cavallo da lavoro (movimento)"}
 		testo += ", di cui extra: " + ", ".join(fasi["extra"].map(func(x): return nomi[x]))
 	testo += ")."
 	if fasi["grotta"]:
