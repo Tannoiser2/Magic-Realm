@@ -47,6 +47,9 @@ jobs:
       - name: Classic menu and UI smoke test
         timeout-minutes: 4
         run: godot --headless --path . --script res://tests/ui_classico_smoke_test.gd
+      - name: Interactive melee board smoke test
+        timeout-minutes: 4
+        run: godot --headless --path . --script res://tests/plancia_combattimento_test.gd
       - name: Super free-play UI and separated saves
         timeout-minutes: 4
         run: godot --headless --path . --script res://tests/ui_super_libera_test.gd
