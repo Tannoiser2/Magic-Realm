@@ -514,6 +514,11 @@ func _numeri(x) -> void:
 		for k in ["incantesimi", "inc_iniziali", "twt"]:
 			if not p.has(k): p[k] = []
 		if not p.has("effetti"): p["effetti"] = {}
+		if p.has("vp"):
+			for categoria in p["vp"]:
+				p["vp"][categoria] = int(p["vp"][categoria])
+		if p.has("oro_iniziale"):
+			p["oro_iniziale"] = int(p["oro_iniziale"])
 		for c in p["chits"]:
 			c["vel"] = int(c["vel"])
 			c["sforzi"] = int(c["sforzi"])
