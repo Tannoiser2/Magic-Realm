@@ -23,7 +23,7 @@ func _init() -> void:
 		assert(g.umano()["vp"]["inc"] == 0)
 		if i < 4:
 			assert(g.umano()["incantesimi"].is_empty())
-		var copy := JSON.parse_string(JSON.stringify(g.esporta()))
+		var copy: Dictionary = JSON.parse_string(JSON.stringify(g.esporta()))
 		var restored := Reame.new()
 		restored.importa(copy)
 		assert(restored.incontro_classico() == i)
