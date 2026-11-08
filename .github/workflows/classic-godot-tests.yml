@@ -48,6 +48,8 @@ jobs:
         run: timeout 45s godot --headless --path . --script res://tests/partita_classica_auto_test.gd
       - name: Character re-entry at the Inn
         run: timeout 45s godot --headless --path . --script res://tests/reingresso_classico_test.gd
+      - name: Original seventh-day monster return
+        run: timeout 45s godot --headless --path . --script res://tests/settimana_classica_test.gd
       - name: Classic menu and UI smoke test
         timeout-minutes: 4
         run: timeout 45s godot --headless --path . --script res://tests/ui_classico_smoke_test.gd
