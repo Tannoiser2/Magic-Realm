@@ -314,7 +314,7 @@ func opzioni_commercio(p: Dictionary) -> Array:
 		if capo(gid).is_empty() or r.s["nativi"][gid]["ostili"].has(p["pid"]):
 			continue
 		a.append({"gruppo": gid, "nome": gruppo(gid)["nome"], "rapporto": NOMI_REL[rapporto(p, gid)], "merce": merce(gid)})
-	if r.s["scenario"] >= 6:
+	if r.usa_regola("visitatori"):
 		for id in r.viaggi.visitatori_qui(p["dove"]):
 			var x := {"gruppo": "v:" + id, "nome": Viaggi.v(id)["nome"], "rapporto": NOMI_REL[rapporto(p, "v:" + id)], "merce": []}
 			if id == "blacksmith":
