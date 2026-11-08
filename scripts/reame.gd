@@ -676,6 +676,15 @@ func gioca_giorno() -> void:
 	for p in vivi():
 		var r = await decidi(p, "piano", {"fasi": fasi_disponibili(p)})
 		p["piano"] = r if r is Array else []
+		p["segue"] = ""
+	if e_classico() and usa_regola("combattimento_pg"):
+		for p in vivi():
+			if p["piano"].size() != 1 or p["piano"][0].get("a", "") != "F":
+				continue
+			var guida: Dictionary = P(str(p["piano"][0].get("guida", "")))
+			if not guida.is_empty() and guida != p and not guida["morto"] and guida["dove"] == p["dove"]:
+				p["segue"] = guida["pid"]
+				scrivi("%s segue %s per l'intero giorno." % [p["nome"], guida["nome"]])
 	# Sorgere del sole: tiro dei mostri
 	if usa_regola("mostri"):
 		s["riga_mostri"] = d6()
@@ -696,7 +705,7 @@ func gioca_giorno() -> void:
 	s["fase"] = "giorno"
 	cambiato.emit()
 	# Giorno: turni in ordine casuale
-	var ordine: Array = vivi().map(func(p): return p["pid"])
+	var ordine: Array = vivi().filter(func(p): return str(p.get("segue", "")) == "").map(func(p): return p["pid"])
 	mescola(ordine)
 	var spadaccini: Array = ordine.filter(func(x): return ha_abilita(P(x), "astuto"))
 	for x in spadaccini:
@@ -726,6 +735,10 @@ func gioca_giorno() -> void:
 		fatti[chi] = true
 		if s["fine"] != "":
 			return
+	for p in vivi():
+		if str(p.get("segue", "")) != "":
+			p["turno_fatto"] = true
+			p["segue"] = ""
 	# Tramonto e sera: solo gli Encounter 2-4 consentono combattimento.
 	s["fase"] = "sera"
 	cambiato.emit()
@@ -782,11 +795,37 @@ func vicini_di(p: Dictionary, k: String) -> Array:
 			r.append(e["b"])
 	return r
 
+# The follower accompanies the ultimate guide (chains are legal; cycles do nothing).
+func _seguitori_di(guida: Dictionary) -> Array:
+	var gruppo: Array = []
+	if not e_classico() or not usa_regola("combattimento_pg"):
+		return gruppo
+	for p in vivi():
+		if p == guida or str(p.get("segue", "")) == "":
+			continue
+		var corrente: Dictionary = p
+		var visitati := {}
+		while str(corrente.get("segue", "")) != "":
+			var pid: String = str(corrente["segue"])
+			if visitati.has(pid):
+				break
+			visitati[pid] = true
+			if pid == guida["pid"]:
+				gruppo.append(p)
+				break
+			corrente = P(pid)
+			if corrente.is_empty():
+				break
+	return gruppo
+
 func esegui_turno(p: Dictionary) -> void:
+	var seguitori: Array = _seguitori_di(p)
 	s["attivo"] = p["pid"]
 	scrivi("Turno di %s." % p["nome"], "turno")
 	if (s["scenario"] >= 2 or e_classico()) and p["nascosto"]:
 		p["nascosto"] = false
+	for q in seguitori:
+		q["nascosto"] = false
 	cambiato.emit()
 	await pausa(0.25)
 	var st := {"base": 0, "luce": 0, "extra": fasi_disponibili(p)["extra"].duplicate(),
@@ -827,11 +866,24 @@ func esegui_turno(p: Dictionary) -> void:
 		if slot == "":
 			break
 		match a["a"]:
-			"S": await attivita_ricerca(p)
-			"H": attivita_nascondi(p)
+			"S":
+				await attivita_ricerca(p)
+				for q in seguitori:
+					for campo in ["scoperti", "indizi", "sbirciati"]:
+						for k in p[campo]:
+							q[campo][k] = p[campo][k]
+					for id_sito in p["siti"]:
+						if not (id_sito in q["siti"]): q["siti"].append(id_sito)
+			"H":
+				attivita_nascondi(p)
+				for q in seguitori:
+					q["nascosto"] = p["nascosto"]
 			"A":
 				if not e_classico() or usa_regola("combattimento_mostri"): attivita_allerta(p)
-			"R": await attivita_riposo(p)
+			"R":
+				await attivita_riposo(p)
+				for q in seguitori:
+					await attivita_riposo(q)
 			"E":
 				if usa_regola("magia"): await arcano.attivita_incanto(p)
 			"V":
@@ -844,6 +896,11 @@ func esegui_turno(p: Dictionary) -> void:
 		i += 1
 	if not p["morto"]:
 		await fine_turno(p)
+	for q in seguitori:
+		if not q["morto"]:
+			await fine_turno(q)
+		q["turno_fatto"] = true
+		q["segue"] = ""
 	p["turno_fatto"] = true
 	s.erase("attivo")
 	cambiato.emit()
@@ -883,6 +940,17 @@ func _muovi(p: Dictionary, dest: String) -> void:
 	# sentieri usati: chi li percorre li conosce
 	p["entrato_da"] = p["dove"]
 	p["dove"] = dest
+	if e_classico() and str(s.get("attivo", "")) == p["pid"]:
+		for q in _seguitori_di(p):
+			if q["dove"] != p["entrato_da"] or movimento_max(q) < carico_max(q):
+				q["segue"] = ""
+				scrivi("%s si ferma e non segue più %s." % [q["nome"], p["nome"]])
+				continue
+			for e in mappa.vicini.get(p["entrato_da"], []):
+				if e["b"] == dest and e["tipo"] in ["nascosto", "segreto"]:
+					q["scoperti"][e["id"]] = true
+			q["entrato_da"] = p["entrato_da"]
+			q["dove"] = dest
 	scrivi("%s si muove a %s." % [p["nome"], nome_r(dest)])
 	if s["scenario"] >= 5:
 		nativi.segui(p)
