@@ -8,7 +8,7 @@ const CAVE := [4, 5, 6, 7, 18]
 const MONTAGNE := [3, 13, 14, 15, 16]
 const VALLI := [21, 22, 23, 24, 25]
 const BOSCHI := [26, 27, 28, 29, 30]
-const TESSERE_CLASSICHE := CAVE + MONTAGNE + VALLI + BOSCHI
+const TESSERE_CLASSICHE := [4, 5, 6, 7, 18, 3, 13, 14, 15, 16, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
 const BORDERLAND := 5
 
 func _raggiungibili_borderland() -> Dictionary:
