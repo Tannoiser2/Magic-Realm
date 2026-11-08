@@ -1,0 +1,682 @@
+[
+ {
+  "id": "perduto_castle",
+  "tipo": "perduto",
+  "nome": "Castello Perduto",
+  "nome_base": "Castle",
+  "radura": 1,
+  "retro": "retro_rosso"
+ },
+ {
+  "id": "perduto_city",
+  "tipo": "perduto",
+  "nome": "Città Perduta",
+  "nome_base": "City",
+  "radura": 3,
+  "retro": "retro_rosso"
+ },
+ {
+  "id": "bones_c",
+  "tipo": "avviso",
+  "nome": "Ossa C",
+  "nome_base": "Bones",
+  "lettera": "C",
+  "abitazione": null,
+  "retro": "retro_giallo_c"
+ },
+ {
+  "id": "dank_c",
+  "tipo": "avviso",
+  "nome": "Muffa C",
+  "nome_base": "Dank",
+  "lettera": "C",
+  "abitazione": null,
+  "retro": "retro_giallo_c"
+ },
+ {
+  "id": "smoke_c",
+  "tipo": "avviso",
+  "nome": "Fumo C",
+  "nome_base": "Smoke",
+  "lettera": "C",
+  "abitazione": null,
+  "retro": "retro_giallo_c"
+ },
+ {
+  "id": "ruins_c",
+  "tipo": "avviso",
+  "nome": "Rovine C",
+  "nome_base": "Ruins",
+  "lettera": "C",
+  "abitazione": null,
+  "retro": "retro_giallo_c"
+ },
+ {
+  "id": "stink_c",
+  "tipo": "avviso",
+  "nome": "Fetore C",
+  "nome_base": "Stink",
+  "lettera": "C",
+  "abitazione": null,
+  "retro": "retro_giallo_c"
+ },
+ {
+  "id": "smoke_v",
+  "tipo": "avviso",
+  "nome": "Fumo V",
+  "nome_base": "Smoke",
+  "lettera": "V",
+  "abitazione": "casa",
+  "retro": "retro_giallo_v"
+ },
+ {
+  "id": "stink_v",
+  "tipo": "avviso",
+  "nome": "Fetore V",
+  "nome_base": "Stink",
+  "lettera": "V",
+  "abitazione": "locanda",
+  "retro": "retro_giallo_v"
+ },
+ {
+  "id": "ruins_v",
+  "tipo": "avviso",
+  "nome": "Rovine V",
+  "nome_base": "Ruins",
+  "lettera": "V",
+  "abitazione": "corpo_guardia",
+  "retro": "retro_giallo_v"
+ },
+ {
+  "id": "bones_v",
+  "tipo": "avviso",
+  "nome": "Ossa V",
+  "nome_base": "Bones",
+  "lettera": "V",
+  "abitazione": "borgo",
+  "retro": "retro_giallo_v"
+ },
+ {
+  "id": "dank_v",
+  "tipo": "avviso",
+  "nome": "Muffa V",
+  "nome_base": "Dank",
+  "lettera": "V",
+  "abitazione": "cappella",
+  "retro": "retro_giallo_v"
+ },
+ {
+  "id": "dank_w",
+  "tipo": "avviso",
+  "nome": "Muffa W",
+  "nome_base": "Dank",
+  "lettera": "W",
+  "abitazione": null,
+  "retro": "retro_giallo_w"
+ },
+ {
+  "id": "ruins_w",
+  "tipo": "avviso",
+  "nome": "Rovine W",
+  "nome_base": "Ruins",
+  "lettera": "W",
+  "abitazione": null,
+  "retro": "retro_giallo_w"
+ },
+ {
+  "id": "smoke_w",
+  "tipo": "avviso",
+  "nome": "Fumo W",
+  "nome_base": "Smoke",
+  "lettera": "W",
+  "abitazione": "fuoco_piccolo",
+  "retro": "retro_giallo_w"
+ },
+ {
+  "id": "bones_w",
+  "tipo": "avviso",
+  "nome": "Ossa W",
+  "nome_base": "Bones",
+  "lettera": "W",
+  "abitazione": null,
+  "retro": "retro_giallo_w"
+ },
+ {
+  "id": "stink_w",
+  "tipo": "avviso",
+  "nome": "Fetore W",
+  "nome_base": "Stink",
+  "lettera": "W",
+  "abitazione": "fuoco_grande",
+  "retro": "retro_giallo_w"
+ },
+ {
+  "id": "dank_m",
+  "tipo": "avviso",
+  "nome": "Muffa M",
+  "nome_base": "Dank",
+  "lettera": "M",
+  "abitazione": null,
+  "retro": "retro_giallo_m"
+ },
+ {
+  "id": "bones_m",
+  "tipo": "avviso",
+  "nome": "Ossa M",
+  "nome_base": "Bones",
+  "lettera": "M",
+  "abitazione": null,
+  "retro": "retro_giallo_m"
+ },
+ {
+  "id": "ruins_m",
+  "tipo": "avviso",
+  "nome": "Rovine M",
+  "nome_base": "Ruins",
+  "lettera": "M",
+  "abitazione": null,
+  "retro": "retro_giallo_m"
+ },
+ {
+  "id": "stink_m",
+  "tipo": "avviso",
+  "nome": "Fetore M",
+  "nome_base": "Stink",
+  "lettera": "M",
+  "abitazione": null,
+  "retro": "retro_giallo_m"
+ },
+ {
+  "id": "smoke_m",
+  "tipo": "avviso",
+  "nome": "Fumo M",
+  "nome_base": "Smoke",
+  "lettera": "M",
+  "abitazione": null,
+  "retro": "retro_giallo_m"
+ },
+ {
+  "id": "dank_h",
+  "tipo": "avviso",
+  "nome": "Muffa H",
+  "nome_base": "Dank",
+  "lettera": "H",
+  "abitazione": "capanna",
+  "retro": "retro_giallo_h"
+ },
+ {
+  "id": "ruins_h",
+  "tipo": "avviso",
+  "nome": "Rovine H",
+  "nome_base": "Ruins",
+  "lettera": "H",
+  "abitazione": "fantasmi",
+  "retro": "retro_giallo_h"
+ },
+ {
+  "id": "stink_h",
+  "tipo": "avviso",
+  "nome": "Fetore H",
+  "nome_base": "Stink",
+  "lettera": "H",
+  "abitazione": "casolare",
+  "retro": "retro_giallo_h"
+ },
+ {
+  "id": "bones_h",
+  "tipo": "avviso",
+  "nome": "Ossa H",
+  "nome_base": "Bones",
+  "lettera": "H",
+  "abitazione": "fantasmi",
+  "retro": "retro_giallo_h"
+ },
+ {
+  "id": "smoke_h",
+  "tipo": "avviso",
+  "nome": "Fumo H",
+  "nome_base": "Smoke",
+  "lettera": "H",
+  "abitazione": "insediamento",
+  "retro": "retro_giallo_h"
+ },
+ {
+  "id": "bones_s",
+  "tipo": "avviso",
+  "nome": "Ossa S",
+  "nome_base": "Bones",
+  "lettera": "S",
+  "abitazione": null,
+  "retro": "retro_giallo_s"
+ },
+ {
+  "id": "dank_s",
+  "tipo": "avviso",
+  "nome": "Muffa S",
+  "nome_base": "Dank",
+  "lettera": "S",
+  "abitazione": null,
+  "retro": "retro_giallo_s"
+ },
+ {
+  "id": "ruins_s",
+  "tipo": "avviso",
+  "nome": "Rovine S",
+  "nome_base": "Ruins",
+  "lettera": "S",
+  "abitazione": null,
+  "retro": "retro_giallo_s"
+ },
+ {
+  "id": "stink_s",
+  "tipo": "avviso",
+  "nome": "Fetore S",
+  "nome_base": "Stink",
+  "lettera": "S",
+  "abitazione": "campo_grande",
+  "retro": "retro_giallo_s"
+ },
+ {
+  "id": "smoke_s",
+  "tipo": "avviso",
+  "nome": "Fumo S",
+  "nome_base": "Smoke",
+  "lettera": "S",
+  "abitazione": "campo_piccolo",
+  "retro": "retro_giallo_s"
+ },
+ {
+  "id": "stink_f",
+  "tipo": "avviso",
+  "nome": "Fetore F",
+  "nome_base": "Stink",
+  "lettera": "F",
+  "abitazione": null,
+  "retro": "retro_giallo_f"
+ },
+ {
+  "id": "bones_f",
+  "tipo": "avviso",
+  "nome": "Ossa F",
+  "nome_base": "Bones",
+  "lettera": "F",
+  "abitazione": null,
+  "retro": "retro_giallo_f"
+ },
+ {
+  "id": "dank_f",
+  "tipo": "avviso",
+  "nome": "Muffa F",
+  "nome_base": "Dank",
+  "lettera": "F",
+  "abitazione": null,
+  "retro": "retro_giallo_f"
+ },
+ {
+  "id": "ruins_f",
+  "tipo": "avviso",
+  "nome": "Rovine F",
+  "nome_base": "Ruins",
+  "lettera": "F",
+  "abitazione": null,
+  "retro": "retro_giallo_f"
+ },
+ {
+  "id": "smoke_f",
+  "tipo": "avviso",
+  "nome": "Fumo F",
+  "nome_base": "Smoke",
+  "lettera": "F",
+  "abitazione": null,
+  "retro": "retro_giallo_f"
+ },
+ {
+  "id": "stink_r",
+  "tipo": "avviso",
+  "nome": "Fetore R",
+  "nome_base": "Stink",
+  "lettera": "R",
+  "abitazione": null,
+  "retro": "retro_giallo_r"
+ },
+ {
+  "id": "dank_r",
+  "tipo": "avviso",
+  "nome": "Muffa R",
+  "nome_base": "Dank",
+  "lettera": "R",
+  "abitazione": null,
+  "retro": "retro_giallo_r"
+ },
+ {
+  "id": "bones_r",
+  "tipo": "avviso",
+  "nome": "Ossa R",
+  "nome_base": "Bones",
+  "lettera": "R",
+  "abitazione": null,
+  "retro": "retro_giallo_r"
+ },
+ {
+  "id": "ruins_r",
+  "tipo": "avviso",
+  "nome": "Rovine R",
+  "nome_base": "Ruins",
+  "lettera": "R",
+  "abitazione": null,
+  "retro": "retro_giallo_r"
+ },
+ {
+  "id": "smoke_r",
+  "tipo": "avviso",
+  "nome": "Fumo R",
+  "nome_base": "Smoke",
+  "lettera": "R",
+  "abitazione": null,
+  "retro": "retro_giallo_r"
+ },
+ {
+  "id": "sito_lair",
+  "tipo": "sito",
+  "nome": "Covo 3",
+  "nome_base": "Lair",
+  "radura": 3,
+  "retro": "retro_rosso"
+ },
+ {
+  "id": "sito_tomb",
+  "tipo": "sito",
+  "nome": "Tomba 4",
+  "nome_base": "Tomb",
+  "radura": 4,
+  "retro": "retro_rosso"
+ },
+ {
+  "id": "sito_den",
+  "tipo": "sito",
+  "nome": "Tana 2",
+  "nome_base": "Den",
+  "radura": 2,
+  "retro": "retro_rosso"
+ },
+ {
+  "id": "sito_shrine",
+  "tipo": "sito",
+  "nome": "Santuario 4",
+  "nome_base": "Shrine",
+  "radura": 4,
+  "retro": "retro_rosso"
+ },
+ {
+  "id": "sito_hoard",
+  "tipo": "sito",
+  "nome": "Bottino 6",
+  "nome_base": "Hoard",
+  "radura": 6,
+  "retro": "retro_rosso"
+ },
+ {
+  "id": "sito_altar",
+  "tipo": "sito",
+  "nome": "Altare 1",
+  "nome_base": "Altar",
+  "radura": 1,
+  "retro": "retro_rosso"
+ },
+ {
+  "id": "sito_pit",
+  "tipo": "sito",
+  "nome": "Fossa 1",
+  "nome_base": "Pit",
+  "radura": 1,
+  "retro": "retro_rosso"
+ },
+ {
+  "id": "sito_vault",
+  "tipo": "sito",
+  "nome": "Sotterraneo 3",
+  "nome_base": "Vault",
+  "radura": 3,
+  "retro": "retro_rosso"
+ },
+ {
+  "id": "sito_maze",
+  "tipo": "sito",
+  "nome": "Labirinto 3",
+  "nome_base": "Maze",
+  "radura": 3,
+  "retro": "retro_rosso"
+ },
+ {
+  "id": "sito_pool",
+  "tipo": "sito",
+  "nome": "Stagno 6",
+  "nome_base": "Pool",
+  "radura": 6,
+  "retro": "retro_rosso"
+ },
+ {
+  "id": "sito_garden",
+  "tipo": "sito",
+  "nome": "Giardino 1",
+  "nome_base": "Garden",
+  "radura": 1,
+  "retro": "retro_rosso"
+ },
+ {
+  "id": "sito_tower",
+  "tipo": "sito",
+  "nome": "Torre 5",
+  "nome_base": "Tower",
+  "radura": 5,
+  "retro": "retro_rosso"
+ },
+ {
+  "id": "sito_cairns",
+  "tipo": "sito",
+  "nome": "Tumuli 5",
+  "nome_base": "Cairns",
+  "radura": 5,
+  "retro": "retro_rosso"
+ },
+ {
+  "id": "sito_statue",
+  "tipo": "sito",
+  "nome": "Statua 2",
+  "nome_base": "Statue",
+  "radura": 2,
+  "retro": "retro_rosso"
+ },
+ {
+  "id": "sito_temple",
+  "tipo": "sito",
+  "nome": "Tempio 5",
+  "nome_base": "Temple",
+  "radura": 5,
+  "retro": "retro_rosso"
+ },
+ {
+  "id": "sito_spire",
+  "tipo": "sito",
+  "nome": "Guglia 6",
+  "nome_base": "Spire",
+  "radura": 6,
+  "retro": "retro_rosso"
+ },
+ {
+  "id": "slither_3",
+  "tipo": "suono",
+  "nome": "Fruscio 3",
+  "nome_base": "Slither",
+  "radura": 3,
+  "retro": "retro_rosso"
+ },
+ {
+  "id": "slither_6",
+  "tipo": "suono",
+  "nome": "Fruscio 6",
+  "nome_base": "Slither",
+  "radura": 6,
+  "retro": "retro_rosso"
+ },
+ {
+  "id": "slither_1",
+  "tipo": "suono",
+  "nome": "Fruscio 1",
+  "nome_base": "Slither",
+  "radura": 1,
+  "retro": "retro_rosso"
+ },
+ {
+  "id": "slither_5",
+  "tipo": "suono",
+  "nome": "Fruscio 5",
+  "nome_base": "Slither",
+  "radura": 5,
+  "retro": "retro_rosso"
+ },
+ {
+  "id": "roar_6",
+  "tipo": "suono",
+  "nome": "Ruggito 6",
+  "nome_base": "Roar",
+  "radura": 6,
+  "retro": "retro_rosso"
+ },
+ {
+  "id": "roar_5",
+  "tipo": "suono",
+  "nome": "Ruggito 5",
+  "nome_base": "Roar",
+  "radura": 5,
+  "retro": "retro_rosso"
+ },
+ {
+  "id": "roar_4",
+  "tipo": "suono",
+  "nome": "Ruggito 4",
+  "nome_base": "Roar",
+  "radura": 4,
+  "retro": "retro_rosso"
+ },
+ {
+  "id": "roar_3",
+  "tipo": "suono",
+  "nome": "Ruggito 3",
+  "nome_base": "Roar",
+  "radura": 3,
+  "retro": "retro_rosso"
+ },
+ {
+  "id": "patter_5",
+  "tipo": "suono",
+  "nome": "Zampettio 5",
+  "nome_base": "Patter",
+  "radura": 5,
+  "retro": "retro_rosso"
+ },
+ {
+  "id": "patter_4",
+  "tipo": "suono",
+  "nome": "Zampettio 4",
+  "nome_base": "Patter",
+  "radura": 4,
+  "retro": "retro_rosso"
+ },
+ {
+  "id": "patter_2",
+  "tipo": "suono",
+  "nome": "Zampettio 2",
+  "nome_base": "Patter",
+  "radura": 2,
+  "retro": "retro_rosso"
+ },
+ {
+  "id": "patter_1",
+  "tipo": "suono",
+  "nome": "Zampettio 1",
+  "nome_base": "Patter",
+  "radura": 1,
+  "retro": "retro_rosso"
+ },
+ {
+  "id": "howl_5",
+  "tipo": "suono",
+  "nome": "Ululato 5",
+  "nome_base": "Howl",
+  "radura": 5,
+  "retro": "retro_rosso"
+ },
+ {
+  "id": "howl_4",
+  "tipo": "suono",
+  "nome": "Ululato 4",
+  "nome_base": "Howl",
+  "radura": 4,
+  "retro": "retro_rosso"
+ },
+ {
+  "id": "howl_3",
+  "tipo": "suono",
+  "nome": "Ululato 3",
+  "nome_base": "Howl",
+  "radura": 3,
+  "retro": "retro_rosso"
+ },
+ {
+  "id": "howl_2",
+  "tipo": "suono",
+  "nome": "Ululato 2",
+  "nome_base": "Howl",
+  "radura": 2,
+  "retro": "retro_rosso"
+ },
+ {
+  "id": "flutter_6",
+  "tipo": "suono",
+  "nome": "Frullo 6",
+  "nome_base": "Flutter",
+  "radura": 6,
+  "retro": "retro_rosso"
+ },
+ {
+  "id": "flutter_4",
+  "tipo": "suono",
+  "nome": "Frullo 4",
+  "nome_base": "Flutter",
+  "radura": 4,
+  "retro": "retro_rosso"
+ },
+ {
+  "id": "flutter_2",
+  "tipo": "suono",
+  "nome": "Frullo 2",
+  "nome_base": "Flutter",
+  "radura": 2,
+  "retro": "retro_rosso"
+ },
+ {
+  "id": "flutter_1",
+  "tipo": "suono",
+  "nome": "Frullo 1",
+  "nome_base": "Flutter",
+  "radura": 1,
+  "retro": "retro_rosso"
+ },
+ {
+  "id": "perduto_palace",
+  "tipo": "perduto",
+  "nome": "Palazzo Perduto",
+  "nome_base": "Palace",
+  "radura": 2,
+  "retro": "retro_rosso"
+ },
+ {
+  "id": "perduto_fortress",
+  "tipo": "perduto",
+  "nome": "Fortezza Perduta",
+  "nome_base": "Fortress",
+  "radura": 4,
+  "retro": "retro_rosso"
+ }
+]

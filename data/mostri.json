@@ -1,0 +1,2424 @@
+{
+ "tipi": {
+  "fantasma": {
+   "nome": "Fantasma",
+   "plurale": "Fantasmi",
+   "peso": "M",
+   "chiaro": [
+    "H4",
+    4
+   ],
+   "scuro": [
+    "L2",
+    2
+   ],
+   "fama": 0,
+   "noto": 2,
+   "lung": [
+    0,
+    0
+   ],
+   "armato": false,
+   "vola": false,
+   "missile": [
+    false,
+    false
+   ],
+   "incant": null,
+   "extra": null
+  },
+  "goblin_ascia": {
+   "nome": "Goblin con ascia",
+   "plurale": "Goblin con ascia",
+   "peso": "M",
+   "chiaro": [
+    "L4*",
+    3
+   ],
+   "scuro": [
+    "M4*",
+    4
+   ],
+   "fama": 1,
+   "noto": 1,
+   "lung": [
+    2,
+    2
+   ],
+   "armato": false,
+   "vola": false,
+   "missile": [
+    false,
+    false
+   ],
+   "incant": null,
+   "extra": null
+  },
+  "goblin_arco": {
+   "nome": "Goblin con arco",
+   "plurale": "Goblin con arco",
+   "peso": "M",
+   "chiaro": [
+    "",
+    3
+   ],
+   "scuro": [
+    "L1**",
+    5
+   ],
+   "fama": 1,
+   "noto": 1,
+   "lung": [
+    14,
+    14
+   ],
+   "armato": false,
+   "vola": false,
+   "missile": [
+    false,
+    true
+   ],
+   "incant": null,
+   "extra": null
+  },
+  "goblin_spadone": {
+   "nome": "Goblin con spadone",
+   "plurale": "Goblin con spadone",
+   "peso": "M",
+   "chiaro": [
+    "H6*",
+    3
+   ],
+   "scuro": [
+    "T5*",
+    5
+   ],
+   "fama": 1,
+   "noto": 1,
+   "lung": [
+    8,
+    8
+   ],
+   "armato": false,
+   "vola": false,
+   "missile": [
+    false,
+    false
+   ],
+   "incant": null,
+   "extra": null
+  },
+  "goblin_lancia": {
+   "nome": "Goblin con lancia",
+   "plurale": "Goblin con lancia",
+   "peso": "M",
+   "chiaro": [
+    "",
+    3
+   ],
+   "scuro": [
+    "H5*",
+    5
+   ],
+   "fama": 1,
+   "noto": 1,
+   "lung": [
+    10,
+    10
+   ],
+   "armato": false,
+   "vola": false,
+   "missile": [
+    false,
+    false
+   ],
+   "incant": null,
+   "extra": null
+  },
+  "imp": {
+   "nome": "Imp",
+   "plurale": "Imp",
+   "peso": "M",
+   "chiaro": [
+    "V2",
+    2
+   ],
+   "scuro": [
+    "M4",
+    3
+   ],
+   "fama": 2,
+   "noto": 1,
+   "lung": [
+    17,
+    0
+   ],
+   "armato": false,
+   "vola": false,
+   "missile": [
+    false,
+    false
+   ],
+   "incant": "maledizione",
+   "extra": null
+  },
+  "orco_m": {
+   "nome": "Orco",
+   "plurale": "Orchi",
+   "peso": "M",
+   "chiaro": [
+    "T5",
+    5
+   ],
+   "scuro": [
+    "H5",
+    4
+   ],
+   "fama": 0,
+   "noto": 2,
+   "lung": [
+    0,
+    0
+   ],
+   "armato": false,
+   "vola": false,
+   "missile": [
+    false,
+    false
+   ],
+   "incant": null,
+   "extra": null
+  },
+  "ratto_a": {
+   "nome": "Ratto",
+   "plurale": "Ratti",
+   "peso": "M",
+   "chiaro": [
+    "M4",
+    4
+   ],
+   "scuro": [
+    "L4",
+    3
+   ],
+   "fama": 0,
+   "noto": 1,
+   "lung": [
+    0,
+    0
+   ],
+   "armato": false,
+   "vola": false,
+   "missile": [
+    false,
+    false
+   ],
+   "incant": null,
+   "extra": null
+  },
+  "ratto_b": {
+   "nome": "Ratto",
+   "plurale": "Ratti",
+   "peso": "M",
+   "chiaro": [
+    "L3",
+    4
+   ],
+   "scuro": [
+    "M5",
+    3
+   ],
+   "fama": 0,
+   "noto": 1,
+   "lung": [
+    0,
+    0
+   ],
+   "armato": false,
+   "vola": false,
+   "missile": [
+    false,
+    false
+   ],
+   "incant": null,
+   "extra": null
+  },
+  "scheletro_ascia": {
+   "nome": "Scheletro con ascia",
+   "plurale": "Scheletri con ascia",
+   "peso": "M",
+   "chiaro": [
+    "H6*",
+    4
+   ],
+   "scuro": [
+    "H5*",
+    5
+   ],
+   "fama": 1,
+   "noto": 2,
+   "lung": [
+    5,
+    5
+   ],
+   "armato": true,
+   "vola": false,
+   "missile": [
+    false,
+    false
+   ],
+   "incant": null,
+   "extra": null
+  },
+  "scheletro_arco": {
+   "nome": "Scheletro con arco",
+   "plurale": "Scheletri con arco",
+   "peso": "M",
+   "chiaro": [
+    "",
+    3
+   ],
+   "scuro": [
+    "L1**",
+    5
+   ],
+   "fama": 1,
+   "noto": 2,
+   "lung": [
+    14,
+    14
+   ],
+   "armato": true,
+   "vola": false,
+   "missile": [
+    false,
+    true
+   ],
+   "incant": null,
+   "extra": null
+  },
+  "scheletro_lancia": {
+   "nome": "Scheletro con lancia",
+   "plurale": "Scheletri con lancia",
+   "peso": "M",
+   "chiaro": [
+    "M4*",
+    4
+   ],
+   "scuro": [
+    "H6*",
+    5
+   ],
+   "fama": 1,
+   "noto": 2,
+   "lung": [
+    10,
+    10
+   ],
+   "armato": true,
+   "vola": false,
+   "missile": [
+    false,
+    false
+   ],
+   "incant": null,
+   "extra": null
+  },
+  "scheletro_spada": {
+   "nome": "Scheletro con spada",
+   "plurale": "Scheletri con spada",
+   "peso": "M",
+   "chiaro": [
+    "L4*",
+    4
+   ],
+   "scuro": [
+    "M4*",
+    5
+   ],
+   "fama": 1,
+   "noto": 2,
+   "lung": [
+    4,
+    4
+   ],
+   "armato": true,
+   "vola": false,
+   "missile": [
+    false,
+    false
+   ],
+   "incant": null,
+   "extra": null
+  },
+  "succubo": {
+   "nome": "Succube",
+   "plurale": "Succubi",
+   "peso": "M",
+   "chiaro": [
+    "V2",
+    2
+   ],
+   "scuro": [
+    "M3",
+    4
+   ],
+   "fama": 2,
+   "noto": 1,
+   "lung": [
+    17,
+    0
+   ],
+   "armato": false,
+   "vola": false,
+   "missile": [
+    false,
+    false
+   ],
+   "incant": "ipnosi",
+   "extra": null
+  },
+  "vipera": {
+   "nome": "Vipera",
+   "plurale": "Vipere",
+   "peso": "M",
+   "chiaro": [
+    "M4**",
+    4
+   ],
+   "scuro": [
+    "L2",
+    2
+   ],
+   "fama": 1,
+   "noto": 2,
+   "lung": [
+    0,
+    0
+   ],
+   "armato": true,
+   "vola": false,
+   "missile": [
+    false,
+    false
+   ],
+   "incant": null,
+   "extra": null
+  },
+  "lupo_a": {
+   "nome": "Lupo",
+   "plurale": "Lupi",
+   "peso": "M",
+   "chiaro": [
+    "L4",
+    3
+   ],
+   "scuro": [
+    "M4",
+    4
+   ],
+   "fama": 0,
+   "noto": 1,
+   "lung": [
+    0,
+    0
+   ],
+   "armato": false,
+   "vola": false,
+   "missile": [
+    false,
+    false
+   ],
+   "incant": null,
+   "extra": null
+  },
+  "lupo_b": {
+   "nome": "Lupo",
+   "plurale": "Lupi",
+   "peso": "M",
+   "chiaro": [
+    "M5",
+    3
+   ],
+   "scuro": [
+    "L3",
+    4
+   ],
+   "fama": 0,
+   "noto": 1,
+   "lung": [
+    0,
+    0
+   ],
+   "armato": false,
+   "vola": false,
+   "missile": [
+    false,
+    false
+   ],
+   "incant": null,
+   "extra": null
+  },
+  "alligatore": {
+   "nome": "Alligatore",
+   "plurale": "Alligatori",
+   "peso": "H",
+   "chiaro": [
+    "M4",
+    3
+   ],
+   "scuro": [
+    "H4",
+    4
+   ],
+   "fama": 4,
+   "noto": 4,
+   "lung": [
+    0,
+    0
+   ],
+   "armato": true,
+   "vola": false,
+   "missile": [
+    false,
+    false
+   ],
+   "incant": null,
+   "extra": null
+  },
+  "anomalia_grigia": {
+   "nome": "Anomalia grigia",
+   "plurale": "Anomalie",
+   "peso": "H",
+   "chiaro": [
+    "M4",
+    4
+   ],
+   "scuro": [
+    "L3**",
+    5
+   ],
+   "fama": 4,
+   "noto": 4,
+   "lung": [
+    0,
+    14
+   ],
+   "armato": true,
+   "vola": false,
+   "missile": [
+    false,
+    true
+   ],
+   "incant": null,
+   "extra": null
+  },
+  "anomalia_oro": {
+   "nome": "Anomalia dorata",
+   "plurale": "Anomalie",
+   "peso": "H",
+   "chiaro": [
+    "M4",
+    4
+   ],
+   "scuro": [
+    "L3**",
+    5
+   ],
+   "fama": 4,
+   "noto": 4,
+   "lung": [
+    0,
+    14
+   ],
+   "armato": true,
+   "vola": false,
+   "missile": [
+    false,
+    true
+   ],
+   "incant": null,
+   "extra": null
+  },
+  "anomalia_viola": {
+   "nome": "Anomalia viola",
+   "plurale": "Anomalie",
+   "peso": "H",
+   "chiaro": [
+    "M4",
+    4
+   ],
+   "scuro": [
+    "L3**",
+    5
+   ],
+   "fama": 4,
+   "noto": 4,
+   "lung": [
+    0,
+    14
+   ],
+   "armato": true,
+   "vola": false,
+   "missile": [
+    false,
+    true
+   ],
+   "incant": null,
+   "extra": null
+  },
+  "anomalia_prisma": {
+   "nome": "Anomalia prismatica",
+   "plurale": "Anomalie",
+   "peso": "H",
+   "chiaro": [
+    "M4",
+    4
+   ],
+   "scuro": [
+    "L3**",
+    5
+   ],
+   "fama": 4,
+   "noto": 4,
+   "lung": [
+    0,
+    14
+   ],
+   "armato": true,
+   "vola": false,
+   "missile": [
+    false,
+    true
+   ],
+   "incant": null,
+   "extra": null
+  },
+  "orso": {
+   "nome": "Orso",
+   "plurale": "Orsi",
+   "peso": "H",
+   "chiaro": [
+    "H5",
+    4
+   ],
+   "scuro": [
+    "M4",
+    3
+   ],
+   "fama": 3,
+   "noto": 3,
+   "lung": [
+    0,
+    0
+   ],
+   "armato": false,
+   "vola": false,
+   "missile": [
+    false,
+    false
+   ],
+   "incant": null,
+   "extra": null
+  },
+  "drago": {
+   "nome": "Drago",
+   "plurale": "Draghi",
+   "peso": "H",
+   "chiaro": [
+    "H4",
+    4
+   ],
+   "scuro": [
+    "M4",
+    3
+   ],
+   "fama": 5,
+   "noto": 5,
+   "lung": [
+    0,
+    0
+   ],
+   "armato": true,
+   "vola": false,
+   "missile": [
+    false,
+    false
+   ],
+   "incant": null,
+   "extra": null
+  },
+  "drago_volante": {
+   "nome": "Drago volante",
+   "plurale": "Draghi volanti",
+   "peso": "H",
+   "chiaro": [
+    "H4",
+    4
+   ],
+   "scuro": [
+    "L4",
+    3
+   ],
+   "fama": 5,
+   "noto": 5,
+   "lung": [
+    0,
+    0
+   ],
+   "armato": true,
+   "vola": true,
+   "missile": [
+    false,
+    false
+   ],
+   "incant": null,
+   "extra": null
+  },
+  "gargoyle": {
+   "nome": "Gargoyle",
+   "plurale": "Gargoyle",
+   "peso": "H",
+   "chiaro": [
+    "M4",
+    3
+   ],
+   "scuro": [
+    "M3",
+    4
+   ],
+   "fama": 4,
+   "noto": 4,
+   "lung": [
+    0,
+    0
+   ],
+   "armato": true,
+   "vola": true,
+   "missile": [
+    false,
+    false
+   ],
+   "incant": null,
+   "extra": null
+  },
+  "pipistrello": {
+   "nome": "Pipistrello gigante",
+   "plurale": "Pipistrelli giganti",
+   "peso": "H",
+   "chiaro": [
+    "M2",
+    3
+   ],
+   "scuro": [
+    "M3",
+    2
+   ],
+   "fama": 3,
+   "noto": 3,
+   "lung": [
+    0,
+    0
+   ],
+   "armato": false,
+   "vola": true,
+   "missile": [
+    false,
+    false
+   ],
+   "incant": null,
+   "extra": null
+  },
+  "minotauro": {
+   "nome": "Minotauro",
+   "plurale": "Minotauri",
+   "peso": "H",
+   "chiaro": [
+    "H5*",
+    4
+   ],
+   "scuro": [
+    "H4*",
+    5
+   ],
+   "fama": 5,
+   "noto": 5,
+   "lung": [
+    5,
+    5
+   ],
+   "armato": false,
+   "vola": false,
+   "missile": [
+    false,
+    false
+   ],
+   "incant": null,
+   "extra": "scudo_minotauro"
+  },
+  "orco": {
+   "nome": "Orco guerriero",
+   "plurale": "Orchi guerrieri",
+   "peso": "H",
+   "chiaro": [
+    "M4*",
+    4
+   ],
+   "scuro": [
+    "H5*",
+    3
+   ],
+   "fama": 3,
+   "noto": 3,
+   "lung": [
+    8,
+    8
+   ],
+   "armato": false,
+   "vola": false,
+   "missile": [
+    false,
+    false
+   ],
+   "incant": null,
+   "extra": null
+  },
+  "scorpione": {
+   "nome": "Scorpione",
+   "plurale": "Scorpioni",
+   "peso": "H",
+   "chiaro": [
+    "M4*",
+    4
+   ],
+   "scuro": [
+    "H5*",
+    4
+   ],
+   "fama": 5,
+   "noto": 5,
+   "lung": [
+    0,
+    0
+   ],
+   "armato": true,
+   "vola": false,
+   "missile": [
+    false,
+    false
+   ],
+   "incant": null,
+   "extra": null
+  },
+  "serpente": {
+   "nome": "Serpente",
+   "plurale": "Serpenti",
+   "peso": "H",
+   "chiaro": [
+    "M4",
+    3
+   ],
+   "scuro": [
+    "H5",
+    4
+   ],
+   "fama": 4,
+   "noto": 4,
+   "lung": [
+    0,
+    0
+   ],
+   "armato": true,
+   "vola": false,
+   "missile": [
+    false,
+    false
+   ],
+   "incant": null,
+   "extra": null
+  },
+  "cavaliere_scheletro": {
+   "nome": "Cavaliere scheletro",
+   "plurale": "Cavalieri scheletro",
+   "peso": "H",
+   "chiaro": [
+    "H4*",
+    5
+   ],
+   "scuro": [
+    "T5*",
+    5
+   ],
+   "fama": 5,
+   "noto": 5,
+   "lung": [
+    8,
+    8
+   ],
+   "armato": true,
+   "vola": false,
+   "missile": [
+    false,
+    false
+   ],
+   "incant": null,
+   "extra": "cavallo_scheletro"
+  },
+  "ragno": {
+   "nome": "Ragno",
+   "plurale": "Ragni",
+   "peso": "H",
+   "chiaro": [
+    "L4",
+    3
+   ],
+   "scuro": [
+    "T6",
+    4
+   ],
+   "fama": 3,
+   "noto": 3,
+   "lung": [
+    0,
+    0
+   ],
+   "armato": false,
+   "vola": false,
+   "missile": [
+    false,
+    false
+   ],
+   "incant": null,
+   "extra": null
+  },
+  "troll": {
+   "nome": "Troll",
+   "plurale": "Troll",
+   "peso": "H",
+   "chiaro": [
+    "M4",
+    4
+   ],
+   "scuro": [
+    "H5",
+    4
+   ],
+   "fama": 5,
+   "noto": 5,
+   "lung": [
+    0,
+    0
+   ],
+   "armato": true,
+   "vola": false,
+   "missile": [
+    false,
+    false
+   ],
+   "incant": null,
+   "extra": null
+  },
+  "vampiro": {
+   "nome": "Vampiro",
+   "plurale": "Vampiri",
+   "peso": "H",
+   "chiaro": [
+    "V2",
+    4
+   ],
+   "scuro": [
+    "M4",
+    3
+   ],
+   "fama": 4,
+   "noto": 4,
+   "lung": [
+    17,
+    0
+   ],
+   "armato": true,
+   "vola": true,
+   "missile": [
+    false,
+    false
+   ],
+   "incant": "ipnosi",
+   "extra": null
+  },
+  "spettro": {
+   "nome": "Spettro",
+   "plurale": "Spettri",
+   "peso": "H",
+   "chiaro": [
+    "L3",
+    3
+   ],
+   "scuro": [
+    "T5",
+    5
+   ],
+   "fama": 3,
+   "noto": 3,
+   "lung": [
+    0,
+    0
+   ],
+   "armato": false,
+   "vola": false,
+   "missile": [
+    false,
+    false
+   ],
+   "incant": null,
+   "extra": null
+  },
+  "demone": {
+   "nome": "Demone",
+   "plurale": "Demoni",
+   "peso": "T",
+   "chiaro": [
+    "V2",
+    4
+   ],
+   "scuro": [
+    "X4",
+    4
+   ],
+   "fama": 8,
+   "noto": 8,
+   "lung": [
+    17,
+    0
+   ],
+   "armato": false,
+   "vola": false,
+   "missile": [
+    false,
+    false
+   ],
+   "incant": "abisso",
+   "extra": null
+  },
+  "drago_t": {
+   "nome": "Drago tremendo",
+   "plurale": "Draghi tremendi",
+   "peso": "T",
+   "chiaro": [
+    "H5",
+    6
+   ],
+   "scuro": [
+    "X3",
+    6
+   ],
+   "fama": 10,
+   "noto": 10,
+   "lung": [
+    0,
+    0
+   ],
+   "armato": true,
+   "vola": false,
+   "missile": [
+    false,
+    false
+   ],
+   "incant": null,
+   "extra": "testa_drago"
+  },
+  "drago_volante_t": {
+   "nome": "Drago volante tremendo",
+   "plurale": "Draghi volanti tremendi",
+   "peso": "T",
+   "chiaro": [
+    "M3",
+    4
+   ],
+   "scuro": [
+    "X6",
+    4
+   ],
+   "fama": 12,
+   "noto": 12,
+   "lung": [
+    0,
+    0
+   ],
+   "armato": true,
+   "vola": true,
+   "missile": [
+    false,
+    false
+   ],
+   "incant": null,
+   "extra": "testa_drago_volante"
+  },
+  "gargoyle_t": {
+   "nome": "Gargoyle tremendo",
+   "plurale": "Gargoyle tremendi",
+   "peso": "T",
+   "chiaro": [
+    "H5",
+    3
+   ],
+   "scuro": [
+    "X4",
+    4
+   ],
+   "fama": 8,
+   "noto": 8,
+   "lung": [
+    0,
+    0
+   ],
+   "armato": true,
+   "vola": true,
+   "missile": [
+    false,
+    false
+   ],
+   "incant": null,
+   "extra": null
+  },
+  "gigante": {
+   "nome": "Gigante",
+   "plurale": "Giganti",
+   "peso": "T",
+   "chiaro": [
+    "H5",
+    5
+   ],
+   "scuro": [
+    "X4",
+    6
+   ],
+   "fama": 8,
+   "noto": 8,
+   "lung": [
+    0,
+    0
+   ],
+   "armato": false,
+   "vola": false,
+   "missile": [
+    false,
+    false
+   ],
+   "incant": null,
+   "extra": "clava"
+  },
+  "baccello": {
+   "nome": "Baccello gigante",
+   "plurale": "Baccelli giganti",
+   "peso": "T",
+   "chiaro": [
+    "H6",
+    5
+   ],
+   "scuro": [
+    "X3",
+    6
+   ],
+   "fama": 8,
+   "noto": 8,
+   "lung": [
+    0,
+    0
+   ],
+   "armato": false,
+   "vola": false,
+   "missile": [
+    false,
+    false
+   ],
+   "incant": null,
+   "extra": "liana"
+  },
+  "golem": {
+   "nome": "Golem",
+   "plurale": "Golem",
+   "peso": "T",
+   "chiaro": [
+    "H4",
+    4
+   ],
+   "scuro": [
+    "X4",
+    4
+   ],
+   "fama": 8,
+   "noto": 8,
+   "lung": [
+    0,
+    0
+   ],
+   "armato": true,
+   "vola": false,
+   "missile": [
+    false,
+    false
+   ],
+   "incant": null,
+   "extra": null
+  },
+  "piovra": {
+   "nome": "Piovra",
+   "plurale": "Piovre",
+   "peso": "T",
+   "chiaro": [
+    "L4",
+    2
+   ],
+   "scuro": [
+    "X4",
+    3
+   ],
+   "fama": 8,
+   "noto": 8,
+   "lung": [
+    0,
+    0
+   ],
+   "armato": false,
+   "vola": false,
+   "missile": [
+    false,
+    false
+   ],
+   "incant": null,
+   "extra": null
+  },
+  "scorpione_t": {
+   "nome": "Scorpione tremendo",
+   "plurale": "Scorpioni tremendi",
+   "peso": "T",
+   "chiaro": [
+    "M5",
+    5
+   ],
+   "scuro": [
+    "X4",
+    5
+   ],
+   "fama": 10,
+   "noto": 10,
+   "lung": [
+    0,
+    0
+   ],
+   "armato": true,
+   "vola": false,
+   "missile": [
+    false,
+    false
+   ],
+   "incant": null,
+   "extra": "pungiglione"
+  },
+  "serpente_t": {
+   "nome": "Serpente tremendo",
+   "plurale": "Serpenti tremendi",
+   "peso": "T",
+   "chiaro": [
+    "L4",
+    4
+   ],
+   "scuro": [
+    "X4",
+    5
+   ],
+   "fama": 7,
+   "noto": 7,
+   "lung": [
+    0,
+    0
+   ],
+   "armato": true,
+   "vola": false,
+   "missile": [
+    false,
+    false
+   ],
+   "incant": null,
+   "extra": null
+  },
+  "ragno_t": {
+   "nome": "Ragno tremendo",
+   "plurale": "Ragni tremendi",
+   "peso": "T",
+   "chiaro": [
+    "M4",
+    3
+   ],
+   "scuro": [
+    "X5",
+    4
+   ],
+   "fama": 6,
+   "noto": 6,
+   "lung": [
+    0,
+    0
+   ],
+   "armato": false,
+   "vola": false,
+   "missile": [
+    false,
+    false
+   ],
+   "incant": null,
+   "extra": null
+  },
+  "troll_t": {
+   "nome": "Troll tremendo",
+   "plurale": "Troll tremendi",
+   "peso": "T",
+   "chiaro": [
+    "H4",
+    4
+   ],
+   "scuro": [
+    "X2",
+    6
+   ],
+   "fama": 8,
+   "noto": 8,
+   "lung": [
+    0,
+    0
+   ],
+   "armato": true,
+   "vola": false,
+   "missile": [
+    false,
+    false
+   ],
+   "incant": null,
+   "extra": null
+  },
+  "demone_alato": {
+   "nome": "Demone alato",
+   "plurale": "Demoni alati",
+   "peso": "T",
+   "chiaro": [
+    "V3",
+    3
+   ],
+   "scuro": [
+    "X5",
+    2
+   ],
+   "fama": 8,
+   "noto": 8,
+   "lung": [
+    17,
+    0
+   ],
+   "armato": false,
+   "vola": true,
+   "missile": [
+    false,
+    false
+   ],
+   "incant": "abisso",
+   "extra": null
+  },
+  "colosso": {
+   "nome": "Colosso",
+   "plurale": "Colossi",
+   "peso": "X",
+   "chiaro": [
+    "X5",
+    0
+   ],
+   "scuro": [
+    "X5",
+    0
+   ],
+   "fama": 15,
+   "noto": 15,
+   "lung": [
+    0,
+    0
+   ],
+   "armato": true,
+   "vola": false,
+   "missile": [
+    false,
+    false
+   ],
+   "incant": null,
+   "extra": null
+  },
+  "titano": {
+   "nome": "Titano",
+   "plurale": "Titani",
+   "peso": "X",
+   "chiaro": [
+    "M4***",
+    0
+   ],
+   "scuro": [
+    "M4***",
+    0
+   ],
+   "fama": 15,
+   "noto": 15,
+   "lung": [
+    18,
+    18
+   ],
+   "armato": true,
+   "vola": false,
+   "missile": [
+    true,
+    true
+   ],
+   "incant": null,
+   "extra": null
+  }
+ },
+ "extra": {
+  "testa_drago": {
+   "nome": "Testa del drago",
+   "chiaro": [
+    "H4",
+    0
+   ],
+   "scuro": [
+    "T4",
+    0
+   ],
+   "lung": [
+    9,
+    9
+   ]
+  },
+  "testa_drago_volante": {
+   "nome": "Testa del drago volante",
+   "chiaro": [
+    "M3",
+    0
+   ],
+   "scuro": [
+    "T3",
+    0
+   ],
+   "lung": [
+    7,
+    7
+   ]
+  },
+  "clava": {
+   "nome": "Clava del gigante",
+   "chiaro": [
+    "H6",
+    0
+   ],
+   "scuro": [
+    "T4",
+    0
+   ],
+   "lung": [
+    8,
+    8
+   ]
+  },
+  "liana": {
+   "nome": "Liana del baccello",
+   "chiaro": [
+    "M4*",
+    0
+   ],
+   "scuro": [
+    "H4*",
+    0
+   ],
+   "lung": [
+    6,
+    6
+   ]
+  },
+  "pungiglione": {
+   "nome": "Pungiglione",
+   "chiaro": [
+    "L4**",
+    0
+   ],
+   "scuro": [
+    "M4**",
+    0
+   ],
+   "lung": [
+    6,
+    6
+   ]
+  },
+  "scudo_minotauro": {
+   "nome": "Scudo del minotauro",
+   "peso": "T"
+  },
+  "cavallo_scheletro": {
+   "nome": "Destriero scheletro",
+   "peso": "T",
+   "chiaro": [
+    "",
+    6
+   ],
+   "scuro": [
+    "",
+    4
+   ],
+   "armato": true
+  }
+ },
+ "gruppi": [
+  {
+   "riga": 1,
+   "sezione": "castello",
+   "riquadri": [
+    [
+     [
+      "drago_volante",
+      1
+     ]
+    ],
+    [
+     [
+      "drago_volante",
+      2
+     ]
+    ],
+    [
+     [
+      "drago_volante_t",
+      1
+     ]
+    ]
+   ],
+   "segnalini": [
+    "SMOKE_M",
+    "FLUTTER_*"
+   ]
+  },
+  {
+   "riga": 2,
+   "sezione": "castello",
+   "riquadri": [
+    [
+     [
+      "vipera",
+      2
+     ]
+    ]
+   ],
+   "segnalini": [
+    "DANK_W"
+   ]
+  },
+  {
+   "riga": 3,
+   "sezione": "castello",
+   "riquadri": [
+    [
+     [
+      "lupo",
+      6
+     ]
+    ]
+   ],
+   "segnalini": [
+    "RUINS_W"
+   ]
+  },
+  {
+   "riga": 3,
+   "sezione": "castello",
+   "riquadri": [
+    [
+     [
+      "orco_m",
+      2
+     ]
+    ]
+   ],
+   "segnalini": [
+    "BONES_W"
+   ]
+  },
+  {
+   "riga": 4,
+   "sezione": "castello",
+   "riquadri": [
+    [
+     [
+      "gigante",
+      1
+     ]
+    ],
+    [
+     [
+      "gigante",
+      1
+     ]
+    ],
+    [
+     [
+      "gigante",
+      1
+     ]
+    ]
+   ],
+   "segnalini": [
+    "BONES_M",
+    "STINK_M",
+    "ROAR_M"
+   ]
+  },
+  {
+   "riga": 5,
+   "sezione": "castello",
+   "riquadri": [
+    [
+     [
+      "ragno",
+      1
+     ]
+    ],
+    [
+     [
+      "ragno",
+      1
+     ]
+    ],
+    [
+     [
+      "ragno",
+      1
+     ]
+    ],
+    [
+     [
+      "ragno",
+      1
+     ]
+    ]
+   ],
+   "segnalini": [
+    "STINK_M",
+    "DANK_M",
+    "PATTER_M"
+   ]
+  },
+  {
+   "riga": 6,
+   "sezione": "castello",
+   "riquadri": [
+    [
+     [
+      "pipistrello",
+      1
+     ]
+    ],
+    [
+     [
+      "pipistrello",
+      2
+     ]
+    ],
+    [
+     [
+      "pipistrello",
+      2
+     ]
+    ],
+    [
+     [
+      "pipistrello",
+      3
+     ]
+    ]
+   ],
+   "segnalini": [
+    "RUINS_M",
+    "BONES_M",
+    "FLUTTER_*",
+    "HOWL_M"
+   ]
+  },
+  {
+   "riga": 1,
+   "sezione": "citta",
+   "riquadri": [
+    [
+     [
+      "drago",
+      1
+     ]
+    ],
+    [
+     [
+      "drago",
+      2
+     ]
+    ],
+    [
+     [
+      "drago_t",
+      1
+     ]
+    ]
+   ],
+   "segnalini": [
+    "SMOKE_C",
+    "SLITHER_*",
+    "ROAR_C"
+   ]
+  },
+  {
+   "riga": 2,
+   "sezione": "citta",
+   "riquadri": [
+    [
+     [
+      "serpente",
+      1
+     ]
+    ],
+    [
+     [
+      "serpente",
+      2
+     ]
+    ],
+    [
+     [
+      "serpente_t",
+      1
+     ]
+    ]
+   ],
+   "segnalini": [
+    "DANK_C",
+    "SLITHER_*"
+   ]
+  },
+  {
+   "riga": 3,
+   "sezione": "citta",
+   "riquadri": [
+    [
+     [
+      "goblin_ascia",
+      6
+     ]
+    ],
+    [
+     [
+      "goblin_lancia",
+      6
+     ]
+    ],
+    [
+     [
+      "goblin_spadone",
+      6
+     ]
+    ],
+    [
+     [
+      "goblin_arco",
+      6
+     ]
+    ]
+   ],
+   "segnalini": [
+    "RUINS_C",
+    "PATTER_C",
+    "HOWL_C"
+   ]
+  },
+  {
+   "riga": 4,
+   "sezione": "citta",
+   "riquadri": [
+    [
+     [
+      "troll",
+      1
+     ]
+    ],
+    [
+     [
+      "troll",
+      2
+     ]
+    ],
+    [
+     [
+      "troll_t",
+      1
+     ]
+    ]
+   ],
+   "segnalini": [
+    "BONES_C",
+    "STINK_C",
+    "ROAR_C"
+   ]
+  },
+  {
+   "riga": 1,
+   "sezione": "palazzo",
+   "riquadri": [
+    [
+     [
+      "scorpione",
+      1
+     ]
+    ],
+    [
+     [
+      "scorpione",
+      2
+     ]
+    ],
+    [
+     [
+      "scorpione_t",
+      1
+     ]
+    ]
+   ],
+   "segnalini": [
+    "DANK_F",
+    "STINK_F",
+    "PATTER_F"
+   ]
+  },
+  {
+   "riga": 2,
+   "sezione": "palazzo",
+   "riquadri": [
+    [
+     [
+      "spettro",
+      1
+     ]
+    ],
+    [
+     [
+      "spettro",
+      1
+     ]
+    ],
+    [
+     [
+      "spettro",
+      1
+     ]
+    ],
+    [
+     [
+      "spettro",
+      1
+     ]
+    ]
+   ],
+   "segnalini": [
+    "RUINS_F",
+    "BONES_F",
+    "HOWL_*",
+    "FLUTTER_F"
+   ]
+  },
+  {
+   "riga": 3,
+   "sezione": "palazzo",
+   "riquadri": [
+    [
+     [
+      "ratto",
+      6
+     ]
+    ]
+   ],
+   "segnalini": [
+    "RUINS_S"
+   ]
+  },
+  {
+   "riga": 3,
+   "sezione": "palazzo",
+   "riquadri": [
+    [
+     [
+      "orso",
+      1
+     ]
+    ]
+   ],
+   "segnalini": [
+    "BONES_S"
+   ]
+  },
+  {
+   "riga": 4,
+   "sezione": "palazzo",
+   "riquadri": [
+    [
+     [
+      "alligatore",
+      1
+     ]
+    ]
+   ],
+   "segnalini": [
+    "DANK_S"
+   ]
+  },
+  {
+   "riga": 5,
+   "sezione": "palazzo",
+   "riquadri": [
+    [
+     [
+      "anomalia_grigia",
+      1
+     ]
+    ],
+    [
+     [
+      "anomalia_oro",
+      1
+     ]
+    ],
+    [
+     [
+      "anomalia_viola",
+      1
+     ]
+    ],
+    [
+     [
+      "anomalia_prisma",
+      1
+     ]
+    ]
+   ],
+   "segnalini": [
+    "SMOKE_F",
+    "HOWL_*"
+   ]
+  },
+  {
+   "riga": 6,
+   "sezione": "palazzo",
+   "riquadri": [
+    [
+     [
+      "baccello",
+      1
+     ]
+    ],
+    [
+     [
+      "baccello",
+      1
+     ]
+    ],
+    [
+     [
+      "baccello",
+      1
+     ]
+    ]
+   ],
+   "segnalini": [
+    "DANK_F",
+    "BONES_F",
+    "SLITHER_F"
+   ]
+  },
+  {
+   "riga": 3,
+   "sezione": "fortezza",
+   "riquadri": [
+    [
+     [
+      "gargoyle",
+      1
+     ]
+    ],
+    [
+     [
+      "gargoyle",
+      2
+     ]
+    ],
+    [
+     [
+      "gargoyle_t",
+      1
+     ]
+    ]
+   ],
+   "segnalini": [
+    "STINK_R",
+    "FLUTTER_R",
+    "SLITHER_R"
+   ]
+  },
+  {
+   "riga": 4,
+   "sezione": "fortezza",
+   "riquadri": [
+    [
+     [
+      "scheletro_spada",
+      6
+     ]
+    ],
+    [
+     [
+      "scheletro_lancia",
+      6
+     ]
+    ],
+    [
+     [
+      "scheletro_ascia",
+      6
+     ]
+    ],
+    [
+     [
+      "scheletro_arco",
+      6
+     ]
+    ]
+   ],
+   "segnalini": [
+    "BONES_R",
+    "DANK_R",
+    "PATTER_R"
+   ]
+  },
+  {
+   "riga": 5,
+   "sezione": "fortezza",
+   "riquadri": [
+    [
+     [
+      "orco",
+      1
+     ]
+    ],
+    [
+     [
+      "orco",
+      2
+     ]
+    ],
+    [
+     [
+      "orco",
+      2
+     ]
+    ],
+    [
+     [
+      "orco",
+      3
+     ]
+    ]
+   ],
+   "segnalini": [
+    "SMOKE_R",
+    "ROAR_*",
+    "PATTER_R"
+   ]
+  },
+  {
+   "riga": 6,
+   "sezione": "fortezza",
+   "riquadri": [
+    [
+     [
+      "golem",
+      1
+     ]
+    ],
+    [
+     [
+      "golem",
+      1
+     ]
+    ],
+    [
+     [
+      "golem",
+      1
+     ]
+    ]
+   ],
+   "segnalini": [
+    "RUINS_R",
+    "ROAR_*"
+   ]
+  }
+ ],
+ "siti": {
+  "hoard": [
+   1,
+   "drago_volante_t"
+  ],
+  "lair": [
+   1,
+   "drago_t"
+  ],
+  "pit": [
+   1,
+   "scorpione_t"
+  ],
+  "altar": [
+   2,
+   "demone"
+  ],
+  "shrine": [
+   2,
+   "demone_alato"
+  ],
+  "den": [
+   2,
+   "serpente_t"
+  ],
+  "pool": [
+   3,
+   "piovra"
+  ],
+  "tower": [
+   3,
+   "colosso"
+  ],
+  "vault": [
+   4,
+   "troll_t"
+  ],
+  "tomb": [
+   4,
+   "cavaliere_scheletro"
+  ],
+  "cairns": [
+   5,
+   "ragno_t"
+  ],
+  "statue": [
+   5,
+   "imp"
+  ],
+  "spire": [
+   5,
+   "titano"
+  ],
+  "garden": [
+   6,
+   "succubo"
+  ],
+  "maze": [
+   6,
+   "minotauro"
+  ],
+  "temple": [
+   6,
+   "vampiro"
+  ]
+ },
+ "righe": {
+  "1": "Draghi e scorpioni",
+  "2": "Serpenti, spettri e demoni",
+  "3": "Lupi, goblin, orchi, ratti, orso, piovra, gargoyle e colosso",
+  "4": "Alligatore, giganti, scheletri e troll",
+  "5": "Ragni, anomalie, orchi guerrieri, imp e titano",
+  "6": "Pipistrelli, golem, baccelli, vampiro, succube e minotauro"
+ },
+ "immagini": {
+  "lupo_a": [
+   "lupo_a_D50D70",
+   "lupo_a_D50D70",
+   "lupo_a_D50D70"
+  ],
+  "drago_volante": [
+   "drago_volante_D18B82",
+   "drago_volante_D18B82",
+   "drago_volante_D18B82"
+  ],
+  "drago_volante_t": [
+   "drago_volante_t_60FB92",
+   "drago_volante_t_9B8DA2"
+  ],
+  "vipera": [
+   "vipera_5C6EF7",
+   "vipera_D61E07"
+  ],
+  "lupo_b": [
+   "lupo_b_917808",
+   "lupo_b_917808",
+   "lupo_b_917808"
+  ],
+  "orco_m": [
+   "orco_m_ED3326",
+   "orco_m_ED3326"
+  ],
+  "gigante": [
+   "gigante_DAEDC1",
+   "gigante_DAEDC1",
+   "gigante_DAEDC1"
+  ],
+  "ragno": [
+   "ragno_8B0401",
+   "ragno_8B0401",
+   "ragno_8B0401",
+   "ragno_8B0401"
+  ],
+  "pipistrello": [
+   "pipistrello_BFA9AC",
+   "pipistrello_BFA9AC",
+   "pipistrello_BFA9AC",
+   "pipistrello_BFA9AC",
+   "pipistrello_BFA9AC",
+   "pipistrello_BFA9AC",
+   "pipistrello_BFA9AC",
+   "pipistrello_BFA9AC"
+  ],
+  "drago": [
+   "drago_B938EF",
+   "drago_B938EF",
+   "drago_B938EF"
+  ],
+  "drago_t": [
+   "drago_t_1CB698",
+   "drago_t_4F5F70"
+  ],
+  "serpente": [
+   "serpente_E0202D",
+   "serpente_6751B3",
+   "serpente_6751B3"
+  ],
+  "serpente_t": [
+   "serpente_t_7782E7",
+   "serpente_t_7782E7"
+  ],
+  "goblin_ascia": [
+   "goblin_ascia_A3D18C",
+   "goblin_ascia_244DC9",
+   "goblin_ascia_32F4FD",
+   "goblin_ascia_B1DBA5",
+   "goblin_ascia_436D0D",
+   "goblin_ascia_CC397A"
+  ],
+  "goblin_lancia": [
+   "goblin_lancia_A9CB3C",
+   "goblin_lancia_A9CB3C",
+   "goblin_lancia_A9CB3C",
+   "goblin_lancia_A9CB3C",
+   "goblin_lancia_A9CB3C",
+   "goblin_lancia_A9CB3C"
+  ],
+  "goblin_spadone": [
+   "goblin_spadone_B465D8",
+   "goblin_spadone_B465D8",
+   "goblin_spadone_B465D8",
+   "goblin_spadone_B465D8",
+   "goblin_spadone_B465D8",
+   "goblin_spadone_B465D8"
+  ],
+  "troll": [
+   "troll_A448E3",
+   "troll_A448E3",
+   "troll_A448E3"
+  ],
+  "troll_t": [
+   "troll_t_657516",
+   "troll_t_657516"
+  ],
+  "alligatore": [
+   "alligatore_00F155"
+  ],
+  "ratto_a": [
+   "ratto_a_EEAAC8",
+   "ratto_a_EEAAC8",
+   "ratto_a_EEAAC8"
+  ],
+  "ratto_b": [
+   "ratto_b_BB8426",
+   "ratto_b_BB8426",
+   "ratto_b_BB8426"
+  ],
+  "orso": [
+   "orso_7E179E"
+  ],
+  "scudo_minotauro": [
+   "scudo_minotauro_BF14E1"
+  ],
+  "succubo": [
+   "succubo_BCB338"
+  ],
+  "imp": [
+   "imp_2E6643"
+  ],
+  "ragno_t": [
+   "ragno_t_A87ACB"
+  ],
+  "piovra": [
+   "piovra_E181E1"
+  ],
+  "demone_alato": [
+   "demone_alato_3D4452"
+  ],
+  "demone": [
+   "demone_DF7B6E"
+  ],
+  "fantasma": [
+   "fantasma_8D7728",
+   "fantasma_300B82",
+   "fantasma_8D7728",
+   "fantasma_300B82"
+  ],
+  "liana": [
+   "liana_8AC6A1",
+   "liana_8AC6A1",
+   "liana_8AC6A1"
+  ],
+  "baccello": [
+   "baccello_6E5DC3",
+   "baccello_6E5DC3",
+   "baccello_6E5DC3"
+  ],
+  "goblin_arco": [
+   "goblin_arco_4DDC61",
+   "goblin_arco_4DDC61",
+   "goblin_arco_4DDC61",
+   "goblin_arco_4DDC61",
+   "goblin_arco_4DDC61",
+   "goblin_arco_4DDC61"
+  ],
+  "clava": [
+   "clava_F8C36B",
+   "clava_F8C36B",
+   "clava_F8C36B"
+  ],
+  "testa_drago_volante": [
+   "testa_drago_volante_37C14B",
+   "testa_drago_volante_59C8A1"
+  ],
+  "testa_drago": [
+   "testa_drago_8A60D8",
+   "testa_drago_CABCDB"
+  ],
+  "scorpione": [
+   "scorpione_E84BD8",
+   "scorpione_E84BD8",
+   "scorpione_E84BD8"
+  ],
+  "scorpione_t": [
+   "scorpione_t_66B3C0",
+   "scorpione_t_66B3C0"
+  ],
+  "pungiglione": [
+   "pungiglione_A9682A",
+   "pungiglione_A9682A"
+  ],
+  "spettro": [
+   "spettro_5A13C8",
+   "spettro_5A13C8",
+   "spettro_5A13C8",
+   "spettro_5A13C8"
+  ],
+  "gargoyle": [
+   "gargoyle_EE0248",
+   "gargoyle_EE0248",
+   "gargoyle_EE0248"
+  ],
+  "gargoyle_t": [
+   "gargoyle_t_F59507"
+  ],
+  "cavallo_scheletro": [
+   "cavallo_scheletro_E28D1F"
+  ],
+  "cavaliere_scheletro": [
+   "cavaliere_scheletro_6AA2A0"
+  ],
+  "vampiro": [
+   "vampiro_CA28BB"
+  ],
+  "scheletro_spada": [
+   "scheletro_spada_FA9574",
+   "scheletro_spada_FA9574",
+   "scheletro_spada_FA9574",
+   "scheletro_spada_FA9574",
+   "scheletro_spada_FA9574",
+   "scheletro_spada_FA9574"
+  ],
+  "scheletro_lancia": [
+   "scheletro_lancia_B99B02",
+   "scheletro_lancia_B99B02",
+   "scheletro_lancia_B99B02",
+   "scheletro_lancia_B99B02",
+   "scheletro_lancia_B99B02",
+   "scheletro_lancia_B99B02"
+  ],
+  "scheletro_ascia": [
+   "scheletro_ascia_3D5289",
+   "scheletro_ascia_3D5289",
+   "scheletro_ascia_3D5289",
+   "scheletro_ascia_3D5289",
+   "scheletro_ascia_3D5289",
+   "scheletro_ascia_3D5289"
+  ],
+  "scheletro_arco": [
+   "scheletro_arco_4C759E",
+   "scheletro_arco_4C759E",
+   "scheletro_arco_4C759E",
+   "scheletro_arco_4C759E",
+   "scheletro_arco_4C759E",
+   "scheletro_arco_4C759E"
+  ],
+  "orco": [
+   "orco_C3D20F",
+   "orco_C3D20F",
+   "orco_C3D20F",
+   "orco_C3D20F",
+   "orco_C3D20F",
+   "orco_C3D20F",
+   "orco_C3D20F",
+   "orco_C3D20F"
+  ],
+  "golem": [
+   "golem_0C2136",
+   "golem_0C2136",
+   "golem_0C2136"
+  ],
+  "anomalia_grigia": [
+   "anomalia_grigia_D748C4"
+  ],
+  "anomalia_oro": [
+   "anomalia_oro_71F2F5"
+  ],
+  "anomalia_viola": [
+   "anomalia_viola_28671E"
+  ],
+  "anomalia_prisma": [
+   "anomalia_prisma_99A4E0"
+  ],
+  "colosso": [
+   "colosso_AA4158"
+  ],
+  "minotauro": [
+   "minotauro_A6C0CC"
+  ],
+  "titano": [
+   "titano_FB27E6"
+  ]
+ }
+}

@@ -1,0 +1,2406 @@
+[
+ {
+  "id": "amazzone",
+  "nome": "Amazzone",
+  "nome_en": "Amazon",
+  "peso": "M",
+  "vuln": "M",
+  "partenze": [
+   "locanda"
+  ],
+  "chits": [
+   {
+    "tipo": "M",
+    "forza": "M",
+    "vel": 3,
+    "sforzi": 1
+   },
+   {
+    "tipo": "M",
+    "forza": "M",
+    "vel": 4,
+    "sforzi": 0
+   },
+   {
+    "tipo": "F",
+    "forza": "L",
+    "vel": 4,
+    "sforzi": 0
+   },
+   {
+    "tipo": "M",
+    "forza": "M",
+    "vel": 4,
+    "sforzi": 0
+   },
+   {
+    "tipo": "F",
+    "forza": "M",
+    "vel": 5,
+    "sforzi": 0
+   },
+   {
+    "tipo": "F",
+    "forza": "M",
+    "vel": 4,
+    "sforzi": 1
+   },
+   {
+    "tipo": "M",
+    "forza": "M",
+    "vel": 3,
+    "sforzi": 1
+   },
+   {
+    "tipo": "F",
+    "forza": "M",
+    "vel": 3,
+    "sforzi": 2
+   },
+   {
+    "tipo": "F",
+    "forza": "H",
+    "vel": 4,
+    "sforzi": 2
+   },
+   {
+    "tipo": "M",
+    "forza": "M",
+    "vel": 3,
+    "sforzi": 1
+   },
+   {
+    "tipo": "F",
+    "forza": "M",
+    "vel": 4,
+    "sforzi": 1
+   },
+   {
+    "tipo": "F",
+    "forza": "M",
+    "vel": 3,
+    "sforzi": 2
+   }
+  ],
+  "equip": [
+   "spada_corta",
+   "elmo",
+   "corazza",
+   "scudo"
+  ],
+  "abilita": [
+   {
+    "id": "mira",
+    "nome": "MIRA",
+    "testo": "Sottrae 1 da ogni dado quando tira sulla tabella dei Proiettili con un'arma da tiro."
+   },
+   {
+    "id": "resistenza",
+    "nome": "RESISTENZA",
+    "testo": "Può registrare ed eseguire una fase di MOVIMENTO in più ogni giorno."
+   }
+  ],
+  "combattente": true,
+  "magia": 0,
+  "pedina": "amazon",
+  "genere": "f"
+ },
+ {
+  "id": "barbaro",
+  "nome": "Barbaro",
+  "nome_en": "Barbarian",
+  "peso": "H",
+  "vuln": "H",
+  "partenze": [
+   "locanda"
+  ],
+  "chits": [
+   {
+    "tipo": "F",
+    "forza": "H",
+    "vel": 5,
+    "sforzi": 1
+   },
+   {
+    "tipo": "M",
+    "forza": "H",
+    "vel": 6,
+    "sforzi": 0
+   },
+   {
+    "tipo": "M",
+    "forza": "H",
+    "vel": 5,
+    "sforzi": 1
+   },
+   {
+    "tipo": "F",
+    "forza": "H",
+    "vel": 6,
+    "sforzi": 0
+   },
+   {
+    "tipo": "F",
+    "forza": "H",
+    "vel": 4,
+    "sforzi": 2
+   },
+   {
+    "tipo": "M",
+    "forza": "T",
+    "vel": 6,
+    "sforzi": 1
+   },
+   {
+    "tipo": "F",
+    "forza": "H",
+    "vel": 5,
+    "sforzi": 1
+   },
+   {
+    "tipo": "F",
+    "forza": "T",
+    "vel": 5,
+    "sforzi": 1
+   },
+   {
+    "tipo": "M",
+    "forza": "T",
+    "vel": 5,
+    "sforzi": 2
+   },
+   {
+    "tipo": "F",
+    "forza": "T",
+    "vel": 4,
+    "sforzi": 2
+   },
+   {
+    "tipo": "F",
+    "forza": "T",
+    "vel": 4,
+    "sforzi": 2
+   },
+   {
+    "tipo": "M",
+    "forza": "H",
+    "vel": 4,
+    "sforzi": 2
+   }
+  ],
+  "equip": [
+   "spadone",
+   "scudo",
+   "corazza"
+  ],
+  "abilita": [
+   {
+    "id": "furia",
+    "nome": "FURIA",
+    "testo": "Nessun limite di sforzo in combattimento: alla fase di Fatica affatica tutti gli sforzi giocati meno uno. Agisce sempre per ultimo nei round di combattimento."
+   },
+   {
+    "id": "robusto",
+    "nome": "ROBUSTO",
+    "testo": "Può registrare ed eseguire una fase di RIPOSO in più ogni giorno."
+   }
+  ],
+  "combattente": true,
+  "magia": 0,
+  "pedina": "barbarian",
+  "genere": "m"
+ },
+ {
+  "id": "bardo",
+  "nome": "Bardo",
+  "nome_en": "Bard",
+  "peso": "L",
+  "vuln": "L",
+  "partenze": [
+   "locanda"
+  ],
+  "chits": [
+   {
+    "tipo": "F",
+    "forza": "L",
+    "vel": 4,
+    "sforzi": 0
+   },
+   {
+    "tipo": "M",
+    "forza": "L",
+    "vel": 3,
+    "sforzi": 1
+   },
+   {
+    "tipo": "M",
+    "forza": "L",
+    "vel": 4,
+    "sforzi": 0
+   },
+   {
+    "tipo": "G",
+    "magia": "VII",
+    "vel": 3,
+    "sforzi": 1
+   },
+   {
+    "tipo": "M",
+    "forza": "L",
+    "vel": 2,
+    "sforzi": 2
+   },
+   {
+    "tipo": "F",
+    "forza": "L",
+    "vel": 3,
+    "sforzi": 1
+   },
+   {
+    "tipo": "G",
+    "magia": "III",
+    "vel": 3,
+    "sforzi": 1
+   },
+   {
+    "tipo": "G",
+    "magia": "II",
+    "vel": 4,
+    "sforzi": 1
+   },
+   {
+    "tipo": "F",
+    "forza": "L",
+    "vel": 3,
+    "sforzi": 1
+   },
+   {
+    "tipo": "G",
+    "magia": "III",
+    "vel": 2,
+    "sforzi": 1
+   },
+   {
+    "tipo": "G",
+    "magia": "II",
+    "vel": 3,
+    "sforzi": 1
+   },
+   {
+    "tipo": "G",
+    "magia": "VIII",
+    "vel": 2,
+    "sforzi": 2
+   }
+  ],
+  "equip": [],
+  "abilita": [],
+  "combattente": false,
+  "magia": 6,
+  "pedina": "bard",
+  "genere": "m"
+ },
+ {
+  "id": "berserker",
+  "nome": "Berserker",
+  "nome_en": "Berserker",
+  "peso": "H",
+  "vuln": "H",
+  "partenze": [
+   "locanda"
+  ],
+  "chits": [
+   {
+    "tipo": "M",
+    "forza": "H",
+    "vel": 5,
+    "sforzi": 1
+   },
+   {
+    "tipo": "M",
+    "forza": "H",
+    "vel": 6,
+    "sforzi": 0
+   },
+   {
+    "tipo": "F",
+    "forza": "H",
+    "vel": 4,
+    "sforzi": 1
+   },
+   {
+    "tipo": "M",
+    "forza": "H",
+    "vel": 4,
+    "sforzi": 2
+   },
+   {
+    "tipo": "M",
+    "forza": "T",
+    "vel": 6,
+    "sforzi": 1
+   },
+   {
+    "tipo": "F",
+    "forza": "H",
+    "vel": 5,
+    "sforzi": 0
+   },
+   {
+    "tipo": "M",
+    "forza": "H",
+    "vel": 4,
+    "sforzi": 2
+   },
+   {
+    "tipo": "F",
+    "forza": "T",
+    "vel": 4,
+    "sforzi": 2
+   },
+   {
+    "tipo": "F",
+    "forza": "T",
+    "vel": 6,
+    "sforzi": 1
+   },
+   {
+    "tipo": "B",
+    "forza": "T",
+    "vel": 4,
+    "sforzi": 2
+   },
+   {
+    "tipo": "F",
+    "forza": "T",
+    "vel": 4,
+    "sforzi": 2
+   },
+   {
+    "tipo": "F",
+    "forza": "T",
+    "vel": 5,
+    "sforzi": 1
+   }
+  ],
+  "equip": [
+   "ascia_grande",
+   "elmo"
+  ],
+  "abilita": [
+   {
+    "id": "robusto",
+    "nome": "ROBUSTO",
+    "testo": "Può registrare ed eseguire una fase di RIPOSO in più ogni giorno."
+   },
+   {
+    "id": "berserk",
+    "nome": "BERSERK",
+    "testo": "Può giocare il segnalino Berserk (in un'Allerta o come azione in combattimento): fino a mezzanotte la sua vulnerabilità diventa Tremenda."
+   }
+  ],
+  "combattente": true,
+  "magia": 0,
+  "pedina": "berserker",
+  "genere": "m"
+ },
+ {
+  "id": "cavaliere_nero",
+  "nome": "Cavaliere Nero",
+  "nome_en": "Black Knight",
+  "peso": "M",
+  "vuln": "M",
+  "partenze": [
+   "locanda"
+  ],
+  "chits": [
+   {
+    "tipo": "M",
+    "forza": "M",
+    "vel": 5,
+    "sforzi": 0
+   },
+   {
+    "tipo": "M",
+    "forza": "H",
+    "vel": 5,
+    "sforzi": 1
+   },
+   {
+    "tipo": "F",
+    "forza": "H",
+    "vel": 5,
+    "sforzi": 1
+   },
+   {
+    "tipo": "M",
+    "forza": "M",
+    "vel": 4,
+    "sforzi": 1
+   },
+   {
+    "tipo": "M",
+    "forza": "H",
+    "vel": 6,
+    "sforzi": 0
+   },
+   {
+    "tipo": "F",
+    "forza": "H",
+    "vel": 6,
+    "sforzi": 0
+   },
+   {
+    "tipo": "F",
+    "forza": "M",
+    "vel": 4,
+    "sforzi": 1
+   },
+   {
+    "tipo": "F",
+    "forza": "M",
+    "vel": 4,
+    "sforzi": 1
+   },
+   {
+    "tipo": "F",
+    "forza": "M",
+    "vel": 5,
+    "sforzi": 0
+   },
+   {
+    "tipo": "M",
+    "forza": "H",
+    "vel": 4,
+    "sforzi": 2
+   },
+   {
+    "tipo": "F",
+    "forza": "H",
+    "vel": 4,
+    "sforzi": 2
+   },
+   {
+    "tipo": "F",
+    "forza": "M",
+    "vel": 3,
+    "sforzi": 2
+   }
+  ],
+  "equip": [
+   "mazza",
+   "armatura",
+   "scudo"
+  ],
+  "abilita": [
+   {
+    "id": "mira",
+    "nome": "MIRA",
+    "testo": "Sottrae 1 da ogni dado quando tira sulla tabella dei Proiettili con un'arma da tiro."
+   }
+  ],
+  "combattente": true,
+  "magia": 0,
+  "pedina": "black_knight",
+  "genere": "m"
+ },
+ {
+  "id": "capitano",
+  "nome": "Capitano",
+  "nome_en": "Captain",
+  "peso": "M",
+  "vuln": "M",
+  "partenze": [
+   "locanda",
+   "corpo_guardia",
+   "casa"
+  ],
+  "chits": [
+   {
+    "tipo": "M",
+    "forza": "M",
+    "vel": 4,
+    "sforzi": 1
+   },
+   {
+    "tipo": "M",
+    "forza": "M",
+    "vel": 5,
+    "sforzi": 0
+   },
+   {
+    "tipo": "F",
+    "forza": "H",
+    "vel": 5,
+    "sforzi": 1
+   },
+   {
+    "tipo": "M",
+    "forza": "M",
+    "vel": 3,
+    "sforzi": 2
+   },
+   {
+    "tipo": "F",
+    "forza": "M",
+    "vel": 3,
+    "sforzi": 2
+   },
+   {
+    "tipo": "F",
+    "forza": "M",
+    "vel": 5,
+    "sforzi": 0
+   },
+   {
+    "tipo": "M",
+    "forza": "M",
+    "vel": 4,
+    "sforzi": 1
+   },
+   {
+    "tipo": "F",
+    "forza": "M",
+    "vel": 4,
+    "sforzi": 1
+   },
+   {
+    "tipo": "F",
+    "forza": "H",
+    "vel": 5,
+    "sforzi": 1
+   },
+   {
+    "tipo": "M",
+    "forza": "M",
+    "vel": 4,
+    "sforzi": 1
+   },
+   {
+    "tipo": "F",
+    "forza": "H",
+    "vel": 6,
+    "sforzi": 0
+   },
+   {
+    "tipo": "F",
+    "forza": "M",
+    "vel": 4,
+    "sforzi": 1
+   }
+  ],
+  "equip": [
+   "spada_corta",
+   "elmo",
+   "corazza",
+   "scudo"
+  ],
+  "abilita": [
+   {
+    "id": "mira",
+    "nome": "MIRA",
+    "testo": "Sottrae 1 da ogni dado quando tira sulla tabella dei Proiettili con un'arma da tiro."
+   },
+   {
+    "id": "reputazione",
+    "nome": "REPUTAZIONE",
+    "testo": "Ottiene una fase in più ogni giorno in cui si trova in un'abitazione quando la esegue."
+   }
+  ],
+  "combattente": true,
+  "magia": 0,
+  "pedina": "captain",
+  "genere": "m"
+ },
+ {
+  "id": "druido",
+  "nome": "Druido",
+  "nome_en": "Druid",
+  "peso": "L",
+  "vuln": "L",
+  "partenze": [
+   "locanda",
+   "capanna"
+  ],
+  "chits": [
+   {
+    "tipo": "M",
+    "forza": "L",
+    "vel": 3,
+    "sforzi": 1
+   },
+   {
+    "tipo": "M",
+    "forza": "L",
+    "vel": 4,
+    "sforzi": 0
+   },
+   {
+    "tipo": "F",
+    "forza": "L",
+    "vel": 3,
+    "sforzi": 1
+   },
+   {
+    "tipo": "M",
+    "forza": "L",
+    "vel": 2,
+    "sforzi": 2
+   },
+   {
+    "tipo": "F",
+    "forza": "L",
+    "vel": 2,
+    "sforzi": 2
+   },
+   {
+    "tipo": "F",
+    "forza": "L",
+    "vel": 4,
+    "sforzi": 0
+   },
+   {
+    "tipo": "G",
+    "magia": "II",
+    "vel": 3,
+    "sforzi": 1
+   },
+   {
+    "tipo": "G",
+    "magia": "VIII",
+    "vel": 4,
+    "sforzi": 1
+   },
+   {
+    "tipo": "G",
+    "magia": "VIII",
+    "vel": 3,
+    "sforzi": 1
+   },
+   {
+    "tipo": "G",
+    "magia": "II",
+    "vel": 2,
+    "sforzi": 2
+   },
+   {
+    "tipo": "G",
+    "magia": "VIII",
+    "vel": 2,
+    "sforzi": 2
+   },
+   {
+    "tipo": "G",
+    "magia": "II",
+    "vel": 3,
+    "sforzi": 1
+   }
+  ],
+  "equip": [],
+  "abilita": [
+   {
+    "id": "occultamento",
+    "nome": "OCCULTAMENTO",
+    "testo": "Tira un solo dado per nascondersi."
+   },
+   {
+    "id": "pace_natura",
+    "nome": "PACE CON LA NATURA",
+    "testo": "Quando termina il turno, i segnalini di Avviso e di Suono della sua tessera non evocano mostri."
+   }
+  ],
+  "combattente": false,
+  "magia": 6,
+  "pedina": "druid",
+  "genere": "m"
+ },
+ {
+  "id": "nano",
+  "nome": "Nano",
+  "nome_en": "Dwarf",
+  "peso": "H",
+  "vuln": "H",
+  "partenze": [
+   "locanda",
+   "corpo_guardia"
+  ],
+  "chits": [
+   {
+    "tipo": "M",
+    "forza": "H",
+    "vel": 6,
+    "sforzi": 0
+   },
+   {
+    "tipo": "D",
+    "forza": "T",
+    "vel": 3,
+    "sforzi": 1
+   },
+   {
+    "tipo": "F",
+    "forza": "H",
+    "vel": 5,
+    "sforzi": 1
+   },
+   {
+    "tipo": "M",
+    "forza": "T",
+    "vel": 6,
+    "sforzi": 1
+   },
+   {
+    "tipo": "F",
+    "forza": "H",
+    "vel": 6,
+    "sforzi": 1
+   },
+   {
+    "tipo": "F",
+    "forza": "H",
+    "vel": 4,
+    "sforzi": 2
+   },
+   {
+    "tipo": "M",
+    "forza": "H",
+    "vel": 5,
+    "sforzi": 1
+   },
+   {
+    "tipo": "F",
+    "forza": "H",
+    "vel": 4,
+    "sforzi": 2
+   },
+   {
+    "tipo": "F",
+    "forza": "T",
+    "vel": 6,
+    "sforzi": 1
+   },
+   {
+    "tipo": "M",
+    "forza": "T",
+    "vel": 5,
+    "sforzi": 2
+   },
+   {
+    "tipo": "F",
+    "forza": "T",
+    "vel": 5,
+    "sforzi": 2
+   },
+   {
+    "tipo": "F",
+    "forza": "T",
+    "vel": 5,
+    "sforzi": 2
+   }
+  ],
+  "equip": [
+   "ascia_grande",
+   "elmo"
+  ],
+  "abilita": [
+   {
+    "id": "gambe_corte",
+    "nome": "GAMBE CORTE",
+    "testo": "Usa solo le fasi Base (mai quelle di Luce). Quando riposa recupera un asterisco in più. Il segnalino Schivata in basso vale solo per la manovra \"Abbassarsi\"."
+   },
+   {
+    "id": "grotte",
+    "nome": "CONOSCENZA DELLE GROTTE",
+    "testo": "In una radura di grotta tira un solo dado per nascondersi e per tutte le tabelle di ricerca."
+   }
+  ],
+  "combattente": true,
+  "magia": 0,
+  "pedina": "dwarf",
+  "genere": "m"
+ },
+ {
+  "id": "elfo",
+  "nome": "Elfo",
+  "nome_en": "Elf",
+  "peso": "L",
+  "vuln": "L",
+  "partenze": [
+   "locanda",
+   "casolare",
+   "capanna"
+  ],
+  "chits": [
+   {
+    "tipo": "G",
+    "magia": "III",
+    "vel": 3,
+    "sforzi": 1
+   },
+   {
+    "tipo": "G",
+    "magia": "III",
+    "vel": 4,
+    "sforzi": 1
+   },
+   {
+    "tipo": "G",
+    "magia": "VII",
+    "vel": 4,
+    "sforzi": 1
+   },
+   {
+    "tipo": "G",
+    "magia": "III",
+    "vel": 2,
+    "sforzi": 1
+   },
+   {
+    "tipo": "G",
+    "magia": "III",
+    "vel": 3,
+    "sforzi": 1
+   },
+   {
+    "tipo": "G",
+    "magia": "VII",
+    "vel": 3,
+    "sforzi": 1
+   },
+   {
+    "tipo": "M",
+    "forza": "L",
+    "vel": 2,
+    "sforzi": 1
+   },
+   {
+    "tipo": "M",
+    "forza": "L",
+    "vel": 3,
+    "sforzi": 1
+   },
+   {
+    "tipo": "F",
+    "forza": "L",
+    "vel": 3,
+    "sforzi": 1
+   },
+   {
+    "tipo": "M",
+    "forza": "M",
+    "vel": 4,
+    "sforzi": 0
+   },
+   {
+    "tipo": "F",
+    "forza": "M",
+    "vel": 3,
+    "sforzi": 1
+   },
+   {
+    "tipo": "F",
+    "forza": "M",
+    "vel": 4,
+    "sforzi": 0
+   }
+  ],
+  "equip": [
+   "arco_leggero"
+  ],
+  "abilita": [
+   {
+    "id": "sfuggente",
+    "nome": "SFUGGENTE",
+    "testo": "Può registrare ed eseguire una fase di NASCONDERSI in più ogni giorno."
+   },
+   {
+    "id": "arciere",
+    "nome": "ARCIERE",
+    "testo": "Tira un solo dado sulla tabella dei Proiettili quando attacca con arco o balestra."
+   }
+  ],
+  "combattente": false,
+  "magia": 6,
+  "pedina": "elf",
+  "genere": "m"
+ },
+ {
+  "id": "gladiatore",
+  "nome": "Gladiatore",
+  "nome_en": "Gladiator",
+  "peso": "H",
+  "vuln": "H",
+  "partenze": [
+   "locanda",
+   "borgo",
+   "insediamento"
+  ],
+  "chits": [
+   {
+    "tipo": "M",
+    "forza": "H",
+    "vel": 6,
+    "sforzi": 0
+   },
+   {
+    "tipo": "M",
+    "forza": "H",
+    "vel": 4,
+    "sforzi": 1
+   },
+   {
+    "tipo": "F",
+    "forza": "H",
+    "vel": 5,
+    "sforzi": 1
+   },
+   {
+    "tipo": "M",
+    "forza": "T",
+    "vel": 5,
+    "sforzi": 1
+   },
+   {
+    "tipo": "R",
+    "forza": "H",
+    "vel": 3,
+    "sforzi": 2
+   },
+   {
+    "tipo": "F",
+    "forza": "H",
+    "vel": 6,
+    "sforzi": 0
+   },
+   {
+    "tipo": "F",
+    "forza": "H",
+    "vel": 4,
+    "sforzi": 2
+   },
+   {
+    "tipo": "F",
+    "forza": "H",
+    "vel": 5,
+    "sforzi": 1
+   },
+   {
+    "tipo": "M",
+    "forza": "T",
+    "vel": 4,
+    "sforzi": 2
+   },
+   {
+    "tipo": "M",
+    "forza": "T",
+    "vel": 4,
+    "sforzi": 2
+   },
+   {
+    "tipo": "F",
+    "forza": "H",
+    "vel": 4,
+    "sforzi": 2
+   },
+   {
+    "tipo": "F",
+    "forza": "H",
+    "vel": 5,
+    "sforzi": 1
+   }
+  ],
+  "equip": [
+   "mazza_ferrata",
+   "armatura"
+  ],
+  "abilita": [
+   {
+    "id": "riflessi",
+    "nome": "RIFLESSI",
+    "testo": "Può affaticare il segnalino Riflessi durante l'azione di combattimento per allertare l'arma attiva."
+   },
+   {
+    "id": "robusto",
+    "nome": "ROBUSTO",
+    "testo": "Può registrare ed eseguire una fase di RIPOSO in più ogni giorno."
+   }
+  ],
+  "combattente": true,
+  "magia": 0,
+  "pedina": "gladiator",
+  "genere": "m"
+ },
+ {
+  "id": "mago",
+  "nome": "Mago",
+  "nome_en": "Magician",
+  "peso": "L",
+  "vuln": "L",
+  "partenze": [
+   "locanda"
+  ],
+  "chits": [
+   {
+    "tipo": "M",
+    "forza": "L",
+    "vel": 3,
+    "sforzi": 1
+   },
+   {
+    "tipo": "M",
+    "forza": "L",
+    "vel": 4,
+    "sforzi": 0
+   },
+   {
+    "tipo": "F",
+    "forza": "L",
+    "vel": 3,
+    "sforzi": 1
+   },
+   {
+    "tipo": "M",
+    "forza": "M",
+    "vel": 4,
+    "sforzi": 1
+   },
+   {
+    "tipo": "F",
+    "forza": "L",
+    "vel": 4,
+    "sforzi": 0
+   },
+   {
+    "tipo": "G",
+    "magia": "II",
+    "vel": 3,
+    "sforzi": 1
+   },
+   {
+    "tipo": "G",
+    "magia": "III",
+    "vel": 3,
+    "sforzi": 1
+   },
+   {
+    "tipo": "G",
+    "magia": "VII",
+    "vel": 4,
+    "sforzi": 2
+   },
+   {
+    "tipo": "G",
+    "magia": "VIII",
+    "vel": 4,
+    "sforzi": 1
+   },
+   {
+    "tipo": "G",
+    "magia": "IV",
+    "vel": 3,
+    "sforzi": 1
+   },
+   {
+    "tipo": "G",
+    "magia": "V",
+    "vel": 4,
+    "sforzi": 2
+   },
+   {
+    "tipo": "G",
+    "magia": "VI",
+    "vel": 4,
+    "sforzi": 1
+   }
+  ],
+  "equip": [],
+  "abilita": [
+   {
+    "id": "strumenti_magici",
+    "nome": "STRUMENTI MAGICI",
+    "testo": "Può registrare ed eseguire una fase di ALLERTA in più ogni giorno."
+   }
+  ],
+  "combattente": false,
+  "magia": 7,
+  "pedina": "magician",
+  "genere": "m"
+ },
+ {
+  "id": "negromante",
+  "nome": "Negromante",
+  "nome_en": "Necromancer",
+  "peso": "M",
+  "vuln": "H",
+  "partenze": [
+   "locanda",
+   "insediamento"
+  ],
+  "chits": [
+   {
+    "tipo": "G",
+    "magia": "V",
+    "vel": 4,
+    "sforzi": 1
+   },
+   {
+    "tipo": "M",
+    "forza": "M",
+    "vel": 5,
+    "sforzi": 0
+   },
+   {
+    "tipo": "F",
+    "forza": "M",
+    "vel": 4,
+    "sforzi": 1
+   },
+   {
+    "tipo": "G",
+    "magia": "V",
+    "vel": 3,
+    "sforzi": 1
+   },
+   {
+    "tipo": "G",
+    "magia": "V",
+    "vel": 2,
+    "sforzi": 2
+   },
+   {
+    "tipo": "G",
+    "magia": "VIII",
+    "vel": 3,
+    "sforzi": 2
+   },
+   {
+    "tipo": "G",
+    "magia": "VI",
+    "vel": 5,
+    "sforzi": 2
+   },
+   {
+    "tipo": "G",
+    "magia": "VI",
+    "vel": 6,
+    "sforzi": 1
+   },
+   {
+    "tipo": "G",
+    "magia": "VI",
+    "vel": 6,
+    "sforzi": 1
+   },
+   {
+    "tipo": "G",
+    "magia": "VI",
+    "vel": 4,
+    "sforzi": 1
+   },
+   {
+    "tipo": "G",
+    "magia": "VI",
+    "vel": 4,
+    "sforzi": 1
+   },
+   {
+    "tipo": "G",
+    "magia": "VI",
+    "vel": 4,
+    "sforzi": 1
+   }
+  ],
+  "equip": [],
+  "abilita": [],
+  "combattente": false,
+  "magia": 10,
+  "pedina": "necromancer",
+  "genere": "m"
+ },
+ {
+  "id": "paladino",
+  "nome": "Paladino",
+  "nome_en": "Paladin",
+  "peso": "M",
+  "vuln": "M",
+  "partenze": [
+   "locanda",
+   "cappella",
+   "borgo"
+  ],
+  "chits": [
+   {
+    "tipo": "M",
+    "forza": "M",
+    "vel": 5,
+    "sforzi": 0
+   },
+   {
+    "tipo": "M",
+    "forza": "M",
+    "vel": 4,
+    "sforzi": 1
+   },
+   {
+    "tipo": "F",
+    "forza": "M",
+    "vel": 4,
+    "sforzi": 1
+   },
+   {
+    "tipo": "G",
+    "magia": "I",
+    "vel": 4,
+    "sforzi": 1
+   },
+   {
+    "tipo": "F",
+    "forza": "M",
+    "vel": 5,
+    "sforzi": 0
+   },
+   {
+    "tipo": "F",
+    "forza": "M",
+    "vel": 3,
+    "sforzi": 2
+   },
+   {
+    "tipo": "G",
+    "magia": "VII",
+    "vel": 6,
+    "sforzi": 1
+   },
+   {
+    "tipo": "M",
+    "forza": "M",
+    "vel": 3,
+    "sforzi": 2
+   },
+   {
+    "tipo": "M",
+    "forza": "H",
+    "vel": 6,
+    "sforzi": 0
+   },
+   {
+    "tipo": "G",
+    "magia": "I",
+    "vel": 2,
+    "sforzi": 2
+   },
+   {
+    "tipo": "G",
+    "magia": "IV",
+    "vel": 4,
+    "sforzi": 1
+   },
+   {
+    "tipo": "F",
+    "forza": "H",
+    "vel": 6,
+    "sforzi": 0
+   }
+  ],
+  "equip": [
+   "mazza",
+   "elmo",
+   "corazza",
+   "scudo"
+  ],
+  "abilita": [
+   {
+    "id": "compagno",
+    "nome": "COMPAGNO",
+    "testo": "Fase in più se un altro personaggio lo segue."
+   }
+  ],
+  "combattente": false,
+  "magia": 4,
+  "pedina": "paladin",
+  "genere": "m"
+ },
+ {
+  "id": "pellegrino",
+  "nome": "Pellegrino",
+  "nome_en": "Pilgrim",
+  "peso": "M",
+  "vuln": "M",
+  "partenze": [
+   "locanda",
+   "cappella"
+  ],
+  "chits": [
+   {
+    "tipo": "M",
+    "forza": "M",
+    "vel": 4,
+    "sforzi": 1
+   },
+   {
+    "tipo": "M",
+    "forza": "M",
+    "vel": 5,
+    "sforzi": 0
+   },
+   {
+    "tipo": "F",
+    "forza": "M",
+    "vel": 3,
+    "sforzi": 1
+   },
+   {
+    "tipo": "M",
+    "forza": "H",
+    "vel": 5,
+    "sforzi": 1
+   },
+   {
+    "tipo": "F",
+    "forza": "M",
+    "vel": 4,
+    "sforzi": 0
+   },
+   {
+    "tipo": "F",
+    "forza": "M",
+    "vel": 2,
+    "sforzi": 2
+   },
+   {
+    "tipo": "F",
+    "forza": "M",
+    "vel": 3,
+    "sforzi": 1
+   },
+   {
+    "tipo": "G",
+    "magia": "I",
+    "vel": 6,
+    "sforzi": 1
+   },
+   {
+    "tipo": "G",
+    "magia": "VII",
+    "vel": 3,
+    "sforzi": 1
+   },
+   {
+    "tipo": "M",
+    "forza": "H",
+    "vel": 6,
+    "sforzi": 0
+   },
+   {
+    "tipo": "F",
+    "forza": "H",
+    "vel": 4,
+    "sforzi": 1
+   },
+   {
+    "tipo": "G",
+    "magia": "I",
+    "vel": 4,
+    "sforzi": 1
+   }
+  ],
+  "equip": [
+   "bastone"
+  ],
+  "abilita": [
+   {
+    "id": "protezione_celeste",
+    "nome": "PROTEZIONE CELESTE",
+    "testo": "Demoni, Demoni alati, Imp, Vampiro e Succube non possono bloccarlo né essergli assegnati."
+   }
+  ],
+  "combattente": false,
+  "magia": 3,
+  "pedina": "pilgrim",
+  "genere": "m"
+ },
+ {
+  "id": "sensitiva",
+  "nome": "Sensitiva",
+  "nome_en": "Psychic",
+  "peso": "M",
+  "vuln": "M",
+  "partenze": [
+   "locanda",
+   "borgo",
+   "insediamento"
+  ],
+  "chits": [
+   {
+    "tipo": "M",
+    "forza": "M",
+    "vel": 5,
+    "sforzi": 0
+   },
+   {
+    "tipo": "M",
+    "forza": "M",
+    "vel": 4,
+    "sforzi": 1
+   },
+   {
+    "tipo": "F",
+    "forza": "L",
+    "vel": 4,
+    "sforzi": 0
+   },
+   {
+    "tipo": "F",
+    "forza": "M",
+    "vel": 5,
+    "sforzi": 0
+   },
+   {
+    "tipo": "G",
+    "magia": "IV",
+    "vel": 4,
+    "sforzi": 2
+   },
+   {
+    "tipo": "G",
+    "magia": "II",
+    "vel": 4,
+    "sforzi": 1
+   },
+   {
+    "tipo": "G",
+    "magia": "VII",
+    "vel": 4,
+    "sforzi": 1
+   },
+   {
+    "tipo": "G",
+    "magia": "II",
+    "vel": 3,
+    "sforzi": 1
+   },
+   {
+    "tipo": "M",
+    "forza": "M",
+    "vel": 5,
+    "sforzi": 0
+   },
+   {
+    "tipo": "F",
+    "forza": "M",
+    "vel": 4,
+    "sforzi": 1
+   },
+   {
+    "tipo": "G",
+    "magia": "VII",
+    "vel": 2,
+    "sforzi": 1
+   },
+   {
+    "tipo": "G",
+    "magia": "II",
+    "vel": 2,
+    "sforzi": 2
+   }
+  ],
+  "equip": [
+   "bastone"
+  ],
+  "abilita": [
+   {
+    "id": "visione",
+    "nome": "VISIONE",
+    "testo": "Può registrare ed eseguire una fase di RICERCA in più ogni giorno."
+   }
+  ],
+  "combattente": false,
+  "magia": 6,
+  "pedina": "psychic",
+  "genere": "f"
+ },
+ {
+  "id": "stregone",
+  "nome": "Stregone",
+  "nome_en": "Sorcerer",
+  "peso": "M",
+  "vuln": "M",
+  "partenze": [
+   "locanda"
+  ],
+  "chits": [
+   {
+    "tipo": "M",
+    "forza": "M",
+    "vel": 4,
+    "sforzi": 1
+   },
+   {
+    "tipo": "M",
+    "forza": "M",
+    "vel": 5,
+    "sforzi": 0
+   },
+   {
+    "tipo": "F",
+    "forza": "L",
+    "vel": 3,
+    "sforzi": 1
+   },
+   {
+    "tipo": "G",
+    "magia": "IV",
+    "vel": 4,
+    "sforzi": 1
+   },
+   {
+    "tipo": "G",
+    "magia": "IV",
+    "vel": 4,
+    "sforzi": 1
+   },
+   {
+    "tipo": "G",
+    "magia": "IV",
+    "vel": 4,
+    "sforzi": 1
+   },
+   {
+    "tipo": "G",
+    "magia": "VI",
+    "vel": 4,
+    "sforzi": 1
+   },
+   {
+    "tipo": "G",
+    "magia": "VI",
+    "vel": 5,
+    "sforzi": 1
+   },
+   {
+    "tipo": "G",
+    "magia": "VI",
+    "vel": 6,
+    "sforzi": 1
+   },
+   {
+    "tipo": "G",
+    "magia": "IV",
+    "vel": 3,
+    "sforzi": 1
+   },
+   {
+    "tipo": "G",
+    "magia": "IV",
+    "vel": 3,
+    "sforzi": 1
+   },
+   {
+    "tipo": "G",
+    "magia": "IV",
+    "vel": 5,
+    "sforzi": 1
+   }
+  ],
+  "equip": [],
+  "abilita": [],
+  "combattente": false,
+  "magia": 9,
+  "pedina": "sorcerer",
+  "genere": "m"
+ },
+ {
+  "id": "spadaccino",
+  "nome": "Spadaccino",
+  "nome_en": "Swordsman",
+  "peso": "L",
+  "vuln": "L",
+  "partenze": [
+   "locanda"
+  ],
+  "chits": [
+   {
+    "tipo": "M",
+    "forza": "L",
+    "vel": 3,
+    "sforzi": 1
+   },
+   {
+    "tipo": "M",
+    "forza": "L",
+    "vel": 4,
+    "sforzi": 0
+   },
+   {
+    "tipo": "F",
+    "forza": "L",
+    "vel": 3,
+    "sforzi": 1
+   },
+   {
+    "tipo": "M",
+    "forza": "L",
+    "vel": 2,
+    "sforzi": 2
+   },
+   {
+    "tipo": "M",
+    "forza": "L",
+    "vel": 3,
+    "sforzi": 1
+   },
+   {
+    "tipo": "F",
+    "forza": "L",
+    "vel": 2,
+    "sforzi": 2
+   },
+   {
+    "tipo": "M",
+    "forza": "M",
+    "vel": 4,
+    "sforzi": 1
+   },
+   {
+    "tipo": "F",
+    "forza": "M",
+    "vel": 3,
+    "sforzi": 2
+   },
+   {
+    "tipo": "F",
+    "forza": "M",
+    "vel": 4,
+    "sforzi": 1
+   },
+   {
+    "tipo": "F",
+    "forza": "L",
+    "vel": 2,
+    "sforzi": 2
+   },
+   {
+    "tipo": "F",
+    "forza": "L",
+    "vel": 4,
+    "sforzi": 0
+   },
+   {
+    "tipo": "F",
+    "forza": "M",
+    "vel": 5,
+    "sforzi": 0
+   }
+  ],
+  "equip": [
+   "stocco"
+  ],
+  "abilita": [
+   {
+    "id": "astuto",
+    "nome": "ASTUTO",
+    "testo": "Sceglie lui quando giocare il proprio turno durante il giorno."
+   }
+  ],
+  "combattente": true,
+  "magia": 0,
+  "pedina": "swordsman",
+  "genere": "m"
+ },
+ {
+  "id": "pescatore",
+  "nome": "Pescatore",
+  "nome_en": "Trawler",
+  "peso": "L",
+  "vuln": "L",
+  "partenze": [
+   "locanda",
+   "casolare",
+   "capanna"
+  ],
+  "chits": [
+   {
+    "tipo": "M",
+    "forza": "L",
+    "vel": 3,
+    "sforzi": 1
+   },
+   {
+    "tipo": "M",
+    "forza": "L",
+    "vel": 4,
+    "sforzi": 0
+   },
+   {
+    "tipo": "F",
+    "forza": "L",
+    "vel": 3,
+    "sforzi": 1
+   },
+   {
+    "tipo": "M",
+    "forza": "L",
+    "vel": 2,
+    "sforzi": 2
+   },
+   {
+    "tipo": "M",
+    "forza": "M",
+    "vel": 4,
+    "sforzi": 1
+   },
+   {
+    "tipo": "F",
+    "forza": "M",
+    "vel": 3,
+    "sforzi": 2
+   },
+   {
+    "tipo": "M",
+    "forza": "M",
+    "vel": 3,
+    "sforzi": 2
+   },
+   {
+    "tipo": "F",
+    "forza": "M",
+    "vel": 4,
+    "sforzi": 1
+   },
+   {
+    "tipo": "F",
+    "forza": "L",
+    "vel": 3,
+    "sforzi": 1
+   },
+   {
+    "tipo": "F",
+    "forza": "M",
+    "vel": 5,
+    "sforzi": 0
+   },
+   {
+    "tipo": "F",
+    "forza": "M",
+    "vel": 3,
+    "sforzi": 2
+   },
+   {
+    "tipo": "F",
+    "forza": "L",
+    "vel": 4,
+    "sforzi": 0
+   }
+  ],
+  "equip": [
+   "stocco"
+  ],
+  "abilita": [
+   {
+    "id": "navigatore",
+    "nome": "NAVIGATORE",
+    "testo": "Gli basta una sola fase di movimento per entrare in qualsiasi radura d'acqua."
+   },
+   {
+    "id": "affondo",
+    "nome": "AFFONDO",
+    "testo": "Quando gioca un segnalino Combattimento nel cerchio \"Affondo\" la sua forza sale di un livello."
+   }
+  ],
+  "combattente": true,
+  "magia": 0,
+  "pedina": "trawler",
+  "genere": "m"
+ },
+ {
+  "id": "viandante",
+  "nome": "Viandante",
+  "nome_en": "Wanderer",
+  "peso": "M",
+  "vuln": "M",
+  "partenze": [
+   "locanda",
+   "casolare"
+  ],
+  "chits": [
+   {
+    "tipo": "M",
+    "forza": "M",
+    "vel": 4,
+    "sforzi": 1
+   },
+   {
+    "tipo": "M",
+    "forza": "M",
+    "vel": 5,
+    "sforzi": 0
+   },
+   {
+    "tipo": "F",
+    "forza": "M",
+    "vel": 4,
+    "sforzi": 1
+   },
+   {
+    "tipo": "G",
+    "magia": "II",
+    "vel": 3,
+    "sforzi": 1
+   },
+   {
+    "tipo": "M",
+    "forza": "M",
+    "vel": 3,
+    "sforzi": 2
+   },
+   {
+    "tipo": "F",
+    "forza": "M",
+    "vel": 5,
+    "sforzi": 0
+   },
+   {
+    "tipo": "F",
+    "forza": "M",
+    "vel": 3,
+    "sforzi": 2
+   },
+   {
+    "tipo": "M",
+    "forza": "M",
+    "vel": 4,
+    "sforzi": 1
+   },
+   {
+    "tipo": "F",
+    "forza": "H",
+    "vel": 5,
+    "sforzi": 1
+   },
+   {
+    "tipo": "F",
+    "forza": "M",
+    "vel": 4,
+    "sforzi": 1
+   },
+   {
+    "tipo": "M",
+    "forza": "M",
+    "vel": 3,
+    "sforzi": 2
+   },
+   {
+    "tipo": "F",
+    "forza": "H",
+    "vel": 6,
+    "sforzi": 0
+   }
+  ],
+  "equip": [
+   "spada_larga",
+   "elmo",
+   "corazza",
+   "scudo"
+  ],
+  "abilita": [
+   {
+    "id": "scalatore",
+    "nome": "SCALATORE",
+    "testo": "Gli basta una sola fase di movimento per salire su una radura di montagna."
+   },
+   {
+    "id": "uomo_frontiera",
+    "nome": "UOMO DI FRONTIERA",
+    "testo": "In una radura di montagna tira un solo dado per nascondersi e per tutte le tabelle di ricerca."
+   }
+  ],
+  "combattente": true,
+  "magia": 1,
+  "pedina": "wanderer",
+  "genere": "m"
+ },
+ {
+  "id": "cavaliere_bianco",
+  "nome": "Cavaliere Bianco",
+  "nome_en": "White Knight",
+  "peso": "H",
+  "vuln": "H",
+  "partenze": [
+   "locanda",
+   "cappella"
+  ],
+  "chits": [
+   {
+    "tipo": "M",
+    "forza": "H",
+    "vel": 5,
+    "sforzi": 1
+   },
+   {
+    "tipo": "M",
+    "forza": "H",
+    "vel": 6,
+    "sforzi": 0
+   },
+   {
+    "tipo": "F",
+    "forza": "H",
+    "vel": 5,
+    "sforzi": 1
+   },
+   {
+    "tipo": "M",
+    "forza": "H",
+    "vel": 4,
+    "sforzi": 2
+   },
+   {
+    "tipo": "F",
+    "forza": "H",
+    "vel": 4,
+    "sforzi": 2
+   },
+   {
+    "tipo": "F",
+    "forza": "H",
+    "vel": 6,
+    "sforzi": 0
+   },
+   {
+    "tipo": "F",
+    "forza": "H",
+    "vel": 4,
+    "sforzi": 2
+   },
+   {
+    "tipo": "F",
+    "forza": "H",
+    "vel": 5,
+    "sforzi": 1
+   },
+   {
+    "tipo": "G",
+    "magia": "I",
+    "vel": 5,
+    "sforzi": 2
+   },
+   {
+    "tipo": "M",
+    "forza": "T",
+    "vel": 6,
+    "sforzi": 1
+   },
+   {
+    "tipo": "F",
+    "forza": "T",
+    "vel": 4,
+    "sforzi": 2
+   },
+   {
+    "tipo": "F",
+    "forza": "T",
+    "vel": 5,
+    "sforzi": 1
+   }
+  ],
+  "equip": [
+   "spadone",
+   "armatura"
+  ],
+  "abilita": [
+   {
+    "id": "salute",
+    "nome": "SALUTE",
+    "testo": "Può registrare ed eseguire una fase di RIPOSO in più ogni giorno."
+   }
+  ],
+  "combattente": true,
+  "magia": 1,
+  "pedina": "white_knight",
+  "genere": "m"
+ },
+ {
+  "id": "strega",
+  "nome": "Strega",
+  "nome_en": "Witch",
+  "peso": "L",
+  "vuln": "L",
+  "partenze": [
+   "locanda"
+  ],
+  "chits": [
+   {
+    "tipo": "M",
+    "forza": "L",
+    "vel": 3,
+    "sforzi": 1
+   },
+   {
+    "tipo": "M",
+    "forza": "L",
+    "vel": 4,
+    "sforzi": 0
+   },
+   {
+    "tipo": "M",
+    "forza": "M",
+    "vel": 4,
+    "sforzi": 1
+   },
+   {
+    "tipo": "G",
+    "magia": "II",
+    "vel": 3,
+    "sforzi": 1
+   },
+   {
+    "tipo": "G",
+    "magia": "V",
+    "vel": 6,
+    "sforzi": 1
+   },
+   {
+    "tipo": "G",
+    "magia": "VIII",
+    "vel": 4,
+    "sforzi": 1
+   },
+   {
+    "tipo": "F",
+    "forza": "L",
+    "vel": 3,
+    "sforzi": 1
+   },
+   {
+    "tipo": "G",
+    "magia": "II",
+    "vel": 3,
+    "sforzi": 1
+   },
+   {
+    "tipo": "G",
+    "magia": "V",
+    "vel": 5,
+    "sforzi": 1
+   },
+   {
+    "tipo": "G",
+    "magia": "II",
+    "vel": 2,
+    "sforzi": 1
+   },
+   {
+    "tipo": "G",
+    "magia": "V",
+    "vel": 4,
+    "sforzi": 1
+   },
+   {
+    "tipo": "G",
+    "magia": "VIII",
+    "vel": 2,
+    "sforzi": 1
+   }
+  ],
+  "equip": [],
+  "abilita": [],
+  "combattente": false,
+  "magia": 8,
+  "pedina": "witch",
+  "genere": "f"
+ },
+ {
+  "id": "re_stregone",
+  "nome": "Re Stregone",
+  "nome_en": "Witch King",
+  "peso": "L",
+  "vuln": "L",
+  "partenze": [
+   "locanda"
+  ],
+  "chits": [
+   {
+    "tipo": "G",
+    "magia": "IV",
+    "vel": 4,
+    "sforzi": 1
+   },
+   {
+    "tipo": "G",
+    "magia": "V",
+    "vel": 4,
+    "sforzi": 1
+   },
+   {
+    "tipo": "G",
+    "magia": "VI",
+    "vel": 4,
+    "sforzi": 1
+   },
+   {
+    "tipo": "G",
+    "magia": "IV",
+    "vel": 4,
+    "sforzi": 1
+   },
+   {
+    "tipo": "G",
+    "magia": "V",
+    "vel": 3,
+    "sforzi": 1
+   },
+   {
+    "tipo": "G",
+    "magia": "VI",
+    "vel": 3,
+    "sforzi": 1
+   },
+   {
+    "tipo": "G",
+    "magia": "IV",
+    "vel": 3,
+    "sforzi": 1
+   },
+   {
+    "tipo": "G",
+    "magia": "V",
+    "vel": 3,
+    "sforzi": 1
+   },
+   {
+    "tipo": "G",
+    "magia": "VI",
+    "vel": 3,
+    "sforzi": 1
+   },
+   {
+    "tipo": "G",
+    "magia": "IV",
+    "vel": 3,
+    "sforzi": 1
+   },
+   {
+    "tipo": "G",
+    "magia": "V",
+    "vel": 2,
+    "sforzi": 1
+   },
+   {
+    "tipo": "G",
+    "magia": "VI",
+    "vel": 2,
+    "sforzi": 1
+   }
+  ],
+  "equip": [],
+  "abilita": [],
+  "combattente": false,
+  "magia": 12,
+  "pedina": "witch_king",
+  "genere": "m"
+ },
+ {
+  "id": "stregone_bianco",
+  "nome": "Arcimago",
+  "nome_en": "Wizard",
+  "peso": "M",
+  "vuln": "M",
+  "partenze": [
+   "locanda",
+   "casa",
+   "corpo_guardia"
+  ],
+  "chits": [
+   {
+    "tipo": "M",
+    "forza": "M",
+    "vel": 5,
+    "sforzi": 0
+   },
+   {
+    "tipo": "M",
+    "forza": "M",
+    "vel": 4,
+    "sforzi": 1
+   },
+   {
+    "tipo": "F",
+    "forza": "M",
+    "vel": 3,
+    "sforzi": 1
+   },
+   {
+    "tipo": "M",
+    "forza": "M",
+    "vel": 5,
+    "sforzi": 0
+   },
+   {
+    "tipo": "M",
+    "forza": "M",
+    "vel": 5,
+    "sforzi": 0
+   },
+   {
+    "tipo": "F",
+    "forza": "M",
+    "vel": 5,
+    "sforzi": 0
+   },
+   {
+    "tipo": "F",
+    "forza": "L",
+    "vel": 4,
+    "sforzi": 0
+   },
+   {
+    "tipo": "G",
+    "magia": "II",
+    "vel": 4,
+    "sforzi": 1
+   },
+   {
+    "tipo": "G",
+    "magia": "IV",
+    "vel": 4,
+    "sforzi": 1
+   },
+   {
+    "tipo": "G",
+    "magia": "II",
+    "vel": 3,
+    "sforzi": 1
+   },
+   {
+    "tipo": "G",
+    "magia": "III",
+    "vel": 3,
+    "sforzi": 0
+   },
+   {
+    "tipo": "G",
+    "magia": "IV",
+    "vel": 3,
+    "sforzi": 1
+   }
+  ],
+  "equip": [
+   "bastone"
+  ],
+  "abilita": [
+   {
+    "id": "esperienza",
+    "nome": "ESPERIENZA",
+    "testo": "Conosce fin dall'inizio tutti i sentieri nascosti e i passaggi segreti del Reame."
+   }
+  ],
+  "combattente": false,
+  "magia": 5,
+  "pedina": "wizard",
+  "genere": "m"
+ },
+ {
+  "id": "ragazza_boschi",
+  "nome": "Ragazza dei Boschi",
+  "nome_en": "Woods Girl",
+  "peso": "L",
+  "vuln": "L",
+  "partenze": [
+   "locanda",
+   "casa"
+  ],
+  "chits": [
+   {
+    "tipo": "M",
+    "forza": "L",
+    "vel": 3,
+    "sforzi": 1
+   },
+   {
+    "tipo": "M",
+    "forza": "L",
+    "vel": 4,
+    "sforzi": 0
+   },
+   {
+    "tipo": "M",
+    "forza": "L",
+    "vel": 2,
+    "sforzi": 2
+   },
+   {
+    "tipo": "G",
+    "magia": "VII",
+    "vel": 6,
+    "sforzi": 2
+   },
+   {
+    "tipo": "F",
+    "forza": "L",
+    "vel": 4,
+    "sforzi": 0
+   },
+   {
+    "tipo": "M",
+    "forza": "L",
+    "vel": 2,
+    "sforzi": 2
+   },
+   {
+    "tipo": "F",
+    "forza": "L",
+    "vel": 3,
+    "sforzi": 1
+   },
+   {
+    "tipo": "F",
+    "forza": "M",
+    "vel": 5,
+    "sforzi": 0
+   },
+   {
+    "tipo": "F",
+    "forza": "L",
+    "vel": 4,
+    "sforzi": 0
+   },
+   {
+    "tipo": "M",
+    "forza": "L",
+    "vel": 3,
+    "sforzi": 1
+   },
+   {
+    "tipo": "F",
+    "forza": "M",
+    "vel": 4,
+    "sforzi": 1
+   },
+   {
+    "tipo": "F",
+    "forza": "L",
+    "vel": 3,
+    "sforzi": 1
+   }
+  ],
+  "equip": [
+   "arco_leggero"
+  ],
+  "abilita": [
+   {
+    "id": "inseguitrice",
+    "nome": "SEGUGIO",
+    "testo": "Nelle dieci tessere di bosco tira un solo dado per nascondersi e per tutte le tabelle di ricerca."
+   },
+   {
+    "id": "arciere",
+    "nome": "ARCIERE",
+    "testo": "Tira un solo dado sulla tabella dei Proiettili quando attacca con arco o balestra."
+   }
+  ],
+  "combattente": true,
+  "magia": 1,
+  "pedina": "woods_girl",
+  "genere": "f"
+ }
+]

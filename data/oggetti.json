@@ -1,0 +1,313 @@
+{
+ "armi": {
+  "arco_leggero": {
+   "nome": "Arco leggero",
+   "peso": "L",
+   "lung": 14,
+   "missile": true,
+   "prezzo": 6,
+   "inallerta": [
+    "L",
+    2,
+    1
+   ],
+   "normale": [
+    "L",
+    0,
+    0
+   ]
+  },
+  "arco_medio": {
+   "nome": "Arco medio",
+   "peso": "M",
+   "lung": 16,
+   "missile": true,
+   "prezzo": 8,
+   "inallerta": [
+    "M",
+    2,
+    1
+   ],
+   "normale": [
+    "M",
+    0,
+    0
+   ]
+  },
+  "balestra": {
+   "nome": "Balestra",
+   "peso": "H",
+   "lung": 12,
+   "missile": true,
+   "prezzo": 10,
+   "inallerta": [
+    "H",
+    1,
+    1
+   ],
+   "normale": [
+    "H",
+    0,
+    0
+   ]
+  },
+  "lancia": {
+   "nome": "Lancia",
+   "peso": "M",
+   "lung": 10,
+   "missile": false,
+   "prezzo": 6,
+   "inallerta": [
+    "M",
+    1,
+    0
+   ],
+   "normale": [
+    "-",
+    0,
+    6
+   ]
+  },
+  "bastone": {
+   "nome": "Bastone",
+   "peso": "L",
+   "lung": 9,
+   "missile": false,
+   "prezzo": 1,
+   "inallerta": [
+    "L",
+    0,
+    0
+   ],
+   "normale": [
+    "L",
+    0,
+    0
+   ]
+  },
+  "spadone": {
+   "nome": "Spadone",
+   "peso": "H",
+   "lung": 8,
+   "missile": false,
+   "prezzo": 10,
+   "inallerta": [
+    "H",
+    1,
+    0
+   ],
+   "normale": [
+    "H",
+    1,
+    6
+   ]
+  },
+  "spada_funesta": {
+   "nome": "Spada funesta",
+   "peso": "T",
+   "lung": 8,
+   "missile": false,
+   "prezzo": 20,
+   "inallerta": [
+    "T",
+    1,
+    2
+   ],
+   "normale": [
+    "T",
+    1,
+    8
+   ]
+  },
+  "spada_larga": {
+   "nome": "Spada larga",
+   "peso": "M",
+   "lung": 7,
+   "missile": false,
+   "prezzo": 8,
+   "inallerta": [
+    "M",
+    1,
+    0
+   ],
+   "normale": [
+    "M",
+    1,
+    5
+   ]
+  },
+  "ascia_dorata": {
+   "nome": "Ascia dorata",
+   "peso": "T",
+   "lung": 6,
+   "missile": false,
+   "prezzo": 20,
+   "inallerta": [
+    "T",
+    1,
+    3
+   ],
+   "normale": [
+    "T",
+    1,
+    0
+   ]
+  },
+  "mazza_ferrata": {
+   "nome": "Mazza ferrata",
+   "peso": "H",
+   "lung": 6,
+   "missile": false,
+   "prezzo": 8,
+   "inallerta": [
+    "H",
+    0,
+    3
+   ],
+   "normale": [
+    "H",
+    0,
+    6
+   ]
+  },
+  "ascia_grande": {
+   "nome": "Ascia grande",
+   "peso": "H",
+   "lung": 5,
+   "missile": false,
+   "prezzo": 8,
+   "inallerta": [
+    "H",
+    1,
+    4
+   ],
+   "normale": [
+    "H",
+    1,
+    0
+   ]
+  },
+  "stocco": {
+   "nome": "Stocco",
+   "peso": "L",
+   "lung": 4,
+   "missile": false,
+   "prezzo": 6,
+   "inallerta": [
+    "L",
+    1,
+    0
+   ],
+   "normale": [
+    "L",
+    1,
+    4
+   ]
+  },
+  "spada_corta": {
+   "nome": "Spada corta",
+   "peso": "L",
+   "lung": 3,
+   "missile": false,
+   "prezzo": 4,
+   "inallerta": [
+    "L",
+    1,
+    0
+   ],
+   "normale": [
+    "L",
+    1,
+    0
+   ]
+  },
+  "ascia": {
+   "nome": "Ascia",
+   "peso": "M",
+   "lung": 2,
+   "missile": false,
+   "prezzo": 4,
+   "inallerta": [
+    "M",
+    1,
+    0
+   ],
+   "normale": [
+    "M",
+    1,
+    5
+   ]
+  },
+  "mazza": {
+   "nome": "Mazza",
+   "peso": "M",
+   "lung": 1,
+   "missile": false,
+   "prezzo": 6,
+   "inallerta": [
+    "M",
+    0,
+    3
+   ],
+   "normale": [
+    "M",
+    0,
+    0
+   ]
+  },
+  "pugnale": {
+   "nome": "Pugnale",
+   "peso": "-",
+   "lung": 0,
+   "missile": false,
+   "prezzo": 0,
+   "inallerta": [
+    "-",
+    1,
+    0
+   ],
+   "normale": [
+    "-",
+    1,
+    0
+   ]
+  }
+ },
+ "armature": {
+  "elmo": {
+   "nome": "Elmo",
+   "peso": "M",
+   "prezzo": 5,
+   "protegge": [
+    "smash"
+   ]
+  },
+  "corazza": {
+   "nome": "Corazza",
+   "peso": "M",
+   "prezzo": 9,
+   "protegge": [
+    "thrust",
+    "swing"
+   ]
+  },
+  "scudo": {
+   "nome": "Scudo",
+   "peso": "M",
+   "prezzo": 7,
+   "protegge": [
+    "scudo"
+   ]
+  },
+  "armatura": {
+   "nome": "Armatura completa",
+   "peso": "H",
+   "prezzo": 17,
+   "protegge": [
+    "thrust",
+    "swing",
+    "smash"
+   ]
+  }
+ }
+}

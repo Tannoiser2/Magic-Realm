@@ -1,0 +1,825 @@
+[
+ {
+  "id": "trek_bones_c",
+  "scenario": 1,
+  "tipo": "trek",
+  "nome": "Spedizione nelle Grotte: Ossa",
+  "testo": "Nella tessera di grotta con l'avviso «Ossa C», ottieni «Scopri segnalini» nella radura col sito di numero più alto (o, se non ci sono siti, in quella del suono di numero più alto).",
+  "pv": 2,
+  "avviso": "BONES_C",
+  "gruppo": "C"
+ },
+ {
+  "id": "trek_dank_c",
+  "scenario": 1,
+  "tipo": "trek",
+  "nome": "Spedizione nelle Grotte: Muffa",
+  "testo": "Nella tessera di grotta con l'avviso «Muffa C», ottieni «Scopri segnalini» nella radura col sito di numero più alto (o, se non ci sono siti, in quella del suono di numero più alto).",
+  "pv": 2,
+  "avviso": "DANK_C",
+  "gruppo": "C"
+ },
+ {
+  "id": "trek_ruins_c",
+  "scenario": 1,
+  "tipo": "trek",
+  "nome": "Spedizione nelle Grotte: Rovine",
+  "testo": "Nella tessera di grotta con l'avviso «Rovine C», ottieni «Scopri segnalini» nella radura col sito di numero più alto (o, se non ci sono siti, in quella del suono di numero più alto).",
+  "pv": 2,
+  "avviso": "RUINS_C",
+  "gruppo": "C"
+ },
+ {
+  "id": "trek_smoke_c",
+  "scenario": 1,
+  "tipo": "trek",
+  "nome": "Spedizione nelle Grotte: Fumo",
+  "testo": "Nella tessera di grotta con l'avviso «Fumo C», ottieni «Scopri segnalini» nella radura col sito di numero più alto (o, se non ci sono siti, in quella del suono di numero più alto).",
+  "pv": 2,
+  "avviso": "SMOKE_C",
+  "gruppo": "C"
+ },
+ {
+  "id": "trek_stink_c",
+  "scenario": 1,
+  "tipo": "trek",
+  "nome": "Spedizione nelle Grotte: Fetore",
+  "testo": "Nella tessera di grotta con l'avviso «Fetore C», ottieni «Scopri segnalini» nella radura col sito di numero più alto (o, se non ci sono siti, in quella del suono di numero più alto).",
+  "pv": 2,
+  "avviso": "STINK_C",
+  "gruppo": "C"
+ },
+ {
+  "id": "trek_bones_f",
+  "scenario": 1,
+  "tipo": "trek",
+  "nome": "Spedizione nella Foresta: Ossa",
+  "testo": "Nella tessera di foresta con l'avviso «Ossa F», ottieni «Scopri segnalini» nella radura col sito di numero più alto (o, se non ci sono siti, in quella del suono di numero più alto).",
+  "pv": 2,
+  "avviso": "BONES_F",
+  "gruppo": "F"
+ },
+ {
+  "id": "trek_dank_f",
+  "scenario": 1,
+  "tipo": "trek",
+  "nome": "Spedizione nella Foresta: Muffa",
+  "testo": "Nella tessera di foresta con l'avviso «Muffa F», ottieni «Scopri segnalini» nella radura col sito di numero più alto (o, se non ci sono siti, in quella del suono di numero più alto).",
+  "pv": 2,
+  "avviso": "DANK_F",
+  "gruppo": "F"
+ },
+ {
+  "id": "trek_ruins_f",
+  "scenario": 1,
+  "tipo": "trek",
+  "nome": "Spedizione nella Foresta: Rovine",
+  "testo": "Nella tessera di foresta con l'avviso «Rovine F», ottieni «Scopri segnalini» nella radura col sito di numero più alto (o, se non ci sono siti, in quella del suono di numero più alto).",
+  "pv": 2,
+  "avviso": "RUINS_F",
+  "gruppo": "F"
+ },
+ {
+  "id": "trek_smoke_f",
+  "scenario": 1,
+  "tipo": "trek",
+  "nome": "Spedizione nella Foresta: Fumo",
+  "testo": "Nella tessera di foresta con l'avviso «Fumo F», ottieni «Scopri segnalini» nella radura col sito di numero più alto (o, se non ci sono siti, in quella del suono di numero più alto).",
+  "pv": 2,
+  "avviso": "SMOKE_F",
+  "gruppo": "F"
+ },
+ {
+  "id": "trek_stink_f",
+  "scenario": 1,
+  "tipo": "trek",
+  "nome": "Spedizione nella Foresta: Fetore",
+  "testo": "Nella tessera di foresta con l'avviso «Fetore F», ottieni «Scopri segnalini» nella radura col sito di numero più alto (o, se non ci sono siti, in quella del suono di numero più alto).",
+  "pv": 2,
+  "avviso": "STINK_F",
+  "gruppo": "F"
+ },
+ {
+  "id": "trek_bones_m",
+  "scenario": 1,
+  "tipo": "trek",
+  "nome": "Spedizione sulle Montagne: Ossa",
+  "testo": "Nella tessera di montagna con l'avviso «Ossa M», ottieni «Scopri segnalini» nella radura col sito di numero più alto (o, se non ci sono siti, in quella del suono di numero più alto).",
+  "pv": 2,
+  "avviso": "BONES_M",
+  "gruppo": "M"
+ },
+ {
+  "id": "trek_dank_m",
+  "scenario": 1,
+  "tipo": "trek",
+  "nome": "Spedizione sulle Montagne: Muffa",
+  "testo": "Nella tessera di montagna con l'avviso «Muffa M», ottieni «Scopri segnalini» nella radura col sito di numero più alto (o, se non ci sono siti, in quella del suono di numero più alto).",
+  "pv": 2,
+  "avviso": "DANK_M",
+  "gruppo": "M"
+ },
+ {
+  "id": "trek_ruins_m",
+  "scenario": 1,
+  "tipo": "trek",
+  "nome": "Spedizione sulle Montagne: Rovine",
+  "testo": "Nella tessera di montagna con l'avviso «Rovine M», ottieni «Scopri segnalini» nella radura col sito di numero più alto (o, se non ci sono siti, in quella del suono di numero più alto).",
+  "pv": 2,
+  "avviso": "RUINS_M",
+  "gruppo": "M"
+ },
+ {
+  "id": "trek_smoke_m",
+  "scenario": 1,
+  "tipo": "trek",
+  "nome": "Spedizione sulle Montagne: Fumo",
+  "testo": "Nella tessera di montagna con l'avviso «Fumo M», ottieni «Scopri segnalini» nella radura col sito di numero più alto (o, se non ci sono siti, in quella del suono di numero più alto).",
+  "pv": 2,
+  "avviso": "SMOKE_M",
+  "gruppo": "M"
+ },
+ {
+  "id": "trek_stink_m",
+  "scenario": 1,
+  "tipo": "trek",
+  "nome": "Spedizione sulle Montagne: Fetore",
+  "testo": "Nella tessera di montagna con l'avviso «Fetore M», ottieni «Scopri segnalini» nella radura col sito di numero più alto (o, se non ci sono siti, in quella del suono di numero più alto).",
+  "pv": 2,
+  "avviso": "STINK_M",
+  "gruppo": "M"
+ },
+ {
+  "id": "trek_bones_r",
+  "scenario": 1,
+  "tipo": "trek",
+  "nome": "Spedizione tra le Rovine: Ossa",
+  "testo": "Nella tessera di rovine con l'avviso «Ossa R», ottieni «Scopri segnalini» nella radura col sito di numero più alto (o, se non ci sono siti, in quella del suono di numero più alto).",
+  "pv": 2,
+  "avviso": "BONES_R",
+  "gruppo": "R"
+ },
+ {
+  "id": "trek_dank_r",
+  "scenario": 1,
+  "tipo": "trek",
+  "nome": "Spedizione tra le Rovine: Muffa",
+  "testo": "Nella tessera di rovine con l'avviso «Muffa R», ottieni «Scopri segnalini» nella radura col sito di numero più alto (o, se non ci sono siti, in quella del suono di numero più alto).",
+  "pv": 2,
+  "avviso": "DANK_R",
+  "gruppo": "R"
+ },
+ {
+  "id": "trek_ruins_r",
+  "scenario": 1,
+  "tipo": "trek",
+  "nome": "Spedizione tra le Rovine: Rovine",
+  "testo": "Nella tessera di rovine con l'avviso «Rovine R», ottieni «Scopri segnalini» nella radura col sito di numero più alto (o, se non ci sono siti, in quella del suono di numero più alto).",
+  "pv": 2,
+  "avviso": "RUINS_R",
+  "gruppo": "R"
+ },
+ {
+  "id": "trek_smoke_r",
+  "scenario": 1,
+  "tipo": "trek",
+  "nome": "Spedizione tra le Rovine: Fumo",
+  "testo": "Nella tessera di rovine con l'avviso «Fumo R», ottieni «Scopri segnalini» nella radura col sito di numero più alto (o, se non ci sono siti, in quella del suono di numero più alto).",
+  "pv": 2,
+  "avviso": "SMOKE_R",
+  "gruppo": "R"
+ },
+ {
+  "id": "trek_stink_r",
+  "scenario": 1,
+  "tipo": "trek",
+  "nome": "Spedizione tra le Rovine: Fetore",
+  "testo": "Nella tessera di rovine con l'avviso «Fetore R», ottieni «Scopri segnalini» nella radura col sito di numero più alto (o, se non ci sono siti, in quella del suono di numero più alto).",
+  "pv": 2,
+  "avviso": "STINK_R",
+  "gruppo": "R"
+ },
+ {
+  "id": "trova_castle",
+  "scenario": 3,
+  "tipo": "trova_perduto",
+  "mazzo": "pubblico",
+  "nome": "Trova il Castello Perduto",
+  "testo": "Ottieni «Scopri segnalini» nella radura con il Castello perduto.",
+  "pv": 2,
+  "perduto": "castle"
+ },
+ {
+  "id": "trova_city",
+  "scenario": 3,
+  "tipo": "trova_perduto",
+  "mazzo": "pubblico",
+  "nome": "Trova la Città Perduta",
+  "testo": "Ottieni «Scopri segnalini» nella radura con la Città perduta.",
+  "pv": 2,
+  "perduto": "city"
+ },
+ {
+  "id": "trova_palace",
+  "scenario": 3,
+  "tipo": "trova_perduto",
+  "mazzo": "pubblico",
+  "nome": "Trova il Palazzo Perduto",
+  "testo": "Ottieni «Scopri segnalini» nella radura con il Palazzo perduto.",
+  "pv": 2,
+  "perduto": "palace"
+ },
+ {
+  "id": "trova_fortress",
+  "scenario": 3,
+  "tipo": "trova_perduto",
+  "mazzo": "pubblico",
+  "nome": "Trova la Fortezza Perduta",
+  "testo": "Ottieni «Scopri segnalini» nella radura con la Fortezza perduta.",
+  "pv": 2,
+  "perduto": "fortress"
+ },
+ {
+  "id": "segreti_altar",
+  "scenario": 3,
+  "tipo": "uccidi_sito",
+  "mazzo": "pubblico",
+  "nome": "Segreti: Altare",
+  "testo": "Uccidi il Demone evocato dal sito «Altare».",
+  "pv": 3,
+  "sito": "altar",
+  "mostro": "demone"
+ },
+ {
+  "id": "segreti_cairns",
+  "scenario": 3,
+  "tipo": "uccidi_sito",
+  "mazzo": "pubblico",
+  "nome": "Segreti: Tumuli",
+  "testo": "Uccidi il Ragno tremendo evocato dal sito «Tumuli».",
+  "pv": 3,
+  "sito": "cairns",
+  "mostro": "ragno_t"
+ },
+ {
+  "id": "segreti_den",
+  "scenario": 3,
+  "tipo": "uccidi_sito",
+  "mazzo": "pubblico",
+  "nome": "Segreti: Tana",
+  "testo": "Uccidi il Serpente tremendo evocato dal sito «Tana».",
+  "pv": 3,
+  "sito": "den",
+  "mostro": "serpente_t"
+ },
+ {
+  "id": "segreti_garden",
+  "scenario": 3,
+  "tipo": "uccidi_sito",
+  "mazzo": "pubblico",
+  "nome": "Segreti: Giardino",
+  "testo": "Uccidi la Succube evocato dal sito «Giardino».",
+  "pv": 3,
+  "sito": "garden",
+  "mostro": "succubo"
+ },
+ {
+  "id": "segreti_hoard",
+  "scenario": 3,
+  "tipo": "uccidi_sito",
+  "mazzo": "pubblico",
+  "nome": "Segreti: Bottino",
+  "testo": "Uccidi il Drago volante tremendo evocato dal sito «Bottino».",
+  "pv": 3,
+  "sito": "hoard",
+  "mostro": "drago_volante_t"
+ },
+ {
+  "id": "segreti_lair",
+  "scenario": 3,
+  "tipo": "uccidi_sito",
+  "mazzo": "pubblico",
+  "nome": "Segreti: Covo",
+  "testo": "Uccidi il Drago tremendo evocato dal sito «Covo».",
+  "pv": 3,
+  "sito": "lair",
+  "mostro": "drago_t"
+ },
+ {
+  "id": "segreti_maze",
+  "scenario": 3,
+  "tipo": "uccidi_sito",
+  "mazzo": "pubblico",
+  "nome": "Segreti: Labirinto",
+  "testo": "Uccidi il Minotauro evocato dal sito «Labirinto».",
+  "pv": 3,
+  "sito": "maze",
+  "mostro": "minotauro"
+ },
+ {
+  "id": "segreti_pit",
+  "scenario": 3,
+  "tipo": "uccidi_sito",
+  "mazzo": "pubblico",
+  "nome": "Segreti: Fossa",
+  "testo": "Uccidi lo Scorpione tremendo evocato dal sito «Fossa».",
+  "pv": 3,
+  "sito": "pit",
+  "mostro": "scorpione_t"
+ },
+ {
+  "id": "segreti_pool",
+  "scenario": 3,
+  "tipo": "uccidi_sito",
+  "mazzo": "pubblico",
+  "nome": "Segreti: Stagno",
+  "testo": "Uccidi la Piovra evocato dal sito «Stagno».",
+  "pv": 3,
+  "sito": "pool",
+  "mostro": "piovra"
+ },
+ {
+  "id": "segreti_shrine",
+  "scenario": 3,
+  "tipo": "uccidi_sito",
+  "mazzo": "pubblico",
+  "nome": "Segreti: Santuario",
+  "testo": "Uccidi il Demone alato evocato dal sito «Santuario».",
+  "pv": 3,
+  "sito": "shrine",
+  "mostro": "demone_alato"
+ },
+ {
+  "id": "segreti_statue",
+  "scenario": 3,
+  "tipo": "uccidi_sito",
+  "mazzo": "pubblico",
+  "nome": "Segreti: Statua",
+  "testo": "Uccidi l'Imp evocato dal sito «Statua».",
+  "pv": 3,
+  "sito": "statue",
+  "mostro": "imp"
+ },
+ {
+  "id": "segreti_temple",
+  "scenario": 3,
+  "tipo": "uccidi_sito",
+  "mazzo": "pubblico",
+  "nome": "Segreti: Tempio",
+  "testo": "Uccidi il Vampiro evocato dal sito «Tempio».",
+  "pv": 3,
+  "sito": "temple",
+  "mostro": "vampiro"
+ },
+ {
+  "id": "segreti_tomb",
+  "scenario": 3,
+  "tipo": "uccidi_sito",
+  "mazzo": "pubblico",
+  "nome": "Segreti: Tomba",
+  "testo": "Uccidi il Cavaliere scheletro evocato dal sito «Tomba».",
+  "pv": 3,
+  "sito": "tomb",
+  "mostro": "cavaliere_scheletro"
+ },
+ {
+  "id": "segreti_vault",
+  "scenario": 3,
+  "tipo": "uccidi_sito",
+  "mazzo": "pubblico",
+  "nome": "Segreti: Sotterraneo",
+  "testo": "Uccidi il Troll tremendo evocato dal sito «Sotterraneo».",
+  "pv": 3,
+  "sito": "vault",
+  "mostro": "troll_t"
+ },
+ {
+  "id": "alligatori",
+  "scenario": 3,
+  "tipo": "uccisioni",
+  "mazzo": "privato",
+  "nome": "Cacciatore di alligatori",
+  "testo": "Uccidi 1 Alligatore.",
+  "pv": 2,
+  "tipi": [
+   "alligatore"
+  ],
+  "quanti": 1
+ },
+ {
+  "id": "sangue_palude",
+  "scenario": 3,
+  "tipo": "uccisioni",
+  "mazzo": "privato",
+  "nome": "Sangue nella palude",
+  "testo": "Uccidi 2 Orchi.",
+  "pv": 2,
+  "tipi": [
+   "orco_m"
+  ],
+  "quanti": 2
+ },
+ {
+  "id": "kodiak",
+  "scenario": 3,
+  "tipo": "uccisioni",
+  "mazzo": "privato",
+  "nome": "Momento Kodiak",
+  "testo": "Uccidi 1 Orso.",
+  "pv": 2,
+  "tipi": [
+   "orso"
+  ],
+  "quanti": 1
+ },
+ {
+  "id": "vipere",
+  "scenario": 3,
+  "tipo": "uccisioni",
+  "mazzo": "privato",
+  "nome": "Sonagli e veleno",
+  "testo": "Uccidi 2 Vipere.",
+  "pv": 2,
+  "tipi": [
+   "vipera"
+  ],
+  "quanti": 2
+ },
+ {
+  "id": "branco_ratti",
+  "scenario": 3,
+  "tipo": "uccisioni",
+  "mazzo": "privato",
+  "nome": "Branco di ratti",
+  "testo": "Uccidi 6 Ratti.",
+  "pv": 3,
+  "tipi": [
+   "ratto_a",
+   "ratto_b"
+  ],
+  "quanti": 6
+ },
+ {
+  "id": "branco_lupi",
+  "scenario": 3,
+  "tipo": "uccisioni",
+  "mazzo": "privato",
+  "nome": "Branco di lupi",
+  "testo": "Uccidi 6 Lupi.",
+  "pv": 3,
+  "tipi": [
+   "lupo_a",
+   "lupo_b"
+  ],
+  "quanti": 6
+ },
+ {
+  "id": "zitto_slither",
+  "scenario": 3,
+  "tipo": "uccisioni",
+  "mazzo": "privato",
+  "nome": "Silenzia il Fruscio",
+  "testo": "Uccidi un mostro nella radura del segnalino «Fruscio» che lo ha evocato.",
+  "pv": 3,
+  "tipo2": "suono",
+  "suono": "slither"
+ },
+ {
+  "id": "zitto_roar",
+  "scenario": 3,
+  "tipo": "uccisioni",
+  "mazzo": "privato",
+  "nome": "Silenzia il Ruggito",
+  "testo": "Uccidi un mostro nella radura del segnalino «Ruggito» che lo ha evocato.",
+  "pv": 3,
+  "tipo2": "suono",
+  "suono": "roar"
+ },
+ {
+  "id": "zitto_patter",
+  "scenario": 3,
+  "tipo": "uccisioni",
+  "mazzo": "privato",
+  "nome": "Silenzia il Zampettio",
+  "testo": "Uccidi un mostro nella radura del segnalino «Zampettio» che lo ha evocato.",
+  "pv": 3,
+  "tipo2": "suono",
+  "suono": "patter"
+ },
+ {
+  "id": "zitto_howl",
+  "scenario": 3,
+  "tipo": "uccisioni",
+  "mazzo": "privato",
+  "nome": "Silenzia il Ululato",
+  "testo": "Uccidi un mostro nella radura del segnalino «Ululato» che lo ha evocato.",
+  "pv": 3,
+  "tipo2": "suono",
+  "suono": "howl"
+ },
+ {
+  "id": "zitto_flutter",
+  "scenario": 3,
+  "tipo": "uccisioni",
+  "mazzo": "privato",
+  "nome": "Silenzia il Frullo",
+  "testo": "Uccidi un mostro nella radura del segnalino «Frullo» che lo ha evocato.",
+  "pv": 3,
+  "tipo2": "suono",
+  "suono": "flutter"
+ },
+ {
+  "id": "pipistrelli",
+  "scenario": 3,
+  "tipo": "per_uccisione",
+  "mazzo": "privato",
+  "nome": "Pipistrelli nel campanile",
+  "testo": "1 PV per ogni Pipistrello gigante ucciso (max 4 PV).",
+  "pv": 0,
+  "tipi": [
+   "pipistrello"
+  ],
+  "ogni": 1,
+  "max": 4,
+  "peso": null
+ },
+ {
+  "id": "scorpioni",
+  "scenario": 3,
+  "tipo": "per_uccisione",
+  "mazzo": "privato",
+  "nome": "Disinfestatore",
+  "testo": "1 PV per ogni Scorpione ucciso (max 4 PV).",
+  "pv": 0,
+  "tipi": [
+   "scorpione",
+   "scorpione_t"
+  ],
+  "ogni": 1,
+  "max": 4,
+  "peso": null
+ },
+ {
+  "id": "ragni",
+  "scenario": 3,
+  "tipo": "per_uccisione",
+  "mazzo": "privato",
+  "nome": "Otto zampe",
+  "testo": "1 PV per ogni Ragno ucciso (max 4 PV).",
+  "pv": 0,
+  "tipi": [
+   "ragno",
+   "ragno_t"
+  ],
+  "ogni": 1,
+  "max": 4,
+  "peso": null
+ },
+ {
+  "id": "fantasmi",
+  "scenario": 3,
+  "tipo": "per_uccisione",
+  "mazzo": "privato",
+  "nome": "Acchiappafantasmi",
+  "testo": "1 PV ogni 2 Fantasmi uccisi (max 4 PV).",
+  "pv": 0,
+  "tipi": [
+   "fantasma"
+  ],
+  "ogni": 2,
+  "max": 4,
+  "peso": null
+ },
+ {
+  "id": "giganti",
+  "scenario": 3,
+  "tipo": "per_uccisione",
+  "mazzo": "privato",
+  "nome": "Ammazzagiganti",
+  "testo": "1 PV per ogni Gigante ucciso (max 4 PV).",
+  "pv": 0,
+  "tipi": [
+   "gigante"
+  ],
+  "ogni": 1,
+  "max": 4,
+  "peso": null
+ },
+ {
+  "id": "goblin",
+  "scenario": 3,
+  "tipo": "per_uccisione",
+  "mazzo": "privato",
+  "nome": "Guerra ai goblin",
+  "testo": "1 PV ogni 2 Goblin uccisi (max 4 PV).",
+  "pv": 0,
+  "tipi": [
+   "goblin_ascia",
+   "goblin_arco",
+   "goblin_spadone",
+   "goblin_lancia"
+  ],
+  "ogni": 2,
+  "max": 4,
+  "peso": null
+ },
+ {
+  "id": "pesanti",
+  "scenario": 3,
+  "tipo": "per_uccisione",
+  "mazzo": "privato",
+  "nome": "Cacciatore di mostri pesanti",
+  "testo": "1 PV per ogni mostro Pesante ucciso (max 4 PV).",
+  "pv": 0,
+  "tipi": [],
+  "ogni": 1,
+  "max": 4,
+  "peso": "H"
+ },
+ {
+  "id": "draghi",
+  "scenario": 3,
+  "tipo": "per_uccisione",
+  "mazzo": "privato",
+  "nome": "Uccisore di draghi",
+  "testo": "1 PV per ogni Drago ucciso, esclusi quelli volanti (max 4 PV).",
+  "pv": 0,
+  "tipi": [
+   "drago",
+   "drago_t"
+  ],
+  "ogni": 1,
+  "max": 4,
+  "peso": null
+ },
+ {
+  "id": "draghi_volanti",
+  "scenario": 3,
+  "tipo": "per_uccisione",
+  "mazzo": "privato",
+  "nome": "Uccisore di draghi volanti",
+  "testo": "1 PV per ogni Drago volante ucciso (max 4 PV).",
+  "pv": 0,
+  "tipi": [
+   "drago_volante",
+   "drago_volante_t"
+  ],
+  "ogni": 1,
+  "max": 4,
+  "peso": null
+ },
+ {
+  "id": "medi",
+  "scenario": 3,
+  "tipo": "per_uccisione",
+  "mazzo": "privato",
+  "nome": "Cacciatore di mostri medi",
+  "testo": "1 PV ogni 2 mostri Medi uccisi (max 4 PV).",
+  "pv": 0,
+  "tipi": [],
+  "ogni": 2,
+  "max": 4,
+  "peso": "M"
+ },
+ {
+  "id": "rovine",
+  "scenario": 3,
+  "tipo": "per_uccisione",
+  "mazzo": "privato",
+  "nome": "Macerie",
+  "testo": "1 PV per ogni Golem ucciso (max 4 PV).",
+  "pv": 0,
+  "tipi": [
+   "golem"
+  ],
+  "ogni": 1,
+  "max": 4,
+  "peso": null
+ },
+ {
+  "id": "baccelli",
+  "scenario": 3,
+  "tipo": "per_uccisione",
+  "mazzo": "privato",
+  "nome": "Insalata",
+  "testo": "1 PV per ogni Baccello gigante ucciso (max 4 PV).",
+  "pv": 0,
+  "tipi": [
+   "baccello"
+  ],
+  "ogni": 1,
+  "max": 4,
+  "peso": null
+ },
+ {
+  "id": "scheletri",
+  "scenario": 3,
+  "tipo": "per_uccisione",
+  "mazzo": "privato",
+  "nome": "Ossa e ossa",
+  "testo": "1 PV ogni 2 Scheletri uccisi, escluso il Cavaliere scheletro (max 4 PV).",
+  "pv": 0,
+  "tipi": [
+   "scheletro_ascia",
+   "scheletro_arco",
+   "scheletro_lancia",
+   "scheletro_spada"
+  ],
+  "ogni": 2,
+  "max": 4,
+  "peso": null
+ },
+ {
+  "id": "tremendi",
+  "scenario": 3,
+  "tipo": "per_uccisione",
+  "mazzo": "privato",
+  "nome": "Cacciatore di mostri tremendi",
+  "testo": "1 PV per ogni mostro Tremendo ucciso (max 4 PV).",
+  "pv": 0,
+  "tipi": [],
+  "ogni": 1,
+  "max": 4,
+  "peso": "T"
+ },
+ {
+  "id": "troll",
+  "scenario": 3,
+  "tipo": "per_uccisione",
+  "mazzo": "privato",
+  "nome": "Cacciatore di troll",
+  "testo": "1 PV per ogni Troll ucciso (max 4 PV).",
+  "pv": 0,
+  "tipi": [
+   "troll",
+   "troll_t"
+  ],
+  "ogni": 1,
+  "max": 4,
+  "peso": null
+ },
+ {
+  "id": "orchi",
+  "scenario": 3,
+  "tipo": "per_uccisione",
+  "mazzo": "privato",
+  "nome": "Arte della guerra",
+  "testo": "1 PV per ogni Orco guerriero ucciso (max 4 PV).",
+  "pv": 0,
+  "tipi": [
+   "orco"
+  ],
+  "ogni": 1,
+  "max": 4,
+  "peso": null
+ },
+ {
+  "id": "anomalie",
+  "scenario": 3,
+  "tipo": "per_uccisione",
+  "mazzo": "privato",
+  "nome": "Mondo senza magia",
+  "testo": "1 PV per ogni Anomalia uccisa (max 4 PV).",
+  "pv": 0,
+  "tipi": [
+   "anomalia_grigia",
+   "anomalia_oro",
+   "anomalia_viola",
+   "anomalia_prisma"
+  ],
+  "ogni": 1,
+  "max": 4,
+  "peso": null
+ },
+ {
+  "id": "spettri",
+  "scenario": 3,
+  "tipo": "per_uccisione",
+  "mazzo": "privato",
+  "nome": "Acchiappaspettri",
+  "testo": "1 PV per ogni Spettro ucciso (max 4 PV).",
+  "pv": 0,
+  "tipi": [
+   "spettro"
+  ],
+  "ogni": 1,
+  "max": 4,
+  "peso": null
+ },
+ {
+  "id": "gargoyle",
+  "scenario": 3,
+  "tipo": "per_uccisione",
+  "mazzo": "privato",
+  "nome": "Cacciatore di gargoyle",
+  "testo": "1 PV per ogni Gargoyle ucciso (max 4 PV).",
+  "pv": 0,
+  "tipi": [
+   "gargoyle",
+   "gargoyle_t"
+  ],
+  "ogni": 1,
+  "max": 4,
+  "peso": null
+ }
+]

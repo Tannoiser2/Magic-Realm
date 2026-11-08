@@ -1,0 +1,13 @@
+{
+  "titolo": "Magic Realm",
+  "sottotitolo": "Super Realm · esplorazione e combattimento fantasy",
+  "descrizione": "Il capostipite dei dungeon crawler d'esplorazione: un Reame di 40 tessere costruito a caso in 3D, mostri che si risvegliano, siti e Luoghi Perduti, combattimento con attacchi, manovre e armature. Tre scenari introduttivi del Super Realm, rivali guidati dall'IA e salvataggi online.",
+  "online": false,
+  "sezione": "conversione",
+  "ordine": 240,
+  "bgg": 22,
+  "generi": [
+    "Fantasy",
+    "Avventura"
+  ]
+}
