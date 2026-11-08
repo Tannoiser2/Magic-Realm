@@ -50,3 +50,11 @@ Usare il file originale TTS come riferimento per sagoma e identità; non assumer
 
 ## Avvertenze
 Questa fase crea la struttura dei profili e la specifica 3D: **non dichiara realizzato il gioco classico né creati modelli 3D**.
+
+## Supporto GLB aggiunto al rendering
+
+Il file `scripts/main.gd` ora cerca automaticamente miniature opzionali sotto `res://assets/3d/`: `personaggi/<pedina>.glb`, `mostri/<tipo>.glb`, `nativi/<gruppo>.glb`, `abitazioni/<id>.glb`, `viaggiatori/<id>.glb`. Se non trova un modello, mostra la pedina originale 2D: nessuna sostituzione distruttiva.
+
+**Contratto di import Godot**: GLB con asse Y verticale, superficie della base sul piano Y=0 e larghezza della figura normalizzata a una unità di Godot; il visualizzatore ridimensiona automaticamente il nodo alla dimensione della pedina esistente. Per la stampa 3D, conservare separatamente gli STL nelle misure reali in millimetri. Le basi campione STL sono prototipi con misure arbitrarie, da convalidare prima di adottarle in serie.
+
+Il supporto GLB è scritto ma non è stato ancora testato con un progetto Godot avviato: non dichiarare riuscita l'importazione fino alla verifica runtime.
