@@ -13,10 +13,10 @@ const SUONI := [
 ]
 const PERSI := {"C": "perduto_city", "M": "perduto_castle"}
 const GRUPPI := {
-	"C": MappaClassica.CAVE,
-	"M": MappaClassica.MONTAGNE,
-	"V": MappaClassica.VALLI,
-	"W": MappaClassica.BOSCHI
+	"C": [4, 5, 6, 7, 18],
+	"M": [3, 13, 14, 15, 16],
+	"V": [21, 22, 23, 24, 25],
+	"W": [26, 27, 28, 29, 30]
 }
 
 static func _mescola(a: Array, rng: RandomNumberGenerator) -> void:
