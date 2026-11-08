@@ -194,6 +194,10 @@ func _reingresso_classico() -> void:
 		_inizializza_vittoria_classica(p)
 		s["pg"][i] = p
 		scrivi("%s rientra alla Locanda con nuovo equipaggiamento e nuovi obiettivi." % p["nome"], "titolo")
+		if p["umano"]:
+			var scelti = await decidi(p, "assegna_pv", {"vp": p["vp"].duplicate()})
+			if scelti is Dictionary and PunteggioClassico.valida_assegnazione(scelti, usa_regola("magia") and int(Dati.personaggi[p["pg"]].get("magia", 0)) > 0):
+				p["vp"] = scelti.duplicate(true)
 
 func punteggio_classico(p: Dictionary) -> Dictionary:
 	if not p.has("vp"):
@@ -658,7 +662,7 @@ func settimana_mese() -> String:
 func gioca_giorno() -> void:
 	s["fase"] = "alba"
 	if e_classico():
-		_reingresso_classico()
+		await _reingresso_classico()
 	scrivi("— Giorno %d (%s) —" % [s["giorno"], settimana_mese()], "titolo")
 	for p in vivi():
 		p["bloccato"] = false
