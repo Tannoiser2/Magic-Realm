@@ -45,6 +45,25 @@ func _init() -> void:
 	nativi = Nativi.new(self)
 	viaggi = Viaggi.new(self)
 
+# Profili serializzati; i salvataggi storici ricevono il profilo Super equivalente.
+func profilo_regole() -> Dictionary:
+	if s.has("profilo_regole") and s["profilo_regole"] is Dictionary:
+		return s["profilo_regole"]
+	return ProfiliRegole.super_scenario(int(s.get("scenario", 3)))
+
+func usa_regola(funzione: String) -> bool:
+	return ProfiliRegole.abilitata(profilo_regole(), funzione)
+
+func nuova_con_profilo(profilo: Dictionary, pg_umano: String, rivali: Array, seme: int) -> bool:
+	if not ProfiliRegole.valido(profilo) or not profilo.get("implementato", false):
+		push_warning("Profilo non implementato: nessuna partita creata")
+		return false
+	if profilo.get("famiglia", "") != ProfiliRegole.SUPER:
+		push_warning("Il motore classico non e ancora collegato")
+		return false
+	nuova(int(profilo["scenario"]), pg_umano, rivali, seme)
+	return true
+
 # ------------------------------------------------------------ utilità
 func scrivi(t: String, tipo := "") -> void:
 	while t.find("{oa}") >= 0:
@@ -206,23 +225,23 @@ func nuova(scenario: int, pg_umano: String, rivali: Array, seme: int) -> void:
 	rng.seed = seme
 	mappa = Mappa.new()
 	mappa.genera(rng)
-	s = {"versione": 1, "scenario": scenario, "seme": seme, "giorno": 1, "fine": "", "vincitori": [],
+	s = {"versione": 2, "profilo_regole": ProfiliRegole.super_scenario(scenario), "scenario": scenario, "seme": seme, "giorno": 1, "fine": "", "vincitori": [],
 		"mostri": {}, "tabella": [], "siti_box": {}, "abitazioni": {}, "tessere": {}, "riserve": {},
 		"pool_rossi": [], "pg": [], "riga_mostri": 0, "missioni_pubbliche": [], "giorni_max": 56,
 		"fase": "alba"}
 	_prepara_segnalini()
 	_prepara_abitazioni()
-	if scenario >= 4:
+	if usa_regola("tesori"):
 		arcano.prepara()
-	if scenario >= 3:
+	if usa_regola("mostri"):
 		_prepara_mostri()
-	if scenario >= 5:
+	if usa_regola("nativi"):
 		nativi.prepara()
 	var tutti := [pg_umano] + rivali
 	for i in range(tutti.size()):
 		s["pg"].append(_nuovo_pg("p%d" % i, tutti[i], i == 0))
 	_prepara_missioni()
-	if scenario >= 6:
+	if usa_regola("viaggiatori"):
 		viaggi.prepara()
 		s["giorni_max"] = 84
 	if ha_abilita(umano(), "esperienza"):
@@ -404,6 +423,8 @@ func esporta() -> Dictionary:
 func importa(d: Dictionary) -> void:
 	s = d["s"]
 	_numeri(s)
+	if not s.has("profilo_regole"):
+		s["profilo_regole"] = ProfiliRegole.super_scenario(int(s["scenario"]))
 	mappa = Mappa.new()
 	mappa.importa(d["mappa"])
 	rng.state = int(d["rng"])
