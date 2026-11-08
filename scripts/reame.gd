@@ -491,6 +491,11 @@ func _prepara_mostri() -> void:
 		return id
 	var gi := 0
 	for g in Dati.mostri["gruppi"]:
+		# Dopo la riga delle grotte iniziano i gruppi F/S/R aggiunti da Super.
+		if e_classico() and gi >= 11:
+			s["tabella"].append([])
+			gi += 1
+			continue
 		var stato := []
 		for bi in range(g["riquadri"].size()):
 			var box := []
@@ -506,6 +511,8 @@ func _prepara_mostri() -> void:
 		s["tabella"].append(stato)
 		gi += 1
 	for sito in Dati.mostri["siti"]:
+		if e_classico() and not (("sito_" + sito) in PreparazioneClassica.SITI):
+			continue
 		var id: String = nuovo.call(Dati.mostri["siti"][sito][1])
 		s["mostri"][id]["casa"] = ["s", sito]
 		s["siti_box"][sito] = id
