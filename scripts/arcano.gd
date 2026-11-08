@@ -24,7 +24,7 @@ func _init(reame: Reame) -> void:
 	r = reame
 
 func attiva() -> bool:
-	return r.s.get("scenario", 1) >= 4
+	return r.usa_regola("magia")
 
 # ------------------------------------------------------------ dati
 static func tesoro(id: String) -> Dictionary:
