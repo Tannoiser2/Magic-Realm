@@ -11,6 +11,10 @@ on:
     paths:
       - '.github/workflows/classic-web-preview.yml'
 
+concurrency:
+  group: magic-realm-classic-web-preview-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
 
