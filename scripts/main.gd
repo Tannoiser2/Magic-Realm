@@ -982,6 +982,11 @@ func _descr_pg(d: Dictionary) -> String:
 
 func _scegli_menu(k: String, v) -> void:
 	scelte_menu[k] = v
+	if k == "edizione":
+		net.root_partite = "magicrealm/classico/partite" if v == "classico" else "magicrealm/partite"
+		net.sessione = "user://online_magicrealm_classico.cfg" if v == "classico" else "user://online_magicrealm.cfg"
+		net.id_token = ""
+		net.refresh_token = ""
 	if k == "scenario" and v == 2 and scelte_menu["edizione"] == "super" and not scelte_menu["partita_libera"] and scelte_menu["rivali"] < 1:
 		scelte_menu["rivali"] = 1
 	_mostra_menu()
@@ -1041,13 +1046,19 @@ func _avvia(prepara: Callable) -> void:
 	if not g.e_classico():
 		_mostra_guida_scenario(false)
 
+func _salvataggio_compatibile(d: Dictionary) -> bool:
+	if not (d.get("s") is Dictionary):
+		return false
+	var famiglia: String = str(d["s"].get("profilo_regole", {}).get("famiglia", "super"))
+	return famiglia == str(scelte_menu["edizione"])
+
 func _continua() -> void:
 	var f := FileAccess.open(_percorso_salvataggio(str(scelte_menu["edizione"])), FileAccess.READ)
 	if f == null:
 		return
 	var d = JSON.parse_string(f.get_as_text())
-	if not (d is Dictionary):
-		_avviso("Salvataggio non leggibile.")
+	if not (d is Dictionary) or not _salvataggio_compatibile(d):
+		_avviso("Salvataggio non leggibile o appartenente a un’altra edizione.")
 		return
 	codice = d.get("codice", "")
 	_avvia(func(): g.importa(d))
@@ -1061,11 +1072,14 @@ func _carica_online(c: String) -> void:
 	if not (d is Dictionary):
 		_avviso("Partita %s non trovata (o rete non raggiungibile)." % c)
 		return
+	if not _salvataggio_compatibile(d):
+		_avviso("Il codice appartiene a un’altra edizione di Magic Realm.")
+		return
 	codice = c
 	_avvia(func(): g.importa(d))
 
 func _salva_locale() -> void:
-	if g == null:
+	if g == null or g.s.is_empty():
 		return
 	var d := g.esporta()
 	d["codice"] = codice
@@ -1073,7 +1087,7 @@ func _salva_locale() -> void:
 	f.store_string(JSON.stringify(d))
 
 func _salva_online() -> void:
-	if g == null:
+	if g == null or g.s.is_empty():
 		return
 	if g.s["fase"] != "alba":
 		_avviso("Si salva all'alba, quando si registrano le attività.")
