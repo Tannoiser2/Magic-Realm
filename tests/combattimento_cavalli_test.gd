@@ -17,6 +17,8 @@ func _init() -> void:
 	g.combat._registra_mischia(p, {"manovra": {"cavallo": true, "casella": "dodge"}}, opts)
 	assert(u["manovra"].get("cavallo", false))
 	assert(int(u["manovra"]["tempo"]) == 2)
+	assert(bool(p["cavalli"][0]["galoppo_usato"]))
+	assert(int(g.combat._opzioni_mischia(p)["tempo_cavallo"]) == 5)
 	var monster_id: String = str(g.s["mostri"].keys()[0])
 	var attacco := {"da": monster_id, "at": {"f": "H", "s": 0}, "dir": "swing", "missile": false, "rosso": false}
 	assert(not g.combat._colpisci_pg(p, attacco, null))
