@@ -67,23 +67,23 @@ func genera_classica(rng: RandomNumberGenerator, tentativi := 100) -> bool:
 func _connessa_classica() -> bool:
 	if pezzi.size() != 20 or per_tessera.size() != 20:
 		return false
-	var visti := {}
-	var prima := ""
-	for k in radure:
-		if radure[k]["t"] == BORDERLAND:
-			prima = k
-			break
-	if prima == "":
-		return false
-	var coda: Array = [prima]
-	visti[prima] = true
+	# Le radure interne di una stessa tessera possono essere disgiunte:
+	# controlliamo la connessione tra tessere tramite i varchi reali.
+	var collegamenti := {}
+	for t in TESSERE_CLASSICHE:
+		collegamenti[t] = {}
+	for k in vicini:
+		var a: int = radure[k]["t"]
+		for e in vicini[k]:
+			var b: int = radure[e["b"]]["t"]
+			if a != b:
+				collegamenti[a][b] = true
+	var coda: Array = [BORDERLAND]
+	var visti := {BORDERLAND: true}
 	while not coda.is_empty():
-		var k: String = coda.pop_front()
-		for e in vicini.get(k, []):
-			if not visti.has(e["b"]):
-				visti[e["b"]] = true
-				coda.append(e["b"])
-	var tessere_viste := {}
-	for k in visti:
-		tessere_viste[radure[k]["t"]] = true
-	return tessere_viste.size() == 20
+		var t: int = coda.pop_front()
+		for x in collegamenti[t]:
+			if not visti.has(x):
+				visti[x] = true
+				coda.append(x)
+	return visti.size() == 20
