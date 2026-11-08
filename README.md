@@ -69,6 +69,10 @@ xvfb-run godot --path . --script res://tests/screenshot.gd         # screenshot 
 python3 tools/controlla_glifi.py                                   # nessun carattere mancante nei font
 ```
 
+## Plancia di combattimento interattiva
+
+Durante la mischia si apre una plancia tattica con tre corsie per **direzione dell'attacco**, **manovra** e, quando presente, **orientamento dello scudo**. Le pedine nemiche mostrano la posizione solo quando i dadi la rivelano. Si scelgono quindi i segnalini **FIGHT** e **MOVE**, oppure si combatte a cavallo, e infine si conferma con **Rivela le giocate**. La plancia supporta sia Super Magic Realm sia Magic Realm Classico, riutilizzando senza cambiamenti le regole del motore.
+
 ## Pubblicazione
 
 La pubblicazione non parte a ogni modifica: si avvia a mano (Actions → *Pubblica* → *Run workflow*) oppure con un
