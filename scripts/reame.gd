@@ -133,19 +133,7 @@ func nuova_classica(pg_umano: String, rivali: Array, seme: int, profilo: Diction
 	var tutti: Array = [pg_umano] + rivali
 	for i in range(tutti.size()):
 		var p: Dictionary = _nuovo_pg("p%d" % i, tutti[i], i == 0)
-		p["vp"] = {"grandi": 1, "inc": 0, "fama": 2, "noto": 1, "oro": 1}
-		if usa_regola("magia") and int(Dati.personaggi[p["pg"]].get("magia", 0)) > 0:
-			p["vp"] = {"grandi": 1, "inc": 1, "fama": 1, "noto": 1, "oro": 1}
-		if not usa_regola("magia"):
-			p["incantesimi"] = []
-			p["inc_iniziali"] = []
-		# Regola 4.7/1: dal GOLD finale si sottraggono 10 monete piu
-		# il prezzo iniziale di armi e armature ricevute gratuitamente.
-		var credito := 10
-		for equip in Dati.personaggi[p["pg"]]["equip"]:
-			var item: Dictionary = Dati.oggetti["armi"].get(equip, Dati.oggetti["armature"].get(equip, {}))
-			credito += int(item.get("oro", 0))
-		p["oro_iniziale"] = credito
+		_inizializza_vittoria_classica(p)
 		s["pg"].append(p)
 	s["pv_assegnati"] = false
 	scrivi("Magic Realm classico: Incontro %d, 20 tessere, 28 giorni, 5 punti vittoria." % incontro_classico(), "titolo")
@@ -180,6 +168,32 @@ func _prepara_visitatori_classici() -> void:
 		s["visitatori"][id] = box
 		s["viaggi"][id] = {"box": "abitazione:" + dw,
 			"dove": s["abitazioni"][dw], "su": true, "chi": ""}
+
+# Re-entry e punteggio secondo le regole base della seconda edizione.
+func _inizializza_vittoria_classica(p: Dictionary) -> void:
+	p["vp"] = {"grandi": 1, "inc": 0, "fama": 2, "noto": 1, "oro": 1}
+	if usa_regola("magia") and int(Dati.personaggi[p["pg"]].get("magia", 0)) > 0:
+		p["vp"] = {"grandi": 1, "inc": 1, "fama": 1, "noto": 1, "oro": 1}
+	if not usa_regola("magia"):
+		p["incantesimi"] = []
+		p["inc_iniziali"] = []
+	var credito := 10
+	for equip in Dati.personaggi[p["pg"]]["equip"]:
+		var item: Dictionary = Dati.oggetti["armi"].get(equip, Dati.oggetti["armature"].get(equip, {}))
+		credito += int(item.get("oro", 0))
+	p["oro_iniziale"] = credito
+
+func _reingresso_classico() -> void:
+	for i in range(s["pg"].size()):
+		var precedente: Dictionary = s["pg"][i]
+		if not precedente["morto"] or int(precedente.get("reingresso_giorno", 0)) != int(s["giorno"]):
+			continue
+		var p: Dictionary = _nuovo_pg(precedente["pid"], precedente["pg"], precedente["umano"])
+		p["dove"] = s["abitazioni"].get("locanda", p["dove"])
+		p["reingresso_giorno"] = 0
+		_inizializza_vittoria_classica(p)
+		s["pg"][i] = p
+		scrivi("%s rientra alla Locanda con nuovo equipaggiamento e nuovi obiettivi." % p["nome"], "titolo")
 
 func punteggio_classico(p: Dictionary) -> Dictionary:
 	if not p.has("vp"):
@@ -643,6 +657,8 @@ func settimana_mese() -> String:
 
 func gioca_giorno() -> void:
 	s["fase"] = "alba"
+	if e_classico():
+		_reingresso_classico()
 	scrivi("— Giorno %d (%s) —" % [s["giorno"], settimana_mese()], "titolo")
 	for p in vivi():
 		p["bloccato"] = false
@@ -1476,8 +1492,10 @@ func controlla_vittoria() -> void:
 	if e_classico():
 		var um := umano()
 		if um.get("morto", false):
+			if int(s["giorno"]) < 28 and int(um.get("reingresso_giorno", 0)) > int(s["giorno"]):
+				return
 			s["fine"] = "sconfitta"
-			scrivi("Il personaggio e morto: partita terminata.", "titolo")
+			scrivi("Il personaggio e morto nell'ultimo giorno: partita terminata.", "titolo")
 			return
 		if int(s["giorno"]) < int(s["giorni_max"]):
 			return
