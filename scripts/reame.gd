@@ -681,13 +681,18 @@ func gioca_giorno() -> void:
 		s["riga_mostri"] = d6()
 		scrivi("Sorge il sole: si aggirano i mostri della riga %d (%s)." % [s["riga_mostri"], Dati.mostri["righe"][str(s["riga_mostri"])]], "mostri")
 	if usa_regola("nativi"):
-		nativi.tiro_alba()
+		if e_classico():
+			s["riga_nativi"] = s["riga_mostri"] # un solo MONSTER ROLL nella 2a edizione
+		else:
+			nativi.tiro_alba()
 		var nomi := []
 		for gid in Dati.nativi["gruppi"]:
 			var gg: Dictionary = Dati.nativi["gruppi"][gid]
 			if not gg["vagante"] and gg.get("guarnigione") == null and int(gg.get("riga", 0)) == int(s["riga_nativi"]):
 				nomi.append(gg["nome"])
 		scrivi("Tiro dei nativi: %d (in giro: %s)." % [s["riga_nativi"], ", ".join(nomi)], "mostri")
+	if e_classico() and int(s["giorno"]) % 7 == 0:
+		_ritorno_settimanale_classico()
 	s["fase"] = "giorno"
 	cambiato.emit()
 	# Giorno: turni in ordine casuale
@@ -1353,8 +1358,50 @@ func mezzanotte() -> void:
 		nativi.fine_giorno()
 	if s["scenario"] >= 6 and s["giorno"] % 28 == 0:
 		viaggi.fine_mese()
-	if s["giorno"] % 28 == 0 and s["scenario"] >= 3:
+	if not e_classico() and s["giorno"] % 28 == 0 and s["scenario"] >= 3:
 		_rigenerazione()
+
+# In seconda edizione, nel settimo giorno tornano soltanto le creature
+# della riga che sta cacciando, incluse quelle morte (regole 12.7 e 26.6).
+func _ritorno_settimanale_classico() -> void:
+	var riga: int = int(s["riga_mostri"])
+	for id in s["mostri"]:
+		var m: Dictionary = s["mostri"][id]
+		if m.has("nativo"):
+			continue
+		if riga_di(m["tipo"]) != riga and m["casa"][0] != "f":
+			continue
+		m["morto"] = false
+		m["bloccato"] = false
+		m["lato"] = 0
+		var casa: Array = m["casa"]
+		match casa[0]:
+			"g":
+				var box: Array = s["tabella"][int(casa[1])][int(casa[2])]
+				if not (id in box):
+					box.append(id)
+				m["dove"] = ""
+			"s":
+				s["siti_box"][casa[1]] = id
+				m["dove"] = ""
+			"f":
+				m["dove"] = casa[1]
+	for gid in s["nativi"]:
+		var st: Dictionary = s["nativi"][gid]
+		if st["ingaggio"] != "":
+			continue
+		var gruppo: Dictionary = Dati.nativi["gruppi"][gid]
+		if int(gruppo.get("riga", 0)) != riga:
+			continue
+		var gar = gruppo.get("guarnigione")
+		var destinazione: String = str(s["abitazioni"].get(gar, "")) if gar != null else ""
+		st["in_mappa"] = destinazione != ""
+		for mid in st["membri"]:
+			var n: Dictionary = s["mostri"][mid]
+			n["morto"] = false
+			n["bloccato"] = false
+			n["dove"] = destinazione
+	scrivi("Settimo giorno: le creature in caccia tornano ai luoghi d'origine.", "mostri")
 
 func _rigenerazione() -> void:
 	scrivi("Fine del mese: tutti i mostri si rigenerano e tornano alla Tabella delle apparizioni.", "mostri")
