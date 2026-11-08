@@ -220,6 +220,10 @@ func _round() -> bool:
 		if not (sc is Dictionary):
 			continue
 		match sc.get("tipo", ""):
+			"fuga_cavallo":
+				if opz.get("fuga_cavallo", false):
+					_fuggi(p)
+					ev = true
 			"fuga":
 				var ci := int(sc.get("chit", -1))
 				if ci in opz["fuga"] and _sforzo_ok(p, ci):
@@ -396,6 +400,8 @@ func _opzioni_azione(p: Dictionary) -> Dictionary:
 	var fuga := []
 	if not _trattenuto(p) and not ("Distratto" in p["maledizioni"]):
 		fuga = _chit_mossa_validi(p, v)
+	var cavallo: Dictionary = r._cavallo_cavalcato(p)
+	var fuga_cavallo: bool = not cavallo.is_empty() and CavalliClassici.tempo(cavallo, true) < v and not _trattenuto(p)
 	var allerta := []
 	var a := r.arma_attiva(p)
 	if not a.is_empty() and not a["allerta"] and not ("Stanco" in p["maledizioni"]):
@@ -426,7 +432,7 @@ func _opzioni_azione(p: Dictionary) -> Dictionary:
 		for o in p["oggetti"]:
 			if str(Arcano.tesoro(o["id"]).get("eff", {}).get("monouso", "")) == "luce":
 				usabili.append(o["id"])
-	return {"fuga": fuga, "allerta": allerta, "berserk": berserk, "riflessi": riflessi, "oggetti": attivabili, "minaccia": v,
+	return {"fuga": fuga, "fuga_cavallo": fuga_cavallo, "allerta": allerta, "berserk": berserk, "riflessi": riflessi, "oggetti": attivabili, "minaccia": v,
 		"incantesimi": incs, "bersagli_inc": bers, "usabili": usabili}
 
 func _attiva(p: Dictionary, id: String) -> void:
