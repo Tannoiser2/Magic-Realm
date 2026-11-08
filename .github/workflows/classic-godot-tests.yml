@@ -55,6 +55,22 @@ jobs:
       - name: Classic menu and UI smoke test
         timeout-minutes: 4
         run: timeout 45s godot --headless --path . --script res://tests/ui_classico_smoke_test.gd
+      - name: UI launches Classic Encounter 1
+        env:
+          CLASSIC_ENCOUNTER: '1'
+        run: timeout 45s godot --headless --path . --script res://tests/ui_incontro_classico_test.gd
+      - name: UI launches Classic Encounter 2
+        env:
+          CLASSIC_ENCOUNTER: '2'
+        run: timeout 45s godot --headless --path . --script res://tests/ui_incontro_classico_test.gd
+      - name: UI launches Classic Encounter 3
+        env:
+          CLASSIC_ENCOUNTER: '3'
+        run: timeout 45s godot --headless --path . --script res://tests/ui_incontro_classico_test.gd
+      - name: UI launches Classic Encounter 4
+        env:
+          CLASSIC_ENCOUNTER: '4'
+        run: timeout 45s godot --headless --path . --script res://tests/ui_incontro_classico_test.gd
       - name: Super free-play UI and separated saves
         timeout-minutes: 4
         run: timeout 45s godot --headless --path . --script res://tests/ui_super_libera_test.gd
