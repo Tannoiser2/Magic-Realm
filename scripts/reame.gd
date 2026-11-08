@@ -75,15 +75,17 @@ func anteprima_classica(seme: int) -> Dictionary:
 func e_classico() -> bool:
 	return s.get("profilo_regole", {}).get("famiglia", "") == ProfiliRegole.CLASSICO
 
+func incontro_classico() -> int:
+	if not e_classico():
+		return 0
+	return int(s["profilo_regole"].get("incontro", 4)) if int(s["profilo_regole"].get("incontro", 0)) > 0 else 4
+
 func nuova_con_profilo(profilo: Dictionary, pg_umano: String, rivali: Array, seme: int) -> bool:
 	if not ProfiliRegole.valido(profilo):
 		push_warning("Profilo non valido")
 		return false
 	if profilo.get("famiglia", "") == ProfiliRegole.CLASSICO:
-		if profilo.get("id", "") != "classico_completo":
-			push_warning("Encounter classico non ancora implementato")
-			return false
-		return nuova_classica(pg_umano, rivali, seme)
+		return nuova_classica(pg_umano, rivali, seme, profilo)
 	if not profilo.get("implementato", false) or profilo.get("famiglia", "") != ProfiliRegole.SUPER:
 		return false
 	nuova(int(profilo["scenario"]), pg_umano, rivali, seme)
@@ -91,7 +93,11 @@ func nuova_con_profilo(profilo: Dictionary, pg_umano: String, rivali: Array, sem
 
 # Modalita Classica sperimentale: usa le fasi mature del motore Super 5,
 # ma sostituisce mappa, segnalini, durata, obiettivi e regole di punteggio.
-func nuova_classica(pg_umano: String, rivali: Array, seme: int) -> bool:
+func nuova_classica(pg_umano: String, rivali: Array, seme: int, profilo: Dictionary = {}) -> bool:
+	if profilo.is_empty():
+		profilo = ProfiliRegole.classico_completo()
+	if not ProfiliRegole.valido(profilo) or profilo.get("famiglia", "") != ProfiliRegole.CLASSICO:
+		return false
 	if not ProfiliRegole.personaggio_classico(pg_umano):
 		return false
 	for id in rivali:
@@ -106,7 +112,7 @@ func nuova_classica(pg_umano: String, rivali: Array, seme: int) -> bool:
 	var preparazione := PreparazioneClassica.prepara(rng)
 	if preparazione.is_empty():
 		return false
-	s = {"versione": 3, "profilo_regole": ProfiliRegole.classico_completo(),
+	s = {"versione": 3, "profilo_regole": profilo.duplicate(true),
 		"scenario": 5, "seme": seme, "giorno": 1, "giorni_max": 28,
 		"fine": "", "vincitori": [], "fase": "alba", "riga_mostri": 0,
 		"mostri": {}, "tabella": [], "siti_box": {}, "abitazioni": {},
@@ -127,18 +133,21 @@ func nuova_classica(pg_umano: String, rivali: Array, seme: int) -> bool:
 	for i in range(tutti.size()):
 		var p: Dictionary = _nuovo_pg("p%d" % i, tutti[i], i == 0)
 		p["vp"] = {"grandi": 1, "inc": 0, "fama": 2, "noto": 1, "oro": 1}
-		if int(Dati.personaggi[p["pg"]].get("magia", 0)) > 0:
+		if usa_regola("magia") and int(Dati.personaggi[p["pg"]].get("magia", 0)) > 0:
 			p["vp"] = {"grandi": 1, "inc": 1, "fama": 1, "noto": 1, "oro": 1}
+		if not usa_regola("magia"):
+			p["incantesimi"] = []
+			p["inc_iniziali"] = []
 		p["oro_iniziale"] = int(p["oro"])
 		s["pg"].append(p)
 	s["pv_assegnati"] = false
-	scrivi("Magic Realm classico: 20 tessere, 28 giorni, 5 punti vittoria.", "titolo")
+	scrivi("Magic Realm classico: Incontro %d, 20 tessere, 28 giorni, 5 punti vittoria." % incontro_classico(), "titolo")
 	return true
 
 func punteggio_classico(p: Dictionary) -> Dictionary:
 	if not p.has("vp"):
 		return {}
-	return PunteggioClassico.calcola(p["vp"], viaggi.valori(p), int(p.get("oro_iniziale", 10)), int(Dati.personaggi[p["pg"]].get("magia", 0)) > 0)
+	return PunteggioClassico.calcola(p["vp"], viaggi.valori(p), int(p.get("oro_iniziale", 10)), usa_regola("magia") and int(Dati.personaggi[p["pg"]].get("magia", 0)) > 0)
 
 
 # ------------------------------------------------------------ utilità
@@ -589,7 +598,7 @@ func gioca_giorno() -> void:
 		p["bloccato"] = false
 		p["turno_fatto"] = false
 		p["entrato_da"] = ""
-		if s["scenario"] >= 4:
+		if usa_regola("magia"):
 			arcano.sincronizza(p)
 			if arcano.effetto(p, "fiuto") or not arcano.eff(p, "fiuto").is_empty():
 				p["nemici"] = true
@@ -598,10 +607,10 @@ func gioca_giorno() -> void:
 		var r = await decidi(p, "piano", {"fasi": fasi_disponibili(p)})
 		p["piano"] = r if r is Array else []
 	# Sorgere del sole: tiro dei mostri
-	if s["scenario"] >= 3:
+	if usa_regola("mostri"):
 		s["riga_mostri"] = d6()
 		scrivi("Sorge il sole: si aggirano i mostri della riga %d (%s)." % [s["riga_mostri"], Dati.mostri["righe"][str(s["riga_mostri"])]], "mostri")
-	if s["scenario"] >= 5:
+	if usa_regola("nativi"):
 		nativi.tiro_alba()
 		var nomi := []
 		for gid in Dati.nativi["gruppi"]:
@@ -642,7 +651,7 @@ func gioca_giorno() -> void:
 		fatti[chi] = true
 		if s["fine"] != "":
 			return
-	# Tramonto e sera: combattimenti
+	# Tramonto e sera: solo gli Encounter 2-4 consentono combattimento.
 	s["fase"] = "sera"
 	cambiato.emit()
 	await sera()
@@ -663,9 +672,9 @@ func fasi_disponibili(p: Dictionary) -> Dictionary:
 	if ha_abilita(p, "robusto") or ha_abilita(p, "salute"): extra.append("R")
 	if ha_abilita(p, "sfuggente"): extra.append("H")
 	if ha_abilita(p, "visione"): extra.append("S")
-	if ha_abilita(p, "strumenti_magici") and s["scenario"] >= 2: extra.append("A")
+	if ha_abilita(p, "strumenti_magici") and (not e_classico() and s["scenario"] >= 2 or e_classico() and usa_regola("combattimento_mostri")): extra.append("A")
 	if ha_abilita(p, "reputazione") and abitazione_in(p["dove"]) != "": extra.append("*")
-	if s["scenario"] >= 4:
+	if usa_regola("magia"):
 		extra.append_array(arcano.fasi_extra(p))
 	var grotta := tipo_radura(p["dove"]) == "C"
 	return {"base": base, "luce": 0 if grotta else luce, "extra": extra, "grotta": grotta}
@@ -701,7 +710,7 @@ func vicini_di(p: Dictionary, k: String) -> Array:
 func esegui_turno(p: Dictionary) -> void:
 	s["attivo"] = p["pid"]
 	scrivi("Turno di %s." % p["nome"], "turno")
-	if s["scenario"] >= 2 and p["nascosto"]:
+	if (s["scenario"] >= 2 or e_classico()) and p["nascosto"]:
 		p["nascosto"] = false
 	cambiato.emit()
 	await pausa(0.25)
@@ -745,12 +754,17 @@ func esegui_turno(p: Dictionary) -> void:
 		match a["a"]:
 			"S": await attivita_ricerca(p)
 			"H": attivita_nascondi(p)
-			"A": attivita_allerta(p)
+			"A":
+				if not e_classico() or usa_regola("combattimento_mostri"): attivita_allerta(p)
 			"R": await attivita_riposo(p)
-			"E": await arcano.attivita_incanto(p)
-			"V": await attivita_volo(p, a.get("dest", ""))
-			"T": await nativi.attivita_commercio(p)
-			"HR": await nativi.attivita_ingaggio(p)
+			"E":
+				if usa_regola("magia"): await arcano.attivita_incanto(p)
+			"V":
+				if usa_regola("magia"): await attivita_volo(p, a.get("dest", ""))
+			"T":
+				if usa_regola("commercio"): await nativi.attivita_commercio(p)
+			"HR":
+				if usa_regola("ingaggio"): await nativi.attivita_ingaggio(p)
 		await fine_fase(p)
 		i += 1
 	if not p["morto"]:
@@ -1035,11 +1049,11 @@ func _svela_perduto(t: int) -> void:
 # ------------------------------------------------------------ fine fase e fine turno
 func fine_fase(p: Dictionary) -> void:
 	controlla_missioni_fase(p)
-	if s["scenario"] < 2 or p["morto"]:
+	if (s["scenario"] < 2 and not e_classico()) or p["morto"]:
 		return
 	var k: String = p["dove"]
 	# i mostri bloccano chi non è nascosto
-	if s["scenario"] >= 3 and not p["nascosto"]:
+	if usa_regola("mostri") and not p["nascosto"]:
 		var bl := []
 		for id in s["mostri"]:
 			var m: Dictionary = s["mostri"][id]
@@ -1053,10 +1067,12 @@ func fine_fase(p: Dictionary) -> void:
 			return
 	if s["scenario"] >= 6:
 		viaggi.fine_fase(p)
-	if s["scenario"] >= 5 and nativi.blocco(p):
+	if usa_regola("combattimento_pg") and s["scenario"] >= 5 and nativi.blocco(p):
 		cambiato.emit()
 		return
-	# blocchi tra personaggi
+	# Blocco fra personaggi soltanto dal terzo Encounter.
+	if not usa_regola("combattimento_pg"):
+		return
 	for q in vivi():
 		if q == p or q["dove"] != k:
 			continue
@@ -1100,15 +1116,15 @@ func fine_turno(p: Dictionary) -> void:
 		if av != null and av != "fantasmi" and not s["abitazioni"].has(av):
 			s["abitazioni"][av] = _radura_abitazione(t)
 			scrivi("Compare: %s." % Dati.ABITAZIONI[av], "mostri")
-			if s["scenario"] >= 5:
+			if usa_regola("nativi"):
 				for gid in Dati.nativi["gruppi"]:
 					if Dati.nativi["gruppi"][gid].get("guarnigione") == av:
 						nativi.compari(gid, s["abitazioni"][av])
-	if s["scenario"] >= 5:
+	if usa_regola("nativi"):
 		nativi.fine_turno(p)
-	if s["scenario"] >= 6:
+	if usa_regola("viaggiatori"):
 		await viaggi.fine_turno(p)
-	if s["scenario"] >= 3:
+	if usa_regola("mostri"):
 		await muovi_ed_evoca(p)
 	cambiato.emit()
 
@@ -1231,10 +1247,11 @@ func sera() -> void:
 	var ordine: Array = radure.keys()
 	mescola(ordine)
 	for k in ordine:
-		await combat.combatti(k)
+		if not e_classico() or usa_regola("combattimento_mostri"):
+			await combat.combatti(k)
 		if s["fine"] != "":
 			return
-	if s["scenario"] >= 4:
+	if usa_regola("magia"):
 		for p in vivi():
 			await arcano.sera_incantesimi(p)
 	if s["scenario"] >= 6:
@@ -1258,9 +1275,9 @@ func mezzanotte() -> void:
 		if abitazione_in(p["dove"]) == "cappella" and not p["maledizioni"].is_empty():
 			scrivi("La Cappella libera %s da maledizioni e ipnosi." % p["nome"], "bene")
 			p["maledizioni"] = []
-	if s["scenario"] >= 4:
+	if usa_regola("magia"):
 		arcano.scadenze()
-	if s["scenario"] >= 5:
+	if usa_regola("nativi"):
 		nativi.fine_giorno()
 	if s["scenario"] >= 6 and s["giorno"] % 28 == 0:
 		viaggi.fine_mese()
