@@ -54,6 +54,24 @@ func profilo_regole() -> Dictionary:
 func usa_regola(funzione: String) -> bool:
 	return ProfiliRegole.abilitata(profilo_regole(), funzione)
 
+# Anteprima isolata del classico: mappa e segnalini reali, senza avviare una
+# partita e senza toccare lo stato Super eventualmente presente.
+func anteprima_classica(seme: int) -> Dictionary:
+	var rng_locale := RandomNumberGenerator.new()
+	rng_locale.seed = seme
+	var mappa_locale := MappaClassica.new()
+	if not mappa_locale.genera_classica(rng_locale):
+		return {}
+	var segnalini := PreparazioneClassica.prepara(rng_locale)
+	if segnalini.is_empty():
+		return {}
+	return {
+		"profilo": ProfiliRegole.classico_completo(),
+		"seme": seme,
+		"mappa": mappa_locale.esporta(),
+		"segnalini": segnalini
+	}
+
 func nuova_con_profilo(profilo: Dictionary, pg_umano: String, rivali: Array, seme: int) -> bool:
 	if not ProfiliRegole.valido(profilo) or not profilo.get("implementato", false):
 		push_warning("Profilo non implementato: nessuna partita creata")
