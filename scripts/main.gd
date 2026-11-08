@@ -1963,6 +1963,8 @@ func _richiesta_combattimento(req: Dictionary) -> void:
 			if not unici.is_empty():
 				box_modale.add_child(_scegli_chit(unici, sel))
 			var h := _riga_bottoni()
+			if d.get("fuga_cavallo", false):
+				h.add_child(_bott("Fuggi a cavallo", func(): _rispondi({"tipo": "fuga_cavallo"}), 17))
 			if not d["fuga"].is_empty():
 				h.add_child(_bott("Fuggi", func():
 					if sel.is_empty() or not (sel[0] in d["fuga"]): _avviso("Scegli un segnalino Movimento valido per fuggire.")
@@ -2027,8 +2029,11 @@ func _pannello_mischia(d: Dictionary) -> void:
 		mischia["f"] = [sug["attacco"]["chit"]]
 		mischia["cerchio"] = sug["attacco"]["cerchio"]
 	if sug.has("manovra"):
-		mischia["m"] = [sug["manovra"]["chit"]]
 		mischia["casella"] = sug["manovra"]["casella"]
+		if sug["manovra"].get("cavallo", false):
+			mischia["cavallo"] = true
+		else:
+			mischia["m"] = [sug["manovra"]["chit"]]
 	mischia["scudo"] = sug.get("scudo", "thrust")
 	var bers: String = d["bersaglio"]
 	box_modale.add_child(_lab("Bersaglio: %s · arma: %s%s · sforzo già usato: %d asterischi (massimo 2)" % [
@@ -2058,7 +2063,7 @@ func _pannello_mischia(d: Dictionary) -> void:
 		_evidenzia(gruppo, Combattimento.DIREZIONI[mischia["cerchio"]] + " (attacco)")
 		box_modale.add_child(_lab("Segnalino Combattimento (forza almeno pari al peso dell'arma):", 14))
 		box_modale.add_child(_scegli_chit(d["fight"], mischia["f"]))
-	if not d["move"].is_empty():
+	if not d["move"].is_empty() or d.get("cavallo", false):
 		var h2 := _riga_bottoni()
 		h2.add_child(_lab_riga("Manovra:"))
 		var gruppo2 := []
@@ -2069,8 +2074,12 @@ func _pannello_mischia(d: Dictionary) -> void:
 			gruppo2.append(b)
 			h2.add_child(b)
 		_evidenzia(gruppo2, Combattimento.MANOVRE[mischia["casella"]])
-		box_modale.add_child(_lab("Segnalino Movimento (deve reggere tutto ciò che porti):", 14))
-		box_modale.add_child(_scegli_chit(d["move"], mischia["m"]))
+		if d.get("cavallo", false):
+			mischia["cavallo"] = true
+			box_modale.add_child(_lab("Manovra con il cavallo (galoppo: tempo %d). Se un colpo colpisce la manovra, il cavallo assorbe il danno." % d["tempo_cavallo"], 14))
+		else:
+			box_modale.add_child(_lab("Segnalino Movimento (deve reggere tutto ciò che porti):", 14))
+			box_modale.add_child(_scegli_chit(d["move"], mischia["m"]))
 	if d["scudo"]:
 		var h3 := _riga_bottoni()
 		h3.add_child(_lab_riga("Scudo contro:"))
@@ -2087,7 +2096,9 @@ func _pannello_mischia(d: Dictionary) -> void:
 		var r := {"scudo": mischia["scudo"]}
 		if not mischia["f"].is_empty():
 			r[mischia["modo"]] = {"cerchio": mischia["cerchio"], "chit": mischia["f"][0]}
-		if not mischia["m"].is_empty():
+		if mischia.get("cavallo", false):
+			r["manovra"] = {"casella": mischia["casella"], "cavallo": true}
+		elif not mischia["m"].is_empty():
 			r["manovra"] = {"casella": mischia["casella"], "chit": mischia["m"][0]}
 		_rispondi(r), 20, true))
 	hb.add_child(_bott("Non giocare nulla", func(): _rispondi({"scudo": mischia["scudo"]}), 16))
