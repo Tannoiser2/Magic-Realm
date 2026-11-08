@@ -2064,7 +2064,7 @@ func _plancia_mischia(d: Dictionary) -> void:
 		riepilogo_scelte.text = "%s    |    %s    |    %s" % [att, man, scudo]
 	# L'attacco e la parata occupano lo stesso spazio FIGHT, ma
 	# la parata non e disponibile con un'arma da tiro.
-	if not d["missile"]:
+	if not d.get("missile", false):
 		var cambio := _bott("Usa il segnalino FIGHT per: ATTACCO", func():
 			mischia["modo"] = "parata" if mischia["modo"] == "attacco" else "attacco"
 			aggiorna.call(), 15)
