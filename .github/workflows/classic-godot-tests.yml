@@ -2,6 +2,8 @@ name: Classic Magic Realm — Godot tests
 
 on:
   workflow_dispatch:
+  push:
+    branches: [feature/magic-realm-classic-3d]
   pull_request:
     branches: [main]
 
