@@ -58,3 +58,10 @@ Il file `scripts/main.gd` ora cerca automaticamente miniature opzionali sotto `r
 **Contratto di import Godot**: GLB con asse Y verticale, superficie della base sul piano Y=0 e larghezza della figura normalizzata a una unità di Godot; il visualizzatore ridimensiona automaticamente il nodo alla dimensione della pedina esistente. Per la stampa 3D, conservare separatamente gli STL nelle misure reali in millimetri. Le basi campione STL sono prototipi con misure arbitrarie, da convalidare prima di adottarle in serie.
 
 Il supporto GLB è scritto ma non è stato ancora testato con un progetto Godot avviato: non dichiarare riuscita l'importazione fino alla verifica runtime.
+
+
+## Progresso del generatore classico (8 novembre 2026)
+
+Creato `scripts/mappa_classica.gd` con le 20 tessere elencate nel regolamento originale, divise in 5 Caves, 5 Mountain, 5 Valley e 5 Woods. Borderland (ID 5) è sempre la prima tessera. Il codice tenta disposizioni casuali collegate da varchi, riutilizzando le informazioni originali di `data/tessere.json`, e fornisce un controllo di connessione a livello di tessera. Disponibile `tests/mappa_classica_test.gd` con cinque semi. **Non collegato alle partite** e **test runtime ancora da eseguire**: generatore da considerare sperimentale e non ancora equivalente alle procedure di piazzamento multiplayer del regolamento.
+
+Lista ID: Cave [4,5,6,7,18]; Mountain [3,13,14,15,16]; Valley [21,22,23,24,25]; Woods [26,27,28,29,30]. Riferimento: 2a edizione, Preparazione della mappa e Tabella dei segnalini mappa.
