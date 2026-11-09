@@ -1628,6 +1628,9 @@ func _aggiungi(a: String) -> void:
 	_pannello_piano()
 
 func _apri_modale(titolo: String) -> void:
+	var scroll: ScrollContainer = modale.get_node("Scorri")
+	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	modale.custom_minimum_size.x = 760
 	for c in box_modale.get_children():
 		c.queue_free()
 	box_modale.add_child(_lab(titolo, 26, f_tit, C_ROSSO))
@@ -2024,122 +2027,230 @@ func _richiesta_combattimento(req: Dictionary) -> void:
 # Plancia di combattimento: le tre direzioni e le tre manovre sono zone
 # cliccabili. I comandi storici restano disponibili sotto la plancia.
 # Non modifica i tiri ne la risoluzione: restituisce le stesse scelte al motore.
+# Replica funzionale della MELEE SECTION di Magic Realm seconda edizione.
+# La geometria segue l'originale: box rossi dei mostri sulla sinistra,
+# cerchi di attacco a destra, ovali di difesa sotto, quadrati MOVE in basso,
+# tabella di riposizionamento e box dei segnalini usati a lato.
+# Il motore resta l'autorita per assegnazioni, risultati e lanci di dadi.
 func _plancia_mischia(d: Dictionary) -> void:
-	var pannello := _pannello(Color(0.17, 0.13, 0.10, 0.98))
-	box_modale.add_child(pannello)
+	# La stampa originale e ampia: su viewport piccoli la scheda puo
+	# scorrere orizzontalmente senza alterare le proporzioni delle caselle.
+	var scroll: ScrollContainer = modale.get_node("Scorri")
+	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_AUTO
+	modale.custom_minimum_size.x = minf(1100.0, maxf(320.0, hud.size.x - 32.0))
+	var pergamena := Color(0.94, 0.89, 0.76)
+	var inchiostro := Color(0.18, 0.13, 0.09)
+	var rosso := Color(0.79, 0.48, 0.47)
+	var selezione := Color(0.99, 0.81, 0.43)
+	var carta := _pannello(pergamena)
+	carta.add_theme_stylebox_override("panel", _stile(pergamena, Color(0.24, 0.18, 0.12), 4, 3))
+	box_modale.add_child(carta)
 	var corpo := VBoxContainer.new()
 	corpo.add_theme_constant_override("separation", 9)
-	pannello.add_child(corpo)
-	var titolo := _lab("PLANCIA TATTICA  ·  SCEGLI ATTACCO, MANOVRA E SCUDO", 19, f_tit, C_ORO)
+	carta.add_child(corpo)
+	var titolo := _lab("SCHEDA DI COMBATTIMENTO  ·  MAGIC REALM II EDIZIONE", 22, f_tit, inchiostro)
 	titolo.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	corpo.add_child(titolo)
-	var nota := _lab("I mostri cambiano posizione quando si rivelano i dadi. La direzione dell'attacco conta, ma conta anche la velocita.", 14, f_txt, C_PERG)
-	corpo.add_child(nota)
-	# Mostra le posizioni effettive gia conosciute, senza anticipare i dadi.
-	var posizioni: Dictionary = g.combat.C.get("pos", {})
-	if not posizioni.is_empty():
-		var riepilogo := _lab("POSIZIONI NEMICHE GIA RIVELATE", 15, f_tit, C_ORO)
-		corpo.add_child(riepilogo)
-		var righe := HFlowContainer.new()
-		corpo.add_child(righe)
-		for id in posizioni:
-			var m: Dictionary = g.M(id)
-			if m.is_empty() or m["morto"]:
-				continue
-			var posizione: Dictionary = posizioni[id]
-			var direzione: String = Combattimento.DIREZIONI.get(posizione.get("riga", ""), "?")
-			var manovra: String = Combattimento.MANOVRE.get(posizione.get("col", ""), "?")
-			var box := _pannello(Color(0.33, 0.23, 0.19, 1))
-			righe.add_child(box)
-			box.add_child(_lab("%s\n%s  /  %s" % [g.nome_mostro(m), direzione, manovra], 13, f_txt, C_PERG))
-	else:
-		corpo.add_child(_lab("Posizione dei mostri: nascosta fino alla rivelazione del round.", 13, f_txt, C_PERG))
+	var sottotitolo := _lab("I tre cerchi ATTACCO intercettano le tre caselle rosse; i tre quadrati MANOVRA rappresentano le direzioni di difesa.", 14, f_txt, inchiostro)
+	corpo.add_child(sottotitolo)
+	var scelte := _lab("", 15, f_tit, inchiostro)
+	var rifresca_scelte := func():
+		var modo: String = "PARATA" if mischia["modo"] == "parata" else "ATTACCO"
+		var attacco: String = str(Combattimento.DIREZIONI[mischia["cerchio"]])
+		var manovra: String = str(Combattimento.MANOVRE[mischia["casella"]])
+		var scudo: String = str(Combattimento.DIREZIONI[mischia["scudo"]]) if d.get("scudo", false) else "nessuno"
+		scelte.text = "%s: %s    •    MANOVRA: %s    •    SCUDO: %s" % [modo, attacco, manovra, scudo]
 	var direzioni := ["thrust", "swing", "smash"]
 	var manovre := ["charge", "dodge", "duck"]
-	var riepilogo_scelte := _lab("", 15, f_tit, C_ORO)
-	var aggiorna := func():
-		var att: String = ("Parata" if mischia["modo"] == "parata" else "Attacco") + ": " + Combattimento.DIREZIONI[mischia["cerchio"]]
-		var man: String = "Manovra: " + Combattimento.MANOVRE[mischia["casella"]]
-		var scudo: String = "Scudo: " + (Combattimento.DIREZIONI[mischia["scudo"]] if d["scudo"] else "nessuno")
-		riepilogo_scelte.text = "%s    |    %s    |    %s" % [att, man, scudo]
-	# L'attacco e la parata occupano lo stesso spazio FIGHT, ma
-	# la parata non e disponibile con un'arma da tiro.
-	if not d.get("missile", false):
-		var cambio := _bott("Usa il segnalino FIGHT per: ATTACCO", func():
-			mischia["modo"] = "parata" if mischia["modo"] == "attacco" else "attacco"
-			aggiorna.call(), 15)
-		corpo.add_child(cambio)
-		var testo_modalita := func():
-			cambio.text = "Usa il segnalino FIGHT per: " + ("PARATA" if mischia["modo"] == "parata" else "ATTACCO")
-		cambio.pressed.connect(testo_modalita)
-	# Fila 1: spazi di attacco fisici; la scelta del chit avviene subito sotto.
-	corpo.add_child(_lab("1   DIREZIONE DELL'ATTACCO", 15, f_tit, C_PERG))
-	var attacchi := GridContainer.new()
-	attacchi.columns = 3
-	attacchi.add_theme_constant_override("h_separation", 6)
-	corpo.add_child(attacchi)
-	var pulsanti_attacco := []
-	for dir in direzioni:
-		var etichetta: String = Combattimento.DIREZIONI[dir]
-		var pulsante := _bott(etichetta, func():
+	var intercetta := ["Carica", "Schivata", "Abbassarsi"]
+	var posizioni: Dictionary = g.combat.C.get("pos", {})
+	var assegnati: Dictionary = g.combat.C.get("assegnati", {})
+	var attacchi := []
+	var difese := []
+	var movimenti := []
+	var aggiorna_stili := func():
+		for b in attacchi:
+			var on: bool = b.get_meta("direzione") == mischia["cerchio"]
+			b.add_theme_stylebox_override("normal", _stile(selezione if on else Color(0.98, 0.96, 0.89), inchiostro, 40, 3 if on else 1))
+			b.add_theme_color_override("font_color", inchiostro)
+		for b in difese:
+			var on: bool = b.get_meta("scudo") == mischia["scudo"]
+			b.add_theme_stylebox_override("normal", _stile(selezione if on else Color(0.98, 0.96, 0.89), inchiostro, 40, 3 if on else 1))
+			b.add_theme_color_override("font_color", inchiostro)
+		for b in movimenti:
+			var on: bool = b.get_meta("manovra") == mischia["casella"]
+			b.add_theme_stylebox_override("normal", _stile(selezione if on else Color(0.95, 0.93, 0.85), inchiostro, 2, 3 if on else 1))
+			b.add_theme_color_override("font_color", inchiostro)
+		rifresca_scelte.call()
+	# Colonna principale e colonna della tabella con la stessa gerarchia
+	# della scheda fisica originale.
+	var tavola := HBoxContainer.new()
+	tavola.add_theme_constant_override("separation", 18)
+	corpo.add_child(tavola)
+	var sinistra := VBoxContainer.new()
+	sinistra.custom_minimum_size.x = 750
+	sinistra.add_theme_constant_override("separation", 8)
+	sinistra.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	tavola.add_child(sinistra)
+	var laterale := VBoxContainer.new()
+	laterale.custom_minimum_size.x = 238
+	laterale.add_theme_constant_override("separation", 10)
+	tavola.add_child(laterale)
+	var intestazione := HBoxContainer.new()
+	sinistra.add_child(intestazione)
+	var label_box := _lab("BOX ROSSI DEI MOSTRI", 16, f_tit, inchiostro)
+	label_box.custom_minimum_size.x = 330
+	intestazione.add_child(label_box)
+	intestazione.add_child(_lab("← INTERCETTA ←", 13, f_tit, inchiostro))
+	intestazione.add_child(_lab("ATTACCHI", 16, f_tit, inchiostro))
+	for i in range(3):
+		var dir: String = direzioni[i]
+		var man: String = manovre[i]
+		var fila := HBoxContainer.new()
+		fila.add_theme_constant_override("separation", 12)
+		sinistra.add_child(fila)
+		# Le caselle rosse sono sfalsate a gradini, come sulla stampa 2e.
+		# Lo spazio assegnato rimane identico fra i tre attacchi.
+		var area_nemici := Control.new()
+		area_nemici.custom_minimum_size = Vector2(332, 90)
+		fila.add_child(area_nemici)
+		var nemici := _pannello(rosso)
+		nemici.position = Vector2(float(i * 55), 0.0)
+		nemici.custom_minimum_size = Vector2(212, 86)
+		nemici.add_theme_stylebox_override("panel", _stile(rosso, inchiostro, 1, 2))
+		area_nemici.add_child(nemici)
+		var testo_box := VBoxContainer.new()
+		nemici.add_child(testo_box)
+		testo_box.add_child(_lab("%d   %s + %s" % [i + 1, intercetta[i].to_upper(), Combattimento.DIREZIONI[dir].to_upper()], 14, f_tit, inchiostro))
+		var pedine := HBoxContainer.new()
+		pedine.add_theme_constant_override("separation", 2)
+		testo_box.add_child(pedine)
+		for id in assegnati:
+			var m: Dictionary = g.M(id)
+			if m.is_empty() or m["morto"] or assegnati[id] != g.umano()["pid"]:
+				continue
+			# Le pedine rimangono nascoste fino al lancio di riposizionamento.
+			if posizioni.has(id) and posizioni[id].get("riga", "") == dir:
+				var immagine := TextureRect.new()
+				immagine.texture = T(_img_mostro(m))
+				immagine.custom_minimum_size = Vector2(42, 42)
+				immagine.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+				immagine.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT
+				immagine.tooltip_text = g.nome_mostro(m)
+				pedine.add_child(immagine)
+		if pedine.get_child_count() == 0:
+			pedine.add_child(_lab("Posizione non ancora rivelata", 12, f_txt, inchiostro))
+		var freccia := _lab("←────", 22, f_tit, inchiostro)
+		freccia.custom_minimum_size.x = 70
+		freccia.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+		fila.add_child(freccia)
+		var att := _bott(Combattimento.DIREZIONI[dir], func():
 			mischia["cerchio"] = dir
-			for b in pulsanti_attacco:
-				var scelto: bool = b.get_meta("direzione") == mischia["cerchio"]
-				b.add_theme_stylebox_override("normal", _stile(Color(0.62, 0.28, 0.12) if scelto else Color(0.32, 0.22, 0.15), C_ORO, 6, 3 if scelto else 1))
-			aggiorna.call(), 17)
-		pulsante.set_meta("direzione", dir)
-		pulsante.custom_minimum_size = Vector2(148, 64)
-		pulsante.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		attacchi.add_child(pulsante)
-		pulsanti_attacco.append(pulsante)
-	# Fila 2: le colonne di manovra, con corrispondenze originali.
-	corpo.add_child(_lab("2   MANOVRA  ·  Affondo → Carica  |  Fendente → Schivata  |  Schianto → Chinarsi", 15, f_tit, C_PERG))
-	var movimenti := GridContainer.new()
-	movimenti.columns = 3
-	movimenti.add_theme_constant_override("h_separation", 6)
-	corpo.add_child(movimenti)
-	var pulsanti_manovra := []
-	for col in manovre:
-		var pulsante := _bott(Combattimento.MANOVRE[col], func():
-			mischia["casella"] = col
-			for b in pulsanti_manovra:
-				var scelto: bool = b.get_meta("manovra") == col
-				b.add_theme_stylebox_override("normal", _stile(Color(0.16, 0.45, 0.32) if scelto else Color(0.21, 0.27, 0.23), C_ORO, 6, 3 if scelto else 1))
-			aggiorna.call(), 17)
-		pulsante.set_meta("manovra", col)
-		pulsante.custom_minimum_size = Vector2(148, 64)
-		pulsante.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		movimenti.add_child(pulsante)
-		pulsanti_manovra.append(pulsante)
-	# Fila 3: la protezione e indipendente dall'attacco.
-	if d["scudo"]:
-		corpo.add_child(_lab("3   ORIENTAMENTO DELLO SCUDO", 15, f_tit, C_PERG))
-		var scudi := GridContainer.new()
-		scudi.columns = 3
-		corpo.add_child(scudi)
-		var pulsanti_scudo := []
-		for dir in direzioni:
-			var pulsante := _bott("Proteggi: " + Combattimento.DIREZIONI[dir], func():
-				mischia["scudo"] = dir
-				for b in pulsanti_scudo:
-					var scelto: bool = b.get_meta("scudo") == dir
-					b.add_theme_stylebox_override("normal", _stile(Color(0.24, 0.35, 0.56) if scelto else Color(0.20, 0.22, 0.31), C_ORO, 6, 3 if scelto else 1))
-				aggiorna.call(), 14)
-			pulsante.set_meta("scudo", dir)
-			pulsante.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-			scudi.add_child(pulsante)
-			pulsanti_scudo.append(pulsante)
-			if dir == mischia["scudo"]:
-				pulsante.add_theme_stylebox_override("normal", _stile(Color(0.24, 0.35, 0.56), C_ORO, 6, 3))
-	for b in pulsanti_attacco:
-		if b.get_meta("direzione") == mischia["cerchio"]:
-			b.add_theme_stylebox_override("normal", _stile(Color(0.62, 0.28, 0.12), C_ORO, 6, 3))
-	for b in pulsanti_manovra:
-		if b.get_meta("manovra") == mischia["casella"]:
-			b.add_theme_stylebox_override("normal", _stile(Color(0.16, 0.45, 0.32), C_ORO, 6, 3))
-	aggiorna.call()
-	corpo.add_child(riepilogo_scelte)
-	corpo.add_child(_lab("Sotto la plancia scegli i segnalini FIGHT e MOVE. Poi premi RIVELA LE GIOCATE. Le scelte senza un segnalino valido non hanno effetto.", 14, f_txt, C_PERG))
+			aggiorna_stili.call(), 16)
+		att.set_meta("direzione", dir)
+		att.custom_minimum_size = Vector2(96, 96)
+		fila.add_child(att)
+		attacchi.append(att)
+		var legenda := _lab("Colpisce:\n" + intercetta[i], 12, f_txt, inchiostro)
+		legenda.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+		fila.add_child(legenda)
+	# Ovali scudo e armature come nel pannello DEFENSES originale.
+	sinistra.add_child(_lab("DIFESE  ·  ORIENTAMENTO DELLO SCUDO E ARMATURE INDOSSATE", 15, f_tit, inchiostro))
+	var scudi := HBoxContainer.new()
+	scudi.add_theme_constant_override("separation", 8)
+	sinistra.add_child(scudi)
+	for dir in direzioni:
+		var testo_scudo: String = "Proteggi: " + str(Combattimento.DIREZIONI[dir])
+		var difesa := _bott(testo_scudo, func():
+			mischia["scudo"] = dir
+			aggiorna_stili.call(), 13)
+		difesa.set_meta("scudo", dir)
+		difesa.custom_minimum_size = Vector2(182, 94)
+		difesa.disabled = not d.get("scudo", false)
+		difese.append(difesa)
+		scudi.add_child(difesa)
+	var armature := HBoxContainer.new()
+	armature.add_theme_constant_override("separation", 9)
+	sinistra.add_child(armature)
+	var oggetti_attivi := []
+	var p: Dictionary = g.umano()
+	for o in p["oggetti"]:
+		if o.get("attivo", false) and Dati.oggetti["armature"].has(o["id"]):
+			oggetti_attivi.append(Dati.nome_arma(o["id"]))
+	# La corazza originale occupa le prime due colonne (thrust + swing),
+	# l'elmo soltanto la terza (smash); la suit of armor e sotto entrambe.
+	for info in [
+		{"testo": "CORAZZA\nProtegge da Affondo e Fendente", "larghezza": 366},
+		{"testo": "ELMO\nProtegge dal Colpo dall'alto", "larghezza": 182}
+	]:
+		var ovale := _pannello(Color(0.98, 0.96, 0.89))
+		ovale.add_theme_stylebox_override("panel", _stile(Color(0.98, 0.96, 0.89), inchiostro, 36, 1))
+		ovale.custom_minimum_size = Vector2(info["larghezza"], 72)
+		armature.add_child(ovale)
+		var l := _lab(info["testo"], 13, f_tit, inchiostro)
+		l.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		ovale.add_child(l)
+	var intero := _pannello(Color(0.98, 0.96, 0.89))
+	intero.add_theme_stylebox_override("panel", _stile(Color(0.98, 0.96, 0.89), inchiostro, 36, 1))
+	intero.custom_minimum_size = Vector2(557, 68)
+	sinistra.add_child(intero)
+	var intero_label := _lab("ARMATURA COMPLETA  ·  Protegge da tutti gli attacchi", 13, f_tit, inchiostro)
+	intero_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	intero.add_child(intero_label)
+	sinistra.add_child(_lab("Armature effettivamente attive: " + (", ".join(oggetti_attivi) if not oggetti_attivi.is_empty() else "nessuna"), 13, f_txt, inchiostro))
+	sinistra.add_child(_lab("MANOVRE  ·  CASELLE MOVE", 16, f_tit, inchiostro))
+	var fila_manovre := HBoxContainer.new()
+	fila_manovre.add_theme_constant_override("separation", 8)
+	sinistra.add_child(fila_manovre)
+	for man in manovre:
+		var b := _bott(str(Combattimento.MANOVRE[man]), func():
+			mischia["casella"] = man
+			aggiorna_stili.call(), 18)
+		b.set_meta("manovra", man)
+		b.custom_minimum_size = Vector2(126, 112)
+		b.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		movimenti.append(b)
+		fila_manovre.add_child(b)
+	# Originale: tabella di riposizionamento dei mostri (un dado).
+	laterale.add_child(_lab("RIPOSIZIONAMENTO\nDEI MOSTRI", 16, f_tit, inchiostro))
+	var tabella := GridContainer.new()
+	tabella.columns = 4
+	tabella.add_theme_constant_override("h_separation", 4)
+	tabella.add_theme_constant_override("v_separation", 6)
+	laterale.add_child(tabella)
+	var celle := [["Dado", "Box 1", "Box 2", "Box 3"],
+		["1", "resta", "3", "2"], ["2", "3", "resta", "1"],
+		["3", "2", "1", "resta"], ["4", "resta", "resta", "resta"],
+		["5", "2", "3", "1"], ["6", "3", "1", "2"]]
+	for riga in celle:
+		for valore in riga:
+			var l := _lab(str(valore), 12, f_tit, inchiostro)
+			l.custom_minimum_size.x = 53
+			l.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+			tabella.add_child(l)
+	laterale.add_child(_lab("USATI IN QUESTO ROUND", 15, f_tit, inchiostro))
+	var usati := _pannello(Color(0.98, 0.96, 0.89))
+	usati.add_theme_stylebox_override("panel", _stile(Color(0.98, 0.96, 0.89), inchiostro, 2, 2))
+	usati.custom_minimum_size.y = 152
+	laterale.add_child(usati)
+	var usati_testo := []
+	var uso: Dictionary = g.combat.C.get("uso", {}).get(p["pid"], {})
+	for ci in uso.get("usati", []):
+		if int(ci) >= 0 and int(ci) < p["chits"].size():
+			usati_testo.append(g.descr_chit(p["chits"][int(ci)]))
+	usati.add_child(_lab("\n".join(usati_testo) if not usati_testo.is_empty() else "Nessun segnalino ancora usato", 13, f_txt, inchiostro))
+	laterale.add_child(_lab("Le frecce mostrano le intercettazioni; il motore gestisce tiri, velocità, fatica e cambio tattica.", 13, f_txt, inchiostro))
+	# Con le armi da tiro non e consentita la parata.
+	if not d.get("missile", false):
+		var modo := _bott("Usa FIGHT per: ATTACCO", func():
+			mischia["modo"] = "parata" if mischia["modo"] == "attacco" else "attacco"
+			rifresca_scelte.call(), 15)
+		corpo.add_child(modo)
+		modo.pressed.connect(func():
+			modo.text = "Usa FIGHT per: " + ("PARATA" if mischia["modo"] == "parata" else "ATTACCO"))
+	corpo.add_child(scelte)
+	corpo.add_child(_lab("Metti sotto la scheda i segnalini FIGHT e MOVE (o il cavallo), poi premi RIVELA LE GIOCATE.", 14, f_txt, inchiostro))
+	aggiorna_stili.call()
 
 func _pannello_mischia(d: Dictionary) -> void:
 	var u := g.umano()

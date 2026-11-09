@@ -14,6 +14,14 @@ func _trova_bottone(n: Node, nome: String) -> Button:
 			return trovato
 	return null
 
+func _contiene_etichetta(n: Node, testo: String) -> bool:
+	if n is Label and (n as Label).text.contains(testo):
+		return true
+	for figlio in n.get_children():
+		if _contiene_etichetta(figlio, testo):
+			return true
+	return false
+
 func _prova() -> void:
 	var scena: PackedScene = load("res://scenes/main.tscn")
 	var main := scena.instantiate()
@@ -30,6 +38,8 @@ func _prova() -> void:
 	var manovra := _trova_bottone(box, "Abbassarsi")
 	var difesa := _trova_bottone(box, "Proteggi: Colpo dall'alto")
 	assert(attacco != null and manovra != null and difesa != null)
+	for zona in ["BOX ROSSI DEI MOSTRI", "RIPOSIZIONAMENTO", "USATI IN QUESTO ROUND", "CORAZZA", "ELMO", "ARMATURA COMPLETA", "MANOVRE"]:
+		assert(_contiene_etichetta(box, zona), "Manca la zona originale della Melee Section: " + zona)
 	attacco.emit_signal("pressed")
 	manovra.emit_signal("pressed")
 	difesa.emit_signal("pressed")
