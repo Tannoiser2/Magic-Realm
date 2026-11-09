@@ -1628,6 +1628,9 @@ func _aggiungi(a: String) -> void:
 	_pannello_piano()
 
 func _apri_modale(titolo: String) -> void:
+	var scroll: ScrollContainer = modale.get_node("Scorri")
+	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	modale.custom_minimum_size.x = 760
 	for c in box_modale.get_children():
 		c.queue_free()
 	box_modale.add_child(_lab(titolo, 26, f_tit, C_ROSSO))
@@ -2030,6 +2033,11 @@ func _richiesta_combattimento(req: Dictionary) -> void:
 # tabella di riposizionamento e box dei segnalini usati a lato.
 # Il motore resta l'autorita per assegnazioni, risultati e lanci di dadi.
 func _plancia_mischia(d: Dictionary) -> void:
+	# La stampa originale e ampia: su viewport piccoli la scheda puo
+	# scorrere orizzontalmente senza alterare le proporzioni delle caselle.
+	var scroll: ScrollContainer = modale.get_node("Scorri")
+	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_AUTO
+	modale.custom_minimum_size.x = minf(1100.0, maxf(320.0, hud.size.x - 32.0))
 	var pergamena := Color(0.94, 0.89, 0.76)
 	var inchiostro := Color(0.18, 0.13, 0.09)
 	var rosso := Color(0.79, 0.48, 0.47)
