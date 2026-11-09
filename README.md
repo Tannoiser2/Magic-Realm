@@ -69,9 +69,13 @@ xvfb-run godot --path . --script res://tests/screenshot.gd         # screenshot 
 python3 tools/controlla_glifi.py                                   # nessun carattere mancante nei font
 ```
 
-## Plancia di combattimento interattiva
+## Plancia di combattimento — Melee Section originale 2e
 
-Durante la mischia si apre una plancia tattica con tre corsie per **direzione dell'attacco**, **manovra** e, quando presente, **orientamento dello scudo**. Le pedine nemiche mostrano la posizione solo quando i dadi la rivelano. Si scelgono quindi i segnalini **FIGHT** e **MOVE**, oppure si combatte a cavallo, e infine si conferma con **Rivela le giocate**. La plancia supporta sia Super Magic Realm sia Magic Realm Classico, riutilizzando senza cambiamenti le regole del motore.
+La scheda di mischia usa la **disposizione della seconda edizione originale**: tre caselle rosse per i mostri sfalsate in diagonale (Charge/Thrust, Dodge/Swing, Duck/Smash), cerchi di attacco con frecce di intercettazione, tre ovali per lo scudo, corazza che protegge i primi due attacchi, elmo per lo Smash e armatura completa per tutti gli attacchi. In basso ci sono i tre quadrati MOVE; a destra la tabella di riposizionamento 1–6 e il box «Usati in questo round». Le immagini delle pedine appaiono nei box una volta rivelate.
+
+La scheda e interattiva: scegliere direzione, manovra, scudo, segnalini FIGHT/MOVE e confermare «Rivela le giocate». La geometria e i riferimenti derivano dal diagramma **Using the Melee Section**, pagina 27 del regolamento della seconda edizione.
+
+**Limite della versione digitale:** riproduciamo layout e comandi fisici, mentre il posizionamento iniziale manuale dei mostri e la successiva permutazione dei loro box utilizzano ancora la logica automatica preesistente del motore. Non presentiamo quindi il risultato come una trasposizione integrale delle regole originali di gestione delle pedine.
 
 ## Pubblicazione
 
