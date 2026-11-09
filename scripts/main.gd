@@ -2131,7 +2131,7 @@ func _plancia_mischia(d: Dictionary) -> void:
 			mischia["cerchio"] = dir
 			aggiorna_stili.call(), 16)
 		att.set_meta("direzione", dir)
-		att.custom_minimum_size = Vector2(182, 84)
+		att.custom_minimum_size = Vector2(96, 96)
 		fila.add_child(att)
 		attacchi.append(att)
 		var legenda := _lab("Colpisce:\n" + intercetta[i], 12, f_txt, inchiostro)
@@ -2148,7 +2148,7 @@ func _plancia_mischia(d: Dictionary) -> void:
 			mischia["scudo"] = dir
 			aggiorna_stili.call(), 13)
 		difesa.set_meta("scudo", dir)
-		difesa.custom_minimum_size = Vector2(182, 76)
+		difesa.custom_minimum_size = Vector2(182, 94)
 		difesa.disabled = not d.get("scudo", false)
 		difese.append(difesa)
 		scudi.add_child(difesa)
@@ -2160,14 +2160,26 @@ func _plancia_mischia(d: Dictionary) -> void:
 	for o in p["oggetti"]:
 		if o.get("attivo", false) and Dati.oggetti["armature"].has(o["id"]):
 			oggetti_attivi.append(Dati.nome_arma(o["id"]))
-	for testo in ["CORAZZA\nAffondo + Fendente", "ELMO\nColpo dall'alto", "ARMATURA COMPLETA\nTutte le direzioni"]:
+	# La corazza originale occupa le prime due colonne (thrust + swing),
+	# l'elmo soltanto la terza (smash); la suit of armor e sotto entrambe.
+	for info in [
+		{"testo": "CORAZZA\nProtegge da Affondo e Fendente", "larghezza": 366},
+		{"testo": "ELMO\nProtegge dal Colpo dall'alto", "larghezza": 182}
+	]:
 		var ovale := _pannello(Color(0.98, 0.96, 0.89))
-		ovale.add_theme_stylebox_override("panel", _stile(Color(0.98, 0.96, 0.89), inchiostro, 35, 1))
-		ovale.custom_minimum_size = Vector2(182, 74)
+		ovale.add_theme_stylebox_override("panel", _stile(Color(0.98, 0.96, 0.89), inchiostro, 36, 1))
+		ovale.custom_minimum_size = Vector2(info["larghezza"], 72)
 		armature.add_child(ovale)
-		var l := _lab(testo, 12, f_tit, inchiostro)
+		var l := _lab(info["testo"], 13, f_tit, inchiostro)
 		l.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		ovale.add_child(l)
+	var intero := _pannello(Color(0.98, 0.96, 0.89))
+	intero.add_theme_stylebox_override("panel", _stile(Color(0.98, 0.96, 0.89), inchiostro, 36, 1))
+	intero.custom_minimum_size = Vector2(557, 68)
+	sinistra.add_child(intero)
+	var intero_label := _lab("ARMATURA COMPLETA  ·  Protegge da tutti gli attacchi", 13, f_tit, inchiostro)
+	intero_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	intero.add_child(intero_label)
 	sinistra.add_child(_lab("Armature effettivamente attive: " + (", ".join(oggetti_attivi) if not oggetti_attivi.is_empty() else "nessuna"), 13, f_txt, inchiostro))
 	sinistra.add_child(_lab("MANOVRE  ·  CASELLE MOVE", 16, f_tit, inchiostro))
 	var fila_manovre := HBoxContainer.new()
@@ -2178,7 +2190,7 @@ func _plancia_mischia(d: Dictionary) -> void:
 			mischia["casella"] = man
 			aggiorna_stili.call(), 18)
 		b.set_meta("manovra", man)
-		b.custom_minimum_size = Vector2(182, 88)
+		b.custom_minimum_size = Vector2(126, 112)
 		b.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		movimenti.append(b)
 		fila_manovre.add_child(b)
