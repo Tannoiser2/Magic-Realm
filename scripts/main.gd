@@ -2114,15 +2114,24 @@ func _plancia_mischia(d: Dictionary) -> void:
 		var testo_box := VBoxContainer.new()
 		nemici.add_child(testo_box)
 		testo_box.add_child(_lab("%d   %s + %s" % [i + 1, intercetta[i].to_upper(), Combattimento.DIREZIONI[dir].to_upper()], 14, f_tit, inchiostro))
-		var contenuto := []
+		var pedine := HBoxContainer.new()
+		pedine.add_theme_constant_override("separation", 2)
+		testo_box.add_child(pedine)
 		for id in assegnati:
 			var m: Dictionary = g.M(id)
-			if m.is_empty() or m["morto"]:
+			if m.is_empty() or m["morto"] or assegnati[id] != g.umano()["pid"]:
 				continue
-			# Le posizioni sono casuali e segrete finche il motore le rivela.
+			# Le pedine rimangono nascoste fino al lancio di riposizionamento.
 			if posizioni.has(id) and posizioni[id].get("riga", "") == dir:
-				contenuto.append(g.nome_mostro(m))
-		testo_box.add_child(_lab(", ".join(contenuto) if not contenuto.is_empty() else "Posizioni da rivelare", 12, f_txt, inchiostro))
+				var immagine := TextureRect.new()
+				immagine.texture = T(_img_mostro(m))
+				immagine.custom_minimum_size = Vector2(42, 42)
+				immagine.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+				immagine.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT
+				immagine.tooltip_text = g.nome_mostro(m)
+				pedine.add_child(immagine)
+		if pedine.get_child_count() == 0:
+			pedine.add_child(_lab("Posizione non ancora rivelata", 12, f_txt, inchiostro))
 		var freccia := _lab("←────", 22, f_tit, inchiostro)
 		freccia.custom_minimum_size.x = 70
 		freccia.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
