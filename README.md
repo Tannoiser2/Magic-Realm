@@ -79,6 +79,8 @@ La scheda e interattiva: scegliere direzione, manovra, scudo, segnalini FIGHT/MO
 
 ## Pubblicazione
 
+Ultimo rilascio richiesto: plancia di combattimento originale 2e per Super e Classico.
+
 La pubblicazione non parte a ogni modifica: si avvia a mano (Actions → *Pubblica* → *Run workflow*) oppure con un
 commit che nel messaggio contiene `[pubblica]`. Il gioco compare nella ludoteca grazie alla cartella `ludoteca/`.
 
