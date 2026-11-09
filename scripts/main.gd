@@ -2080,7 +2080,7 @@ func _plancia_mischia(d: Dictionary) -> void:
 	tavola.add_theme_constant_override("separation", 18)
 	corpo.add_child(tavola)
 	var sinistra := VBoxContainer.new()
-	sinistra.custom_minimum_size.x = 570
+	sinistra.custom_minimum_size.x = 750
 	sinistra.add_theme_constant_override("separation", 8)
 	sinistra.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	tavola.add_child(sinistra)
@@ -2091,7 +2091,7 @@ func _plancia_mischia(d: Dictionary) -> void:
 	var intestazione := HBoxContainer.new()
 	sinistra.add_child(intestazione)
 	var label_box := _lab("BOX ROSSI DEI MOSTRI", 16, f_tit, inchiostro)
-	label_box.custom_minimum_size.x = 210
+	label_box.custom_minimum_size.x = 330
 	intestazione.add_child(label_box)
 	intestazione.add_child(_lab("← INTERCETTA ←", 13, f_tit, inchiostro))
 	intestazione.add_child(_lab("ATTACCHI", 16, f_tit, inchiostro))
@@ -2101,10 +2101,16 @@ func _plancia_mischia(d: Dictionary) -> void:
 		var fila := HBoxContainer.new()
 		fila.add_theme_constant_override("separation", 12)
 		sinistra.add_child(fila)
+		# Le caselle rosse sono sfalsate a gradini, come sulla stampa 2e.
+		# Lo spazio assegnato rimane identico fra i tre attacchi.
+		var area_nemici := Control.new()
+		area_nemici.custom_minimum_size = Vector2(332, 90)
+		fila.add_child(area_nemici)
 		var nemici := _pannello(rosso)
+		nemici.position = Vector2(float(i * 55), 0.0)
 		nemici.custom_minimum_size = Vector2(212, 86)
 		nemici.add_theme_stylebox_override("panel", _stile(rosso, inchiostro, 1, 2))
-		fila.add_child(nemici)
+		area_nemici.add_child(nemici)
 		var testo_box := VBoxContainer.new()
 		nemici.add_child(testo_box)
 		testo_box.add_child(_lab("%d   %s + %s" % [i + 1, intercetta[i].to_upper(), Combattimento.DIREZIONI[dir].to_upper()], 14, f_tit, inchiostro))
@@ -2118,7 +2124,7 @@ func _plancia_mischia(d: Dictionary) -> void:
 				contenuto.append(g.nome_mostro(m))
 		testo_box.add_child(_lab(", ".join(contenuto) if not contenuto.is_empty() else "Posizioni da rivelare", 12, f_txt, inchiostro))
 		var freccia := _lab("←────", 22, f_tit, inchiostro)
-		freccia.custom_minimum_size.x = 85
+		freccia.custom_minimum_size.x = 70
 		freccia.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 		fila.add_child(freccia)
 		var att := _bott(Combattimento.DIREZIONI[dir], func():
