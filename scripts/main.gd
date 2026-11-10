@@ -62,6 +62,8 @@ var avviso: Label
 var piano: Array = []
 var fasi: Dictionary = {}
 var modo_volo := false
+var tut: Tutorial
+var tut_guida: PanelContainer
 var guida_pannello: PanelContainer
 var guida_box: VBoxContainer
 var guida_visti := {}
@@ -408,6 +410,13 @@ func _aggiorna_pezzi() -> void:
 			j += 1
 
 func _aggiorna_evidenze() -> void:
+	_evidenze_base()
+	if tut != null and tut.attivo:
+		for k in tut.evid:
+			if g.mappa.radure.has(k):
+				_anello(g.mappa.radure[k]["pos"], Color(0.75, 0.2, 0.95), 0.3, 0.06)
+
+func _evidenze_base() -> void:
 	for c in nodo_evid.get_children():
 		c.queue_free()
 	if g == null or g.mappa == null:
@@ -688,7 +697,7 @@ func _crea_ui() -> void:
 	hb.add_child(lbl_codice)
 	hb.add_child(_bott("Centra", _centra, 16))
 	hb.add_child(_bott("Salva online", _salva_online, 16))
-	hb.add_child(_bott("Tutorial", func(): _tutorial(0), 16))
+	hb.add_child(_bott("Manuale", func(): _tutorial(0), 16))
 	hb.add_child(_bott("Guida", func(): _mostra_guida_classica() if g != null and g.e_classico() else _mostra_guida_scenario(true), 16))
 	hb.add_child(_bott("Regole", func(): aiuto.visible = not aiuto.visible, 16))
 	hb.add_child(_bott("Menu", _torna_menu, 16))
@@ -790,10 +799,17 @@ func _crea_ui() -> void:
 func _avviso(t: String) -> void:
 	avviso.text = "  " + t + "  "
 	avviso.visible = true
+	var w := minf(600.0, hud.size.x - 480.0)
+	avviso.custom_minimum_size = Vector2(w, 0)
+	avviso.set_anchors_preset(Control.PRESET_TOP_LEFT)
+	avviso.size = Vector2(w, 10)
+	avviso.position = Vector2(maxf(10.0, (hud.size.x - w) / 2 - 190.0), 64)
+	await get_tree().process_frame
+	avviso.size = Vector2(w, 10)
 	avviso.reset_size()
-	avviso.position.x = (hud.size.x - avviso.size.x) / 2
+	avviso.z_index = 20
 	var tw := create_tween()
-	tw.tween_interval(2.5)
+	tw.tween_interval(4.0)
 	tw.tween_callback(func(): avviso.visible = false)
 
 func _centra() -> void:
@@ -975,7 +991,8 @@ func _mostra_menu() -> void:
 	ed.add_theme_font_size_override("font_size", 18)
 	hb.add_child(ed)
 	hb.add_child(_bott("Carica online", func(): _carica_online(ed.text.strip_edges().to_upper()), 20))
-	hb.add_child(_bott("Tutorial", func(): _tutorial(0), 20, true))
+	hb.add_child(_bott("Tutorial guidato", _avvia_tutorial, 20, true))
+	hb.add_child(_bott("Manuale", func(): _tutorial(0), 20))
 	hb.add_child(_bott("Regole", func(): aiuto.visible = true, 20))
 	var nota := _lab("Modalita classica sperimentale: obiettivi e punteggio originali; alcuni effetti e l’IA restano in verifica." if scelte_menu["edizione"] == "classico" else "Versione digitale per uso personale del modulo Super Magic Realm (espansione non ufficiale di Magic Realm, Avalon Hill).", 14, f_txt, Color(0.4, 0.3, 0.2))
 	nota.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
@@ -1135,6 +1152,8 @@ func _torna_menu() -> void:
 
 # ============================================================ aggiornamento
 func _messaggio(t: String, tipo: String) -> void:
+	if tut != null and tut.attivo:
+		tut.on_messaggio(t)
 	var col := {"titolo": "#5a1a0a", "male": "#8a1c10", "bene": "#1f5a20", "mostri": "#6a2a7a", "segreto": "#1a4a7a", "round": "#7a5a2a", "turno": "#3a2a1a"}
 	var c: String = col.get(tipo, "")
 	var testo := t
@@ -1477,6 +1496,8 @@ func _attiva_oggetto(id: String) -> void:
 # ============================================================ richieste del motore
 func _chiede(req: Dictionary) -> void:
 	modale.visible = false
+	if tut != null and tut.attivo:
+		tut.on_richiesta(req)
 	var chiave_sugg: String = {"piano": "piano", "tabella": "tabella", "adesca": "combattimento", "azione": "combattimento", "mischia": "combattimento",
 		"incanto": "incanto", "commercio": "commercio", "incantesimo_sera": "sera"}.get(req["tipo"], "")
 	if req["tipo"] == "tabella" and not req["dati"].get("fonti", {}).get("saccheggia", []).is_empty():
@@ -1517,7 +1538,14 @@ func _chiede(req: Dictionary) -> void:
 			g.rispondi(null)
 
 func _rispondi(x) -> void:
+	if tut != null and tut.attivo:
+		var err := tut.valida(g.richiesta, x)
+		if err != "":
+			_avviso(err)
+			return
 	modale.visible = false
+	if tut_guida != null and tut != null and tut.attivo:
+		tut_guida.visible = true
 	modo_mossa = false
 	for c in box_azioni.get_children():
 		c.queue_free()
@@ -1625,6 +1653,8 @@ func _pannello_piano() -> void:
 		t2.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		v.add_child(t2)
 		b.pressed.connect(func(): _aggiungi(a))
+		if tut != null and tut.attivo and tut.carta == a:
+			b.add_theme_stylebox_override("normal", _stile(Color(0.55, 0.12, 0.08), Color(0.75, 0.2, 0.95), 6, 5))
 		hb.add_child(b)
 	if g.usa_regola("magia") and g.arcano.puo_volare(u):
 		var bv := _bott("Vola" if not modo_volo else "Vola: clic su una radura di una tessera vicina", func():
@@ -1680,6 +1710,15 @@ func _apri_modale(titolo: String) -> void:
 	for c in box_modale.get_children():
 		c.queue_free()
 	box_modale.add_child(_lab(titolo, 26, f_tit, C_ROSSO))
+	if tut != null and tut.attivo and not tut.in_attesa:
+		# nel tutorial la spiegazione entra nella finestra, così non copre nulla
+		var pt := _pannello(Color(0.96, 0.9, 1.0))
+		pt.add_theme_stylebox_override("panel", _stile(Color(0.96, 0.9, 1.0), Color(0.55, 0.15, 0.7), 6, 3))
+		var lt := _lab("GUIDA · " + tut.testo(), 16, f_txt, Color(0.3, 0.05, 0.4))
+		pt.add_child(lt)
+		box_modale.add_child(pt)
+		if tut_guida != null:
+			tut_guida.visible = false
 	modale.visible = true
 
 func _lab_riga(t: String) -> Label:
@@ -2469,7 +2508,7 @@ func _apri_guida(titolo: String, righe: Array) -> void:
 	guida_pannello.position = Vector2(hud.size.x - guida_pannello.size.x - 10, 64)
 
 func _mostra_guida_scenario(sempre: bool) -> void:
-	if g == null:
+	if g == null or (tut != null and tut.attivo):
 		return
 	if guida_visti.is_empty():
 		_carica_guida()
@@ -2483,6 +2522,8 @@ func _mostra_guida_scenario(sempre: bool) -> void:
 	_salva_guida()
 
 func _suggerimento(k: String) -> void:
+	if tut != null and tut.attivo:
+		return
 	if guida_visti.is_empty():
 		_carica_guida()
 	if not guida_attiva or guida_visti.has(k):
@@ -2562,3 +2603,64 @@ func _tutorial(pagina: int) -> void:
 	tut_pannello.size = Vector2.ZERO
 	tut_pannello.reset_size()
 	tut_pannello.position = (vp - tut_pannello.size) / 2.0
+
+# ============================================================ tutorial guidato
+func _avvia_tutorial() -> void:
+	tut = null
+	_avvia(func():
+		Tutorial.prepara_partita(g)
+		tut = Tutorial.new(g)
+		tut.cambiato.connect(_tut_aggiorna)
+		tut.avvia())
+
+func _tut_aggiorna() -> void:
+	if tut == null:
+		return
+	if tut_guida == null:
+		tut_guida = _pannello(Color(1, 0.96, 0.84))
+		tut_guida.add_theme_stylebox_override("panel", _stile(Color(1, 0.96, 0.84), Color(0.55, 0.15, 0.7), 8, 4))
+		hud.add_child(tut_guida)
+	for c in tut_guida.get_children():
+		c.queue_free()
+	if not tut.attivo:
+		tut_guida.visible = false
+		tut = null
+		_torna_menu()
+		return
+	var w: float = 400.0
+	var m := MarginContainer.new()
+	for lato in ["left", "right", "top", "bottom"]:
+		m.add_theme_constant_override("margin_" + lato, 12)
+	tut_guida.add_child(m)
+	var v := VBoxContainer.new()
+	v.add_theme_constant_override("separation", 8)
+	m.add_child(v)
+	var st := tut.corrente()
+	var l1 := _lab(str(st.get("lez", "Tutorial")), 18, f_tit, Color(0.45, 0.1, 0.55))
+	l1.custom_minimum_size.x = w - 24
+	v.add_child(l1)
+	var t := _lab("Attendi: il Paladino sta eseguendo la giornata..." if tut.in_attesa else tut.testo(), 16)
+	t.custom_minimum_size.x = w - 24
+	v.add_child(t)
+	var h := HBoxContainer.new()
+	h.add_theme_constant_override("separation", 8)
+	v.add_child(h)
+	if st.get("tipo", "") == "ok" and not tut.in_attesa:
+		h.add_child(_bott("Avanti", func(): tut.avanti(), 18, true))
+	elif not tut.in_attesa:
+		var fai := _lab("Fai quello che chiede la guida.", 14, f_txt, Color(0.45, 0.1, 0.55))
+		fai.autowrap_mode = TextServer.AUTOWRAP_OFF
+		h.add_child(fai)
+	h.add_child(_bott("Esci", func():
+		tut.attivo = false
+		_tut_aggiorna(), 15))
+	tut_guida.visible = not modale.visible
+	tut_guida.custom_minimum_size = Vector2(w, 0)
+	tut_guida.size = Vector2.ZERO
+	_aggiorna_evidenze()
+	if g.richiesta.get("tipo", "") == "piano" and azioni.visible:
+		_pannello_piano()
+	await get_tree().process_frame
+	tut_guida.size = Vector2.ZERO
+	tut_guida.reset_size()
+	tut_guida.position = Vector2(hud.size.x - tut_guida.size.x - 10, 64)

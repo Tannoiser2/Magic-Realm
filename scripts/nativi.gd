@@ -147,9 +147,11 @@ func incontro(p: Dictionary, gid: String, rel: int, affare := false) -> String:
 
 # ------------------------------------------------------------ apparizioni
 func tiro_alba() -> void:
-	r.s["riga_nativi"] = r.d6()
+	r.s["riga_nativi"] = 1 if r.s.get("tutorial", false) else r.d6()
 
 func fine_turno(p: Dictionary) -> void:
+	if r.s.get("tutorial", false):
+		return
 	var k: String = p["dove"]
 	var dw := r.abitazione_in(k)
 	var riga: int = int(r.s.get("riga_nativi", 1))

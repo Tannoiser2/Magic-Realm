@@ -223,6 +223,9 @@ func scrivi(t: String, tipo := "") -> void:
 	messaggio.emit(t, tipo)
 
 func d6() -> int:
+	## nel tutorial i dadi possono essere preparati in anticipo
+	if not s.get("dadi", []).is_empty():
+		return int(s["dadi"].pop_front())
 	return rng.randi_range(1, 6)
 
 func mescola(a: Array) -> void:
@@ -702,7 +705,7 @@ func gioca_giorno() -> void:
 				scrivi("%s segue %s per l'intero giorno." % [p["nome"], guida["nome"]])
 	# Sorgere del sole: tiro dei mostri
 	if usa_regola("mostri"):
-		s["riga_mostri"] = d6()
+		s["riga_mostri"] = 1 if s.get("tutorial", false) else d6()
 		scrivi("Sorge il sole: si aggirano i mostri della riga %d (%s)." % [s["riga_mostri"], Dati.mostri["righe"][str(s["riga_mostri"])]], "mostri")
 	if usa_regola("nativi"):
 		if e_classico():
@@ -1313,6 +1316,8 @@ func fine_turno(p: Dictionary) -> void:
 	cambiato.emit()
 
 func muovi_ed_evoca(p: Dictionary) -> void:
+	if s.get("tutorial", false):
+		return
 	var k: String = p["dove"]
 	var t := tessera(k)
 	var st: Dictionary = s["tessere"][str(t)]
@@ -1645,7 +1650,7 @@ func pv(p: Dictionary) -> int:
 	return tot
 
 func controlla_vittoria() -> void:
-	if s["fine"] != "":
+	if s["fine"] != "" or s.get("tutorial", false):
 		return
 	if e_classico():
 		var um := umano()

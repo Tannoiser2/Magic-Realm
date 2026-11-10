@@ -55,6 +55,8 @@ func combatti(k: String) -> void:
 	var pgs := _pg_qui(k)
 	if pgs.is_empty() or r.s["scenario"] < 2 or (r.e_classico() and not r.usa_regola("combattimento_mostri")):
 		return
+	if r.s.get("tutorial", false) and pgs.all(func(q): return q["nascosto"]):
+		return
 	if r.s["scenario"] >= 5 and (not r.e_classico() or r.usa_regola("combattimento_pg")):
 		r.nativi.inizio_combattimento(k)
 	var mostri := _mostri_qui(k)
