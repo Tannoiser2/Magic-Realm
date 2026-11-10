@@ -16,7 +16,17 @@ const VISIONE := ["scelta", "segnalini", "tesori", "percepisci", "scopri", "nien
 const DURATE := {"Instant": "istantaneo", "Attack": "attacco", "Combat": "combattimento", "Day": "giorno", "Permanent": "permanente",
 	"Phase": "fase", "Fly": "volo", "Move": "movimento"}
 ## incantesimi che si lanciano solo in combattimento contro altri
-const SOLO_COMBATTIMENTO := ["vampata", "pietre", "fulmine", "ghiaccio", "inondazione", "crollo", "pace", "smussa", "esorcismo", "anima"]
+const SOLO_COMBATTIMENTO := ["vampata", "pietre", "fulmine", "ghiaccio", "inondazione", "crollo", "pace", "smussa", "esorcismo", "anima",
+	"incanta_serpente", "guida_bestia", "elementi", "aura_negativa"]
+## incantesimi che agiscono su un luogo (la radura o la tessera dell'incantatore)
+const LUOGO_RADURA := ["montagna", "venti"]
+const LUOGO_TESSERA := ["gelo", "nebbia", "tempesta"]
+## coppie di tipi magici scambiati dagli incantesimi di trasformazione
+const SCAMBI := {"scambio_II_VIII": ["II", "VIII"], "scambio_III_VII": ["III", "VII"], "scambio_IV_VI": ["IV", "VI"]}
+## mostri controllati dagli incantesimi di comando
+const COMANDI := {"incanta_serpente": ["vipera", "serpente", "serpente_t"],
+	"guida_bestia": ["ragno", "ragno_t", "piovra", "scorpione", "scorpione_t"],
+	"elementi": ["anomalia_grigia", "anomalia_oro", "anomalia_viola", "anomalia_prisma", "golem"]}
 const DEMONI := ["demone", "demone_alato", "imp", "vampiro", "succubo"]
 const NON_MORTI := ["fantasma", "scheletro", "cavaliere_scheletro", "spettro", "ghoul", "scheletro_arciere"]
 
@@ -53,6 +63,37 @@ func eff(p: Dictionary, chiave: String) -> Array:
 
 func effetto(p: Dictionary, chiave: String) -> bool:
 	return p.get("effetti", {}).has(chiave)
+
+## pid di chi ha lanciato l'incantesimo di luogo `e` che copre la radura k ("" se nessuno)
+var luoghi_attivi := true  # falso quando nessun incantesimo di luogo è in corso (scorciatoia)
+
+func incanto_qui(e: String, k: String) -> String:
+	if not luoghi_attivi:
+		return ""
+	for q in r.s.get("pg", []):
+		if q["morto"] or not q.get("effetti", {}).has(e):
+			continue
+		var dove: String = str(q.get("effetti_inc", {}).get(e, {}).get("dove", ""))
+		if dove == "":
+			continue
+		if e in LUOGO_RADURA and dove == k:
+			return q["pid"]
+		if e in LUOGO_TESSERA and r.tessera(dove) == r.tessera(k):
+			return q["pid"]
+	return ""
+
+func incanto_tessera(e: String, t: int) -> String:
+	var rr: Array = r.mappa.radure_tessera(t)
+	return "" if rr.is_empty() else incanto_qui(e, rr[0])
+
+## vero se il segnalino di tipo `tc` può valere come tipo `t` (anche grazie a un incantesimo di scambio)
+func tipo_ok(p: Dictionary, tc: String, t: String) -> bool:
+	if tc == t:
+		return true
+	for e in SCAMBI:
+		if effetto(p, e) and tc in SCAMBI[e] and t in SCAMBI[e]:
+			return true
+	return false
 
 # ------------------------------------------------------------ preparazione
 func prepara() -> void:
@@ -301,6 +342,8 @@ func modifica_tiro(p: Dictionary, contesto: String) -> int:
 	return m
 
 func puo_volare(p: Dictionary) -> bool:
+	if incanto_qui("venti", p["dove"]) != "":
+		return false
 	return not eff(p, "vola").is_empty() or effetto(p, "vola")
 
 func limite_sforzo(p: Dictionary) -> int:
@@ -688,7 +731,7 @@ func attivita_incanto(p: Dictionary) -> void:
 func lanciabile_in_teoria(p: Dictionary, id: String) -> bool:
 	var t: String = inc(id)["tipo"]
 	for c in p["chits"]:
-		if c["tipo"] == "G" and c["magia"] == t:
+		if c["tipo"] == "G" and tipo_ok(p, str(c["magia"]), t):
 			return true
 	for x in eff(p, "anello"):
 		if x == t:
@@ -701,7 +744,7 @@ func mezzi(p: Dictionary, id: String, vel_max := 99, usati := {}) -> Array:
 	var a := []
 	for i in range(p["chits"].size()):
 		var c: Dictionary = p["chits"][i]
-		if c["tipo"] == "G" and c["magia"] == t and c["stato"] == "a" and not c.get("colore", false) and int(c["vel"]) <= vel_max and not usati.has(i):
+		if c["tipo"] == "G" and tipo_ok(p, str(c["magia"]), t) and c["stato"] == "a" and not c.get("colore", false) and int(c["vel"]) <= vel_max and not usati.has(i):
 			a.append({"chit": i, "testo": r.descr_chit(c)})
 	for o in p["oggetti"]:
 		if o.get("attivo", false) and e_tesoro(o["id"]) and str(tesoro(o["id"]).get("eff", {}).get("anello", "")) == t:
@@ -736,7 +779,17 @@ func _condizione(p: Dictionary, e: String) -> bool:
 		"fulmine": return tr == "M"
 		"crollo", "fase_*": return tr == "C"
 		"inondazione": return tr != "M"
-		"persuasione": return r.s["scenario"] >= 5
+		"persuasione", "abbaglia", "aura_negativa": return r.s["scenario"] >= 5
+		"montagna": return tr != "M"
+		"gelo":
+			for kk in r.mappa.radure_tessera(r.tessera(p["dove"])):
+				if r.mappa.radure[kk]["tipo"] == "A": return true
+			return false
+		"riserva":
+			var n := 0
+			for c in p["chits"]:
+				if c["tipo"] == "G" and c["stato"] == "a" and not c.get("colore", false) and TIPO_COLORE.has(c["magia"]): n += 1
+			return n >= 2
 	return true
 
 func paga(p: Dictionary, id: String, mezzo: Dictionary, chit_colore_i: int) -> int:
@@ -775,6 +828,9 @@ func applica_effetto_giorno(p: Dictionary, bersaglio: Dictionary, id: String) ->
 		bersaglio["effetti"][e] = fine
 	bersaglio["effetti_inc"] = bersaglio.get("effetti_inc", {})
 	bersaglio["effetti_inc"][e] = {"inc": id, "da": p["pid"]}
+	if e in LUOGO_RADURA or e in LUOGO_TESSERA:
+		bersaglio["effetti_inc"][e]["dove"] = p["dove"]
+		luoghi_attivi = true
 	r.scrivi("%s lancia %s su %s." % [p["nome"], x["nome"], "se stess{oa}" if bersaglio == p else bersaglio["nome"]], "bene")
 
 func lancia_istantaneo(p: Dictionary, q: Dictionary, id: String) -> void:
@@ -788,6 +844,12 @@ func lancia_istantaneo(p: Dictionary, q: Dictionary, id: String) -> void:
 			for o in q["oggetti"]:
 				o["danno"] = 0
 			r.scrivi("%s è guarit{oa} del tutto." % q["nome"], "bene")
+		"riserva":
+			for c in q["chits"]:
+				if c["tipo"] == "G" and c["stato"] == "a" and not c.get("colore", false) and TIPO_COLORE.has(c["magia"]) and not c.has("legato"):
+					c["colore"] = true
+					r.scrivi("Un segnalino magico %s di %s diventa un segnalino di colore %s." % [c["magia"], q["nome"], NOMI_COLORE[TIPO_COLORE[c["magia"]]]], "bene")
+					break
 		"benedizione":
 			q["fama"] += 5
 			r.scrivi("%s guadagna 5 punti Fama." % q["nome"], "bene")
@@ -873,6 +935,11 @@ func scadenze() -> void:
 					if not caster.is_empty():
 						sciogli(caster, info["inc"])
 					p["effetti_inc"].erase(e)
+	luoghi_attivi = false
+	for p in r.s.get("pg", []):
+		for e in p.get("effetti_inc", {}):
+			if p["effetti_inc"][e].has("dove"):
+				luoghi_attivi = true
 
 # ------------------------------------------------------------ oggetti monouso
 func usa(p: Dictionary, id: String) -> bool:

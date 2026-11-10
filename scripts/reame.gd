@@ -310,7 +310,13 @@ func tessera(k: String) -> int:
 	return Mappa.tessera_di(k)
 
 func tipo_radura(k: String) -> String:
-	return mappa.radure[k]["tipo"] if mappa.radure.has(k) else "W"
+	var t: String = mappa.radure[k]["tipo"] if mappa.radure.has(k) else "W"
+	if arcano != null and arcano.luoghi_attivi and s.has("pg") and usa_regola("magia"):
+		if t != "M" and arcano.incanto_qui("montagna", k) != "":
+			return "M"
+		if t == "A" and arcano.incanto_qui("gelo", k) != "":
+			return "W"
+	return t
 
 func cat_tessera(t: int) -> String:
 	return Dati.tessere[t]["cat"]
@@ -741,6 +747,9 @@ func gioca_giorno() -> void:
 			if p["piano"].size() != 1 or p["piano"][0].get("a", "") != "F":
 				continue
 			var guida: Dictionary = P(str(p["piano"][0].get("guida", "")))
+			if not guida.is_empty() and usa_regola("magia") and arcano.effetto(guida, "camuffamento"):
+				scrivi("%s è mimetizzat{oa}: %s non riesce a seguirl{oa}." % [guida["nome"], p["nome"]])
+				continue
 			if not guida.is_empty() and guida != p and not guida["morto"] and guida["dove"] == p["dove"]:
 				p["segue"] = guida["pid"]
 				scrivi("%s segue %s per l'intero giorno." % [p["nome"], guida["nome"]])
@@ -823,6 +832,9 @@ func fasi_disponibili(p: Dictionary) -> Dictionary:
 	if ha_abilita(p, "reputazione") and abitazione_in(p["dove"]) != "": extra.append("*")
 	if usa_regola("magia"):
 		extra.append_array(arcano.fasi_extra(p))
+		var chi: String = arcano.incanto_qui("tempesta", p["dove"])
+		if chi != "" and chi != p["pid"]:
+			base = 1
 	var grotta := tipo_radura(p["dove"]) == "C"
 	if usa_regola("cavalli") and not grotta:
 		var cavallo: Dictionary = _cavallo_cavalcato(p)
@@ -1147,11 +1159,13 @@ func applica_riposo(p: Dictionary, o: Dictionary) -> void:
 func radure_scrutabili(p: Dictionary) -> Array:
 	var k: String = p["dove"]
 	var r := [k]
+	if usa_regola("magia") and arcano.incanto_qui("nebbia", k) != "":
+		return r
 	if tipo_radura(k) == "M":
 		var t := tessera(k)
 		for tt in [t] + mappa.tessere_adiacenti(t):
 			for kk in mappa.radure_tessera(tt):
-				if kk != k and tipo_radura(kk) != "C" and not (kk in r):
+				if kk != k and tipo_radura(kk) != "C" and not (kk in r) and not (usa_regola("magia") and arcano.incanto_qui("nebbia", kk) != ""):
 					r.append(kk)
 	return r
 
@@ -1225,6 +1239,9 @@ func applica_ricerca(p: Dictionary, ris: String, dove: String) -> void:
 	cambiato.emit()
 
 func sbircia(p: Dictionary, t: int) -> void:
+	if usa_regola("magia") and arcano.incanto_tessera("nebbia", t) != "" and tessera(p["dove"]) != t:
+		scrivi("Una nebbia magica copre %s: nessun indizio." % Dati.tessere[t]["nome"])
+		return
 	_completa_rossi(t, false)
 	var st: Dictionary = s["tessere"][str(t)]
 	p["sbirciati"][str(t)] = true
@@ -1278,6 +1295,11 @@ func _svela_perduto(t: int) -> void:
 func fine_fase(p: Dictionary) -> void:
 	controlla_missioni_fase(p)
 	if (s["scenario"] < 2 and not e_classico()) or p["morto"]:
+		return
+	if usa_regola("magia") and arcano.effetto(p, "luce_accecante"):
+		# Luce accecante: nessuno può bloccare il bersaglio
+		if s["scenario"] >= 6:
+			viaggi.fine_fase(p)
 		return
 	var k: String = p["dove"]
 	# i mostri bloccano chi non è nascosto

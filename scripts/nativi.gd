@@ -113,6 +113,17 @@ func gruppi_in(k: String, solo_liberi := true) -> Array:
 
 # ------------------------------------------------------------ rapporti
 func rapporto(p: Dictionary, gid: String) -> int:
+	var rel := _rapporto_base(p, gid)
+	if r.usa_regola("magia"):
+		if r.arcano.effetto(p, "persuasione"):
+			rel = max(rel, 1)
+		if r.arcano.effetto(p, "abbaglia"):
+			rel += 1
+		if r.arcano.effetto(p, "aura_negativa"):
+			rel -= 1
+	return clampi(rel, -2, 2)
+
+func _rapporto_base(p: Dictionary, gid: String) -> int:
 	if gid.begins_with("v:"):
 		return int(Dati.nativi["relazioni"].get(p["pg"], {}).get(gid.substr(2), 0))
 	if p.get("rel", {}).has(gid):

@@ -384,6 +384,10 @@ func _incantesimo_combattimento(p: Dictionary, d: Dictionary) -> Dictionary:
 			return {"tipo": "incantesimo", "inc": x["inc"], "mezzo": 0, "bersaglio": miei[0] if not miei.is_empty() else mostri[0]}
 		if e == "pace" and not miei.is_empty():
 			return {"tipo": "incantesimo", "inc": x["inc"], "mezzo": 0, "bersaglio": miei[0]}
+		if Arcano.COMANDI.has(e):
+			for b in miei:
+				if str(r.M(b).get("tipo", "")) in Arcano.COMANDI[e]:
+					return {"tipo": "incantesimo", "inc": x["inc"], "mezzo": 0, "bersaglio": b}
 		if e == "esorcismo":
 			for b in mostri:
 				if r.M(b)["tipo"] in Arcano.DEMONI:

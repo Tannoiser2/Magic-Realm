@@ -66,7 +66,7 @@ Il testo integrale della 2a edizione non è nel progetto: la lista segue la stru
 | Seguire | III | SEMPL. | mancano interruzione per fase e capi ingaggiati |
 | Missioni e campagne delle tessere visitatore | III | MANCA | |
 | Magia: colori, segnalini, rituali, incanto | IV | OK | |
-| Incantesimi lanciabili | IV | SEMPL. | circa metà lanciabili |
+| Incantesimi lanciabili | IV | SEMPL. | 59 su 83 lanciabili (motore comune al Super) |
 | Trasformazioni, controllo dei mostri, pacificazione | IV | MANCA | |
 | Nativi incantatori | IV | MANCA | combattono senza magia |
 | Regole opzionali (meteo, stagioni, ecc.) | — | MANCA | non necessarie agli Encounter |

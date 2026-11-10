@@ -16,7 +16,7 @@ Data della verifica: 10 novembre 2026.
 | 2.3.3 Cavalli | OK | da scenario 5: cavalli dei nativi (Chart of Clans), carico, movimento, manovre |
 | 2.3.4-2.3.5 Armi e armature | OK | |
 | 2.3.6-2.3.7 Tesori | SEMPL. | 96 tesori su 152 con effetto in gioco; gli altri si vendono o valgono punti |
-| 2.3.8 Incantesimi | SEMPL. | 42 su 83 si lanciano; gli altri si imparano soltanto |
+| 2.3.8 Incantesimi | SEMPL. | 59 su 83 si lanciano (17 aggiunti: incantesimi di luogo, rapporti con i nativi, scambi di tipo magico, comando di mostri); gli altri 24 si imparano soltanto |
 | 2.3.9 Artefatti e libri degli incantesimi | OK | si leggono con la Ricerca (rune) |
 | 2.4 Scheda di preparazione (guarnigioni, visitatori, tesori nei tesori) | SEMPL. | i «tesori nei tesori» sono ridotti a carte casuali nel sito |
 | 2.5-2.6 Pezzi del personaggio, diario | OK | scheda personaggio e registro a schermo |
@@ -143,8 +143,8 @@ Data della verifica: 10 novembre 2026.
 
 - Regole base (sezioni 2-9): 67 voci. OK 51, semplificate 14, mancanti 2 (clan, campagne).
 - Regole avanzate e opzionali (sezioni 10-11): 25 voci, 24 mancanti e 1 semplificata. Non servono per i sei scenari.
-- Lavori più importanti rimasti: incantesimi lanciabili (41 mancanti), effetti dei tesori, capi ingaggiati con turni propri, clan, campagne, pozioni.
+- Lavori più importanti rimasti: incantesimi lanciabili (24 mancanti: trasformazioni, evocazioni, controllo di cavalli e personaggi, tabelle speciali), effetti dei tesori, capi ingaggiati con turni propri, clan, campagne, pozioni.
 
 ## Test
 
-`tests/nascondiglio_test.gd`, `tests/ripartenza_super_test.gd`, `tests/partite_auto.gd` (scenari 1-6, tre semi), `tests/tutorial_auto.gd`.
+`tests/incantesimi_nuovi_test.gd`, `tests/nascondiglio_test.gd`, `tests/ripartenza_super_test.gd`, `tests/partite_auto.gd` (scenari 1-6, tre semi), `tests/tutorial_auto.gd`.

@@ -1152,6 +1152,13 @@ func _risolvi_incantesimi() -> bool:
 					C["magia"]["pace"][b] = true
 					C["assegnati"].erase(b)
 					r.scrivi("%s si placa e non attaccherà più." % _nome(b), "bene")
+			"incanta_serpente", "guida_bestia", "elementi":
+				if not b.begins_with("p") and str(r.M(b).get("tipo", "")) in Arcano.COMANDI[e]:
+					C["magia"]["pace"][b] = true
+					C["assegnati"].erase(b)
+					r.scrivi("%s obbedisce all'incantatore e non attaccherà più." % _nome(b), "bene")
+				else:
+					r.scrivi("L'incantesimo non ha effetto su quel bersaglio.")
 			"smussa":
 				if not b.begins_with("p"):
 					if not C["magia"].has("smussati"): C["magia"]["smussati"] = {}
