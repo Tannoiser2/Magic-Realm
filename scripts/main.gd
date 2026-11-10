@@ -311,7 +311,7 @@ func _aggiorna_pezzi() -> void:
 		per_radura[k].append([nodo, lato])
 	# abitazioni
 	for a in g.s["abitazioni"]:
-		aggiungi.call(g.s["abitazioni"][a], _gettone_o_modello("abitazioni/%s" % a, "res://assets/abitazioni/%s.webp" % a, 0.26, 0.05, Color(0.3, 0.25, 0.2)), 0.26)
+		aggiungi.call(g.s["abitazioni"][a], _gettone_o_modello("abitazioni/%s" % a, "res://assets/abitazioni/%s.webp" % a, 0.36, 0.05, Color(0.3, 0.25, 0.2)), 0.36)
 	# mostri (dei nativi si mostra un solo segnalino per gruppo e radura)
 	var gruppi_visti := {}
 	for id in g.s["mostri"]:
@@ -324,7 +324,7 @@ func _aggiorna_pezzi() -> void:
 				continue
 			gruppi_visti[kg] = true
 		var peso: String = Dati.tipo_mostro(m["tipo"]).get("peso", "M")
-		var lato := {"M": 0.19, "H": 0.23, "T": 0.29, "X": 0.31}.get(peso, 0.2) as float
+		var lato := {"L": 0.26, "M": 0.28, "H": 0.32, "T": 0.42, "X": 0.44}.get(peso, 0.28) as float
 		aggiungi.call(m["dove"], _gettone_o_modello("nativi/%s" % m["nativo"] if m.has("nativo") else "mostri/%s" % m["tipo"], _img_mostro(m), lato, 0.04), lato)
 	# viaggiatori
 	for id in g.s.get("viaggi", {}):
@@ -332,7 +332,7 @@ func _aggiorna_pezzi() -> void:
 		if x["dove"] == "" or x["chi"] != "":
 			continue
 		var img: String = "res://assets/" + Viaggi.v(id)["img"] if x["su"] else "res://assets/viaggiatori/retro.webp"
-		aggiungi.call(x["dove"], _gettone_o_modello("viaggiatori/%s" % id, img, 0.17, 0.03), 0.17)
+		aggiungi.call(x["dove"], _gettone_o_modello("viaggiatori/%s" % id, img, 0.24, 0.03), 0.24)
 	# personaggi (la tua pedina sta al centro della radura, più grande, sotto il segnalino rosso)
 	var mia: Node3D = null
 	var mia_k := ""
@@ -343,11 +343,11 @@ func _aggiorna_pezzi() -> void:
 		var nasc: bool = p["nascosto"] and g.s["scenario"] >= 2
 		var img := "res://assets/personaggi/%s_%s.webp" % [d["pedina"], "nascosto" if nasc else "pedina"]
 		if p["umano"]:
-			mia = _gettone_o_modello("personaggi/%s" % d["pedina"], img, 0.36, 0.09, Color(0.6, 0.08, 0.05))
+			mia = _gettone_o_modello("personaggi/%s" % d["pedina"], img, 0.44, 0.09, Color(0.6, 0.08, 0.05))
 			mia_k = p["dove"]
 			continue
-		var gt := _gettone_o_modello("personaggi/%s" % d["pedina"], img, 0.27, 0.06, Color(0.12, 0.1, 0.1))
-		aggiungi.call(p["dove"], gt, 0.24)
+		var gt := _gettone_o_modello("personaggi/%s" % d["pedina"], img, 0.36, 0.06, Color(0.12, 0.1, 0.1))
+		aggiungi.call(p["dove"], gt, 0.34)
 	for k in per_radura:
 		if not g.mappa.radure.has(k):
 			continue
@@ -401,7 +401,7 @@ func _aggiorna_pezzi() -> void:
 			var img := "res://assets/segnalini/%s.webp" % id
 			if not visti:
 				img = "res://assets/segnalini/%s.webp" % ch.get("retro", "retro_rosso")
-			var gtt := _gettone(img, 0.15, "", 0.025)
+			var gtt := _gettone(img, 0.21, "", 0.025)
 			var off := Vector2(-0.52 + 0.17 * (j % 4), 0.62 - 0.17 * (j / 4))
 			gtt.position = _v3(c + off.rotated(0.0), 0.0)
 			nodo_pezzi.add_child(gtt)
@@ -1526,6 +1526,7 @@ func _rispondi(x) -> void:
 func _svuota_azioni() -> void:
 	for c in box_azioni.get_children():
 		c.queue_free()
+	_adatta_azioni()
 
 func _fasi_totali() -> int:
 	return int(fasi["base"]) + int(fasi["luce"]) + fasi["extra"].size()
@@ -1535,16 +1536,16 @@ func _pannello_piano() -> void:
 	azioni.visible = true
 	var u := g.umano()
 	var tot := _fasi_totali()
-	var testo := "Giorno %d: decidi cosa farà %s oggi. Hai %d fasi" % [g.s["giorno"], u["nome"], tot]
+	var testo := "Giorno %d · %s ha %d fasi" % [g.s["giorno"], u["nome"], tot]
 	if not fasi["extra"].is_empty():
 		var nomi := {"M": "movimento", "R": "riposo", "H": "nascondersi", "S": "ricerca", "A": "allerta", "*": "qualsiasi", "E": "incanto", "T": "commercio", "HR": "ingaggio", "V": "volo", "MP": "pony (movimento)", "MC": "cavallo da lavoro (movimento)"}
 		testo += ", di cui extra: " + ", ".join(fasi["extra"].map(func(x): return nomi[x]))
-	testo += "): riempile in ordine con le attività qui sotto, poi premi «Conferma il giorno»."
+	testo += "): riempile in ordine e premi «Conferma»."
 	if fasi["grotta"]:
 		testo += " Sei in una grotta: niente fasi di luce."
-	box_azioni.add_child(_lab(testo, 17, f_tit))
 	if g.s["scenario"] >= 2:
-		box_azioni.add_child(_lab("Consiglio: metti NASCONDERSI come ultima attività, così la sera i mostri e i rivali non ti bloccano.", 14, f_txt, C_VERDE))
+		testo += " Consiglio: per ultima NASCONDERSI."
+	box_azioni.add_child(_lab(testo, 15, f_tit))
 	var hp := HFlowContainer.new()
 	hp.add_theme_constant_override("h_separation", 4)
 	box_azioni.add_child(hp)
@@ -1584,15 +1585,16 @@ func _pannello_piano() -> void:
 				magico = true
 		if magico:
 			att.append("E")
-	var spiega := {"S": "Cerchi nella tua radura: indizi, sentieri, segnalini, tesori.", "H": "Tiri un dado: con 1-5 diventi invisibile a mostri e rivali.",
-		"R": "Recuperi segnalini affaticati o feriti.", "A": "Prepari l'arma: il primo colpo è più forte.", "E": "Prepari la magia: crei un segnalino di colore.",
-		"T": "Compri e vendi con i nativi della radura.", "HR": "Paghi dei nativi perché ti seguano e combattano."}
+	var spiega := {"S": "indizi e tesori", "H": "1-5: invisibile", "R": "recuperi segnalini", "A": "prepari l'arma",
+		"E": "segnalino di colore", "T": "compri e vendi", "HR": "assoldi nativi"}
 	var card_m := VBoxContainer.new()
-	card_m.custom_minimum_size = Vector2(158, 0)
-	var lmt := _lab("MOVIMENTO", 17, f_tit, C_VERDE)
+	card_m.custom_minimum_size = Vector2(102, 0)
+	card_m.add_theme_constant_override("separation", 0)
+	var lmt := _lab("MOVIMENTO", 12, f_tit, C_VERDE)
+	lmt.autowrap_mode = TextServer.AUTOWRAP_OFF
 	card_m.add_child(lmt)
-	var lmd := _lab("Tocca sulla mappa una radura con l'anello giallo (montagne: 2 fasi).", 12, f_txt, C_INCHIOSTRO)
-	lmd.custom_minimum_size.x = 154
+	var lmd := _lab("tocca un anello giallo", 10, f_txt, C_INCHIOSTRO)
+	lmd.custom_minimum_size.x = 98
 	card_m.add_child(lmd)
 	var pm := _pannello(Color(0.9, 0.97, 0.88))
 	pm.add_theme_stylebox_override("panel", _stile(Color(0.9, 0.97, 0.88), C_VERDE, 6, 2))
@@ -1600,7 +1602,7 @@ func _pannello_piano() -> void:
 	hb.add_child(pm)
 	for a in att:
 		var b := Button.new()
-		b.custom_minimum_size = Vector2(158, 78)
+		b.custom_minimum_size = Vector2(102, 44)
 		b.disabled = pieno
 		b.focus_mode = Control.FOCUS_NONE
 		b.add_theme_stylebox_override("normal", _stile(Color(0.33, 0.21, 0.12), C_ORO, 6, 2))
@@ -1609,14 +1611,15 @@ func _pannello_piano() -> void:
 		b.add_theme_stylebox_override("disabled", _stile(Color(0.5, 0.45, 0.4), Color(0.6, 0.55, 0.5), 6, 1))
 		var v := VBoxContainer.new()
 		v.mouse_filter = Control.MOUSE_FILTER_IGNORE
-		v.position = Vector2(8, 5)
-		v.add_theme_constant_override("separation", 1)
+		v.position = Vector2(6, 3)
+		v.add_theme_constant_override("separation", 0)
 		b.add_child(v)
-		var t1 := _lab(str(Reame.ATTIVITA[a]).to_upper(), 16, f_tit, C_PERG)
+		var t1 := _lab(str(Reame.ATTIVITA[a]).to_upper(), 12, f_tit, C_PERG)
+		t1.autowrap_mode = TextServer.AUTOWRAP_OFF
 		t1.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		v.add_child(t1)
-		var t2 := _lab(spiega.get(a, ""), 12, f_txt, Color(0.95, 0.9, 0.8))
-		t2.custom_minimum_size.x = 142
+		var t2 := _lab(spiega.get(a, ""), 10, f_txt, Color(0.95, 0.9, 0.8))
+		t2.autowrap_mode = TextServer.AUTOWRAP_OFF
 		t2.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		v.add_child(t2)
 		b.pressed.connect(func(): _aggiungi(a))
@@ -1646,7 +1649,7 @@ func _pannello_piano() -> void:
 		piano = g.ia.piano(u, fasi).duplicate(true)
 		_pannello_piano()
 		_aggiorna_evidenze(), 16))
-	var conf := _bott("Conferma il giorno" if pieno else "Conferma il giorno (%d fasi su %d)" % [piano.size(), tot], func(): _rispondi(piano.duplicate(true)), 18, true)
+	var conf := _bott("Conferma" if pieno else "Conferma (%d su %d)" % [piano.size(), tot], func(): _rispondi(piano.duplicate(true)), 17, true)
 	hb2.add_child(conf)
 	if g.e_classico() and g.usa_regola("combattimento_pg"):
 		for guida in g.vivi():
@@ -1654,6 +1657,13 @@ func _pannello_piano() -> void:
 				continue
 			hb2.add_child(_bott("Segui %s (tutto il giorno)" % guida["nome"],
 				func(): _rispondi([{"a": "F", "guida": guida["pid"]}]), 15))
+
+func _adatta_azioni() -> void:
+	## il pannello in basso prende solo l'altezza che serve (al massimo metà schermo)
+	await get_tree().process_frame
+	var h: float = box_azioni.get_combined_minimum_size().y + 26
+	h = minf(h, hud.size.y * 0.5)
+	azioni.offset_top = -10 - h
 
 func _aggiungi(a: String) -> void:
 	if piano.size() >= _fasi_totali():
