@@ -2059,7 +2059,7 @@ func _plancia_mischia(d: Dictionary) -> void:
 		var attacco: String = str(Combattimento.DIREZIONI[mischia["cerchio"]])
 		var manovra: String = str(Combattimento.MANOVRE[mischia["casella"]])
 		var scudo: String = str(Combattimento.DIREZIONI[mischia["scudo"]]) if d.get("scudo", false) else "nessuno"
-		scelte.text = "%s: %s    •    MANOVRA: %s    •    SCUDO: %s" % [modo, attacco, manovra, scudo]
+		scelte.text = "%s: %s   ·   MANOVRA: %s   ·   SCUDO: %s" % [modo, attacco, manovra, scudo]
 	var direzioni := ["thrust", "swing", "smash"]
 	var manovre := ["charge", "dodge", "duck"]
 	var intercetta := ["Carica", "Schivata", "Abbassarsi"]
@@ -2101,8 +2101,14 @@ func _plancia_mischia(d: Dictionary) -> void:
 	var label_box := _lab("BOX ROSSI DEI MOSTRI", 16, f_tit, inchiostro)
 	label_box.custom_minimum_size.x = 330
 	intestazione.add_child(label_box)
-	intestazione.add_child(_lab("← INTERCETTA ←", 13, f_tit, inchiostro))
-	intestazione.add_child(_lab("ATTACCHI", 16, f_tit, inchiostro))
+	var l_int := _lab("INTERCETTA", 13, f_tit, inchiostro)
+	l_int.autowrap_mode = TextServer.AUTOWRAP_OFF
+	l_int.custom_minimum_size.x = 82
+	l_int.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	intestazione.add_child(l_int)
+	var l_att := _lab("ATTACCHI", 16, f_tit, inchiostro)
+	l_att.autowrap_mode = TextServer.AUTOWRAP_OFF
+	intestazione.add_child(l_att)
 	for i in range(3):
 		var dir: String = direzioni[i]
 		var man: String = manovre[i]
@@ -2139,10 +2145,16 @@ func _plancia_mischia(d: Dictionary) -> void:
 				immagine.tooltip_text = g.nome_mostro(m)
 				pedine.add_child(immagine)
 		if pedine.get_child_count() == 0:
-			pedine.add_child(_lab("Posizione non ancora rivelata", 12, f_txt, inchiostro))
-		var freccia := _lab("←────", 22, f_tit, inchiostro)
-		freccia.custom_minimum_size.x = 70
-		freccia.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+			var nr := _lab("Posizione non ancora rivelata", 12, f_txt, inchiostro)
+			nr.custom_minimum_size.x = 196
+			pedine.add_child(nr)
+		# linea di intercettazione disegnata (niente frecce Unicode, assenti dal font)
+		var freccia := CenterContainer.new()
+		freccia.custom_minimum_size = Vector2(70, 90)
+		var linea := ColorRect.new()
+		linea.color = inchiostro
+		linea.custom_minimum_size = Vector2(64, 3)
+		freccia.add_child(linea)
 		fila.add_child(freccia)
 		var att := _bott(Combattimento.DIREZIONI[dir], func():
 			mischia["cerchio"] = dir
@@ -2152,6 +2164,8 @@ func _plancia_mischia(d: Dictionary) -> void:
 		fila.add_child(att)
 		attacchi.append(att)
 		var legenda := _lab("Colpisce:\n" + intercetta[i], 12, f_txt, inchiostro)
+		legenda.autowrap_mode = TextServer.AUTOWRAP_OFF
+		legenda.custom_minimum_size.x = 80
 		legenda.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 		fila.add_child(legenda)
 	# Ovali scudo e armature come nel pannello DEFENSES originale.
@@ -2239,7 +2253,7 @@ func _plancia_mischia(d: Dictionary) -> void:
 		if int(ci) >= 0 and int(ci) < p["chits"].size():
 			usati_testo.append(g.descr_chit(p["chits"][int(ci)]))
 	usati.add_child(_lab("\n".join(usati_testo) if not usati_testo.is_empty() else "Nessun segnalino ancora usato", 13, f_txt, inchiostro))
-	laterale.add_child(_lab("Le frecce mostrano le intercettazioni; il motore gestisce tiri, velocità, fatica e cambio tattica.", 13, f_txt, inchiostro))
+	laterale.add_child(_lab("Le linee mostrano le intercettazioni; il motore gestisce tiri, velocità, fatica e cambio tattica.", 13, f_txt, inchiostro))
 	# Con le armi da tiro non e consentita la parata.
 	if not d.get("missile", false):
 		var modo := _bott("Usa FIGHT per: ATTACCO", func():
