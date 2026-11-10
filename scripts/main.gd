@@ -688,6 +688,7 @@ func _crea_ui() -> void:
 	hb.add_child(lbl_codice)
 	hb.add_child(_bott("Centra", _centra, 16))
 	hb.add_child(_bott("Salva online", _salva_online, 16))
+	hb.add_child(_bott("Tutorial", func(): _tutorial(0), 16))
 	hb.add_child(_bott("Guida", func(): _mostra_guida_classica() if g != null and g.e_classico() else _mostra_guida_scenario(true), 16))
 	hb.add_child(_bott("Regole", func(): aiuto.visible = not aiuto.visible, 16))
 	hb.add_child(_bott("Menu", _torna_menu, 16))
@@ -974,6 +975,7 @@ func _mostra_menu() -> void:
 	ed.add_theme_font_size_override("font_size", 18)
 	hb.add_child(ed)
 	hb.add_child(_bott("Carica online", func(): _carica_online(ed.text.strip_edges().to_upper()), 20))
+	hb.add_child(_bott("Tutorial", func(): _tutorial(0), 20, true))
 	hb.add_child(_bott("Regole", func(): aiuto.visible = true, 20))
 	var nota := _lab("Modalita classica sperimentale: obiettivi e punteggio originali; alcuni effetti e l’IA restano in verifica." if scelte_menu["edizione"] == "classico" else "Versione digitale per uso personale del modulo Super Magic Realm (espansione non ufficiale di Magic Realm, Avalon Hill).", 14, f_txt, Color(0.4, 0.3, 0.2))
 	nota.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
@@ -2496,3 +2498,67 @@ func _process(delta: float) -> void:
 	if marcatore != null and is_instance_valid(marcatore):
 		marcatore.position.y = 0.62 + 0.06 * sin(Time.get_ticks_msec() / 300.0)
 		marcatore.rotation.y += delta * 1.5
+
+func ui_radice() -> Node:
+	return hud.get_parent()
+
+# ============================================================ tutorial
+var tut_pannello: PanelContainer
+
+func _tutorial(pagina: int) -> void:
+	if tut_pannello == null:
+		tut_pannello = _pannello(Color(0.97, 0.93, 0.82))
+		tut_pannello.add_theme_stylebox_override("panel", _stile(Color(0.97, 0.93, 0.82), C_ROSSO, 8, 3))
+		ui.add_child(tut_pannello)
+	for c in tut_pannello.get_children():
+		c.queue_free()
+	var vp := get_viewport().get_visible_rect().size
+	var w: float = minf(980.0, vp.x - 30.0)
+	var m := MarginContainer.new()
+	for lato in ["left", "right", "top", "bottom"]:
+		m.add_theme_constant_override("margin_" + lato, 14)
+	tut_pannello.add_child(m)
+	var v := VBoxContainer.new()
+	v.add_theme_constant_override("separation", 10)
+	m.add_child(v)
+	var dati: Array = Guida.TUTORIAL[pagina]
+	var testa := HBoxContainer.new()
+	v.add_child(testa)
+	var t := _lab(dati[0], 26, f_tit, C_ROSSO)
+	t.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	testa.add_child(t)
+	var np := _lab("Pagina %d di %d" % [pagina + 1, Guida.TUTORIAL.size()], 15, f_txt, Color(0.4, 0.3, 0.2))
+	np.autowrap_mode = TextServer.AUTOWRAP_OFF
+	testa.add_child(np)
+	var corpo := HBoxContainer.new()
+	corpo.add_theme_constant_override("separation", 16)
+	v.add_child(corpo)
+	var tw: float = w - 28.0
+	if dati[2] != "":
+		var im := TextureRect.new()
+		im.texture = T("res://assets/tutorial/%s.webp" % dati[2])
+		var iw: float = minf(420.0, w * 0.42)
+		im.custom_minimum_size = Vector2(iw, iw * 0.75)
+		im.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		im.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		corpo.add_child(im)
+		tw -= iw + 16.0
+	var testo := _lab(dati[1], 16)
+	testo.custom_minimum_size.x = tw
+	corpo.add_child(testo)
+	var hb := HBoxContainer.new()
+	hb.add_theme_constant_override("separation", 10)
+	v.add_child(hb)
+	var ind := _bott("Indietro", func(): _tutorial(pagina - 1), 18)
+	ind.disabled = pagina == 0
+	hb.add_child(ind)
+	if pagina < Guida.TUTORIAL.size() - 1:
+		hb.add_child(_bott("Avanti", func(): _tutorial(pagina + 1), 18, true))
+	hb.add_child(_bott("Chiudi", func(): tut_pannello.visible = false, 18, pagina == Guida.TUTORIAL.size() - 1))
+	tut_pannello.visible = true
+	tut_pannello.custom_minimum_size = Vector2(w, 0)
+	tut_pannello.size = Vector2.ZERO
+	await get_tree().process_frame
+	tut_pannello.size = Vector2.ZERO
+	tut_pannello.reset_size()
+	tut_pannello.position = (vp - tut_pannello.size) / 2.0
