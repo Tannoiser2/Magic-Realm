@@ -31,7 +31,7 @@ const TABELLE := {
 	"scruta": ["scopri", "indizi", "nemici", "nemici", "indizi", "niente"],
 	"localizza": ["scelta", "scelta", "sentieri", "scopri_indizi", "scopri_indizi", "niente"]}
 const NOMI_TABELLE := {"cerca": "Cerca", "scruta": "Scruta", "localizza": "Localizza"}
-const ATTIVITA := {"M": "Movimento", "S": "Ricerca", "H": "Nascondersi", "A": "Allerta", "R": "Riposo", "E": "Incanto", "V": "Volo", "T": "Commercio", "HR": "Ingaggio"}
+const ATTIVITA := {"M": "Movimento", "S": "Ricerca", "H": "Nascondersi", "A": "Allerta", "R": "Riposo", "E": "Incanto", "V": "Volo", "T": "Commercio", "HR": "Ingaggio", "C": "Nascondiglio"}
 const BOSCHI := ["Lost Woods", "Old Woods", "Dark Woods", "Deep Woods", "Lake Woods", "Nut Woods", "Maple Woods", "Pine Woods", "Linden Woods", "Oak Woods"]
 const MALEDIZIONI := ["Nebbia agli occhi", "Squittio", "Avvizzimento", "Malattia", "Ceneri", "Disgusto"]
 const IPNOSI := ["Indebolito", "Ebbro", "Placato", "Distratto", "Svuotato", "Stanco"]
@@ -199,6 +199,45 @@ func _reingresso_classico() -> void:
 			if scelti is Dictionary and PunteggioClassico.valida_assegnazione(scelti, usa_regola("magia") and int(Dati.personaggi[p["pg"]].get("magia", 0)) > 0):
 				p["vp"] = scelti.duplicate(true)
 
+# Super 9.1.2: chi muore ricomincia con un nuovo eroe (lo stesso personaggio)
+# alla Locanda, all'alba del giorno dopo il successivo; perde fama, notorietà,
+# oro, incantesimi, missioni e scoperte del precedente.
+func _reingresso_super() -> void:
+	for i in range(s["pg"].size()):
+		var prec: Dictionary = s["pg"][i]
+		if not prec["morto"] or int(prec.get("reingresso_giorno", 0)) != int(s["giorno"]):
+			continue
+		var p: Dictionary = _nuovo_pg(prec["pid"], prec["pg"], prec["umano"])
+		p["dove"] = s["abitazioni"]["locanda"]
+		p["reingresso_giorno"] = 0
+		p["ripartenze"] = int(prec.get("ripartenze", 0)) + 1
+		if int(s["scenario"]) >= 3:
+			var tenute := []
+			for q in s["pg"]:
+				tenute.append_array(q.get("missioni", []))
+			var priv := []
+			for m in Dati.elenco_missioni:
+				if m["scenario"] == 3 and m["mazzo"] != "pubblico" and not (m["id"] in tenute):
+					priv.append(m["id"])
+			mescola(priv)
+			p["missioni"] = [] if priv.is_empty() else [priv[0]]
+		s["pg"][i] = p
+		if usa_regola("magia"):
+			arcano.sincronizza(p)
+		scrivi("%s ricomincia alla Locanda: un nuovo avventuriero, senza fama, oro o scoperte del precedente." % p["nome"], "titolo")
+		if int(s["scenario"]) >= 6:
+			viaggi.assegna_pv_ia(p)
+			if p["umano"]:
+				var sc = await decidi(p, "assegna_pv", {"vp": p["vp"].duplicate()})
+				if sc is Dictionary:
+					var tot := 0
+					for c in Viaggi.CATEGORIE:
+						tot += int(sc.get(c, 0))
+					if tot == 12:
+						for c in Viaggi.CATEGORIE:
+							p["vp"][c] = int(sc[c])
+		cambiato.emit()
+
 func punteggio_classico(p: Dictionary) -> Dictionary:
 	if not p.has("vp"):
 		return {}
@@ -343,12 +382,12 @@ func movimento_max(p: Dictionary) -> int:
 	for c in p["chits"]:
 		if c["tipo"] == "M" and c["stato"] == "a":
 			m = max(m, forza_chit(c))
-	if e_classico() and usa_regola("cavalli"):
+	if usa_regola("cavalli"):
 		return CavalliClassici.portata(p, m)
 	return m
 
 func _cavallo_cavalcato(p: Dictionary) -> Dictionary:
-	return CavalliClassici.attivo(p) if e_classico() and usa_regola("cavalli") else {}
+	return CavalliClassici.attivo(p) if usa_regola("cavalli") else {}
 
 func _sincronizza_cavalli(p: Dictionary) -> void:
 	if not e_classico() or not usa_regola("cavalli"):
@@ -681,6 +720,8 @@ func gioca_giorno() -> void:
 	s["fase"] = "alba"
 	if e_classico():
 		await _reingresso_classico()
+	else:
+		await _reingresso_super()
 	scrivi("— Giorno %d (%s) —" % [s["giorno"], settimana_mese()], "titolo")
 	for p in vivi():
 		p["bloccato"] = false
@@ -695,7 +736,7 @@ func gioca_giorno() -> void:
 		var r = await decidi(p, "piano", {"fasi": fasi_disponibili(p)})
 		p["piano"] = r if r is Array else []
 		p["segue"] = ""
-	if e_classico() and usa_regola("combattimento_pg"):
+	if (e_classico() and usa_regola("combattimento_pg")) or (not e_classico() and int(s["scenario"]) >= 4):
 		for p in vivi():
 			if p["piano"].size() != 1 or p["piano"][0].get("a", "") != "F":
 				continue
@@ -783,7 +824,7 @@ func fasi_disponibili(p: Dictionary) -> Dictionary:
 	if usa_regola("magia"):
 		extra.append_array(arcano.fasi_extra(p))
 	var grotta := tipo_radura(p["dove"]) == "C"
-	if e_classico() and usa_regola("cavalli") and not grotta:
+	if usa_regola("cavalli") and not grotta:
 		var cavallo: Dictionary = _cavallo_cavalcato(p)
 		if not cavallo.is_empty():
 			var normale := base + luce + extra.count("M")
@@ -915,6 +956,8 @@ func esegui_turno(p: Dictionary) -> void:
 				if usa_regola("magia"): await arcano.attivita_incanto(p)
 			"V":
 				if usa_regola("magia"): await attivita_volo(p, a.get("dest", ""))
+			"C":
+				if not e_classico(): await attivita_nascondiglio(p)
 			"T":
 				if usa_regola("commercio"): await nativi.attivita_commercio(p)
 			"HR":
@@ -933,7 +976,7 @@ func esegui_turno(p: Dictionary) -> void:
 	cambiato.emit()
 
 func _slot(p: Dictionary, st: Dictionary, tipo: String) -> String:
-	if tipo == "M" and e_classico() and usa_regola("cavalli"):
+	if tipo == "M" and usa_regola("cavalli"):
 		var cavallo: Dictionary = _cavallo_cavalcato(p)
 		if not cavallo.is_empty() and "MP" in st["extra"] and int(st["mosse_normali"]) > int(st["mosse_pony"]):
 			st["extra"].erase("MP")
@@ -1459,6 +1502,11 @@ func mezzanotte() -> void:
 	for p in vivi():
 		p["indizi"] = {}
 		p["nemici"] = false
+		if not e_classico():
+			# Super 8.15.2.b: a mezzanotte tutte le armi tornano non in allerta.
+			for o in p["oggetti"]:
+				if o.has("allerta"):
+					o["allerta"] = false
 		if p["berserk"]:
 			p["berserk"] = false
 		if abitazione_in(p["dove"]) == "cappella" and not p["maledizioni"].is_empty():
@@ -1472,6 +1520,8 @@ func mezzanotte() -> void:
 		viaggi.fine_mese()
 	if not e_classico() and s["giorno"] % 28 == 0 and s["scenario"] >= 3:
 		_rigenerazione()
+		if usa_regola("nativi"):
+			nativi.rigenera_mese()
 
 # In seconda edizione, nel settimo giorno tornano soltanto le creature
 # della riga che sta cacciando, incluse quelle morte (regole 12.7 e 26.6).
@@ -1720,6 +1770,8 @@ func controlla_vittoria() -> void:
 			s["fine"] = "vittoria"
 			scrivi("Vince %s!" % " e ".join(v.map(func(p): return p["nome"])), "titolo")
 		return
+	if u["morto"] and v.is_empty() and int(u.get("reingresso_giorno", 0)) > int(s["giorno"]):
+		return
 	if u["morto"] and v.is_empty() and sc != 2:
 		s["fine"] = "sconfitta"
 		scrivi("%s è mort{oa}: la partita è finita." % u["nome"], "titolo")
@@ -1780,3 +1832,47 @@ func attivita_volo(p: Dictionary, dest: String) -> void:
 
 func obiettivo_pv() -> int:
 	return 12 if s.get("scenario", 1) >= 5 else 10
+
+# ------------------------------------------------------------ nascondiglio (Cache, 7.12)
+func attivita_nascondiglio(p: Dictionary) -> void:
+	var lista := []
+	for o in p["oggetti"]:
+		lista.append({"id": o["id"], "nome": Dati.nome_arma(o["id"])})
+	var sc = await decidi(p, "nascondiglio", {"oggetti": lista, "oro": p["oro"]})
+	if not (sc is Dictionary) or (sc.get("oggetti", []).is_empty() and int(sc.get("oro", 0)) <= 0):
+		scrivi("%s non nasconde nulla." % p["nome"])
+		return
+	if not s.has("nascondigli"):
+		s["nascondigli"] = {}
+	var chiave: String = p["pid"] + "|" + p["dove"]
+	var nd: Dictionary = s["nascondigli"].get(chiave, {"pid": p["pid"], "dove": p["dove"], "oggetti": [], "oro": 0})
+	var nomi := []
+	for id in sc.get("oggetti", []):
+		for o in p["oggetti"]:
+			if o["id"] == id:
+				p["oggetti"].erase(o)
+				o["attivo"] = false
+				nd["oggetti"].append(o)
+				nomi.append(Dati.nome_arma(id))
+				break
+	var oro: int = clampi(int(sc.get("oro", 0)), 0, int(p["oro"]))
+	p["oro"] -= oro
+	nd["oro"] = int(nd["oro"]) + oro
+	if oro > 0:
+		nomi.append("%d oro" % oro)
+	s["nascondigli"][chiave] = nd
+	arcano.sincronizza(p)
+	scrivi("%s nasconde in un nascondiglio a %s: %s. Solo lui saprà ritrovarlo con la Ricerca." % [p["nome"], nome_r(p["dove"]), ", ".join(nomi)], "bene")
+	cambiato.emit()
+
+func recupera_nascondiglio(p: Dictionary, chiave: String) -> void:
+	var nd: Dictionary = s.get("nascondigli", {}).get(chiave, {})
+	if nd.is_empty() or nd["pid"] != p["pid"]:
+		return
+	for o in nd["oggetti"]:
+		p["oggetti"].append(o)
+	p["oro"] += int(nd["oro"])
+	s["nascondigli"].erase(chiave)
+	arcano.sincronizza(p)
+	scrivi("%s recupera il suo nascondiglio (%d oggetti, %d oro)." % [p["nome"], nd["oggetti"].size(), int(nd["oro"])], "bene")
+	cambiato.emit()

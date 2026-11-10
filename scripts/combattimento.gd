@@ -154,7 +154,7 @@ func _round() -> bool:
 	C["pos"] = {}
 	C["colpi_t"] = {}
 	for p in _in_lotta():
-		if r.e_classico() and r.usa_regola("cavalli"):
+		if r.usa_regola("cavalli"):
 			for cavallo in p.get("cavalli", []):
 				cavallo["galoppo_usato"] = false
 		C["uso"][p["pid"]] = {"usati": {}, "sforzo": 0, "cariche": [], "bersaglio": "", "attacco": {}, "parata": {}, "manovra": {}, "scudo": "", "ferite": 0, "ucciso_da": "", "incantesimo": {}}
@@ -1060,6 +1060,10 @@ func _morte(p: Dictionary, da: String) -> void:
 	if r.e_classico() and int(r.s["giorno"]) < 28:
 		# In seconda edizione un personaggio caduto puo rientrare dal giorno seguente.
 		p["reingresso_giorno"] = int(r.s["giorno"]) + 1
+	elif not r.e_classico() and int(r.s["scenario"]) >= 3 and int(r.s["giorno"]) + 2 <= int(r.s["giorni_max"]):
+		# Super 9.1.2: nuovo inizio il giorno dopo il successivo, alla Locanda.
+		p["reingresso_giorno"] = int(r.s["giorno"]) + 2
+		r.scrivi("Un nuovo avventuriero (%s) arriverà alla Locanda il giorno %d." % [p["nome"], int(p["reingresso_giorno"])], "titolo")
 	r.controlla_vittoria()
 
 # ------------------------------------------------------------ incantesimi in combattimento

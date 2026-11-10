@@ -27,6 +27,7 @@ func decidi(p: Dictionary, tipo: String, d: Dictionary):
 		"incanto": return _incanto(p, d)
 		"incantesimo_sera": return _sera(p, d)
 		"commercio": return _commercio(p, d)
+		"nascondiglio": return {}
 		"viaggiatore": return _viaggiatore(p, d)
 		"assegna_pv": return {}
 		"ingaggio": return _ingaggio(p, d)

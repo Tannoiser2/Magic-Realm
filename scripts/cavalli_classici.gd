@@ -23,6 +23,17 @@ const SPEC := {
  "guerra_h4h6": {"nome":"Destriero H4/H6","tipo":"guerra","galoppo":["H",4],"passo":["H",6],"prezzo":18,"vulnerabilita":"T"}
 }
 
+## Cavalli dei clan nel Super Realm (Chart of Clans): stesse caratteristiche dei cavalli rotondi
+const STALLE_SUPER := {
+ "zealots":["guerra_t5"],
+ "summoners":["pony_m2","pony_m3m4"],
+ "peasants":["lavoro_h6h7","lavoro_m5m6","lavoro_l4l5","pony_l3m5","pony_m4m5","pony_m3m5"],
+ "bashkars":["pony_m2","pony_m3m4","pony_m3m5","pony_l3m4","pony_l3m5","pony_m4m5"],
+ "pagans":["lavoro_m5h7","lavoro_l5m6"],
+ "order":["guerra_t5","guerra_h4t7","guerra_h4h6"],
+ "rogues":["lavoro_h6t8","lavoro_h6h7","lavoro_m5h7","lavoro_m5m6","lavoro_l5m6","lavoro_l4l5"]
+}
+
 const STALLE := {
  "bashkars":["pony_m2","pony_m3m4","pony_m3m5","pony_l3m4","pony_l3m5","pony_m4m5"],
  "rogues":["lavoro_h6t8","lavoro_h6h7","lavoro_m5h7","lavoro_m5m6","lavoro_l5m6","lavoro_l4l5"],

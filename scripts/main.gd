@@ -1263,7 +1263,7 @@ func _aggiorna_scheda() -> void:
 		punti += " · uccisioni %d/4" % u["uccisi_pg"]
 	scheda.add_child(_lab(punti, 17, f_tit))
 	# Cavalli esclusivi del Classico: uno cavalcato, altri come animali da soma.
-	if g.e_classico() and g.usa_regola("cavalli") and not u.get("cavalli", []).is_empty():
+	if g.usa_regola("cavalli") and not u.get("cavalli", []).is_empty():
 		scheda.add_child(_lab("Cavalli · uno attivo, gli altri da soma", 18, f_tit))
 		var scuderia := HFlowContainer.new()
 		scheda.add_child(scuderia)
@@ -1467,7 +1467,7 @@ func _carta_inc(id: String) -> void:
 	_ricentra()
 
 func _attiva_cavallo(id: String) -> void:
-	if not g.e_classico() or not g.usa_regola("cavalli"):
+	if not g.usa_regola("cavalli"):
 		return
 	if g.richiesta.get("tipo", "") != "piano":
 		_avviso("Puoi cambiare cavallo prima di confermare il piano del giorno.")
@@ -1522,6 +1522,7 @@ func _chiede(req: Dictionary) -> void:
 			_richiesta_combattimento(req)
 		"incanto": _richiesta_incanto(req)
 		"commercio": _richiesta_commercio(req)
+		"nascondiglio": _richiesta_nascondiglio(req)
 		"viaggiatore": _richiesta_si_no(req["dati"]["testo"])
 		"assegna_pv": _richiesta_pv(req)
 		"ingaggio": _richiesta_ingaggio(req)
@@ -1608,6 +1609,8 @@ func _pannello_piano() -> void:
 		att.append("T")
 	if g.usa_regola("ingaggio"):
 		att.append("HR")
+	if not g.e_classico() and int(g.s["scenario"]) >= 4:
+		att.append("C")
 	if g.usa_regola("magia"):
 		var magico: bool = "E" in fasi["extra"]
 		for c in u["chits"]:
@@ -1616,7 +1619,7 @@ func _pannello_piano() -> void:
 		if magico:
 			att.append("E")
 	var spiega := {"S": "indizi e tesori", "H": "1-5: invisibile", "R": "recuperi segnalini", "A": "prepari l'arma",
-		"E": "segnalino di colore", "T": "compri e vendi", "HR": "assoldi nativi"}
+		"E": "segnalino di colore", "T": "compri e vendi", "HR": "assoldi nativi", "C": "nascondi oggetti"}
 	var card_m := VBoxContainer.new()
 	card_m.custom_minimum_size = Vector2(102, 0)
 	card_m.add_theme_constant_override("separation", 0)
@@ -1632,7 +1635,10 @@ func _pannello_piano() -> void:
 	hb.add_child(pm)
 	for a in att:
 		var b := Button.new()
-		b.custom_minimum_size = Vector2(102, 44)
+		# larghezza secondo il testo più lungo, così nessuna scritta viene tagliata
+		var larg: float = max(f_tit.get_string_size(str(Reame.ATTIVITA[a]).to_upper(), HORIZONTAL_ALIGNMENT_LEFT, -1, 12).x,
+			f_txt.get_string_size(str(spiega.get(a, "")), HORIZONTAL_ALIGNMENT_LEFT, -1, 10).x)
+		b.custom_minimum_size = Vector2(max(102.0, ceil(larg) + 16.0), 44)
 		b.disabled = pieno
 		b.focus_mode = Control.FOCUS_NONE
 		b.add_theme_stylebox_override("normal", _stile(Color(0.33, 0.21, 0.12), C_ORO, 6, 2))
@@ -1683,7 +1689,7 @@ func _pannello_piano() -> void:
 		_aggiorna_evidenze(), 16))
 	var conf := _bott("Conferma" if pieno else "Conferma (%d su %d)" % [piano.size(), tot], func(): _rispondi(piano.duplicate(true)), 17, true)
 	hb2.add_child(conf)
-	if g.e_classico() and g.usa_regola("combattimento_pg"):
+	if (g.e_classico() and g.usa_regola("combattimento_pg")) or (not g.e_classico() and int(g.s["scenario"]) >= 4):
 		for guida in g.vivi():
 			if guida == u or guida["dove"] != u["dove"]:
 				continue
@@ -1836,6 +1842,37 @@ func _richiesta_commercio(req: Dictionary) -> void:
 				if sel.is_empty(): _avviso("Scegli prima cosa vendere.")
 				else: _rispondi({"gruppo": gx["gruppo"], "tipo": "vendi", "oggetti": sel}), 16))
 	_riga_bottoni().add_child(_bott("Nessun affare", func(): _rispondi({}), 17, true))
+	_ricentra()
+
+func _richiesta_nascondiglio(req: Dictionary) -> void:
+	var d: Dictionary = req["dati"]
+	_apri_modale("Nascondiglio")
+	box_modale.add_child(_lab("Scegli cosa lasciare nascosto in questa casella. Gli altri non lo trovano; tu lo riprendi con una Ricerca qui (scegli \"Il tuo nascondiglio\"), senza tirare i dadi.", 15))
+	var sel := []
+	var hv := _riga_bottoni()
+	for o in d["oggetti"]:
+		var cb := CheckBox.new()
+		cb.text = o["nome"]
+		cb.add_theme_font_override("font", f_txt)
+		cb.add_theme_color_override("font_color", C_INCHIOSTRO)
+		cb.toggled.connect(func(on): (sel.append(o["id"]) if on else sel.erase(o["id"])))
+		hv.add_child(cb)
+	var oro := [0]
+	var lo := _lab_riga("")
+	lo.custom_minimum_size = Vector2(220, 0)
+	var agg := func(): lo.text = "Oro da nascondere: %d su %d" % [oro[0], int(d["oro"])]
+	var ho := _riga_bottoni()
+	ho.add_child(lo)
+	for dv in [-10, -1, 1, 10]:
+		ho.add_child(_bott(("%+d" % dv), func():
+			oro[0] = clampi(oro[0] + dv, 0, int(d["oro"]))
+			agg.call(), 15))
+	agg.call()
+	var hb := _riga_bottoni()
+	hb.add_child(_bott("Nascondi", func():
+		if sel.is_empty() and oro[0] == 0: _avviso("Scegli almeno un oggetto o un po' d'oro.")
+		else: _rispondi({"oggetti": sel, "oro": oro[0]}), 17))
+	hb.add_child(_bott("Niente", func(): _rispondi({}), 17, true))
 	_ricentra()
 
 func _richiesta_pv(req: Dictionary) -> void:

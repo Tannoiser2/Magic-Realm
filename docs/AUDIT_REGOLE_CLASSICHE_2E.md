@@ -32,9 +32,44 @@ Riferimento regolamentare: https://magicrealm.ca/magic-realm-rules-second-editio
 - Leader nativi ingaggiati che svolgono turni indipendenti; controllo dettagliato di underlings e denizen-versus-denizen.
 - Magia completa della 2e: tutti gli incantesimi lanciabili, pacificazione, controllo, trasformazioni, interruzioni, tempi/colore e effetti speciali. Parte degli incantesimi esistenti resta soltanto apprendibile.
 - Tutti gli effetti particolari dei tesori e i casi speciali di commercio e combattimento.
-- Alcune regole avanzate e opzionali (cache, meteo, stagioni ecc.). Queste **non** sono parte necessaria dei quattro Encounter base, ma sono presenti nel libro originale.
+- Alcune regole avanzate e opzionali (meteo, stagioni ecc.). Il Nascondiglio esiste ora nel Super (scenari 4-6); nel Classico non è attivo. Queste **non** sono parte necessaria dei quattro Encounter base, ma sono presenti nel libro originale.
 - Conformità puntuale della preparazione di tutti i mazzi e contatori al tabellone della seconda edizione: i dati fonte derivano dal modulo Super e alcuni vengono filtrati.
 - Validazione umana in browser di campagne plurigiocatore e con IA, oltre ai test headless.
+
+## Lista di controllo per area (verifica del 10 novembre 2026)
+
+Il testo integrale della 2a edizione non è nel progetto: la lista segue la struttura dei quattro Encounter e va confrontata, numero per numero, con il regolamento di magicrealm.ca appena sarà possibile scaricarlo.
+
+| Area | Encounter | Stato | Note |
+| --- | --- | --- | --- |
+| Preparazione: 20 tessere, segnalini, abitazioni, guarnigioni | I | OK | |
+| Partenza alla Locanda o alle abitazioni del personaggio | I | OK | |
+| Registrare le fasi (base, luce del sole, grotte) | I | OK | |
+| Movimento, strade nascoste e segrete | I | OK | |
+| Nascondersi, Ricerca e tabelle | I | OK | |
+| Riposo, Allerta | I | OK | |
+| Tiro dei mostri e mostri che si aggirano | I | OK | |
+| Blocco a fine fase | I | OK | |
+| Ritorno del 7° giorno | I | OK | solo la riga che caccia |
+| Commercio con nativi e visitatori | I | SEMPL. | quattro visitatori commerciali; casi speciali mancanti |
+| Cavalli personali (rotondi) | I | OK | |
+| Cavalli dei nativi (quadrati) | III | SEMPL. | combattono, ma senza tutte le regole proprie |
+| Saccheggio e tesori nei siti | I | OK | |
+| Effetti dei tesori | I | SEMPL. | circa due terzi hanno effetto in gioco |
+| Punti vittoria (5) e punteggio finale | I | OK | |
+| Combattimento con i mostri | II | OK | |
+| Fatica, ferite, morte | II | OK | |
+| Morte e rientro alla Locanda | II | OK | |
+| Combattimento tra personaggi e con i nativi | III | OK | |
+| Rapporti con i nativi e attacchi a inizio combattimento | III | OK | |
+| Ingaggio | III | SEMPL. | i capi ingaggiati non hanno turni propri |
+| Seguire | III | SEMPL. | mancano interruzione per fase e capi ingaggiati |
+| Missioni e campagne delle tessere visitatore | III | MANCA | |
+| Magia: colori, segnalini, rituali, incanto | IV | OK | |
+| Incantesimi lanciabili | IV | SEMPL. | circa metà lanciabili |
+| Trasformazioni, controllo dei mostri, pacificazione | IV | MANCA | |
+| Nativi incantatori | IV | MANCA | combattono senza magia |
+| Regole opzionali (meteo, stagioni, ecc.) | — | MANCA | non necessarie agli Encounter |
 
 ## Criteri di verifica per ogni rilascio
 

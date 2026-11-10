@@ -33,7 +33,7 @@ static func super_scenario(numero: int) -> Dictionary:
 			"magia": numero >= 4, "nativi": numero >= 5,
 			"commercio": numero >= 5, "ingaggio": numero >= 5,
 			"viaggiatori": numero >= 6, "visitatori": numero >= 6,
-			"missioni_viaggiatori": numero >= 6, "cavalli": false
+			"missioni_viaggiatori": numero >= 6, "cavalli": numero >= 5
 		},
 		"implementato": true
 	}

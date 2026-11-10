@@ -47,8 +47,8 @@ func prepara() -> void:
 			continue
 		var g := gruppo(gid)
 		var box := {"tesori": [], "inc": [], "oggetti": [], "cavalli": []}
-		if r.e_classico() and r.usa_regola("cavalli"):
-			for id_cavallo in CavalliClassici.STALLE.get(gid, []):
+		if r.usa_regola("cavalli"):
+			for id_cavallo in (CavalliClassici.STALLE if r.e_classico() else CavalliClassici.STALLE_SUPER).get(gid, []):
 				box["cavalli"].append(CavalliClassici.nuovo(id_cavallo))
 		if not g["vagante"]:
 			for i in range(2):
@@ -311,7 +311,7 @@ func merce(gid: String) -> Array:
 	for i in range(box["oggetti"].size()):
 		var o: Dictionary = box["oggetti"][i]
 		a.append({"k": "o", "i": i, "id": o["id"], "nome": Dati.nome_arma(o["id"]), "oro": valore(o)})
-	if r.e_classico() and r.usa_regola("cavalli"):
+	if r.usa_regola("cavalli"):
 		for i in range(box.get("cavalli", []).size()):
 			var cavallo: Dictionary = box["cavalli"][i]
 			var dati: Dictionary = CavalliClassici.definizione(cavallo["id"])
@@ -344,7 +344,7 @@ func attivita_commercio(p: Dictionary) -> void:
 	var vendibili := []
 	for o in p["oggetti"]:
 		vendibili.append({"id": o["id"], "nome": Dati.nome_arma(o["id"]), "oro": valore(o)})
-	if r.e_classico() and r.usa_regola("cavalli"):
+	if r.usa_regola("cavalli"):
 		for cavallo in p.get("cavalli", []):
 			var d: Dictionary = CavalliClassici.definizione(cavallo["id"])
 			vendibili.append({"id": "cavallo:" + cavallo["id"], "nome": d["nome"], "oro": d["prezzo"]})
@@ -393,7 +393,7 @@ func _vendi(p: Dictionary, gid: String, ids: Array) -> void:
 	var tot := 0
 	var nomi := []
 	for id in ids:
-		if str(id).begins_with("cavallo:") and r.e_classico() and r.usa_regola("cavalli"):
+		if str(id).begins_with("cavallo:") and r.usa_regola("cavalli"):
 			var cavallo_id: String = str(id).substr(8)
 			for cavallo in p.get("cavalli", []).duplicate():
 				if cavallo["id"] == cavallo_id:
@@ -537,3 +537,24 @@ func attivita_ingaggio(p: Dictionary) -> void:
 # ------------------------------------------------------------ punteggio
 func pv_oro(p: Dictionary) -> int:
 	return max(0, int(p["oro"])) / 30
+
+## Super 4.10 / 8.16: a fine mese i nativi non ingaggiati (anche quelli uccisi)
+## tornano dove hanno iniziato: le guarnigioni nella loro abitazione, gli altri
+## fuori mappa in attesa di ricomparire. Chi è ingaggiato resta dov'è.
+func rigenera_mese() -> void:
+	for gid in r.s.get("nativi", {}):
+		var st: Dictionary = r.s["nativi"][gid]
+		if st["ingaggio"] != "":
+			continue
+		for id in st["membri"]:
+			var m: Dictionary = r.s["mostri"][id]
+			m["morto"] = false
+			m["dove"] = ""
+			m["lato"] = 0
+			m["bloccato"] = false
+		st["in_mappa"] = false
+		st["ostili"] = {}
+		var gar = gruppo(gid).get("guarnigione")
+		if gar != null and r.s["abitazioni"].has(gar):
+			compari(gid, r.s["abitazioni"][gar], false)
+	r.scrivi("Fine del mese: i nativi non ingaggiati tornano nelle loro abitazioni.", "mostri")
